@@ -1,0 +1,24 @@
+Relatorio:
+-Descrição CAN
+---pesquisar o que há (LABView o que tem)(vector é para debug)
+-Teste
+
+
+Acabar até final de Junho
+
+Notas:
+Guilherme Cândido
+SNIFER
+LABView
+SLCAN
+
+a interface grafica que comunica serial por o barramento.
+criar uma frame 
+
+
+O QUE É O BARRAMENTO CAN 
+Expecificação em OSI
+
+GOOGLE SCHOLAR
+
+TEmos O ID E TEMOS 8 BITES DISPONIVEIS PARA ESSE ID
