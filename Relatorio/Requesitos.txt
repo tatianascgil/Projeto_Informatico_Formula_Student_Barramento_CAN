@@ -1,0 +1,12 @@
+Requesitos:
+.Funcionais -> o que pretende que aplicação faça
+
+.Não funcionais -> Requesitos mais tecnicas, o formato
+
+
+Wireshark
+Guardar frames
+
+Justificar o porque de ser wireshark
+
+bk é so no wireshark 
