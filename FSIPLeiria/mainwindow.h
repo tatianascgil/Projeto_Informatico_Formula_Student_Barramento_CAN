@@ -22,6 +22,7 @@ public:
 private slots:
     void on_btnReadFile_clicked();
 
+
 private:
     Ui::MainWindow *ui;
 };
