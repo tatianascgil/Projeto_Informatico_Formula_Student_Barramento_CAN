@@ -51,7 +51,7 @@ struct MyData {
 {
     // Open a file dialog to select a file
     QString fileName = QFileDialog::getOpenFileName(this, tr("Open File"), "",
-                                                    tr("Binary Files (*.bin);;Excel Files (*.xls *.xlsx *.csv)"));
+                                                    tr("Excel Files (*.xls *.xlsx *.csv);;Binary Files (*.bin)"));
 
     if (fileName.isEmpty()) {
         return;
@@ -192,21 +192,12 @@ void MainWindow::updateSaveButtonVisibility()
     ui->btnSaveFile->setVisible(hasData);
 }
 
-
-
-
-
-
-
-
-
-
 void MainWindow::on_btnSaveFile_clicked()
 {
     // Create a QFileDialog object to allow the user to select the output file location and name.
     QFileDialog fileDialog;
     fileDialog.setAcceptMode(QFileDialog::AcceptSave);
-    fileDialog.setDefaultSuffix("xlsx");
+    fileDialog.setNameFilter(tr("Excel Files (*.xls *.xlsx *.csv);;Binary files (*.bin);;All files (*.*)"));
     QString fileName = fileDialog.getSaveFileName();
 
     // Check if the output file name is valid.
@@ -214,26 +205,36 @@ void MainWindow::on_btnSaveFile_clicked()
         return;
     }
 
-    // Create a QXlsx::Document object to represent the Excel file.
-    QXlsx::Document xlsxDoc(fileName);
+    // Open the output file for writing.
+    QFile file(fileName);
+    if (!file.open(QIODevice::WriteOnly)) {
+        QMessageBox::critical(this, tr("Error"), tr("Could not open file for writing"));
+        return;
+    }
 
-    // Add a new worksheet to the Excel document.
-    xlsxDoc.addSheet("Sheet1");
+    // Create a QDataStream object to write the binary data to the file.
+    QDataStream out(&file);
 
-    // Traverse the QTableView and add the table data to the Excel worksheet.
+    // Write the table data to the binary file.
     QAbstractItemModel* model = ui->tableView->model();
+    out << model->rowCount() << model->columnCount(); // write number of rows and columns
     for (int row = 0; row < model->rowCount(); ++row) {
         for (int col = 0; col < model->columnCount(); ++col) {
             QModelIndex index = model->index(row, col);
             QVariant data = model->data(index);
             if (data.isValid()) {
-                xlsxDoc.write(row + 1, col + 1, data.toString());
+                out << data.toString(); // write cell data as string
+            }
+            else {
+                out << QString(); // write empty string for invalid data
             }
         }
     }
 
-    // Save the Excel document to the output file.
-    xlsxDoc.saveAs(fileName);
+    // Close the file.
+    file.close();
 
+    // Notify the user that the file has been saved.
+    QMessageBox::information(this, tr("Information"), tr("File saved"));
 }
 
