@@ -1,6 +1,6 @@
 # This file is used to ignore files which are generated
 # ----------------------------------------------------------------------------
-
+*.pro.user*.pro.user.*git rm FSIPLeiria.pro.usergit rm QXlsx.pro.user
 *~
 *.autosave
 *.a
