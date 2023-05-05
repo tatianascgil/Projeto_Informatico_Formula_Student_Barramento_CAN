@@ -12,11 +12,12 @@
 #include <QtCore/QVariant>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QComboBox>
+#include <QtWidgets/QHeaderView>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QMenuBar>
-#include <QtWidgets/QPlainTextEdit>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QStatusBar>
+#include <QtWidgets/QTableView>
 #include <QtWidgets/QWidget>
 
 QT_BEGIN_NAMESPACE
@@ -26,10 +27,10 @@ class Ui_MainWindow
 public:
     QWidget *centralwidget;
     QPushButton *btnReadFile;
-    QPlainTextEdit *plainTextEdit;
     QPushButton *btnMenu;
     QPushButton *btnStat;
     QComboBox *btnCreateFile;
+    QTableView *tableView;
     QMenuBar *menubar;
     QStatusBar *statusbar;
 
@@ -44,12 +45,6 @@ public:
         btnReadFile->setObjectName("btnReadFile");
         btnReadFile->setGeometry(QRect(910, 0, 171, 61));
         btnReadFile->setCursor(QCursor(Qt::PointingHandCursor));
-        plainTextEdit = new QPlainTextEdit(centralwidget);
-        plainTextEdit->setObjectName("plainTextEdit");
-        plainTextEdit->setGeometry(QRect(20, 90, 1281, 491));
-        plainTextEdit->setMinimumSize(QSize(0, 491));
-        plainTextEdit->setMaximumSize(QSize(16777215, 491));
-        plainTextEdit->setAutoFillBackground(false);
         btnMenu = new QPushButton(centralwidget);
         btnMenu->setObjectName("btnMenu");
         btnMenu->setGeometry(QRect(10, 0, 151, 61));
@@ -65,6 +60,9 @@ public:
         btnCreateFile->setGeometry(QRect(1130, 0, 141, 61));
         btnCreateFile->setStyleSheet(QString::fromUtf8("text-align:center"));
         btnCreateFile->setDuplicatesEnabled(true);
+        tableView = new QTableView(centralwidget);
+        tableView->setObjectName("tableView");
+        tableView->setGeometry(QRect(30, 80, 1241, 561));
         MainWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName("menubar");

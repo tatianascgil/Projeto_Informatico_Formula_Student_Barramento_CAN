@@ -6,6 +6,11 @@
 #include <QCoreApplication>
 #include <QtWidgets>
 #include <QComboBox>
+
+#include <QTextStream>
+#include <QStandardItemModel>
+#include <QStandardItem>
+
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
@@ -63,77 +68,109 @@ struct MyData {
 
         // Show the data in a new window
         QString decodedData = QString::fromUtf8(data);
-        QMessageBox::information(this, tr("Dados do arquivo"), decodedData);
+
+//        // Add the text to the plainTextEdit
+//        ui->plainTextEdit->appendPlainText(decodedData);
+
+//        // Display the data in the plainTextEdit widget
+//        ui->plainTextEdit->setPlainText(decodedData);
     }
     else if (fileType == "xls" || fileType == "xlsx") {
-        // Read the Excel data from the file
         QXlsx::Document xlsx(fileName);
-        if (!xlsx.load()) {
+        if (xlsx.load()) {
+            QStringList headers;
+            QList<QList<QString>> rows;
+            for (int row = 1; row <= xlsx.dimension().rowCount(); ++row) {
+                QList<QString> rowData;
+                for (int col = 1; col <= xlsx.dimension().columnCount(); ++col) {
+                    QXlsx::Cell *cell = xlsx.cellAt(row, col);
+                    if (cell != nullptr) {
+                        QString value = cell->value().toString();
+                        if (row == 1) {
+                            headers.append(value);
+                        } else {
+                            rowData.append(value);
+                        }
+                    }
+                }
+                if (row != 1 && !rowData.isEmpty()) {
+                    rows.append(rowData);
+                }
+            }
+
+            // Create a table model and add the headers and rows
+            QStandardItemModel *model = new QStandardItemModel(rows.count(), headers.count(), this);
+            model->setHorizontalHeaderLabels(headers);
+            for (int i = 0; i < rows.count(); ++i) {
+                QList<QString> row = rows.at(i);
+                for (int j = 0; j < row.count(); ++j) {
+                    QString value = row.at(j);
+                    QStandardItem *item = new QStandardItem(value);
+                    model->setItem(i, j, item);
+                }
+            }
+
+            // Set the model for the existing table view
+            ui->tableView->setModel(model);
+
+            // Set the table view to resize the rows and columns to fit the contents
+            ui->tableView->resizeColumnsToContents();
+            ui->tableView->resizeRowsToContents();
+
+        }
+    }
+    else if (fileType == "csv") {
+        // Read the CSV data from the file
+        QFile file(fileName);
+        if (!file.open(QIODevice::ReadOnly)) {
             QMessageBox::critical(this, tr("Error"), tr("Unable to open file."));
             return;
         }
 
-        QStringList sheetNames = xlsx.sheetNames();
-        QString data;
-        for (int i = 0; i < sheetNames.size(); i++) {
-            QXlsx::AbstractSheet *abstractSheet = xlsx.sheet(sheetNames[i]);
-            QXlsx::Worksheet *sheet = dynamic_cast<QXlsx::Worksheet*>(abstractSheet);
-            if (sheet) {
-                QXlsx::CellRange range = sheet->dimension();
-                for (int row = range.firstRow(); row <= range.lastRow(); row++) {
-                    for (int col = range.firstColumn(); col <= range.lastColumn(); col++) {
-                        QXlsx::Cell *cell = sheet->cellAt(row, col);
-                        if (cell) {
-                            QString cellValue = cell->value().toString();
-                            data += cellValue + "\t";
-                        }
+        QTextStream stream(&file);
+        QStringList headers;
+        QList<QList<QString>> rows;
+        while (!stream.atEnd()) {
+            QString line = stream.readLine();
+            QStringList values = line.split(";");
+            if (headers.isEmpty()) {
+                headers = values;
+            } else {
+                QList<QString> row;
+                for (int i = 0; i < values.count(); ++i) {
+                    QString value = values.at(i);
+                    if (!value.isEmpty()) {
+                        row.append(value);
                     }
                 }
-                data += "\n";
-            }
-        }
-
-        // Show the data in a new window
-        QMessageBox::information(this, tr("Dados do arquivo"), data);
-
-
-    }
-    else if(fileType == "csv"){
-        QFile file(fileName);
-        QString data;
-        if (file.open(QIODevice::ReadOnly)) {
-            QTextStream in(&file);
-            while (!in.atEnd()) {
-                QString line = in.readLine();
-                QStringList fields = line.split(",");
-                // Process each field in the line
-                for (int i = 0; i < fields.size(); i++) {
-                    data += fields[i] + "\t";
+                if (!row.isEmpty()) {
+                    rows.append(row);
                 }
-                data += "\n";
             }
-            file.close();
+        }
+        file.close();
+
+        // Create a table model and add the headers and rows
+        QStandardItemModel *model = new QStandardItemModel(rows.count(), headers.count(), this);
+        model->setHorizontalHeaderLabels(headers);
+        for (int i = 0; i < rows.count(); ++i) {
+            QList<QString> row = rows.at(i);
+            for (int j = 0; j < row.count(); ++j) {
+                QString value = row.at(j);
+                QStandardItem *item = new QStandardItem(value);
+                model->setItem(i, j, item);
+            }
         }
 
-        // Show the data in a new window
+        // Set the model for the existing table view
+        ui->tableView->setModel(model);
 
-        // Declare a QPlainTextEdit widget
-        QPlainTextEdit *plainTextEdit = new QPlainTextEdit(this);
-        plainTextEdit->setReadOnly(true); // Set the widget as read-only
-
-        // Create a new layout and set it on the widget
-        QVBoxLayout *layout = new QVBoxLayout();
-        if (ui->plainTextEdit->layout() == nullptr) {
-            ui->plainTextEdit->setLayout(layout);
-        }
-
-        // Add the text to the plainTextEdit
-        ui->plainTextEdit->appendPlainText(data);
-
-        // Display the data in the plainTextEdit widget
-        plainTextEdit->setPlainText(data);
-
+        // Set the table view to resize the rows and columns to fit the contents
+        ui->tableView->resizeColumnsToContents();
+        ui->tableView->resizeRowsToContents();
     }
+
+
     else {
         // Show an error message if the file type is not supported
         QMessageBox::critical(this, tr("Error"), tr("Unsupported file type."));
