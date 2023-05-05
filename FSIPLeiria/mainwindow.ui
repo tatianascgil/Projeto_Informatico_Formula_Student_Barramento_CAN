@@ -10,6 +10,9 @@
     <height>710</height>
    </rect>
   </property>
+  <property name="cursor">
+   <cursorShape>ArrowCursor</cursorShape>
+  </property>
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
@@ -71,6 +74,9 @@
       <height>61</height>
      </rect>
     </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
     <property name="styleSheet">
      <string notr="true">text-align:center</string>
     </property>
@@ -102,6 +108,25 @@
       <width>1241</width>
       <height>561</height>
      </rect>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="btnSaveFile">
+    <property name="enabled">
+     <bool>true</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>520</x>
+      <y>10</y>
+      <width>151</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
+    <property name="text">
+     <string>Guardar Ficheiro</string>
     </property>
    </widget>
   </widget>
