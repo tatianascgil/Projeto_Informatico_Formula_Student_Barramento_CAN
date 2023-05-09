@@ -22,6 +22,9 @@ public:
 private slots:
     void on_btnReadFile_clicked();
 
+    void updateSaveButtonVisibility();
+
+    void on_btnSaveFile_clicked();
 
 private:
     Ui::MainWindow *ui;

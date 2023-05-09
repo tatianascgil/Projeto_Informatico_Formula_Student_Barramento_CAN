@@ -31,6 +31,7 @@ public:
     QPushButton *btnStat;
     QComboBox *btnCreateFile;
     QTableView *tableView;
+    QPushButton *btnSaveFile;
     QMenuBar *menubar;
     QStatusBar *statusbar;
 
@@ -39,6 +40,7 @@ public:
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName("MainWindow");
         MainWindow->resize(1325, 710);
+        MainWindow->setCursor(QCursor(Qt::ArrowCursor));
         centralwidget = new QWidget(MainWindow);
         centralwidget->setObjectName("centralwidget");
         btnReadFile = new QPushButton(centralwidget);
@@ -58,11 +60,17 @@ public:
         btnCreateFile->addItem(QString());
         btnCreateFile->setObjectName("btnCreateFile");
         btnCreateFile->setGeometry(QRect(1130, 0, 141, 61));
+        btnCreateFile->setCursor(QCursor(Qt::PointingHandCursor));
         btnCreateFile->setStyleSheet(QString::fromUtf8("text-align:center"));
         btnCreateFile->setDuplicatesEnabled(true);
         tableView = new QTableView(centralwidget);
         tableView->setObjectName("tableView");
         tableView->setGeometry(QRect(30, 80, 1241, 561));
+        btnSaveFile = new QPushButton(centralwidget);
+        btnSaveFile->setObjectName("btnSaveFile");
+        btnSaveFile->setEnabled(true);
+        btnSaveFile->setGeometry(QRect(520, 10, 151, 51));
+        btnSaveFile->setCursor(QCursor(Qt::PointingHandCursor));
         MainWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName("menubar");
@@ -90,6 +98,7 @@ public:
         btnCreateFile->setItemText(1, QCoreApplication::translate("MainWindow", "Criar Mensagem", nullptr));
 
         btnCreateFile->setPlaceholderText(QCoreApplication::translate("MainWindow", "          Criar Ficheiro", nullptr));
+        btnSaveFile->setText(QCoreApplication::translate("MainWindow", "Guardar Ficheiro", nullptr));
     } // retranslateUi
 
 };

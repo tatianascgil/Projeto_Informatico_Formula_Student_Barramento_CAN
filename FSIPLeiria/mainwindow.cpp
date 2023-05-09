@@ -29,7 +29,12 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
 
 
+    // Connect the modelChanged() signal of the table view's model to a slot
+    connect(ui->tableView->model(), SIGNAL(modelChanged()), this, SLOT(updateSaveButtonVisibility()));
+
+
     ui->btnCreateFile->setPlaceholderText("Criar Ficheiro");
+    ui->btnSaveFile->setVisible(false);
 }
 
 MainWindow::~MainWindow()
@@ -46,7 +51,7 @@ struct MyData {
 {
     // Open a file dialog to select a file
     QString fileName = QFileDialog::getOpenFileName(this, tr("Open File"), "",
-                                                    tr("Binary Files (*.bin);;Excel Files (*.xls *.xlsx *.csv)"));
+                                                    tr("Excel Files (*.xls *.xlsx *.csv);;Binary Files (*.bin)"));
 
     if (fileName.isEmpty()) {
         return;
@@ -173,16 +178,53 @@ struct MyData {
 
     else {
         // Show an error message if the file type is not supported
-        QMessageBox::critical(this, tr("Error"), tr("Unsupported file type."));
+        QMessageBox::critical(this, tr("Error"), tr("Tipo de ficheiro não suportado."));
         return;
     }
+
+    updateSaveButtonVisibility();
 }
 
 
+void MainWindow::updateSaveButtonVisibility()
+{
+    bool hasData = ui->tableView->model() && ui->tableView->model()->rowCount() > 0;
+    ui->btnSaveFile->setVisible(hasData);
+}
 
+void MainWindow::on_btnSaveFile_clicked()
+{
+    // Create a QFileDialog object to allow the user to select the output file location and name.
+    QFileDialog fileDialog;
+    fileDialog.setAcceptMode(QFileDialog::AcceptSave);
+    fileDialog.setNameFilter(tr("Excel files (.xlsx);;Binary Files (.bin)"));
+    fileDialog.setDefaultSuffix("xlsx");
+    QString fileName = fileDialog.getSaveFileName();
 
+    // Check if the output file name is valid.
+    if (fileName.isEmpty()) {
+        return;
+    }
 
+    // Create a QXlsx::Document object to represent the Excel file.
+    QXlsx::Document xlsxDoc(fileName);
 
+    // Add a new worksheet to the Excel document.
+    xlsxDoc.addSheet("Sheet1");
 
+    // Traverse the QTableView and add the table data to the Excel worksheet.
+    QAbstractItemModel* model = ui->tableView->model();
+    for (int row = 0; row < model->rowCount(); ++row) {
+        for (int col = 0; col < model->columnCount(); ++col) {
+            QModelIndex index = model->index(row, col);
+            QVariant data = model->data(index);
+            if (data.isValid()) {
+                xlsxDoc.write(row + 1, col + 1, data.toString());
+            }
+        }
+    }
 
+    // Save the Excel document to the output file.
+    xlsxDoc.saveAs(fileName);
+}
 
