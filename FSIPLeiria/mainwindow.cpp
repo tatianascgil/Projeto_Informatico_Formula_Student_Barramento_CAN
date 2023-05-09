@@ -197,7 +197,8 @@ void MainWindow::on_btnSaveFile_clicked()
     // Create a QFileDialog object to allow the user to select the output file location and name.
     QFileDialog fileDialog;
     fileDialog.setAcceptMode(QFileDialog::AcceptSave);
-    fileDialog.setNameFilter(tr("Excel Files (*.xls *.xlsx *.csv);;Binary files (*.bin);;All files (*.*)"));
+    fileDialog.setNameFilter(tr("Excel files (.xlsx);;Binary Files (.bin)"));
+    fileDialog.setDefaultSuffix("xlsx");
     QString fileName = fileDialog.getSaveFileName();
 
     // Check if the output file name is valid.
@@ -205,36 +206,25 @@ void MainWindow::on_btnSaveFile_clicked()
         return;
     }
 
-    // Open the output file for writing.
-    QFile file(fileName);
-    if (!file.open(QIODevice::WriteOnly)) {
-        QMessageBox::critical(this, tr("Error"), tr("Could not open file for writing"));
-        return;
-    }
+    // Create a QXlsx::Document object to represent the Excel file.
+    QXlsx::Document xlsxDoc(fileName);
 
-    // Create a QDataStream object to write the binary data to the file.
-    QDataStream out(&file);
+    // Add a new worksheet to the Excel document.
+    xlsxDoc.addSheet("Sheet1");
 
-    // Write the table data to the binary file.
+    // Traverse the QTableView and add the table data to the Excel worksheet.
     QAbstractItemModel* model = ui->tableView->model();
-    out << model->rowCount() << model->columnCount(); // write number of rows and columns
     for (int row = 0; row < model->rowCount(); ++row) {
         for (int col = 0; col < model->columnCount(); ++col) {
             QModelIndex index = model->index(row, col);
             QVariant data = model->data(index);
             if (data.isValid()) {
-                out << data.toString(); // write cell data as string
-            }
-            else {
-                out << QString(); // write empty string for invalid data
+                xlsxDoc.write(row + 1, col + 1, data.toString());
             }
         }
     }
 
-    // Close the file.
-    file.close();
-
-    // Notify the user that the file has been saved.
-    QMessageBox::information(this, tr("Information"), tr("File saved"));
+    // Save the Excel document to the output file.
+    xlsxDoc.saveAs(fileName);
 }
 
