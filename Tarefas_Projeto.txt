@@ -1,0 +1,58 @@
+Tarefas 24-4/08-5
+EM codeblocks
+-ler ficheiro bin
+-ler ficheiro csv, xls, xlsx
+-----
+-Instalar Qt
+-Criação de Projeto
+-criação de Janela
+-Elaborações de botões
+-instalação de biblioteca QXls
+-Ler ficheiro bin
+-ler ficheiro bin
+-ler ficheiro csv
+-ler em que é da mesma maneira xls e xlsx
+-mostrar na Aplicação
+-desencriptar a mensagem de binario para Hex de Bin 				(não conseguimos)
+-desencriptar a mensagem de binario para Hex de csv
+-desencriptar a mensagem de binario para Hex de xls e xlsx
+-Elaboração de uma mockup para seguirmos inicialmente
+-Mostrar as mensagem na janela principal em vez de pop up bin, csv e xls/xlsx
+-Tranformar o formato de texto em um tabela (alteração visual / testar tableView/tablewidgetView)
+-Ler ficheiro e mostrar em tabela(linha/coluna) csv
+-Ler ficheiro e mostrar em tabela(linha/coluna)  xls e xlsx 
+-Ler ficheiro e mostrar em tabela(linha/coluna)  bin				 (não mexemos porque ainda não conseguimos desencriptar)
+-Alterar da dados na tabela e depois:
+-Guardar Ficheiro da tabela csv e não ficar encriptado
+-Guardar Ficheiro da tabela xls e xlsx e não ficar encriptado
+-Guardar Ficheiro da tabela bin não ficar encriptado 			       (não foi feito)
+-Voltar a ler os ficheiros guardados e alterados no programa xls e xlsx
+
+
+Tarefas 08-05/15-05
+-Fazer 3 ficheiros modelo(csv,xls,xlsx) para termos sempre para teste
+-desencriptar a mensagem de binario para Hex de bin
+-Ler ficheiro e mostrar em tabela(linha/coluna)  xls e xlsx 
+-Ler ficheiro e mostrar em tabela(linha/coluna)  bin		
+-Voltar a ler os ficheiros guardados e alterados no programa csv
+-Voltar a ler os ficheiros guardados e alterados no programa bin
+-Planear soluções para o cliente parte da mensagem
+-Mockup Criar Modulos
+-Mockup Página dos Modulos
+-Mockup Criar Mensagem num Respetivo Modulo
+-Mostrar e Defenir com o Cliente
+-Fazer Janelas visuais Modulo e Mensagem no QT
+-Relatorio Ver os requesitos
+-Fazer um botão para limpar a tabela principal sempre que pretender
+-Fazer a verifição de aparecer um pop up caso altera algo na tabela, prgunta se quer guardar ou apenas apagar a mesma
+-O botão guardar deve aparecer apenas quando é alterado alguma coisa na tabela
+
+
+
+
+Tarefas 08-05/15-05
+-Mockup Add um Mensagem já existe com valores diferentes a um Modulo
+-Mockup Editar Modulo (Apenas da para editar o nome)
+-Criar Modulos
+-Página dos Modulos
+-Criar Mensagem num Respetivo Modulo
