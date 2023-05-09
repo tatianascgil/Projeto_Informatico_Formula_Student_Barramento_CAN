@@ -32,7 +32,7 @@ EM codeblocks
 Tarefas 08-05/15-05
 -Fazer 3 ficheiros modelo(csv,xls,xlsx) para termos sempre para teste
 -desencriptar a mensagem de binario para Hex de bin
--Ler ficheiro e mostrar em tabela(linha/coluna)  xls e xlsx 
+-Ler ficheiro e mostrar em tabela(linha/coluna)  csv
 -Ler ficheiro e mostrar em tabela(linha/coluna)  bin		
 -Voltar a ler os ficheiros guardados e alterados no programa csv
 -Voltar a ler os ficheiros guardados e alterados no programa bin
