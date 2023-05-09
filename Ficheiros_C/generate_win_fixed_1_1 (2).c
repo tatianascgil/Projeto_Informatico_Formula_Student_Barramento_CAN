@@ -15,8 +15,8 @@
  */
 
 #define DATASET_DURATION	60 // duration in seconds
-#define DATASET_FILENAME	"tati.bin" // name of the generated file
-#define CSV_FILENAME		"tati.csv"
+#define DATASET_FILENAME	"teste.bin" // name of the generated file
+#define CSV_FILENAME		"teste.csv"
 
 #define MODULE_RATE		20 // rate in Hz
 
@@ -95,7 +95,6 @@ int main()
                 uint16_t id = get_id_for_module_message(mod, mes);
 
                 data[n_frames-1].id = id;
-                printf("\tID x : %d", id);
 
                 // temporary 16-bit value
                 uint16_t value;
@@ -103,7 +102,7 @@ int main()
                 {
                 // dynamics module data
                 case 0x11:
-                    strcpy(module_name, "Modulo 81");
+                    strcpy(module_name, "Dynamics module data");
 
 
                     // bytes 0 and 1 - rear right wheel speed
@@ -125,8 +124,8 @@ int main()
                     break;
 
                 // dynamics module sensor errors
-                case 0x101:
-                    strcpy(module_name, "Modulo 101");
+                case 0x12:
+                    strcpy(module_name, "Dynamics module sensor errors");
                     // all sensor errors are the same
                     for(uint8_t i = 0; i < 4; i++)
                     {
@@ -137,16 +136,16 @@ int main()
 
                 // thermal sensor module
                 // 2 messages
-                case 0x130:
-                    strcpy(module_name, "Modulo 130");
+                case 0x21:
+                    strcpy(module_name, "Thermal sensor module");
                     for(uint8_t i = 0; i < 4; i++)
                     {
                         int value = rand() % 1000;
                         put_data_in_two_bytes(value, data[n_frames-1].data+(i*2));
                     }
                     break;
-                case 0x258:
-                    strcpy(module_name, "Modulo 258");
+                case 0x22:
+                    strcpy(module_name, "Thermal sensor module");
                     // range between 0 and 1000
                     for(uint8_t i = 0; i < 4; i++)
                     {
@@ -171,22 +170,7 @@ int main()
                 		return -3;
                 	}
                 }
-                if (id == 0x81)
-                {
-                    module_name = "Modulo";
-                }
-                else if (id == 0x101)
-                {
-                    module_name = "Moduloxx";
-                }
-                else if (id == 0x130)
-                {
-                    module_name = "Modulo Thermal sensor module l";
-                }
-                else if (id == 0x258)
-                {
-                    module_name = "Modulo Thermal sensor module";
-                }*/
+                */
 
                 // write the time, frame id and 8 bytes
 
