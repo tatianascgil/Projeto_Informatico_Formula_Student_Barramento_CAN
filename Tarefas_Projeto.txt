@@ -37,10 +37,12 @@ Tarefas 08-05/15-05
 -Voltar a ler os ficheiros guardados e alterados no programa csv
 -Voltar a ler os ficheiros guardados e alterados no programa bin
 -Planear soluções para o cliente parte da mensagem
+-Mockup Pagina Principal
 -Mockup Criar Modulos
 -Mockup Página dos Modulos
 -Mockup Criar Mensagem num Respetivo Modulo
 -Mostrar e Defenir com o Cliente
+-Por as janelas Responsivas 
 -Fazer Janelas visuais Modulo e Mensagem no QT
 -Relatorio Ver os requesitos
 -Fazer um botão para limpar a tabela principal sempre que pretender
