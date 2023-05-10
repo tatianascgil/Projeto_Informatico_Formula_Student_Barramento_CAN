@@ -74,11 +74,11 @@ struct MyData {
         // Show the data in a new window
         QString decodedData = QString::fromUtf8(data);
 
-//        // Add the text to the plainTextEdit
-//        ui->plainTextEdit->appendPlainText(decodedData);
+        //        // Add the text to the plainTextEdit
+        //        ui->plainTextEdit->appendPlainText(decodedData);
 
-//        // Display the data in the plainTextEdit widget
-//        ui->plainTextEdit->setPlainText(decodedData);
+        //        // Display the data in the plainTextEdit widget
+        //        ui->plainTextEdit->setPlainText(decodedData);
     }
     else if (fileType == "xls" || fileType == "xlsx") {
         QXlsx::Document xlsx(fileName);
@@ -227,21 +227,37 @@ void MainWindow::on_btnSaveFile_clicked()
     // Determine the file format based on the selected file extension.
     QString fileExt = QFileInfo(fileName).suffix();
     if (fileExt == "csv") {
-        // Save to a CSV file.
+        // Update the CSV file.
+        // Open the file for reading and writing.
         QFile csvFile(fileName);
-        if (csvFile.open(QIODevice::WriteOnly | QIODevice::Append | QIODevice::Text)) {
-            QTextStream csvStream(&csvFile);
+        if (csvFile.open(QIODevice::ReadWrite | QIODevice::Text)) {
+            // Read the header row and store it separately.
+            QString header = QString(csvFile.readLine()).trimmed();
+
+            // Store the updated header names and data rows in separate QStringLists.
+            QStringList headerNames;
+            QStringList dataRows;
             QAbstractItemModel* model = ui->tableView->model();
+            for (int col = 0; col < model->columnCount(); ++col) {
+                headerNames << model->headerData(col, Qt::Horizontal).toString();
+            }
             for (int row = 0; row < model->rowCount(); ++row) {
+                QStringList rowData;
                 for (int col = 0; col < model->columnCount(); ++col) {
                     QModelIndex index = model->index(row, col);
                     QVariant data = model->data(index);
                     if (data.isValid()) {
-                        csvStream << data.toString() << ",";
+                        rowData << data.toString();
                     }
                 }
-                csvStream << "\n";
+                dataRows << rowData.join(",");
             }
+
+            // Write the updated header names and data rows to the file.
+            QTextStream csvStream(&csvFile);
+            csvFile.seek(0);
+            csvStream << headerNames.join(",") << "\n";
+            csvStream << dataRows.join("\n") << "\n";
             csvFile.close();
         }
     } else if (fileExt == "xls") {
