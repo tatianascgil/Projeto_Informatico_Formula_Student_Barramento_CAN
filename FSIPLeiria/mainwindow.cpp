@@ -6,6 +6,7 @@
 #include <QCoreApplication>
 #include <QtWidgets>
 #include <QComboBox>
+#include <QPushButton>
 
 #include <QTextStream>
 #include <QStandardItemModel>
@@ -13,6 +14,8 @@
 
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include "modulo.h"
+#include "ui_modulo.h"
 
 #include "xlsxdocument.h"
 #include "xlsxchartsheet.h"
@@ -275,5 +278,16 @@ void MainWindow::on_btnSaveFile_clicked()
         }
         xlsxDoc.saveAs(fileName);
     }
+}
+
+
+void MainWindow::on_btnCreateFile_activated(int index)
+{
+    if (ui->btnCreateFile->currentText() == "Criar Modulo") {
+        Modulo *modulo = new Modulo();
+        modulo->show();
+        this->close();
+    }
+
 }
 

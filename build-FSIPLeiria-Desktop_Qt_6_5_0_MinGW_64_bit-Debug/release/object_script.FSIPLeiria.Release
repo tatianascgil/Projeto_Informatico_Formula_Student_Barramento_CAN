@@ -33,5 +33,7 @@ release/xlsxzipreader.o
 release/xlsxzipwriter.o
 release/main.o
 release/mainwindow.o
+release/modulo.o
 release/moc_xlsxdocument.o
 release/moc_mainwindow.o
+release/moc_modulo.o

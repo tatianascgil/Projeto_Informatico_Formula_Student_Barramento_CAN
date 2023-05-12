@@ -70,7 +70,7 @@
      <rect>
       <x>1130</x>
       <y>0</y>
-      <width>141</width>
+      <width>152</width>
       <height>61</height>
      </rect>
     </property>
@@ -78,7 +78,8 @@
      <cursorShape>PointingHandCursor</cursorShape>
     </property>
     <property name="styleSheet">
-     <string notr="true">text-align:center</string>
+     <string notr="true">Qbuton{
+text-align:center}</string>
     </property>
     <property name="currentIndex">
      <number>-1</number>
@@ -91,7 +92,7 @@
     </property>
     <item>
      <property name="text">
-      <string>Criar Módulo</string>
+      <string>Criar Modulo</string>
      </property>
     </item>
     <item>
@@ -136,7 +137,7 @@
      <x>0</x>
      <y>0</y>
      <width>1325</width>
-     <height>21</height>
+     <height>26</height>
     </rect>
    </property>
   </widget>

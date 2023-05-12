@@ -59,9 +59,10 @@ public:
         btnCreateFile->addItem(QString());
         btnCreateFile->addItem(QString());
         btnCreateFile->setObjectName("btnCreateFile");
-        btnCreateFile->setGeometry(QRect(1130, 0, 141, 61));
+        btnCreateFile->setGeometry(QRect(1130, 0, 152, 61));
         btnCreateFile->setCursor(QCursor(Qt::PointingHandCursor));
-        btnCreateFile->setStyleSheet(QString::fromUtf8("text-align:center"));
+        btnCreateFile->setStyleSheet(QString::fromUtf8("Qbuton{\n"
+"text-align:center}"));
         btnCreateFile->setDuplicatesEnabled(true);
         tableView = new QTableView(centralwidget);
         tableView->setObjectName("tableView");
@@ -74,7 +75,7 @@ public:
         MainWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName("menubar");
-        menubar->setGeometry(QRect(0, 0, 1325, 21));
+        menubar->setGeometry(QRect(0, 0, 1325, 26));
         MainWindow->setMenuBar(menubar);
         statusbar = new QStatusBar(MainWindow);
         statusbar->setObjectName("statusbar");
@@ -94,7 +95,7 @@ public:
         btnReadFile->setText(QCoreApplication::translate("MainWindow", "Ler ficheiro", nullptr));
         btnMenu->setText(QCoreApplication::translate("MainWindow", "Menu Principal", nullptr));
         btnStat->setText(QCoreApplication::translate("MainWindow", "Estat\303\255sticas", nullptr));
-        btnCreateFile->setItemText(0, QCoreApplication::translate("MainWindow", "Criar M\303\263dulo", nullptr));
+        btnCreateFile->setItemText(0, QCoreApplication::translate("MainWindow", "Criar Modulo", nullptr));
         btnCreateFile->setItemText(1, QCoreApplication::translate("MainWindow", "Criar Mensagem", nullptr));
 
         btnCreateFile->setPlaceholderText(QCoreApplication::translate("MainWindow", "          Criar Ficheiro", nullptr));
