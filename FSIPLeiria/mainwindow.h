@@ -3,6 +3,8 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QStandardItemModel>
+
 
 
 
@@ -25,6 +27,7 @@ private slots:
     void updateSaveButtonVisibility();
 
     void on_btnSaveFile_clicked();
+;
 
 private:
     Ui::MainWindow *ui;

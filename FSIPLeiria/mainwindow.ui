@@ -20,8 +20,8 @@
    <widget class="QPushButton" name="btnReadFile">
     <property name="geometry">
      <rect>
-      <x>910</x>
-      <y>0</y>
+      <x>940</x>
+      <y>-20</y>
       <width>171</width>
       <height>61</height>
      </rect>
@@ -36,8 +36,8 @@
    <widget class="QPushButton" name="btnMenu">
     <property name="geometry">
      <rect>
-      <x>10</x>
-      <y>0</y>
+      <x>40</x>
+      <y>-20</y>
       <width>151</width>
       <height>61</height>
      </rect>
@@ -52,8 +52,8 @@
    <widget class="QPushButton" name="btnStat">
     <property name="geometry">
      <rect>
-      <x>160</x>
-      <y>0</y>
+      <x>190</x>
+      <y>-20</y>
       <width>161</width>
       <height>61</height>
      </rect>
@@ -68,8 +68,8 @@
    <widget class="QComboBox" name="btnCreateFile">
     <property name="geometry">
      <rect>
-      <x>1130</x>
-      <y>0</y>
+      <x>1160</x>
+      <y>-20</y>
       <width>141</width>
       <height>61</height>
      </rect>
@@ -103,8 +103,8 @@
    <widget class="QTableView" name="tableView">
     <property name="geometry">
      <rect>
-      <x>30</x>
-      <y>80</y>
+      <x>60</x>
+      <y>60</y>
       <width>1241</width>
       <height>561</height>
      </rect>
@@ -116,8 +116,8 @@
     </property>
     <property name="geometry">
      <rect>
-      <x>520</x>
-      <y>10</y>
+      <x>550</x>
+      <y>-10</y>
       <width>151</width>
       <height>51</height>
      </rect>
@@ -127,6 +127,22 @@
     </property>
     <property name="text">
      <string>Guardar Ficheiro</string>
+    </property>
+   </widget>
+   <widget class="QFrame" name="frame">
+    <property name="geometry">
+     <rect>
+      <x>330</x>
+      <y>100</y>
+      <width>591</width>
+      <height>401</height>
+     </rect>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::StyledPanel</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Raised</enum>
     </property>
    </widget>
   </widget>
