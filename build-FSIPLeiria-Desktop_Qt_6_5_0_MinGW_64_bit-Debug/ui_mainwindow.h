@@ -12,6 +12,7 @@
 #include <QtCore/QVariant>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QComboBox>
+#include <QtWidgets/QFrame>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QMenuBar>
@@ -31,6 +32,7 @@ public:
     QComboBox *btnCreateFile;
     QTableView *tableView;
     QPushButton *btnSaveFile;
+    QFrame *frame;
     QMenuBar *menubar;
     QStatusBar *statusbar;
 
@@ -83,7 +85,7 @@ public:
         btnCreateFile->addItem(QString());
         btnCreateFile->addItem(QString());
         btnCreateFile->setObjectName("btnCreateFile");
-        btnCreateFile->setGeometry(QRect(1130, 0, 152, 61));
+        btnCreateFile->setGeometry(QRect(1130, 0, 141, 61));
         btnCreateFile->setCursor(QCursor(Qt::PointingHandCursor));
         btnCreateFile->setStyleSheet(QString::fromUtf8("\n"
 "	background-color:rgb(255, 245, 166);\n"
@@ -96,7 +98,7 @@ public:
         btnCreateFile->setDuplicatesEnabled(true);
         tableView = new QTableView(centralwidget);
         tableView->setObjectName("tableView");
-        tableView->setGeometry(QRect(30, 80, 1241, 561));
+        tableView->setGeometry(QRect(30, 70, 1271, 561));
         btnSaveFile = new QPushButton(centralwidget);
         btnSaveFile->setObjectName("btnSaveFile");
         btnSaveFile->setEnabled(true);
@@ -119,6 +121,11 @@ public:
 "	border-right: 1px solid rgb(75, 130, 80);\n"
 "	border-bottom: 5px solid rgb(75, 130, 80);\n"
 "}"));
+        frame = new QFrame(centralwidget);
+        frame->setObjectName("frame");
+        frame->setGeometry(QRect(330, 100, 591, 401));
+        frame->setFrameShape(QFrame::StyledPanel);
+        frame->setFrameShadow(QFrame::Raised);
         MainWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName("menubar");

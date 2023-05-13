@@ -1,2 +1,4 @@
-.qmake.stash
-Makefile *
+.qmake.stash*
+Makefile*
+.qtc_clangd*
+debug

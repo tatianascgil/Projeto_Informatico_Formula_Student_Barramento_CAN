@@ -47,7 +47,6 @@ QPushButton:pressed {
 	background-color:rgb(255, 242, 165);
 	border-bottom: 5px solid rgb(162, 155, 105)
 }</string>
-
     </property>
     <property name="text">
      <string>Ler ficheiro</string>
@@ -88,8 +87,8 @@ QPushButton:pressed {
    <widget class="QComboBox" name="btnCreateFile">
     <property name="geometry">
      <rect>
-      <x>1160</x>
-      <y>-20</y>
+      <x>1130</x>
+      <y>0</y>
       <width>141</width>
       <height>61</height>
      </rect>
@@ -135,9 +134,9 @@ QPushButton:pressed {
    <widget class="QTableView" name="tableView">
     <property name="geometry">
      <rect>
-      <x>60</x>
-      <y>60</y>
-      <width>1241</width>
+      <x>30</x>
+      <y>70</y>
+      <width>1271</width>
       <height>561</height>
      </rect>
     </property>
