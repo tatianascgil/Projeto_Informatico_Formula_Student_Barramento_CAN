@@ -101,7 +101,7 @@ QPushButton:pressed {
     <string>Criar</string>
    </property>
   </widget>
-  <widget class="QTextEdit" name="textEdit">
+  <widget class="QTextEdit" name="textEditNomeModulo">
    <property name="geometry">
     <rect>
      <x>120</x>
@@ -218,7 +218,7 @@ QPushButton:pressed {
     <enum>Qt::Horizontal</enum>
    </property>
   </widget>
-  <widget class="QLabel" name="label_4">
+  <widget class="QLabel" name="label1">
    <property name="geometry">
     <rect>
      <x>40</x>
@@ -231,7 +231,10 @@ QPushButton:pressed {
     <string>Nome:*</string>
    </property>
   </widget>
-  <widget class="QTextEdit" name="textEdit_2">
+  <widget class="QTextEdit" name="textEdit_Nome1">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
    <property name="geometry">
     <rect>
      <x>90</x>
@@ -283,7 +286,7 @@ QPushButton:pressed {
     <string>Unidade:</string>
    </property>
   </widget>
-  <widget class="QTextEdit" name="textEdit_3">
+  <widget class="QTextEdit" name="textEdit_Offset1">
    <property name="geometry">
     <rect>
      <x>470</x>
@@ -296,7 +299,7 @@ QPushButton:pressed {
     <cursorShape>IBeamCursor</cursorShape>
    </property>
   </widget>
-  <widget class="QTextEdit" name="textEdit_4">
+  <widget class="QTextEdit" name="textEdit_Fator1">
    <property name="geometry">
     <rect>
      <x>540</x>
@@ -309,7 +312,7 @@ QPushButton:pressed {
     <cursorShape>IBeamCursor</cursorShape>
    </property>
   </widget>
-  <widget class="QTextEdit" name="textEdit_5">
+  <widget class="QTextEdit" name="textEdit_Unidade1">
    <property name="geometry">
     <rect>
      <x>610</x>
@@ -322,7 +325,7 @@ QPushButton:pressed {
     <cursorShape>IBeamCursor</cursorShape>
    </property>
   </widget>
-  <widget class="QSpinBox" name="spinBox_2">
+  <widget class="QSpinBox" name="spinBox_Inicial1">
    <property name="geometry">
     <rect>
      <x>310</x>
@@ -334,11 +337,20 @@ QPushButton:pressed {
    <property name="cursor">
     <cursorShape>PointingHandCursor</cursorShape>
    </property>
+   <property name="minimum">
+    <number>-1</number>
+   </property>
    <property name="maximum">
     <number>7</number>
    </property>
+   <property name="singleStep">
+    <number>1</number>
+   </property>
+   <property name="value">
+    <number>-1</number>
+   </property>
   </widget>
-  <widget class="QSpinBox" name="spinBox_3">
+  <widget class="QSpinBox" name="spinBox_Final1">
    <property name="geometry">
     <rect>
      <x>390</x>
@@ -350,11 +362,20 @@ QPushButton:pressed {
    <property name="cursor">
     <cursorShape>PointingHandCursor</cursorShape>
    </property>
+   <property name="minimum">
+    <number>-1</number>
+   </property>
    <property name="maximum">
     <number>7</number>
    </property>
+   <property name="singleStep">
+    <number>1</number>
+   </property>
+   <property name="value">
+    <number>-1</number>
+   </property>
   </widget>
-  <widget class="QTextEdit" name="textEdit_6">
+  <widget class="QTextEdit" name="textEdit_Unidade2">
    <property name="geometry">
     <rect>
      <x>610</x>
@@ -367,7 +388,7 @@ QPushButton:pressed {
     <cursorShape>IBeamCursor</cursorShape>
    </property>
   </widget>
-  <widget class="QLabel" name="label_8">
+  <widget class="QLabel" name="label2">
    <property name="geometry">
     <rect>
      <x>40</x>
@@ -380,7 +401,7 @@ QPushButton:pressed {
     <string>Nome:*</string>
    </property>
   </widget>
-  <widget class="QTextEdit" name="textEdit_7">
+  <widget class="QTextEdit" name="textEdit_Nome2">
    <property name="geometry">
     <rect>
      <x>90</x>
@@ -393,7 +414,7 @@ QPushButton:pressed {
     <cursorShape>IBeamCursor</cursorShape>
    </property>
   </widget>
-  <widget class="QSpinBox" name="spinBox_4">
+  <widget class="QSpinBox" name="spinBox_Final2">
    <property name="geometry">
     <rect>
      <x>390</x>
@@ -405,11 +426,20 @@ QPushButton:pressed {
    <property name="cursor">
     <cursorShape>PointingHandCursor</cursorShape>
    </property>
+   <property name="minimum">
+    <number>-1</number>
+   </property>
    <property name="maximum">
     <number>7</number>
    </property>
+   <property name="singleStep">
+    <number>1</number>
+   </property>
+   <property name="value">
+    <number>-1</number>
+   </property>
   </widget>
-  <widget class="QTextEdit" name="textEdit_8">
+  <widget class="QTextEdit" name="textEdit_Offset2">
    <property name="geometry">
     <rect>
      <x>470</x>
@@ -422,7 +452,7 @@ QPushButton:pressed {
     <cursorShape>IBeamCursor</cursorShape>
    </property>
   </widget>
-  <widget class="QSpinBox" name="spinBox_5">
+  <widget class="QSpinBox" name="spinBox_Inicial2">
    <property name="geometry">
     <rect>
      <x>310</x>
@@ -434,11 +464,17 @@ QPushButton:pressed {
    <property name="cursor">
     <cursorShape>PointingHandCursor</cursorShape>
    </property>
+   <property name="minimum">
+    <number>-1</number>
+   </property>
    <property name="maximum">
     <number>7</number>
    </property>
+   <property name="value">
+    <number>-1</number>
+   </property>
   </widget>
-  <widget class="QTextEdit" name="textEdit_9">
+  <widget class="QTextEdit" name="textEdit_Fator2">
    <property name="geometry">
     <rect>
      <x>540</x>
@@ -451,7 +487,7 @@ QPushButton:pressed {
     <cursorShape>IBeamCursor</cursorShape>
    </property>
   </widget>
-  <widget class="QTextEdit" name="textEdit_10">
+  <widget class="QTextEdit" name="textEdit_Unidade3">
    <property name="geometry">
     <rect>
      <x>610</x>
@@ -464,7 +500,7 @@ QPushButton:pressed {
     <cursorShape>IBeamCursor</cursorShape>
    </property>
   </widget>
-  <widget class="QLabel" name="label_9">
+  <widget class="QLabel" name="label3">
    <property name="geometry">
     <rect>
      <x>40</x>
@@ -477,7 +513,10 @@ QPushButton:pressed {
     <string>Nome:*</string>
    </property>
   </widget>
-  <widget class="QTextEdit" name="textEdit_11">
+  <widget class="QTextEdit" name="textEdit_Nome3">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
    <property name="geometry">
     <rect>
      <x>90</x>
@@ -490,7 +529,7 @@ QPushButton:pressed {
     <cursorShape>IBeamCursor</cursorShape>
    </property>
   </widget>
-  <widget class="QSpinBox" name="spinBox_6">
+  <widget class="QSpinBox" name="spinBox_Final3">
    <property name="geometry">
     <rect>
      <x>390</x>
@@ -502,11 +541,20 @@ QPushButton:pressed {
    <property name="cursor">
     <cursorShape>PointingHandCursor</cursorShape>
    </property>
+   <property name="minimum">
+    <number>-1</number>
+   </property>
    <property name="maximum">
     <number>7</number>
    </property>
+   <property name="singleStep">
+    <number>1</number>
+   </property>
+   <property name="value">
+    <number>-1</number>
+   </property>
   </widget>
-  <widget class="QTextEdit" name="textEdit_12">
+  <widget class="QTextEdit" name="textEdit_Offset3">
    <property name="geometry">
     <rect>
      <x>470</x>
@@ -519,7 +567,7 @@ QPushButton:pressed {
     <cursorShape>IBeamCursor</cursorShape>
    </property>
   </widget>
-  <widget class="QSpinBox" name="spinBox_7">
+  <widget class="QSpinBox" name="spinBox_Inicial3">
    <property name="geometry">
     <rect>
      <x>310</x>
@@ -531,11 +579,17 @@ QPushButton:pressed {
    <property name="cursor">
     <cursorShape>PointingHandCursor</cursorShape>
    </property>
+   <property name="minimum">
+    <number>-1</number>
+   </property>
    <property name="maximum">
     <number>7</number>
    </property>
+   <property name="value">
+    <number>-1</number>
+   </property>
   </widget>
-  <widget class="QTextEdit" name="textEdit_13">
+  <widget class="QTextEdit" name="textEdit_Fator3">
    <property name="geometry">
     <rect>
      <x>540</x>
@@ -548,7 +602,7 @@ QPushButton:pressed {
     <cursorShape>IBeamCursor</cursorShape>
    </property>
   </widget>
-  <widget class="QLabel" name="label_10">
+  <widget class="QLabel" name="label6">
    <property name="geometry">
     <rect>
      <x>40</x>
@@ -561,7 +615,7 @@ QPushButton:pressed {
     <string>Nome:*</string>
    </property>
   </widget>
-  <widget class="QTextEdit" name="textEdit_14">
+  <widget class="QTextEdit" name="textEdit_Nome5">
    <property name="geometry">
     <rect>
      <x>90</x>
@@ -574,7 +628,7 @@ QPushButton:pressed {
     <cursorShape>IBeamCursor</cursorShape>
    </property>
   </widget>
-  <widget class="QTextEdit" name="textEdit_15">
+  <widget class="QTextEdit" name="textEdit_Unidade4">
    <property name="geometry">
     <rect>
      <x>610</x>
@@ -587,7 +641,7 @@ QPushButton:pressed {
     <cursorShape>IBeamCursor</cursorShape>
    </property>
   </widget>
-  <widget class="QSpinBox" name="spinBox_8">
+  <widget class="QSpinBox" name="spinBox_Inicial5">
    <property name="geometry">
     <rect>
      <x>310</x>
@@ -599,11 +653,20 @@ QPushButton:pressed {
    <property name="cursor">
     <cursorShape>PointingHandCursor</cursorShape>
    </property>
+   <property name="minimum">
+    <number>-1</number>
+   </property>
    <property name="maximum">
     <number>7</number>
    </property>
+   <property name="singleStep">
+    <number>1</number>
+   </property>
+   <property name="value">
+    <number>-1</number>
+   </property>
   </widget>
-  <widget class="QLabel" name="label_11">
+  <widget class="QLabel" name="label4">
    <property name="geometry">
     <rect>
      <x>40</x>
@@ -616,7 +679,7 @@ QPushButton:pressed {
     <string>Nome:*</string>
    </property>
   </widget>
-  <widget class="QTextEdit" name="textEdit_16">
+  <widget class="QTextEdit" name="textEdit_Offset6">
    <property name="geometry">
     <rect>
      <x>470</x>
@@ -629,7 +692,7 @@ QPushButton:pressed {
     <cursorShape>IBeamCursor</cursorShape>
    </property>
   </widget>
-  <widget class="QTextEdit" name="textEdit_17">
+  <widget class="QTextEdit" name="textEdit_Offset5">
    <property name="geometry">
     <rect>
      <x>470</x>
@@ -642,7 +705,7 @@ QPushButton:pressed {
     <cursorShape>IBeamCursor</cursorShape>
    </property>
   </widget>
-  <widget class="QTextEdit" name="textEdit_18">
+  <widget class="QTextEdit" name="textEdit_Fator5">
    <property name="geometry">
     <rect>
      <x>540</x>
@@ -655,7 +718,7 @@ QPushButton:pressed {
     <cursorShape>IBeamCursor</cursorShape>
    </property>
   </widget>
-  <widget class="QTextEdit" name="textEdit_19">
+  <widget class="QTextEdit" name="textEdit_Unidade5">
    <property name="geometry">
     <rect>
      <x>610</x>
@@ -668,7 +731,7 @@ QPushButton:pressed {
     <cursorShape>IBeamCursor</cursorShape>
    </property>
   </widget>
-  <widget class="QTextEdit" name="textEdit_20">
+  <widget class="QTextEdit" name="textEdit_Nome6">
    <property name="geometry">
     <rect>
      <x>90</x>
@@ -681,7 +744,7 @@ QPushButton:pressed {
     <cursorShape>IBeamCursor</cursorShape>
    </property>
   </widget>
-  <widget class="QLabel" name="label_12">
+  <widget class="QLabel" name="label5">
    <property name="geometry">
     <rect>
      <x>40</x>
@@ -694,7 +757,7 @@ QPushButton:pressed {
     <string>Nome:*</string>
    </property>
   </widget>
-  <widget class="QTextEdit" name="textEdit_21">
+  <widget class="QTextEdit" name="textEdit_Fator6">
    <property name="geometry">
     <rect>
      <x>540</x>
@@ -707,7 +770,7 @@ QPushButton:pressed {
     <cursorShape>IBeamCursor</cursorShape>
    </property>
   </widget>
-  <widget class="QTextEdit" name="textEdit_22">
+  <widget class="QTextEdit" name="textEdit_Nome4">
    <property name="geometry">
     <rect>
      <x>90</x>
@@ -720,7 +783,7 @@ QPushButton:pressed {
     <cursorShape>IBeamCursor</cursorShape>
    </property>
   </widget>
-  <widget class="QSpinBox" name="spinBox_9">
+  <widget class="QSpinBox" name="spinBox_Final4">
    <property name="geometry">
     <rect>
      <x>390</x>
@@ -732,11 +795,23 @@ QPushButton:pressed {
    <property name="cursor">
     <cursorShape>PointingHandCursor</cursorShape>
    </property>
+   <property name="minimum">
+    <number>-1</number>
+   </property>
    <property name="maximum">
     <number>7</number>
    </property>
+   <property name="singleStep">
+    <number>1</number>
+   </property>
+   <property name="value">
+    <number>-1</number>
+   </property>
+   <property name="displayIntegerBase">
+    <number>10</number>
+   </property>
   </widget>
-  <widget class="QTextEdit" name="textEdit_23">
+  <widget class="QTextEdit" name="textEdit_Offset4">
    <property name="geometry">
     <rect>
      <x>470</x>
@@ -749,7 +824,7 @@ QPushButton:pressed {
     <cursorShape>IBeamCursor</cursorShape>
    </property>
   </widget>
-  <widget class="QSpinBox" name="spinBox_10">
+  <widget class="QSpinBox" name="spinBox_Final6">
    <property name="geometry">
     <rect>
      <x>390</x>
@@ -761,11 +836,17 @@ QPushButton:pressed {
    <property name="cursor">
     <cursorShape>PointingHandCursor</cursorShape>
    </property>
+   <property name="minimum">
+    <number>-1</number>
+   </property>
    <property name="maximum">
     <number>7</number>
    </property>
+   <property name="value">
+    <number>-1</number>
+   </property>
   </widget>
-  <widget class="QTextEdit" name="textEdit_24">
+  <widget class="QTextEdit" name="textEdit_Unidade6">
    <property name="geometry">
     <rect>
      <x>610</x>
@@ -778,7 +859,7 @@ QPushButton:pressed {
     <cursorShape>IBeamCursor</cursorShape>
    </property>
   </widget>
-  <widget class="QSpinBox" name="spinBox_11">
+  <widget class="QSpinBox" name="spinBox_Inicial4">
    <property name="geometry">
     <rect>
      <x>310</x>
@@ -790,11 +871,20 @@ QPushButton:pressed {
    <property name="cursor">
     <cursorShape>PointingHandCursor</cursorShape>
    </property>
+   <property name="minimum">
+    <number>-1</number>
+   </property>
    <property name="maximum">
     <number>7</number>
    </property>
+   <property name="singleStep">
+    <number>1</number>
+   </property>
+   <property name="value">
+    <number>-1</number>
+   </property>
   </widget>
-  <widget class="QSpinBox" name="spinBox_12">
+  <widget class="QSpinBox" name="spinBox_Final5">
    <property name="geometry">
     <rect>
      <x>390</x>
@@ -806,11 +896,17 @@ QPushButton:pressed {
    <property name="cursor">
     <cursorShape>PointingHandCursor</cursorShape>
    </property>
+   <property name="minimum">
+    <number>-1</number>
+   </property>
    <property name="maximum">
     <number>7</number>
    </property>
+   <property name="value">
+    <number>-1</number>
+   </property>
   </widget>
-  <widget class="QSpinBox" name="spinBox_13">
+  <widget class="QSpinBox" name="spinBox_Inicial6">
    <property name="geometry">
     <rect>
      <x>310</x>
@@ -822,11 +918,17 @@ QPushButton:pressed {
    <property name="cursor">
     <cursorShape>PointingHandCursor</cursorShape>
    </property>
+   <property name="minimum">
+    <number>-1</number>
+   </property>
    <property name="maximum">
     <number>7</number>
    </property>
+   <property name="value">
+    <number>-1</number>
+   </property>
   </widget>
-  <widget class="QTextEdit" name="textEdit_25">
+  <widget class="QTextEdit" name="textEdit_Fator4">
    <property name="geometry">
     <rect>
      <x>540</x>
@@ -839,7 +941,7 @@ QPushButton:pressed {
     <cursorShape>IBeamCursor</cursorShape>
    </property>
   </widget>
-  <widget class="QSpinBox" name="spinBox_14">
+  <widget class="QSpinBox" name="spinBox_Inicial8">
    <property name="geometry">
     <rect>
      <x>310</x>
@@ -851,11 +953,17 @@ QPushButton:pressed {
    <property name="cursor">
     <cursorShape>PointingHandCursor</cursorShape>
    </property>
+   <property name="minimum">
+    <number>-1</number>
+   </property>
    <property name="maximum">
     <number>7</number>
    </property>
+   <property name="value">
+    <number>-1</number>
+   </property>
   </widget>
-  <widget class="QTextEdit" name="textEdit_26">
+  <widget class="QTextEdit" name="textEdit_Fator8">
    <property name="geometry">
     <rect>
      <x>540</x>
@@ -868,7 +976,7 @@ QPushButton:pressed {
     <cursorShape>IBeamCursor</cursorShape>
    </property>
   </widget>
-  <widget class="QSpinBox" name="spinBox_15">
+  <widget class="QSpinBox" name="spinBox_Final8">
    <property name="geometry">
     <rect>
      <x>390</x>
@@ -880,11 +988,17 @@ QPushButton:pressed {
    <property name="cursor">
     <cursorShape>PointingHandCursor</cursorShape>
    </property>
+   <property name="minimum">
+    <number>-1</number>
+   </property>
    <property name="maximum">
     <number>7</number>
    </property>
+   <property name="value">
+    <number>-1</number>
+   </property>
   </widget>
-  <widget class="QSpinBox" name="spinBox_16">
+  <widget class="QSpinBox" name="spinBox_Final7">
    <property name="geometry">
     <rect>
      <x>390</x>
@@ -896,11 +1010,17 @@ QPushButton:pressed {
    <property name="cursor">
     <cursorShape>PointingHandCursor</cursorShape>
    </property>
+   <property name="minimum">
+    <number>-1</number>
+   </property>
    <property name="maximum">
     <number>7</number>
    </property>
+   <property name="value">
+    <number>-1</number>
+   </property>
   </widget>
-  <widget class="QLabel" name="label_13">
+  <widget class="QLabel" name="label8">
    <property name="geometry">
     <rect>
      <x>40</x>
@@ -913,7 +1033,7 @@ QPushButton:pressed {
     <string>Nome:*</string>
    </property>
   </widget>
-  <widget class="QTextEdit" name="textEdit_27">
+  <widget class="QTextEdit" name="textEdit_Offset8">
    <property name="geometry">
     <rect>
      <x>470</x>
@@ -926,7 +1046,7 @@ QPushButton:pressed {
     <cursorShape>IBeamCursor</cursorShape>
    </property>
   </widget>
-  <widget class="QSpinBox" name="spinBox_17">
+  <widget class="QSpinBox" name="spinBox_Inicial7">
    <property name="geometry">
     <rect>
      <x>310</x>
@@ -938,11 +1058,17 @@ QPushButton:pressed {
    <property name="cursor">
     <cursorShape>PointingHandCursor</cursorShape>
    </property>
+   <property name="minimum">
+    <number>-1</number>
+   </property>
    <property name="maximum">
     <number>7</number>
    </property>
+   <property name="value">
+    <number>-1</number>
+   </property>
   </widget>
-  <widget class="QTextEdit" name="textEdit_28">
+  <widget class="QTextEdit" name="textEdit_Fator7">
    <property name="geometry">
     <rect>
      <x>540</x>
@@ -955,7 +1081,7 @@ QPushButton:pressed {
     <cursorShape>IBeamCursor</cursorShape>
    </property>
   </widget>
-  <widget class="QTextEdit" name="textEdit_29">
+  <widget class="QTextEdit" name="textEdit_Nome8">
    <property name="geometry">
     <rect>
      <x>90</x>
@@ -968,7 +1094,7 @@ QPushButton:pressed {
     <cursorShape>IBeamCursor</cursorShape>
    </property>
   </widget>
-  <widget class="QTextEdit" name="textEdit_30">
+  <widget class="QTextEdit" name="textEdit_Unidade7">
    <property name="geometry">
     <rect>
      <x>610</x>
@@ -981,7 +1107,7 @@ QPushButton:pressed {
     <cursorShape>IBeamCursor</cursorShape>
    </property>
   </widget>
-  <widget class="QTextEdit" name="textEdit_31">
+  <widget class="QTextEdit" name="textEdit_Unidade8">
    <property name="geometry">
     <rect>
      <x>610</x>
@@ -994,7 +1120,7 @@ QPushButton:pressed {
     <cursorShape>IBeamCursor</cursorShape>
    </property>
   </widget>
-  <widget class="QTextEdit" name="textEdit_32">
+  <widget class="QTextEdit" name="textEdit_Nome7">
    <property name="geometry">
     <rect>
      <x>90</x>
@@ -1007,7 +1133,7 @@ QPushButton:pressed {
     <cursorShape>IBeamCursor</cursorShape>
    </property>
   </widget>
-  <widget class="QTextEdit" name="textEdit_33">
+  <widget class="QTextEdit" name="textEdit_Offset7">
    <property name="geometry">
     <rect>
      <x>470</x>
@@ -1020,7 +1146,7 @@ QPushButton:pressed {
     <cursorShape>IBeamCursor</cursorShape>
    </property>
   </widget>
-  <widget class="QLabel" name="label_14">
+  <widget class="QLabel" name="label7">
    <property name="geometry">
     <rect>
      <x>40</x>
@@ -1062,7 +1188,7 @@ QPushButton:pressed {
     <string>Byte Final:*</string>
    </property>
   </widget>
-  <widget class="QRadioButton" name="radioButton">
+  <widget class="QRadioButton" name="radioButton_Bigendian">
    <property name="geometry">
     <rect>
      <x>230</x>
@@ -1081,7 +1207,7 @@ QPushButton:pressed {
     <string>Big-Endian</string>
    </property>
   </widget>
-  <widget class="QRadioButton" name="radioButton_2">
+  <widget class="QRadioButton" name="radioButton_Littleendian">
    <property name="geometry">
     <rect>
      <x>100</x>
@@ -1116,6 +1242,37 @@ QPushButton:pressed {
     <string>Tipo:*</string>
    </property>
   </widget>
+  <widget class="QLabel" name="label_4">
+   <property name="geometry">
+    <rect>
+     <x>410</x>
+     <y>20</y>
+     <width>141</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>10</pointsize>
+    </font>
+   </property>
+   <property name="text">
+    <string>Nº ModuloMensagem:*</string>
+   </property>
+  </widget>
+  <widget class="QTextEdit" name="textEditNModeloMensagem">
+   <property name="geometry">
+    <rect>
+     <x>560</x>
+     <y>20</y>
+     <width>101</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="cursor" stdset="0">
+    <cursorShape>IBeamCursor</cursorShape>
+   </property>
+  </widget>
   <zorder>tableView</zorder>
   <zorder>commandLinkButton</zorder>
   <zorder>pushButton</zorder>
@@ -1125,71 +1282,73 @@ QPushButton:pressed {
   <zorder>label_3</zorder>
   <zorder>line</zorder>
   <zorder>line_2</zorder>
-  <zorder>label_4</zorder>
-  <zorder>textEdit_2</zorder>
+  <zorder>label1</zorder>
+  <zorder>textEdit_Nome1</zorder>
   <zorder>label_5</zorder>
   <zorder>label_6</zorder>
   <zorder>label_7</zorder>
-  <zorder>textEdit_3</zorder>
-  <zorder>textEdit_4</zorder>
-  <zorder>textEdit_5</zorder>
-  <zorder>textEdit_6</zorder>
-  <zorder>label_8</zorder>
-  <zorder>textEdit_7</zorder>
-  <zorder>textEdit_8</zorder>
-  <zorder>textEdit_9</zorder>
-  <zorder>textEdit_10</zorder>
-  <zorder>label_9</zorder>
-  <zorder>textEdit_11</zorder>
-  <zorder>textEdit_12</zorder>
-  <zorder>textEdit_13</zorder>
-  <zorder>label_10</zorder>
-  <zorder>textEdit_14</zorder>
-  <zorder>textEdit_15</zorder>
-  <zorder>label_11</zorder>
-  <zorder>textEdit_16</zorder>
-  <zorder>textEdit_17</zorder>
-  <zorder>textEdit_18</zorder>
-  <zorder>textEdit_19</zorder>
-  <zorder>textEdit_20</zorder>
-  <zorder>label_12</zorder>
-  <zorder>textEdit_21</zorder>
-  <zorder>textEdit_22</zorder>
-  <zorder>textEdit_23</zorder>
-  <zorder>textEdit_24</zorder>
-  <zorder>textEdit_25</zorder>
-  <zorder>textEdit_26</zorder>
-  <zorder>label_13</zorder>
-  <zorder>textEdit_27</zorder>
-  <zorder>textEdit_28</zorder>
-  <zorder>textEdit_29</zorder>
-  <zorder>textEdit_30</zorder>
-  <zorder>textEdit_31</zorder>
-  <zorder>textEdit_32</zorder>
-  <zorder>textEdit_33</zorder>
-  <zorder>label_14</zorder>
+  <zorder>textEdit_Offset1</zorder>
+  <zorder>textEdit_Fator1</zorder>
+  <zorder>textEdit_Unidade1</zorder>
+  <zorder>textEdit_Unidade2</zorder>
+  <zorder>label2</zorder>
+  <zorder>textEdit_Nome2</zorder>
+  <zorder>textEdit_Offset2</zorder>
+  <zorder>textEdit_Fator2</zorder>
+  <zorder>textEdit_Unidade3</zorder>
+  <zorder>label3</zorder>
+  <zorder>textEdit_Nome3</zorder>
+  <zorder>textEdit_Offset3</zorder>
+  <zorder>textEdit_Fator3</zorder>
+  <zorder>label6</zorder>
+  <zorder>textEdit_Nome5</zorder>
+  <zorder>textEdit_Unidade4</zorder>
+  <zorder>label4</zorder>
+  <zorder>textEdit_Offset6</zorder>
+  <zorder>textEdit_Offset5</zorder>
+  <zorder>textEdit_Fator5</zorder>
+  <zorder>textEdit_Unidade5</zorder>
+  <zorder>textEdit_Nome6</zorder>
+  <zorder>label5</zorder>
+  <zorder>textEdit_Fator6</zorder>
+  <zorder>textEdit_Nome4</zorder>
+  <zorder>textEdit_Offset4</zorder>
+  <zorder>textEdit_Unidade6</zorder>
+  <zorder>textEdit_Fator4</zorder>
+  <zorder>textEdit_Fator8</zorder>
+  <zorder>label8</zorder>
+  <zorder>textEdit_Offset8</zorder>
+  <zorder>textEdit_Fator7</zorder>
+  <zorder>textEdit_Nome8</zorder>
+  <zorder>textEdit_Unidade7</zorder>
+  <zorder>textEdit_Unidade8</zorder>
+  <zorder>textEdit_Nome7</zorder>
+  <zorder>textEdit_Offset7</zorder>
+  <zorder>label7</zorder>
   <zorder>label_15</zorder>
   <zorder>label_16</zorder>
-  <zorder>radioButton</zorder>
-  <zorder>radioButton_2</zorder>
+  <zorder>radioButton_Bigendian</zorder>
+  <zorder>radioButton_Littleendian</zorder>
   <zorder>label_17</zorder>
-  <zorder>spinBox_17</zorder>
-  <zorder>spinBox_13</zorder>
-  <zorder>spinBox_5</zorder>
-  <zorder>spinBox_14</zorder>
-  <zorder>spinBox_10</zorder>
-  <zorder>spinBox_12</zorder>
-  <zorder>spinBox_8</zorder>
-  <zorder>spinBox_11</zorder>
-  <zorder>spinBox_15</zorder>
-  <zorder>spinBox_9</zorder>
-  <zorder>spinBox_3</zorder>
-  <zorder>spinBox_6</zorder>
-  <zorder>spinBox_16</zorder>
-  <zorder>spinBox_2</zorder>
-  <zorder>spinBox_4</zorder>
-  <zorder>spinBox_7</zorder>
-  <zorder>textEdit</zorder>
+  <zorder>spinBox_Inicial7</zorder>
+  <zorder>spinBox_Inicial6</zorder>
+  <zorder>spinBox_Inicial2</zorder>
+  <zorder>spinBox_Inicial8</zorder>
+  <zorder>spinBox_Final6</zorder>
+  <zorder>spinBox_Final5</zorder>
+  <zorder>spinBox_Inicial5</zorder>
+  <zorder>spinBox_Inicial4</zorder>
+  <zorder>spinBox_Final8</zorder>
+  <zorder>spinBox_Final4</zorder>
+  <zorder>spinBox_Final1</zorder>
+  <zorder>spinBox_Final3</zorder>
+  <zorder>spinBox_Final7</zorder>
+  <zorder>spinBox_Inicial1</zorder>
+  <zorder>spinBox_Final2</zorder>
+  <zorder>spinBox_Inicial3</zorder>
+  <zorder>textEditNomeModulo</zorder>
+  <zorder>label_4</zorder>
+  <zorder>textEditNModeloMensagem</zorder>
  </widget>
  <resources/>
  <connections/>
