@@ -29,6 +29,8 @@ private slots:
     void on_btnSaveFile_clicked();
 ;
 
+    void on_btnCreateFile_activated(int index);
+
 private:
     Ui::MainWindow *ui;
 };

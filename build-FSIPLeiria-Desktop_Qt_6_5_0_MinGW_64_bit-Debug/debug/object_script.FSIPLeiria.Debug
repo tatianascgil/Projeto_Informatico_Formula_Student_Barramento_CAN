@@ -33,5 +33,7 @@ debug/xlsxzipreader.o
 debug/xlsxzipwriter.o
 debug/main.o
 debug/mainwindow.o
+debug/modulo.o
 debug/moc_xlsxdocument.o
 debug/moc_mainwindow.o
+debug/moc_modulo.o

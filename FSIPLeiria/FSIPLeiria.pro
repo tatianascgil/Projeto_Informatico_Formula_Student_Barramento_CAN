@@ -16,13 +16,16 @@ include(./QXlsx.pri)
 
 SOURCES += \
     main.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    modulo.cpp
 
 HEADERS += \
-    mainwindow.h
+    mainwindow.h \
+    modulo.h
 
 FORMS += \
-    mainwindow.ui
+    mainwindow.ui \
+    modulo.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

@@ -27,7 +27,6 @@ class Ui_MainWindow
 public:
     QWidget *centralwidget;
     QPushButton *btnReadFile;
-    QPushButton *btnMenu;
     QPushButton *btnStat;
     QComboBox *btnCreateFile;
     QTableView *tableView;
@@ -39,29 +38,61 @@ public:
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName("MainWindow");
-        MainWindow->resize(1325, 710);
+        MainWindow->resize(1331, 758);
         MainWindow->setCursor(QCursor(Qt::ArrowCursor));
+        MainWindow->setStyleSheet(QString::fromUtf8("background:white"));
         centralwidget = new QWidget(MainWindow);
         centralwidget->setObjectName("centralwidget");
         btnReadFile = new QPushButton(centralwidget);
         btnReadFile->setObjectName("btnReadFile");
-        btnReadFile->setGeometry(QRect(910, 0, 171, 61));
+        btnReadFile->setGeometry(QRect(1000, 0, 141, 61));
         btnReadFile->setCursor(QCursor(Qt::PointingHandCursor));
-        btnMenu = new QPushButton(centralwidget);
-        btnMenu->setObjectName("btnMenu");
-        btnMenu->setGeometry(QRect(10, 0, 151, 61));
-        btnMenu->setCursor(QCursor(Qt::PointingHandCursor));
+        btnReadFile->setStyleSheet(QString::fromUtf8("QPushButton{\n"
+"	background-color:rgb(255, 245, 166);\n"
+"	border:none;\n"
+"	color:rgb(95, 91, 61);\n"
+"	border -bottom: 5px solid rgb(162, 155, 105)\n"
+"}\n"
+"QPushButton:hover{\n"
+"	background-color:rgb(229, 217, 150);\n"
+"	border-bottom: 5px solid rgb(162, 155, 105)\n"
+"}\n"
+"QPushButton:pressed {\n"
+"	background-color:rgb(255, 242, 165);\n"
+"	border-bottom: 5px solid rgb(162, 155, 105)\n"
+"}"));
         btnStat = new QPushButton(centralwidget);
         btnStat->setObjectName("btnStat");
-        btnStat->setGeometry(QRect(160, 0, 161, 61));
+        btnStat->setGeometry(QRect(880, 0, 121, 61));
         btnStat->setCursor(QCursor(Qt::PointingHandCursor));
+        btnStat->setStyleSheet(QString::fromUtf8("QPushButton{\n"
+"	background-color:rgb(255, 245, 166);\n"
+"	border:none;\n"
+"	color:rgb(95, 91, 61);\n"
+"	border -bottom: 5px solid rgb(162, 155, 105)\n"
+"}\n"
+"QPushButton:hover{\n"
+"	background-color:rgb(229, 217, 150);\n"
+"	border-bottom: 5px solid rgb(162, 155, 105)\n"
+"}\n"
+"QPushButton:pressed {\n"
+"	background-color:rgb(255, 242, 165);\n"
+"	border-bottom: 5px solid rgb(162, 155, 105)\n"
+"}"));
         btnCreateFile = new QComboBox(centralwidget);
         btnCreateFile->addItem(QString());
         btnCreateFile->addItem(QString());
         btnCreateFile->setObjectName("btnCreateFile");
-        btnCreateFile->setGeometry(QRect(1130, 0, 141, 61));
+        btnCreateFile->setGeometry(QRect(1130, 0, 152, 61));
         btnCreateFile->setCursor(QCursor(Qt::PointingHandCursor));
-        btnCreateFile->setStyleSheet(QString::fromUtf8("text-align:center"));
+        btnCreateFile->setStyleSheet(QString::fromUtf8("\n"
+"	background-color:rgb(255, 245, 166);\n"
+"	border:none;\n"
+"	color:rgb(95, 91, 61);\n"
+"	border -left: 1px solid rgb(162, 155, 105);\n"
+"	border -right: 1px solid rgb(162, 155, 105);\n"
+"	border -bottom: 5px solid rgb(162, 155, 105);"));
+        btnCreateFile->setMaxCount(2147483634);
         btnCreateFile->setDuplicatesEnabled(true);
         tableView = new QTableView(centralwidget);
         tableView->setObjectName("tableView");
@@ -69,12 +100,29 @@ public:
         btnSaveFile = new QPushButton(centralwidget);
         btnSaveFile->setObjectName("btnSaveFile");
         btnSaveFile->setEnabled(true);
-        btnSaveFile->setGeometry(QRect(520, 10, 151, 51));
+        btnSaveFile->setGeometry(QRect(1120, 650, 151, 51));
         btnSaveFile->setCursor(QCursor(Qt::PointingHandCursor));
+        btnSaveFile->setStyleSheet(QString::fromUtf8("QPushButton{\n"
+"	background-color:rgb(125, 216, 133);\n"
+"	border:none;\n"
+"	color:black;\n"
+"}\n"
+"QPushButton:hover{\n"
+"	background-color:rgb(99, 171, 105);\n"
+"	border-left: 1px solid rgb(75, 130, 80);\n"
+"	border-right: 1px solid rgb(75, 130, 80);\n"
+"	border-bottom: 5px solid rgb(75, 130, 80);\n"
+"}\n"
+"QPushButton:pressed {\n"
+"	background-color:rgb(125, 220, 145);\n"
+"	border-left: 1px solid rgb(75, 130, 80);\n"
+"	border-right: 1px solid rgb(75, 130, 80);\n"
+"	border-bottom: 5px solid rgb(75, 130, 80);\n"
+"}"));
         MainWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName("menubar");
-        menubar->setGeometry(QRect(0, 0, 1325, 21));
+        menubar->setGeometry(QRect(0, 0, 1331, 22));
         MainWindow->setMenuBar(menubar);
         statusbar = new QStatusBar(MainWindow);
         statusbar->setObjectName("statusbar");
@@ -82,7 +130,7 @@ public:
 
         retranslateUi(MainWindow);
 
-        btnCreateFile->setCurrentIndex(-1);
+        btnCreateFile->setCurrentIndex(0);
 
 
         QMetaObject::connectSlotsByName(MainWindow);
@@ -90,14 +138,14 @@ public:
 
     void retranslateUi(QMainWindow *MainWindow)
     {
-        MainWindow->setWindowTitle(QCoreApplication::translate("MainWindow", "MainWindow", nullptr));
+        MainWindow->setWindowTitle(QCoreApplication::translate("MainWindow", "FSLeiria", nullptr));
         btnReadFile->setText(QCoreApplication::translate("MainWindow", "Ler ficheiro", nullptr));
-        btnMenu->setText(QCoreApplication::translate("MainWindow", "Menu Principal", nullptr));
         btnStat->setText(QCoreApplication::translate("MainWindow", "Estat\303\255sticas", nullptr));
-        btnCreateFile->setItemText(0, QCoreApplication::translate("MainWindow", "Criar M\303\263dulo", nullptr));
+        btnCreateFile->setItemText(0, QCoreApplication::translate("MainWindow", "Configurar BD", nullptr));
         btnCreateFile->setItemText(1, QCoreApplication::translate("MainWindow", "Criar Mensagem", nullptr));
 
-        btnCreateFile->setPlaceholderText(QCoreApplication::translate("MainWindow", "          Criar Ficheiro", nullptr));
+        btnCreateFile->setCurrentText(QCoreApplication::translate("MainWindow", "Configurar BD", nullptr));
+        btnCreateFile->setPlaceholderText(QCoreApplication::translate("MainWindow", "Configurar", nullptr));
         btnSaveFile->setText(QCoreApplication::translate("MainWindow", "Guardar Ficheiro", nullptr));
     } // retranslateUi
 

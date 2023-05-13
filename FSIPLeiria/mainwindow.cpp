@@ -6,12 +6,16 @@
 #include <QCoreApplication>
 #include <QtWidgets>
 #include <QComboBox>
+#include <QPushButton>
+
 #include <QTextStream>
 #include <QStandardItemModel>
 #include <QStandardItem>
 
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include "modulo.h"
+#include "ui_modulo.h"
 
 #include "xlsxdocument.h"
 #include "xlsxchartsheet.h"
@@ -31,7 +35,8 @@ MainWindow::MainWindow(QWidget *parent)
     // Connect the modelChanged() signal of the table view's model to a slot
     connect(ui->tableView->model(), SIGNAL(modelChanged()), this, SLOT(updateSaveButtonVisibility()));
 
-    ui->btnCreateFile->setPlaceholderText("Criar Ficheiro");
+
+    ui->btnCreateFile->setPlaceholderText("Configurar");
     ui->btnSaveFile->setVisible(false);
 }
 
@@ -329,5 +334,22 @@ void MainWindow::on_btnSaveFile_clicked()
     }
 }
 
+void MainWindow::on_btnCreateFile_activated(int index)
+{
+    if (ui->btnCreateFile->currentText() == "Configurar BD") {
+        const int moduloWidth = 1355;
+        const int moduloHeight = 555;
+
+        // Cria a janela principal
+        Modulo *modulo = new Modulo();
+
+        // Define o tamanho mínimo e máximo da janela
+        modulo->setMinimumSize(moduloWidth, moduloHeight);
+        modulo->setMaximumSize(moduloWidth, moduloHeight);
+        modulo->show();
+        this->close();
+    }
+
+}
 
 
