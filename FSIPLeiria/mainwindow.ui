@@ -47,6 +47,7 @@ QPushButton:pressed {
 	background-color:rgb(255, 242, 165);
 	border-bottom: 5px solid rgb(162, 155, 105)
 }</string>
+
     </property>
     <property name="text">
      <string>Ler ficheiro</string>
@@ -87,9 +88,9 @@ QPushButton:pressed {
    <widget class="QComboBox" name="btnCreateFile">
     <property name="geometry">
      <rect>
-      <x>1130</x>
-      <y>0</y>
-      <width>152</width>
+      <x>1160</x>
+      <y>-20</y>
+      <width>141</width>
       <height>61</height>
      </rect>
     </property>
@@ -134,8 +135,8 @@ QPushButton:pressed {
    <widget class="QTableView" name="tableView">
     <property name="geometry">
      <rect>
-      <x>30</x>
-      <y>80</y>
+      <x>60</x>
+      <y>60</y>
       <width>1241</width>
       <height>561</height>
      </rect>
@@ -177,6 +178,22 @@ QPushButton:pressed {
     </property>
     <property name="text">
      <string>Guardar Ficheiro</string>
+    </property>
+   </widget>
+   <widget class="QFrame" name="frame">
+    <property name="geometry">
+     <rect>
+      <x>330</x>
+      <y>100</y>
+      <width>591</width>
+      <height>401</height>
+     </rect>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::StyledPanel</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Raised</enum>
     </property>
    </widget>
   </widget>
