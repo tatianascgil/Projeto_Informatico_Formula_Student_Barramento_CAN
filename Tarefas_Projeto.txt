@@ -30,31 +30,32 @@ EM codeblocks
 
 
 Tarefas 08-05/15-05
--Fazer 3 ficheiros modelo(csv,xls,xlsx) para termos sempre para teste
--desencriptar a mensagem de binario para Hex de bin
--Ler ficheiro e mostrar em tabela(linha/coluna)  csv
--Ler ficheiro e mostrar em tabela(linha/coluna)  bin		
--Voltar a ler os ficheiros guardados e alterados no programa csv
--Voltar a ler os ficheiros guardados e alterados no programa bin
--Planear soluções para o cliente parte da mensagem
--Mockup Pagina Principal
--Mockup Criar Modulos
--Mockup Página dos Modulos
--Mockup Criar Mensagem num Respetivo Modulo
--Mostrar e Defenir com o Cliente
--Por as janelas Responsivas 
--Fazer Janelas visuais Modulo e Mensagem no QT
--Relatorio Ver os requesitos
--Fazer um botão para limpar a tabela principal sempre que pretender
--Fazer a verifição de aparecer um pop up caso altera algo na tabela, prgunta se quer guardar ou apenas apagar a mesma
--O botão guardar deve aparecer apenas quando é alterado alguma coisa na tabela
-
+-Fazer 3 ficheiros modelo(csv,xls,xlsx) para termos sempre para teste ---feito---
+-desencriptar a mensagem de binario para Hex de bin                   ---deixou de ser prioridade---
+-Ler ficheiro e mostrar em tabela(linha/coluna)  csv                  ---feito---
+-Ler ficheiro e mostrar em tabela(linha/coluna)  bin                  ---deixou de ser prioridade---		
+-Voltar a ler os ficheiros guardados e alterados no programa csv      ---feito---
+-Voltar a ler os ficheiros guardados e alterados no programa bin      ---deixou de ser prioridade---
+-Planear soluções para o cliente parte da mensagem                    ---feito---
+-Mockup Pagina Principal                                              ---feito---
+-Mockup Criar Modulo\Mensagem                                         ---feito---
+-Mockup Página dos Modulos                                            ---feito---
+-Mostrar e Defenir com o Cliente                                      ---feito---
+-Por as janelas Responsiva Modulo\Mensagem                            ---feito---
+-Fazer Janela visual Modulo\Mensagem no QT                            ---feito---         
+-Fazer um botão para limpar a tabela principal sempre que pretender   ---deixou de ser prioridade---
+-Visual dos Botoes todos                                              ---feito---  
+-Ler ficheiro um TXT                                                  ---feito---
+-Ler ficheiro um TXT mas separado por ';'                             ---feito---
+-O Campo 'Nº de campos' fazer a incrementação\desincrementação        ---feito---
+da visualizao de campos
+-Os Campos 'Byte Inicial'\'Byte Final' comecarem 0                    ---feito--- 
+-Os Campos 'Byte Inicial'\'Byte Final':
+  -spinBox_Inicial1 para atualizar o valor mín da spinBox_Final1      ---feito---
+  -spinBox_Final1 para atualizar o valor mín da spinBox_Inicial2 +1   ---feito---
+-Pesquisa de qtserialport                                             ---feito---
+-Requesitaçao de arduinos Uno                                         ---feito---
 
 
 
 Tarefas 08-05/15-05
--Mockup Add um Mensagem já existe com valores diferentes a um Modulo
--Mockup Editar Modulo (Apenas da para editar o nome)
--Criar Modulos
--Página dos Modulos
--Criar Mensagem num Respetivo Modulo

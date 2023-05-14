@@ -338,7 +338,7 @@ QPushButton:pressed {
     <cursorShape>PointingHandCursor</cursorShape>
    </property>
    <property name="minimum">
-    <number>-1</number>
+    <number>0</number>
    </property>
    <property name="maximum">
     <number>7</number>
@@ -347,7 +347,10 @@ QPushButton:pressed {
     <number>1</number>
    </property>
    <property name="value">
-    <number>-1</number>
+    <number>0</number>
+   </property>
+   <property name="displayIntegerBase">
+    <number>7</number>
    </property>
   </widget>
   <widget class="QSpinBox" name="spinBox_Final1">
@@ -363,7 +366,7 @@ QPushButton:pressed {
     <cursorShape>PointingHandCursor</cursorShape>
    </property>
    <property name="minimum">
-    <number>-1</number>
+    <number>0</number>
    </property>
    <property name="maximum">
     <number>7</number>
@@ -372,7 +375,7 @@ QPushButton:pressed {
     <number>1</number>
    </property>
    <property name="value">
-    <number>-1</number>
+    <number>0</number>
    </property>
   </widget>
   <widget class="QTextEdit" name="textEdit_Unidade2">
@@ -427,7 +430,7 @@ QPushButton:pressed {
     <cursorShape>PointingHandCursor</cursorShape>
    </property>
    <property name="minimum">
-    <number>-1</number>
+    <number>0</number>
    </property>
    <property name="maximum">
     <number>7</number>
@@ -436,7 +439,7 @@ QPushButton:pressed {
     <number>1</number>
    </property>
    <property name="value">
-    <number>-1</number>
+    <number>0</number>
    </property>
   </widget>
   <widget class="QTextEdit" name="textEdit_Offset2">
@@ -465,13 +468,13 @@ QPushButton:pressed {
     <cursorShape>PointingHandCursor</cursorShape>
    </property>
    <property name="minimum">
-    <number>-1</number>
+    <number>0</number>
    </property>
    <property name="maximum">
     <number>7</number>
    </property>
    <property name="value">
-    <number>-1</number>
+    <number>0</number>
    </property>
   </widget>
   <widget class="QTextEdit" name="textEdit_Fator2">
@@ -542,7 +545,7 @@ QPushButton:pressed {
     <cursorShape>PointingHandCursor</cursorShape>
    </property>
    <property name="minimum">
-    <number>-1</number>
+    <number>0</number>
    </property>
    <property name="maximum">
     <number>7</number>
@@ -551,7 +554,7 @@ QPushButton:pressed {
     <number>1</number>
    </property>
    <property name="value">
-    <number>-1</number>
+    <number>0</number>
    </property>
   </widget>
   <widget class="QTextEdit" name="textEdit_Offset3">
@@ -580,13 +583,13 @@ QPushButton:pressed {
     <cursorShape>PointingHandCursor</cursorShape>
    </property>
    <property name="minimum">
-    <number>-1</number>
+    <number>0</number>
    </property>
    <property name="maximum">
     <number>7</number>
    </property>
    <property name="value">
-    <number>-1</number>
+    <number>0</number>
    </property>
   </widget>
   <widget class="QTextEdit" name="textEdit_Fator3">
@@ -654,7 +657,7 @@ QPushButton:pressed {
     <cursorShape>PointingHandCursor</cursorShape>
    </property>
    <property name="minimum">
-    <number>-1</number>
+    <number>0</number>
    </property>
    <property name="maximum">
     <number>7</number>
@@ -663,7 +666,7 @@ QPushButton:pressed {
     <number>1</number>
    </property>
    <property name="value">
-    <number>-1</number>
+    <number>0</number>
    </property>
   </widget>
   <widget class="QLabel" name="label4">
@@ -796,7 +799,7 @@ QPushButton:pressed {
     <cursorShape>PointingHandCursor</cursorShape>
    </property>
    <property name="minimum">
-    <number>-1</number>
+    <number>0</number>
    </property>
    <property name="maximum">
     <number>7</number>
@@ -805,7 +808,7 @@ QPushButton:pressed {
     <number>1</number>
    </property>
    <property name="value">
-    <number>-1</number>
+    <number>0</number>
    </property>
    <property name="displayIntegerBase">
     <number>10</number>
@@ -837,13 +840,13 @@ QPushButton:pressed {
     <cursorShape>PointingHandCursor</cursorShape>
    </property>
    <property name="minimum">
-    <number>-1</number>
+    <number>0</number>
    </property>
    <property name="maximum">
     <number>7</number>
    </property>
    <property name="value">
-    <number>-1</number>
+    <number>0</number>
    </property>
   </widget>
   <widget class="QTextEdit" name="textEdit_Unidade6">
@@ -872,7 +875,7 @@ QPushButton:pressed {
     <cursorShape>PointingHandCursor</cursorShape>
    </property>
    <property name="minimum">
-    <number>-1</number>
+    <number>0</number>
    </property>
    <property name="maximum">
     <number>7</number>
@@ -881,7 +884,7 @@ QPushButton:pressed {
     <number>1</number>
    </property>
    <property name="value">
-    <number>-1</number>
+    <number>0</number>
    </property>
   </widget>
   <widget class="QSpinBox" name="spinBox_Final5">
@@ -897,13 +900,13 @@ QPushButton:pressed {
     <cursorShape>PointingHandCursor</cursorShape>
    </property>
    <property name="minimum">
-    <number>-1</number>
+    <number>0</number>
    </property>
    <property name="maximum">
     <number>7</number>
    </property>
    <property name="value">
-    <number>-1</number>
+    <number>0</number>
    </property>
   </widget>
   <widget class="QSpinBox" name="spinBox_Inicial6">
@@ -919,13 +922,13 @@ QPushButton:pressed {
     <cursorShape>PointingHandCursor</cursorShape>
    </property>
    <property name="minimum">
-    <number>-1</number>
+    <number>0</number>
    </property>
    <property name="maximum">
     <number>7</number>
    </property>
    <property name="value">
-    <number>-1</number>
+    <number>0</number>
    </property>
   </widget>
   <widget class="QTextEdit" name="textEdit_Fator4">
@@ -954,13 +957,13 @@ QPushButton:pressed {
     <cursorShape>PointingHandCursor</cursorShape>
    </property>
    <property name="minimum">
-    <number>-1</number>
+    <number>0</number>
    </property>
    <property name="maximum">
     <number>7</number>
    </property>
    <property name="value">
-    <number>-1</number>
+    <number>0</number>
    </property>
   </widget>
   <widget class="QTextEdit" name="textEdit_Fator8">
@@ -989,13 +992,22 @@ QPushButton:pressed {
     <cursorShape>PointingHandCursor</cursorShape>
    </property>
    <property name="minimum">
-    <number>-1</number>
+    <number>0</number>
    </property>
    <property name="maximum">
     <number>7</number>
    </property>
+   <property name="singleStep">
+    <number>1</number>
+   </property>
+   <property name="stepType">
+    <enum>QAbstractSpinBox::DefaultStepType</enum>
+   </property>
    <property name="value">
-    <number>-1</number>
+    <number>0</number>
+   </property>
+   <property name="displayIntegerBase">
+    <number>10</number>
    </property>
   </widget>
   <widget class="QSpinBox" name="spinBox_Final7">
@@ -1011,13 +1023,13 @@ QPushButton:pressed {
     <cursorShape>PointingHandCursor</cursorShape>
    </property>
    <property name="minimum">
-    <number>-1</number>
+    <number>0</number>
    </property>
    <property name="maximum">
     <number>7</number>
    </property>
    <property name="value">
-    <number>-1</number>
+    <number>0</number>
    </property>
   </widget>
   <widget class="QLabel" name="label8">
@@ -1059,13 +1071,13 @@ QPushButton:pressed {
     <cursorShape>PointingHandCursor</cursorShape>
    </property>
    <property name="minimum">
-    <number>-1</number>
+    <number>0</number>
    </property>
    <property name="maximum">
     <number>7</number>
    </property>
    <property name="value">
-    <number>-1</number>
+    <number>0</number>
    </property>
   </widget>
   <widget class="QTextEdit" name="textEdit_Fator7">
