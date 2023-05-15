@@ -57,5 +57,10 @@ da visualizao de campos
 -Requesitaçao de arduinos Uno                                         ---feito---
 
 
-
 Tarefas 08-05/15-05
+BD (Carros-Modulos-Mensagens)
+Relatorio:
+-Comecar a colocar a arquitetura no relatorio (barramento)
+-BD (Carros-Modulos-Mensagens)
+Aprender a Separar os bits ID(Mensagem\Modulo)
+Mockup Pagina Principal                                            

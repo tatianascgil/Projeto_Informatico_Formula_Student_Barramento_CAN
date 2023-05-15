@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1331</width>
+    <height>758</height>
+   </rect>
+  </property>
+  <property name="cursor">
+   <cursorShape>ArrowCursor</cursorShape>
+  </property>
+  <property name="windowTitle">
+   <string>FSLeiria</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">background:white</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QPushButton" name="btnReadFile">
+    <property name="geometry">
+     <rect>
+      <x>1000</x>
+      <y>0</y>
+      <width>141</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton{
+	background-color:rgb(255, 245, 166);
+	border:none;
+	color:rgb(95, 91, 61);
+	border -bottom: 5px solid rgb(162, 155, 105)
+}
+QPushButton:hover{
+	background-color:rgb(229, 217, 150);
+	border-bottom: 5px solid rgb(162, 155, 105)
+}
+QPushButton:pressed {
+	background-color:rgb(255, 242, 165);
+	border-bottom: 5px solid rgb(162, 155, 105)
+}</string>
+    </property>
+    <property name="text">
+     <string>Ler ficheiro</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="btnStat">
+    <property name="geometry">
+     <rect>
+      <x>880</x>
+      <y>0</y>
+      <width>121</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton{
+	background-color:rgb(255, 245, 166);
+	border:none;
+	color:rgb(95, 91, 61);
+	border -bottom: 5px solid rgb(162, 155, 105)
+}
+QPushButton:hover{
+	background-color:rgb(229, 217, 150);
+	border-bottom: 5px solid rgb(162, 155, 105)
+}
+QPushButton:pressed {
+	background-color:rgb(255, 242, 165);
+	border-bottom: 5px solid rgb(162, 155, 105)
+}</string>
+    </property>
+    <property name="text">
+     <string>Estatísticas</string>
+    </property>
+   </widget>
+   <widget class="QComboBox" name="btnCreateFile">
+    <property name="geometry">
+     <rect>
+      <x>1130</x>
+      <y>0</y>
+      <width>141</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">
+	background-color:rgb(255, 245, 166);
+	border:none;
+	color:rgb(95, 91, 61);
+	border -left: 1px solid rgb(162, 155, 105);
+	border -right: 1px solid rgb(162, 155, 105);
+	border -bottom: 5px solid rgb(162, 155, 105);</string>
+    </property>
+    <property name="currentText">
+     <string>Configurar BD</string>
+    </property>
+    <property name="currentIndex">
+     <number>0</number>
+    </property>
+    <property name="maxCount">
+     <number>2147483634</number>
+    </property>
+    <property name="placeholderText">
+     <string>Configurar</string>
+    </property>
+    <property name="duplicatesEnabled">
+     <bool>true</bool>
+    </property>
+    <item>
+     <property name="text">
+      <string>Configurar BD</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Criar Mensagem</string>
+     </property>
+    </item>
+   </widget>
+   <widget class="QTableView" name="tableView">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>70</y>
+      <width>1271</width>
+      <height>561</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="btnSaveFile">
+    <property name="enabled">
+     <bool>true</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>1120</x>
+      <y>650</y>
+      <width>151</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton{
+	background-color:rgb(125, 216, 133);
+	border:none;
+	color:black;
+}
+QPushButton:hover{
+	background-color:rgb(99, 171, 105);
+	border-left: 1px solid rgb(75, 130, 80);
+	border-right: 1px solid rgb(75, 130, 80);
+	border-bottom: 5px solid rgb(75, 130, 80);
+}
+QPushButton:pressed {
+	background-color:rgb(125, 220, 145);
+	border-left: 1px solid rgb(75, 130, 80);
+	border-right: 1px solid rgb(75, 130, 80);
+	border-bottom: 5px solid rgb(75, 130, 80);
+}</string>
+    </property>
+    <property name="text">
+     <string>Guardar Ficheiro</string>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>1331</width>
+     <height>22</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
