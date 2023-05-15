@@ -7,6 +7,9 @@
 #include <QtWidgets>
 #include <QComboBox>
 #include <QPushButton>
+#include <QtSql>
+#include <QSqlDatabase>
+#include <QMessageBox>
 
 #include <QTextStream>
 #include <QStandardItemModel>
@@ -16,6 +19,7 @@
 #include "ui_mainwindow.h"
 #include "modulo.h"
 #include "ui_modulo.h"
+
 
 #include "xlsxdocument.h"
 #include "xlsxchartsheet.h"
@@ -35,9 +39,27 @@ MainWindow::MainWindow(QWidget *parent)
     // Connect the modelChanged() signal of the table view's model to a slot
     connect(ui->tableView->model(), SIGNAL(modelChanged()), this, SLOT(updateSaveButtonVisibility()));
 
-
     ui->btnCreateFile->setPlaceholderText("Configurar");
     ui->btnSaveFile->setVisible(false);
+
+    QSqlDatabase db = QSqlDatabase::addDatabase("QMYSQL");
+    db.setHostName("127.0.0.1");
+    db.setDatabaseName("FSIPLeiria");
+    db.setUserName("mojito");
+    db.setPassword("J0a1m8");
+
+    if (!db.open()) {
+        QMessageBox::critical(this, "Connection Error", "Failed to connect to the database: " + db.lastError().text());
+    }
+    else {
+        QMessageBox::information(this, "Connection", "Database Connected Successfully");
+
+        // Continue with your application logic here
+    }
+
+
+
+
 }
 
 MainWindow::~MainWindow()
@@ -49,6 +71,11 @@ struct MyData {
     int intValue;
     char stringValue[16];
 };\
+
+
+
+
+
 
     void MainWindow::on_btnReadFile_clicked()
 {
