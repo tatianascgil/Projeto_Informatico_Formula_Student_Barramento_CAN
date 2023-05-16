@@ -53,8 +53,16 @@ Tarefas 08-05/15-05
 
 
 Tarefas 08-05/15-05
+<<<<<<< Updated upstream
 -Mockup Add um Mensagem já existe com valores diferentes a um Modulo
 -Mockup Editar Modulo (Apenas da para editar o nome)
 -Criar Modulos
 -Página dos Modulos
 -Criar Mensagem num Respetivo Modulo
+=======
+BD (Carros-Modulos-Mensagens)
+Relatorio:
+-Comecar a colocar a arquitetura no relatorio (barramento)
+-BD (Carros-Modulos-Mensagens)
+Mockup Pagina Inicial,Gerir Módulo,Gerir Tipo de Mensagem,Campo                                          
+>>>>>>> Stashed changes
