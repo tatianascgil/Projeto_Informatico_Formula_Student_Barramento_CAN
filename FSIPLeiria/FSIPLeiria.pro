@@ -17,15 +17,18 @@ include(./QXlsx.pri)
 SOURCES += \
     main.cpp \
     mainwindow.cpp \
-    modulo.cpp
+    modulo.cpp \
+    rowdatadialog.cpp
 
 HEADERS += \
     mainwindow.h \
-    modulo.h
+    modulo.h \
+    rowdatadialog.h
 
 FORMS += \
     mainwindow.ui \
-    modulo.ui
+    modulo.ui \
+    rowdatadialog.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

@@ -1,5 +1,6 @@
 #include <QFileDialog>
 #include <QFile>
+#include <QFileInfo>
 #include <QIODevice>
 #include <QMessageBox>
 #include <QPlainTextEdit>
@@ -7,13 +8,17 @@
 #include <QtWidgets>
 #include <QComboBox>
 #include <QPushButton>
-#include <QtSql>
-#include <QSqlDatabase>
 #include <QMessageBox>
-
+#include <QSettings>
+#include <QByteArray>
 #include <QTextStream>
 #include <QStandardItemModel>
 #include <QStandardItem>
+
+
+#include <QtSql>
+#include <QSqlDatabase>
+
 
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
@@ -39,23 +44,34 @@ MainWindow::MainWindow(QWidget *parent)
     // Connect the modelChanged() signal of the table view's model to a slot
     connect(ui->tableView->model(), SIGNAL(modelChanged()), this, SLOT(updateSaveButtonVisibility()));
 
-    ui->btnCreateFile->setPlaceholderText("Configurar");
+    // Initialize QSettings and retrieve the last selected value
+    QSettings settings("FSIPLeiria", "Poggers");
+    QString lastSelectedValue = settings.value("LastSelectedValue").toString();
+
+    // Add items to the btnCreateFile QComboBox
+    ui->btnCreateFile->addItem("Teste");
+    // Add other items if needed...
+
+    // Set the last selected value
+    ui->btnCreateFile->setCurrentText(lastSelectedValue);
+
+    // Hide the btnSaveFile button
     ui->btnSaveFile->setVisible(false);
 
-    QSqlDatabase db = QSqlDatabase::addDatabase("QMYSQL");
-    db.setHostName("127.0.0.1");
-    db.setDatabaseName("FSIPLeiria");
-    db.setUserName("mojito");
-    db.setPassword("J0a1m8");
+//    QSqlDatabase db = QSqlDatabase::addDatabase("QMYSQL");
+//    db.setHostName("127.0.0.1");
+//    db.setDatabaseName("FSIPLeiria");
+//    db.setUserName("mojito");
+//    db.setPassword("J0a1m8");
 
-    if (!db.open()) {
-        QMessageBox::critical(this, "Connection Error", "Failed to connect to the database: " + db.lastError().text());
-    }
-    else {
-        QMessageBox::information(this, "Connection", "Database Connected Successfully");
+//    if (!db.open()) {
+//        QMessageBox::critical(this, "Connection Error", "Failed to connect to the database: " + db.lastError().text());
+//    }
+//    else {
+//        QMessageBox::information(this, "Connection", "Database Connected Successfully");
 
-        // Continue with your application logic here
-    }
+//        // Continue with your application logic here
+//    }
 
 
 
@@ -261,12 +277,26 @@ struct MyData {
         return;
     }
 
-
-    // qt.core.qobject.connect: QObject::connect: Cannot connect (nullptr)::modelChanged() to MainWindow::updateSaveButtonVisibility()
-    //Corrigir warning
     updateSaveButtonVisibility();
 }
 
+void MainWindow::on_tableView_clicked(const QModelIndex& index)
+{
+    int selectedRow = index.row();
+
+    QStandardItemModel* model = dynamic_cast<QStandardItemModel*>(ui->tableView->model());
+    if (model && selectedRow >= 0 && selectedRow < model->rowCount()) {
+        QList<QString> rowData;
+        for (int col = 0; col < model->columnCount(); ++col){
+            QStandardItem* item = model->item(selectedRow, col);
+            if (item)
+                rowData.append(item->text());
+        }
+        RowDataDialog* dialog = new RowDataDialog(this);
+        dialog->setRowData(rowData);
+        dialog->show();
+    }
+}
 
 
 
@@ -378,5 +408,22 @@ void MainWindow::on_btnCreateFile_activated(int index)
     }
 
 }
+
+
+
+void MainWindow::on_btnCreateFile_currentIndexChanged(int index)
+{
+    QString selectedValue = ui->btnCreateFile->currentText();
+    qDebug() << "Selected Value:" << selectedValue;
+
+    QSettings settings("FSIPLeiria", "Poggers");
+
+    try {
+        settings.setValue("LastSelectedValue", selectedValue);
+    } catch (const std::exception& e) {
+        qDebug() << "Error saving value to settings:" << e.what();
+    }
+}
+
 
 
