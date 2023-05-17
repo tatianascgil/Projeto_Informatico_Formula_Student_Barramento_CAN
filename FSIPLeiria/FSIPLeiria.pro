@@ -15,17 +15,35 @@ QXLSX_SOURCEPATH=./source/  # current QXlsx source path is ./source/
 include(./QXlsx.pri)
 
 SOURCES += \
+    alterarcarro.cpp \
+    criarcarro.cpp \
+    criarmodulo.cpp \
+    estatisticas.cpp \
+    gerircarro.cpp \
     main.cpp \
     mainwindow.cpp \
-    modulo.cpp
+    modulo.cpp \
+    vercarro.cpp
 
 HEADERS += \
+    alterarcarro.h \
+    criarcarro.h \
+    criarmodulo.h \
+    estatisticas.h \
+    gerircarro.h \
     mainwindow.h \
-    modulo.h
+    modulo.h \
+    vercarro.h
 
 FORMS += \
+    alterarcarro.ui \
+    criarcarro.ui \
+    criarmodulo.ui \
+    estatisticas.ui \
+    gerircarro.ui \
     mainwindow.ui \
-    modulo.ui
+    modulo.ui \
+    vercarro.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

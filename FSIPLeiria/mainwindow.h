@@ -27,9 +27,14 @@ private slots:
     void updateSaveButtonVisibility();
 
     void on_btnSaveFile_clicked();
-;
 
     void on_btnCreateFile_activated(int index);
+
+    void on_btnVerCarro_clicked();
+
+    void on_btnCriarCarro_clicked();
+
+    void on_btnEstatisticas_clicked();
 
 private:
     Ui::MainWindow *ui;
