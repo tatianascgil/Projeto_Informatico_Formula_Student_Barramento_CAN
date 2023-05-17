@@ -16,6 +16,12 @@
 #include "ui_mainwindow.h"
 #include "modulo.h"
 #include "ui_modulo.h"
+#include "vercarro.h"
+#include "ui_vercarro.h"
+#include "criarcarro.h"
+#include "ui_criarcarro.h"
+#include "estatisticas.h"
+#include "ui_estatisticas.h"
 
 #include "xlsxdocument.h"
 #include "xlsxchartsheet.h"
@@ -34,7 +40,6 @@ MainWindow::MainWindow(QWidget *parent)
     // Connect the modelChanged() signal of the table view's model to a slot
     connect(ui->tableView->model(), SIGNAL(modelChanged()), this, SLOT(updateSaveButtonVisibility()));
 
-
     ui->btnCreateFile->setPlaceholderText("Configurar");
     ui->btnSaveFile->setVisible(false);
 }
@@ -49,7 +54,7 @@ struct MyData {
     char stringValue[16];
 };\
 
-    void MainWindow::on_btnReadFile_clicked()
+void MainWindow::on_btnReadFile_clicked()
 {
     // Open a file dialog to select a file
     QString fileName = QFileDialog::getOpenFileName(this, tr("Open File"), "",
@@ -339,7 +344,7 @@ void MainWindow::on_btnCreateFile_activated(int index)
         const int moduloWidth = 1355;
         const int moduloHeight = 555;
 
-        // Cria a janela principal
+        // Cria a janela Modulo
         Modulo *modulo = new Modulo();
 
         // Define o tamanho mínimo e máximo da janela
@@ -351,4 +356,54 @@ void MainWindow::on_btnCreateFile_activated(int index)
 
 }
 
+
+void MainWindow::on_btnVerCarro_clicked()
+{
+        const int vercarroWidth = 700;
+        const int vercarroHeight = 350;
+
+        // Cria a janela VerCarro
+        VerCarro *vercarro = new VerCarro();
+
+        // Define o tamanho mínimo e máximo da janela
+        vercarro->setMinimumSize(vercarroWidth, vercarroHeight);
+        vercarro->setMaximumSize(vercarroWidth, vercarroHeight);
+        vercarro->show();
+        this->close();
+
+}
+
+
+void MainWindow::on_btnCriarCarro_clicked()
+{
+        const int criarcarroWidth = 600;
+        const int criarcarroHeight = 250;
+
+        // Cria a janela principal
+        CriarCarro *criarcarro = new CriarCarro();
+
+        // Define o tamanho mínimo e máximo da janela
+        criarcarro->setMinimumSize(criarcarroWidth, criarcarroHeight);
+        criarcarro->setMaximumSize(criarcarroWidth, criarcarroHeight);
+        criarcarro->show();
+        this->close();
+
+
+}
+
+
+void MainWindow::on_btnEstatisticas_clicked()
+{
+        const int estatisticasWidth = 800;
+        const int estatisticasHeight = 500;
+
+        // Cria a janela principal
+        Estatisticas *estatisticas = new Estatisticas();
+
+        // Define o tamanho mínimo e máximo da janela
+        estatisticas->setMinimumSize(estatisticasWidth, estatisticasHeight);
+        estatisticas->setMaximumSize(estatisticasWidth, estatisticasHeight);
+        estatisticas->show();
+        this->close();
+}
 
