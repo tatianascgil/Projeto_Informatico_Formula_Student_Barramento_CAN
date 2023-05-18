@@ -18,7 +18,6 @@ public:
 private slots:
     void on_commandButtonVoltar_clicked();
 
-    void on_btnCriarCarro_clicked();
 
 private:
     Ui::AlterarCarro *ui;

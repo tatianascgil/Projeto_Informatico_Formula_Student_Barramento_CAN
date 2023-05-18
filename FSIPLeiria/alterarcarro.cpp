@@ -33,19 +33,4 @@ void AlterarCarro::on_commandButtonVoltar_clicked()
 }
 
 
-void AlterarCarro::on_btnCriarCarro_clicked()
-{
-    const int criarcarroWidth = 600;
-    const int criarcarroHeight = 250;
-
-    // Cria a janela principal
-    CriarCarro *criarcarro = new CriarCarro();
-
-    // Define o tamanho mínimo e máximo da janela
-    criarcarro->setMinimumSize(criarcarroWidth, criarcarroHeight);
-    criarcarro->setMaximumSize(criarcarroWidth, criarcarroHeight);
-    criarcarro->show();
-    this->close();
-
-}
 

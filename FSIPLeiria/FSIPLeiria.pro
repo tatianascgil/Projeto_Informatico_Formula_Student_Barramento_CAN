@@ -18,8 +18,11 @@ SOURCES += \
     alterarcarro.cpp \
     criarcarro.cpp \
     criarmodulo.cpp \
+    criartipomensagem.cpp \
     estatisticas.cpp \
     gerircarro.cpp \
+    gerirmodulo.cpp \
+    gerirtipomensagem.cpp \
     main.cpp \
     mainwindow.cpp \
     modulo.cpp \
@@ -29,8 +32,11 @@ HEADERS += \
     alterarcarro.h \
     criarcarro.h \
     criarmodulo.h \
+    criartipomensagem.h \
     estatisticas.h \
     gerircarro.h \
+    gerirmodulo.h \
+    gerirtipomensagem.h \
     mainwindow.h \
     modulo.h \
     vercarro.h
@@ -39,8 +45,11 @@ FORMS += \
     alterarcarro.ui \
     criarcarro.ui \
     criarmodulo.ui \
+    criartipomensagem.ui \
     estatisticas.ui \
     gerircarro.ui \
+    gerirmodulo.ui \
+    gerirtipomensagem.ui \
     mainwindow.ui \
     modulo.ui \
     vercarro.ui
