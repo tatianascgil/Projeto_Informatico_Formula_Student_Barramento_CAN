@@ -282,7 +282,7 @@ QPushButton:pressed {
      <rect>
       <x>70</x>
       <y>340</y>
-      <width>161</width>
+      <width>251</width>
       <height>41</height>
      </rect>
     </property>
@@ -352,9 +352,9 @@ QPushButton:pressed {
    <widget class="QPushButton" name="btnVerCarro">
     <property name="geometry">
      <rect>
-      <x>250</x>
+      <x>240</x>
       <y>460</y>
-      <width>151</width>
+      <width>161</width>
       <height>61</height>
      </rect>
     </property>
@@ -467,7 +467,7 @@ QPushButton:pressed {
      <x>0</x>
      <y>0</y>
      <width>850</width>
-     <height>22</height>
+     <height>26</height>
     </rect>
    </property>
   </widget>

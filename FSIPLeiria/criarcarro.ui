@@ -119,7 +119,7 @@ QPushButton:pressed {
     <rect>
      <x>90</x>
      <y>60</y>
-     <width>91</width>
+     <width>71</width>
      <height>31</height>
     </rect>
    </property>
@@ -130,14 +130,14 @@ QPushButton:pressed {
     </font>
    </property>
    <property name="text">
-    <string>Modelo:</string>
+    <string>Tipo:</string>
    </property>
   </widget>
   <widget class="QLabel" name="label">
    <property name="geometry">
     <rect>
      <x>90</x>
-     <y>10</y>
+     <y>0</y>
      <width>91</width>
      <height>31</height>
     </rect>
@@ -175,9 +175,9 @@ QPushButton:pressed {
    <property name="geometry">
     <rect>
      <x>190</x>
-     <y>10</y>
+     <y>0</y>
      <width>361</width>
-     <height>31</height>
+     <height>41</height>
     </rect>
    </property>
    <property name="font">
@@ -187,15 +187,18 @@ QPushButton:pressed {
    </property>
    <property name="cursor" stdset="0">
     <cursorShape>IBeamCursor</cursorShape>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background:rgb(234, 234, 234)</string>
    </property>
   </widget>
   <widget class="QTextEdit" name="textEditModeloCarro">
    <property name="geometry">
     <rect>
-     <x>190</x>
+     <x>170</x>
      <y>60</y>
-     <width>361</width>
-     <height>31</height>
+     <width>381</width>
+     <height>41</height>
     </rect>
    </property>
    <property name="font">
@@ -205,6 +208,9 @@ QPushButton:pressed {
    </property>
    <property name="cursor" stdset="0">
     <cursorShape>IBeamCursor</cursorShape>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background:rgb(234, 234, 234)</string>
    </property>
   </widget>
   <widget class="QTextEdit" name="textEditObsCarro">
@@ -223,6 +229,9 @@ QPushButton:pressed {
    </property>
    <property name="cursor" stdset="0">
     <cursorShape>IBeamCursor</cursorShape>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background:rgb(234, 234, 234)</string>
    </property>
   </widget>
  </widget>
