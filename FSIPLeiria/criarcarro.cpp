@@ -33,7 +33,7 @@ void CriarCarro::on_btnCriarCarro_clicked()
 {
 
     QString nomeCarro = ui->textEditNomeCarro->toPlainText().trimmed();
-    QString tipoCarro = ui->btnTipoCarro->currentText().trimmed();
+    QString tipoCarro = ui->btnTipoCarro->currentText();
     QString obsCarro = ui->textEditObsCarro->toPlainText();
 
     bool nomeCarroEmpty = nomeCarro.isEmpty();
