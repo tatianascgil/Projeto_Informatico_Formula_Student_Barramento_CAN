@@ -117,8 +117,8 @@ QPushButton:pressed {
   <widget class="QLabel" name="label_2">
    <property name="geometry">
     <rect>
-     <x>90</x>
-     <y>60</y>
+     <x>60</x>
+     <y>80</y>
      <width>71</width>
      <height>31</height>
     </rect>
@@ -136,8 +136,8 @@ QPushButton:pressed {
   <widget class="QLabel" name="label">
    <property name="geometry">
     <rect>
-     <x>90</x>
-     <y>0</y>
+     <x>60</x>
+     <y>20</y>
      <width>91</width>
      <height>31</height>
     </rect>
@@ -156,9 +156,9 @@ QPushButton:pressed {
    <property name="geometry">
     <rect>
      <x>180</x>
-     <y>110</y>
-     <width>91</width>
-     <height>31</height>
+     <y>130</y>
+     <width>51</width>
+     <height>21</height>
     </rect>
    </property>
    <property name="font">
@@ -174,30 +174,9 @@ QPushButton:pressed {
   <widget class="QTextEdit" name="textEditNomeCarro">
    <property name="geometry">
     <rect>
-     <x>190</x>
-     <y>0</y>
+     <x>160</x>
+     <y>20</y>
      <width>361</width>
-     <height>41</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <pointsize>12</pointsize>
-    </font>
-   </property>
-   <property name="cursor" stdset="0">
-    <cursorShape>IBeamCursor</cursorShape>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">background:rgb(234, 234, 234)</string>
-   </property>
-  </widget>
-  <widget class="QTextEdit" name="textEditModeloCarro">
-   <property name="geometry">
-    <rect>
-     <x>170</x>
-     <y>60</y>
-     <width>381</width>
      <height>41</height>
     </rect>
    </property>
@@ -217,9 +196,9 @@ QPushButton:pressed {
    <property name="geometry">
     <rect>
      <x>240</x>
-     <y>110</y>
-     <width>311</width>
-     <height>131</height>
+     <y>130</y>
+     <width>281</width>
+     <height>111</height>
     </rect>
    </property>
    <property name="font">
@@ -233,6 +212,37 @@ QPushButton:pressed {
    <property name="styleSheet">
     <string notr="true">background:rgb(234, 234, 234)</string>
    </property>
+  </widget>
+  <widget class="QComboBox" name="btnTipoCarro">
+   <property name="geometry">
+    <rect>
+     <x>160</x>
+     <y>80</y>
+     <width>361</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="currentIndex">
+    <number>-1</number>
+   </property>
+   <property name="placeholderText">
+    <string>&lt;Selecionar Tipo de Carro&gt;</string>
+   </property>
+   <item>
+    <property name="text">
+     <string>Combustão</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>Elétrico</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>Híbrido</string>
+    </property>
+   </item>
   </widget>
  </widget>
  <resources/>
