@@ -36,8 +36,12 @@ private slots:
 
     void on_btnEstatisticas_clicked();
 
+    void on_comboBoxCarro_currentIndexChanged(int index);
+
 private:
     Ui::MainWindow *ui;
+    QString loadLastSelectedOption();
+    void saveLastSelectedOption(const QString& selectedOption);
 };
 
 #endif // MAINWINDOW_H

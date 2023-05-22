@@ -7,6 +7,8 @@
 #include <QtWidgets>
 #include <QComboBox>
 #include <QPushButton>
+#include <QDir>
+#include <QSettings>
 
 #include <QTextStream>
 #include <QStandardItemModel>
@@ -42,6 +44,29 @@ MainWindow::MainWindow(QWidget *parent)
 
     ui->btnCreateFile->setPlaceholderText("Configurar");
     ui->btnSaveFile->setVisible(false);
+
+
+    QString settingsDir = QDir::currentPath() + "/../FSIPLeiria/settings";
+    QDir directory(settingsDir);
+    QStringList folders = directory.entryList(QDir::Dirs | QDir::NoDotAndDotDot);
+
+    ui->comboBoxCarro->addItems(folders);
+
+    // Load the last selected option:
+    QString lastSelectedOption = loadLastSelectedOption();
+    int index = ui->comboBoxCarro->findText(lastSelectedOption);
+    if (index != -1) {
+        ui->comboBoxCarro->setCurrentIndex(index);
+    }
+
+    // Connect the currentIndexChanged signal of comboBoxCarro to a lambda slot:
+    QObject::connect(ui->comboBoxCarro, QOverload<int>::of(&QComboBox::currentIndexChanged), [this](int index) {
+        QString selectedOption = ui->comboBoxCarro->currentText();
+        saveLastSelectedOption(selectedOption);
+        // Do something with the selected option
+        // ...
+    });
+
 }
 
 MainWindow::~MainWindow()
@@ -405,5 +430,29 @@ void MainWindow::on_btnEstatisticas_clicked()
         estatisticas->setMaximumSize(estatisticasWidth, estatisticasHeight);
         estatisticas->show();
         this->close();
+}
+
+QString MainWindow::loadLastSelectedOption()
+{
+        // Implement your code to load the last selected option from a file or settings
+        // For example, using QSettings:
+
+        QSettings settings("FSIPLeiria", "FSIPLeiria");
+        return settings.value("lastSelectedOption").toString();
+}
+
+void MainWindow::saveLastSelectedOption(const QString& selectedOption)
+{
+        // Implement your code to save the selected option to a file or settings
+        // For example, using QSettings:
+
+        QSettings settings("FSIPLeiria", "FSIPLeiria");
+        settings.setValue("lastSelectedOption", selectedOption);
+}
+
+
+void MainWindow::on_comboBoxCarro_currentIndexChanged(int index)
+{
+
 }
 
