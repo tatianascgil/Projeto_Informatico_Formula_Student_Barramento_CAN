@@ -27,7 +27,6 @@ class Ui_GerirCarro
 public:
     QCommandLinkButton *commandButtonVoltar;
     QLabel *label;
-    QLabel *labelNomeCarro;
     QTableView *tableViewCarro;
     QTableView *tableViewModulosCarro;
     QLabel *label_2;
@@ -35,6 +34,7 @@ public:
     QPushButton *btnApagarCarro;
     QPushButton *btnGuardarCarro;
     QPushButton *btnCriarModulo;
+    QLabel *labelNomeCarro;
 
     void setupUi(QWidget *GerirCarro)
     {
@@ -59,12 +59,6 @@ public:
         font.setPointSize(16);
         font.setBold(true);
         label->setFont(font);
-        labelNomeCarro = new QLabel(GerirCarro);
-        labelNomeCarro->setObjectName("labelNomeCarro");
-        labelNomeCarro->setGeometry(QRect(120, 20, 211, 31));
-        QFont font1;
-        font1.setPointSize(16);
-        labelNomeCarro->setFont(font1);
         tableViewCarro = new QTableView(GerirCarro);
         tableViewCarro->setObjectName("tableViewCarro");
         tableViewCarro->setGeometry(QRect(20, 60, 761, 61));
@@ -83,9 +77,9 @@ public:
         btnApagarCarro = new QPushButton(GerirCarro);
         btnApagarCarro->setObjectName("btnApagarCarro");
         btnApagarCarro->setGeometry(QRect(530, 140, 121, 41));
-        QFont font2;
-        font2.setPointSize(10);
-        btnApagarCarro->setFont(font2);
+        QFont font1;
+        font1.setPointSize(10);
+        btnApagarCarro->setFont(font1);
         btnApagarCarro->setCursor(QCursor(Qt::PointingHandCursor));
         btnApagarCarro->setStyleSheet(QString::fromUtf8("QPushButton{\n"
 "	background-color:rgb(255, 245, 166);\n"
@@ -104,7 +98,7 @@ public:
         btnGuardarCarro = new QPushButton(GerirCarro);
         btnGuardarCarro->setObjectName("btnGuardarCarro");
         btnGuardarCarro->setGeometry(QRect(660, 140, 121, 41));
-        btnGuardarCarro->setFont(font2);
+        btnGuardarCarro->setFont(font1);
         btnGuardarCarro->setCursor(QCursor(Qt::PointingHandCursor));
         btnGuardarCarro->setStyleSheet(QString::fromUtf8("QPushButton{\n"
 "	background-color:rgb(255, 245, 166);\n"
@@ -123,7 +117,7 @@ public:
         btnCriarModulo = new QPushButton(GerirCarro);
         btnCriarModulo->setObjectName("btnCriarModulo");
         btnCriarModulo->setGeometry(QRect(660, 450, 121, 41));
-        btnCriarModulo->setFont(font2);
+        btnCriarModulo->setFont(font1);
         btnCriarModulo->setCursor(QCursor(Qt::PointingHandCursor));
         btnCriarModulo->setStyleSheet(QString::fromUtf8("QPushButton{\n"
 "	background-color:rgb(255, 245, 166);\n"
@@ -139,6 +133,9 @@ public:
 "	background-color:rgb(255, 242, 165);\n"
 "	border-bottom: 5px solid rgb(162, 155, 105)\n"
 "}"));
+        labelNomeCarro = new QLabel(GerirCarro);
+        labelNomeCarro->setObjectName("labelNomeCarro");
+        labelNomeCarro->setGeometry(QRect(140, 20, 91, 31));
 
         retranslateUi(GerirCarro);
 
@@ -149,12 +146,12 @@ public:
     {
         GerirCarro->setWindowTitle(QCoreApplication::translate("GerirCarro", "Gerir Carro", nullptr));
         commandButtonVoltar->setText(QString());
-        label->setText(QCoreApplication::translate("GerirCarro", "Carro", nullptr));
-        labelNomeCarro->setText(QCoreApplication::translate("GerirCarro", "Carro XPTO", nullptr));
+        label->setText(QCoreApplication::translate("GerirCarro", "Carro:", nullptr));
         label_2->setText(QCoreApplication::translate("GerirCarro", "M\303\263dulos deste Carro:", nullptr));
         btnApagarCarro->setText(QCoreApplication::translate("GerirCarro", "Apagar Carro", nullptr));
         btnGuardarCarro->setText(QCoreApplication::translate("GerirCarro", "Guardar", nullptr));
         btnCriarModulo->setText(QCoreApplication::translate("GerirCarro", "Criar M\303\263dulo", nullptr));
+        labelNomeCarro->setText(QCoreApplication::translate("GerirCarro", "TextLabel", nullptr));
     } // retranslateUi
 
 };

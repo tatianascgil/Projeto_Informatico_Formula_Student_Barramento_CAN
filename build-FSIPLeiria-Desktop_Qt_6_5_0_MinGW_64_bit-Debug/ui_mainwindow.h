@@ -267,7 +267,7 @@ public:
         MainWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName("menubar");
-        menubar->setGeometry(QRect(0, 0, 850, 26));
+        menubar->setGeometry(QRect(0, 0, 850, 21));
         MainWindow->setMenuBar(menubar);
         statusbar = new QStatusBar(MainWindow);
         statusbar->setObjectName("statusbar");
@@ -275,7 +275,7 @@ public:
 
         retranslateUi(MainWindow);
 
-        btnCreateFile->setCurrentIndex(0);
+        btnCreateFile->setCurrentIndex(-1);
 
 
         QMetaObject::connectSlotsByName(MainWindow);
@@ -289,12 +289,13 @@ public:
         btnCreateFile->setItemText(0, QCoreApplication::translate("MainWindow", "Configurar BD", nullptr));
         btnCreateFile->setItemText(1, QCoreApplication::translate("MainWindow", "Criar Mensagem", nullptr));
 
-        btnCreateFile->setCurrentText(QCoreApplication::translate("MainWindow", "Configurar BD", nullptr));
+        btnCreateFile->setCurrentText(QString());
         btnCreateFile->setPlaceholderText(QCoreApplication::translate("MainWindow", "Configurar", nullptr));
         btnSaveFile->setText(QCoreApplication::translate("MainWindow", "Guardar Ficheiro", nullptr));
         btnTempoReal->setText(QCoreApplication::translate("MainWindow", "Tempo Real", nullptr));
         btnTabelaDados->setText(QCoreApplication::translate("MainWindow", "Tabela de Dados", nullptr));
         label->setText(QCoreApplication::translate("MainWindow", "Escolha o carro:", nullptr));
+        comboBoxCarro->setPlaceholderText(QCoreApplication::translate("MainWindow", "<Selecionar Carro>", nullptr));
         btnCriarCarro->setText(QCoreApplication::translate("MainWindow", "Criar Carro", nullptr));
         btnVerCarro->setText(QCoreApplication::translate("MainWindow", "Ver Dados do Carro", nullptr));
         btnLocalConf->setText(QCoreApplication::translate("MainWindow", "Localiza\303\247\303\243o  das Configura\303\247\303\265es  ", nullptr));

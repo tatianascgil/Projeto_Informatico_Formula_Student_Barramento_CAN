@@ -2,6 +2,7 @@
 #include "ui_criarcarro.h"
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+
 #include <QDir>
 #include <QDebug>
 #include <QMessageBox>
@@ -32,25 +33,30 @@ void CriarCarro::on_btnCancelar_clicked()
 void CriarCarro::on_btnCriarCarro_clicked()
 {
 
-    QString nomeCarro = ui->textEditNomeCarro->toPlainText().trimmed();
+    QString nomeCarro = ui->textEditNomeCarro->toPlainText();
     QString tipoCarro = ui->btnTipoCarro->currentText();
     QString obsCarro = ui->textEditObsCarro->toPlainText();
 
-    bool nomeCarroEmpty = nomeCarro.isEmpty();
+//    // Emit the carNameEntered signal after a delay
+//    QMetaObject::invokeMethod(this, [this, nomeCarro]() {
+//            emit carNameEntered(nomeCarro);
+//        }, Qt::QueuedConnection);;
+
+    bool nomeCarroEmpty = nomeCarro.trimmed().isEmpty();
     bool tipoCarroEmpty = tipoCarro.isEmpty();
 
     if (nomeCarroEmpty && tipoCarroEmpty) {
-        QMessageBox::critical(this, "Error", "É obrigatório preencher os campos 'Nome' e 'Tipo'!");
+        QMessageBox::critical(this, "Erro", "É obrigatório preencher os campos 'Nome' e 'Tipo'!");
         return;
     } else if (nomeCarroEmpty) {
-        QMessageBox::critical(this, "Error", "É obrigatório preencher o campo 'Nome'!");
+        QMessageBox::critical(this, "Erro", "É obrigatório preencher o campo 'Nome'!");
         return;
     } else if (tipoCarroEmpty) {
-        QMessageBox::critical(this, "Error", "É obrigatório preencher o campo 'Tipo'!");
+        QMessageBox::critical(this, "Erro", "É obrigatório preencher o campo 'Tipo'!");
         return;
     }
 
-    QString folderName = nomeCarro;
+    QString folderName = nomeCarro.trimmed();
      folderName.replace(" ", "");
 
     QString currentPath = QDir::currentPath();
@@ -60,7 +66,6 @@ void CriarCarro::on_btnCriarCarro_clicked()
     QDir dir(targetDir);
     if (!dir.exists()) {
         if (dir.mkpath(targetDir)) {
-            qDebug() << "Created target directory:" << targetDir;
         } else {
             QMessageBox::critical(this, "Error", "Failed to create target directory!");
             return;
@@ -70,15 +75,22 @@ void CriarCarro::on_btnCriarCarro_clicked()
     QDir folderDir(folderPath);
     if (!folderDir.exists()) {
         if (folderDir.mkpath(folderPath)) {
-            qDebug() << "Created folder:" << folderPath;
             QMessageBox::information(this, "Successo", "Pasta " + folderName + " criada com sucesso!");
 
-            //Saving the car data in a CSV file
-            QString filePath = folderPath + "/caracteristicas.csv";
+//            // Emit the signal with the car name
+//            emit carNameEntered(nomeCarro);
+
+//            // Set the selected value of the QComboBox
+//            MainWindow* mainWindow = qobject_cast<MainWindow*>(parent());
+//            if (mainWindow) {
+//                mainWindow->setComboBoxSelectedValue(nomeCarro);
+//            }
+
+            // Saving the car data in a TXT file
+            QString filePath = folderPath + "/caracteristicas.txt";
             QFile file(filePath);
             if (file.open(QIODevice::WriteOnly | QIODevice::Text)) {
                 QTextStream stream(&file);
-
 
                 // Write the data
                 QString nome = nomeCarro;
@@ -99,10 +111,8 @@ void CriarCarro::on_btnCriarCarro_clicked()
             }
         }
     } else {
-        qDebug() << "Folder already exists:" << folderPath;
         QMessageBox::information(this, "Erro", "Erro. A pasta " + folderName + "já existe!");
     }
-
 
 }
 

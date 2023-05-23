@@ -15,6 +15,10 @@ public:
     explicit GerirCarro(QWidget *parent = nullptr);
     ~GerirCarro();
 
+public slots:
+    void setNome(const QString& nome);
+    void lerDadosCarro();
+
 private slots:
     void on_commandButtonVoltar_clicked();
 

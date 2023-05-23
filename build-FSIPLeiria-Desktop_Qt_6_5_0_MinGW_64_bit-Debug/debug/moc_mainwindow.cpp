@@ -41,29 +41,25 @@ static constexpr auto qt_meta_stringdata_CLASSMainWindowENDCLASS = QtMocHelpers:
     "MainWindow",
     "on_btnReadFile_clicked",
     "",
-    "updateSaveButtonVisibility",
     "on_btnSaveFile_clicked",
     "on_btnCreateFile_activated",
     "index",
     "on_btnVerCarro_clicked",
     "on_btnCriarCarro_clicked",
-    "on_btnEstatisticas_clicked",
-    "on_comboBoxCarro_currentIndexChanged"
+    "on_btnEstatisticas_clicked"
 );
 #else  // !QT_MOC_HAS_STRING_DATA
 struct qt_meta_stringdata_CLASSMainWindowENDCLASS_t {
-    uint offsetsAndSizes[22];
+    uint offsetsAndSizes[18];
     char stringdata0[11];
     char stringdata1[23];
     char stringdata2[1];
-    char stringdata3[27];
-    char stringdata4[23];
-    char stringdata5[27];
-    char stringdata6[6];
-    char stringdata7[23];
-    char stringdata8[25];
-    char stringdata9[27];
-    char stringdata10[37];
+    char stringdata3[23];
+    char stringdata4[27];
+    char stringdata5[6];
+    char stringdata6[23];
+    char stringdata7[25];
+    char stringdata8[27];
 };
 #define QT_MOC_LITERAL(ofs, len) \
     uint(sizeof(qt_meta_stringdata_CLASSMainWindowENDCLASS_t::offsetsAndSizes) + ofs), len 
@@ -72,26 +68,22 @@ Q_CONSTINIT static const qt_meta_stringdata_CLASSMainWindowENDCLASS_t qt_meta_st
         QT_MOC_LITERAL(0, 10),  // "MainWindow"
         QT_MOC_LITERAL(11, 22),  // "on_btnReadFile_clicked"
         QT_MOC_LITERAL(34, 0),  // ""
-        QT_MOC_LITERAL(35, 26),  // "updateSaveButtonVisibility"
-        QT_MOC_LITERAL(62, 22),  // "on_btnSaveFile_clicked"
-        QT_MOC_LITERAL(85, 26),  // "on_btnCreateFile_activated"
-        QT_MOC_LITERAL(112, 5),  // "index"
-        QT_MOC_LITERAL(118, 22),  // "on_btnVerCarro_clicked"
-        QT_MOC_LITERAL(141, 24),  // "on_btnCriarCarro_clicked"
-        QT_MOC_LITERAL(166, 26),  // "on_btnEstatisticas_clicked"
-        QT_MOC_LITERAL(193, 36)   // "on_comboBoxCarro_currentIndex..."
+        QT_MOC_LITERAL(35, 22),  // "on_btnSaveFile_clicked"
+        QT_MOC_LITERAL(58, 26),  // "on_btnCreateFile_activated"
+        QT_MOC_LITERAL(85, 5),  // "index"
+        QT_MOC_LITERAL(91, 22),  // "on_btnVerCarro_clicked"
+        QT_MOC_LITERAL(114, 24),  // "on_btnCriarCarro_clicked"
+        QT_MOC_LITERAL(139, 26)   // "on_btnEstatisticas_clicked"
     },
     "MainWindow",
     "on_btnReadFile_clicked",
     "",
-    "updateSaveButtonVisibility",
     "on_btnSaveFile_clicked",
     "on_btnCreateFile_activated",
     "index",
     "on_btnVerCarro_clicked",
     "on_btnCriarCarro_clicked",
-    "on_btnEstatisticas_clicked",
-    "on_comboBoxCarro_currentIndexChanged"
+    "on_btnEstatisticas_clicked"
 };
 #undef QT_MOC_LITERAL
 #endif // !QT_MOC_HAS_STRING_DATA
@@ -103,7 +95,7 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSMainWindowENDCLASS[] = {
       11,       // revision
        0,       // classname
        0,    0, // classinfo
-       8,   14, // methods
+       6,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -111,24 +103,20 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSMainWindowENDCLASS[] = {
        0,       // signalCount
 
  // slots: name, argc, parameters, tag, flags, initial metatype offsets
-       1,    0,   62,    2, 0x08,    1 /* Private */,
-       3,    0,   63,    2, 0x08,    2 /* Private */,
-       4,    0,   64,    2, 0x08,    3 /* Private */,
-       5,    1,   65,    2, 0x08,    4 /* Private */,
-       7,    0,   68,    2, 0x08,    6 /* Private */,
-       8,    0,   69,    2, 0x08,    7 /* Private */,
-       9,    0,   70,    2, 0x08,    8 /* Private */,
-      10,    1,   71,    2, 0x08,    9 /* Private */,
+       1,    0,   50,    2, 0x08,    1 /* Private */,
+       3,    0,   51,    2, 0x08,    2 /* Private */,
+       4,    1,   52,    2, 0x08,    3 /* Private */,
+       6,    0,   55,    2, 0x08,    5 /* Private */,
+       7,    0,   56,    2, 0x08,    6 /* Private */,
+       8,    0,   57,    2, 0x08,    7 /* Private */,
 
  // slots: parameters
     QMetaType::Void,
     QMetaType::Void,
-    QMetaType::Void,
-    QMetaType::Void, QMetaType::Int,    6,
-    QMetaType::Void,
+    QMetaType::Void, QMetaType::Int,    5,
     QMetaType::Void,
     QMetaType::Void,
-    QMetaType::Void, QMetaType::Int,    6,
+    QMetaType::Void,
 
        0        // eod
 };
@@ -144,8 +132,6 @@ Q_CONSTINIT const QMetaObject MainWindow::staticMetaObject = { {
         QtPrivate::TypeAndForceComplete<MainWindow, std::true_type>,
         // method 'on_btnReadFile_clicked'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
-        // method 'updateSaveButtonVisibility'
-        QtPrivate::TypeAndForceComplete<void, std::false_type>,
         // method 'on_btnSaveFile_clicked'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         // method 'on_btnCreateFile_activated'
@@ -156,10 +142,7 @@ Q_CONSTINIT const QMetaObject MainWindow::staticMetaObject = { {
         // method 'on_btnCriarCarro_clicked'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         // method 'on_btnEstatisticas_clicked'
-        QtPrivate::TypeAndForceComplete<void, std::false_type>,
-        // method 'on_comboBoxCarro_currentIndexChanged'
-        QtPrivate::TypeAndForceComplete<void, std::false_type>,
-        QtPrivate::TypeAndForceComplete<int, std::false_type>
+        QtPrivate::TypeAndForceComplete<void, std::false_type>
     >,
     nullptr
 } };
@@ -171,13 +154,11 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         (void)_t;
         switch (_id) {
         case 0: _t->on_btnReadFile_clicked(); break;
-        case 1: _t->updateSaveButtonVisibility(); break;
-        case 2: _t->on_btnSaveFile_clicked(); break;
-        case 3: _t->on_btnCreateFile_activated((*reinterpret_cast< std::add_pointer_t<int>>(_a[1]))); break;
-        case 4: _t->on_btnVerCarro_clicked(); break;
-        case 5: _t->on_btnCriarCarro_clicked(); break;
-        case 6: _t->on_btnEstatisticas_clicked(); break;
-        case 7: _t->on_comboBoxCarro_currentIndexChanged((*reinterpret_cast< std::add_pointer_t<int>>(_a[1]))); break;
+        case 1: _t->on_btnSaveFile_clicked(); break;
+        case 2: _t->on_btnCreateFile_activated((*reinterpret_cast< std::add_pointer_t<int>>(_a[1]))); break;
+        case 3: _t->on_btnVerCarro_clicked(); break;
+        case 4: _t->on_btnCriarCarro_clicked(); break;
+        case 5: _t->on_btnEstatisticas_clicked(); break;
         default: ;
         }
     }
@@ -202,13 +183,13 @@ int MainWindow::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 8)
+        if (_id < 6)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 8;
+        _id -= 6;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 8)
+        if (_id < 6)
             *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
-        _id -= 8;
+        _id -= 6;
     }
     return _id;
 }

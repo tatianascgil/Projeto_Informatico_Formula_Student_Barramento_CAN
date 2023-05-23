@@ -31,7 +31,6 @@ release/xlsxworkbook.o
 release/xlsxworksheet.o
 release/xlsxzipreader.o
 release/xlsxzipwriter.o
-release/alterarcarro.o
 release/criarcarro.o
 release/criarmodulo.o
 release/criartipomensagem.o
@@ -44,7 +43,6 @@ release/mainwindow.o
 release/modulo.o
 release/vercarro.o
 release/moc_xlsxdocument.o
-release/moc_alterarcarro.o
 release/moc_criarcarro.o
 release/moc_criarmodulo.o
 release/moc_criartipomensagem.o
