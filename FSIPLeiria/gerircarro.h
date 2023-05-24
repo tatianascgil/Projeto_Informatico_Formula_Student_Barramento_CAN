@@ -17,7 +17,7 @@ public:
 
 public slots:
     void setNome(const QString& nome);
-    void lerDadosCarro();
+    void lerDadosCarro(const QString& nome);
 
 private slots:
     void on_commandButtonVoltar_clicked();

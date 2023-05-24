@@ -96,13 +96,13 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSGerirCarroENDCLASS[] = {
 
  // slots: name, argc, parameters, tag, flags, initial metatype offsets
        1,    1,   38,    2, 0x0a,    1 /* Public */,
-       4,    0,   41,    2, 0x0a,    3 /* Public */,
-       5,    0,   42,    2, 0x08,    4 /* Private */,
-       6,    0,   43,    2, 0x08,    5 /* Private */,
+       4,    1,   41,    2, 0x0a,    3 /* Public */,
+       5,    0,   44,    2, 0x08,    5 /* Private */,
+       6,    0,   45,    2, 0x08,    6 /* Private */,
 
  // slots: parameters
     QMetaType::Void, QMetaType::QString,    3,
-    QMetaType::Void,
+    QMetaType::Void, QMetaType::QString,    3,
     QMetaType::Void,
     QMetaType::Void,
 
@@ -123,6 +123,7 @@ Q_CONSTINIT const QMetaObject GerirCarro::staticMetaObject = { {
         QtPrivate::TypeAndForceComplete<const QString &, std::false_type>,
         // method 'lerDadosCarro'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<const QString &, std::false_type>,
         // method 'on_commandButtonVoltar_clicked'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         // method 'on_btnCriarModulo_clicked'
@@ -138,7 +139,7 @@ void GerirCarro::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         (void)_t;
         switch (_id) {
         case 0: _t->setNome((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;
-        case 1: _t->lerDadosCarro(); break;
+        case 1: _t->lerDadosCarro((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;
         case 2: _t->on_commandButtonVoltar_clicked(); break;
         case 3: _t->on_btnCriarModulo_clicked(); break;
         default: ;

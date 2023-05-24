@@ -7,6 +7,7 @@
 
 #include <QDir>
 #include <QStandardItemModel>
+#include <QDebug>
 
 GerirCarro::GerirCarro(QWidget *parent) :
     QWidget(parent),
@@ -14,7 +15,6 @@ GerirCarro::GerirCarro(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    lerDadosCarro();
 }
 
 GerirCarro::~GerirCarro()
@@ -24,12 +24,16 @@ GerirCarro::~GerirCarro()
 
 void GerirCarro::setNome(const QString& nome){
     ui->labelNomeCarro->setText(nome);
+    qDebug() << "Carro: " << ui->labelNomeCarro->text();
 }
 
-void GerirCarro::lerDadosCarro(){
-// Construct the path to the car's folder
-    QString folderName = ui->labelNomeCarro->text();
+void GerirCarro::lerDadosCarro(const QString& nome){
 
+    qDebug() << "I got here";
+// Construct the path to the car's folder
+    QString folderName = nome;
+    folderName.remove(' ');
+    qDebug() << "Nome: " << folderName;
     QString currentPath = QDir::currentPath();
     QString targetDir = currentPath + "/../FSIPLeiria/settings";
     QString folderPath = targetDir + "/" + folderName;
@@ -37,9 +41,12 @@ void GerirCarro::lerDadosCarro(){
     // Open the "caracteristicas.txt" file within the car's folder
     QString filePath = folderPath + "/caracteristicas.txt";
     QFile file(filePath);
+
+    qDebug() << "File Path: " << filePath;
     if (file.open(QIODevice::ReadOnly | QIODevice::Text)) {
         QTextStream stream(&file);
 
+        qDebug() << "Reading Data from: " << filePath;
         // Read the data
         QString line = stream.readLine();
         QStringList values = line.split(";");

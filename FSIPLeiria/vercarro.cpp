@@ -55,11 +55,16 @@ void VerCarro::on_btnDefinicoes_clicked()
     // Cria a janela GerirCarro
     GerirCarro *gerircarro = new GerirCarro();
 
-    gerircarro->setNome(ui->labelNomeCarro->text());
+    QString nomeCarro = ui->labelNomeCarro->text().trimmed();
+
+    gerircarro->setNome(nomeCarro);
+    qDebug() << "Nome do carro: " << nomeCarro;
 
     // Define o tamanho mínimo e máximo da janela
     gerircarro->setMinimumSize(gerircarroWidth, gerircarroHeight);
     gerircarro->setMaximumSize(gerircarroWidth, gerircarroHeight);
+    gerircarro->lerDadosCarro(nomeCarro);
+
     gerircarro->show();
     this->close();
 }
