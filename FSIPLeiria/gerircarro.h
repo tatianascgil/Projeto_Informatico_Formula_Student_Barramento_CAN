@@ -24,6 +24,10 @@ private slots:
 
     void on_btnCriarModulo_clicked();
 
+    void on_btnApagarCarro_clicked();
+
+    void on_btnGuardarCarro_clicked();
+
 private:
     Ui::GerirCarro *ui;
 };

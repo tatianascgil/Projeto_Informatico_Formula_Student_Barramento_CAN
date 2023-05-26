@@ -209,6 +209,7 @@ public:
 "}"));
         btnVerCarro = new QPushButton(centralwidget);
         btnVerCarro->setObjectName("btnVerCarro");
+        btnVerCarro->setEnabled(true);
         btnVerCarro->setGeometry(QRect(240, 460, 161, 61));
         btnVerCarro->setFont(font);
         btnVerCarro->setCursor(QCursor(Qt::PointingHandCursor));
@@ -226,6 +227,7 @@ public:
 "	background-color:rgb(255, 242, 165);\n"
 "	border-bottom: 5px solid rgb(162, 155, 105)\n"
 "}"));
+        btnVerCarro->setCheckable(false);
         btnLocalConf = new QPushButton(centralwidget);
         btnLocalConf->setObjectName("btnLocalConf");
         btnLocalConf->setGeometry(QRect(70, 530, 331, 61));

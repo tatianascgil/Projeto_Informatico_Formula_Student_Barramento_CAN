@@ -9,6 +9,7 @@
 #include <QPushButton>
 #include <QDir>
 #include <QSettings>
+#include <QDebug>
 
 #include <QTextStream>
 #include <QStandardItemModel>
@@ -43,6 +44,12 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->tableView->model(), SIGNAL(modelChanged()), this, SLOT(updateSaveButtonVisibility()));
 
     ui->btnSaveFile->setVisible(false);
+
+    // Connect the currentIndexChanged signal of the comboBoxCarro to a custom slot
+    connect(ui->comboBoxCarro, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &MainWindow::handleComboBoxIndexChanged);
+
+    // Update the initial visibility of the button
+    handleComboBoxIndexChanged(ui->comboBoxCarro->currentIndex());
 
     populateComboBox();
 
@@ -395,23 +402,23 @@ void MainWindow::on_btnVerCarro_clicked()
 
         file.close();
 
-        const int vercarroWidth = 700;
-        const int vercarroHeight = 350;
+        const int verCarroWidth = 700;
+        const int verCarroHeight = 350;
 
         // Cria a janela VerCarro
-        VerCarro *vercarro = new VerCarro();
+        VerCarro *verCarro = new VerCarro();
 
         // Define o tamanho mínimo e máximo da janela
-        vercarro->setMinimumSize(vercarroWidth, vercarroHeight);
-        vercarro->setMaximumSize(vercarroWidth, vercarroHeight);
+        verCarro->setMinimumSize(verCarroWidth, verCarroHeight);
+        verCarro->setMaximumSize(verCarroWidth, verCarroHeight);
 
 
         // Set the data in the "vercarro" window's QLabel widgets
-        vercarro->setNome(values[0]);
-        vercarro->setTipo(values[1]);
-        vercarro->setObservacoes(values[2]);
+        verCarro->setNome(values[0]);
+        verCarro->setTipo(values[1]);
+        verCarro->setObservacoes(values[2]);
 
-        vercarro->show();
+        verCarro->show();
         this->close();
     }
 
@@ -483,6 +490,8 @@ void MainWindow::saveLastSelectedOption(const QString& selectedOption)
 
 void MainWindow::populateComboBox()
 {
+        QComboBox* comboBox = ui->comboBoxCarro;
+
         QString settingsDir = QDir::currentPath() + "/../FSIPLeiria/settings";
         QDir directory(settingsDir);
         QStringList folders = directory.entryList(QDir::Dirs | QDir::NoDotAndDotDot);
@@ -491,8 +500,19 @@ void MainWindow::populateComboBox()
         ui->comboBoxCarro->clear();
         ui->comboBoxCarro->addItems(folders);
 
-        qDebug() << "Combo Box Items: " << ui->comboBoxCarro->count();
+        qDebug() << "Combo Box Items: " << comboBox->count();
 }
+
+void MainWindow::handleComboBoxIndexChanged(int index)
+{
+    if (ui->btnVerCarro) {
+        // If index is -1, no option is selected
+        bool isButtonVisible = (index != -1);
+        ui->btnVerCarro->setVisible(isButtonVisible);
+    }
+}
+
+
 
 
 

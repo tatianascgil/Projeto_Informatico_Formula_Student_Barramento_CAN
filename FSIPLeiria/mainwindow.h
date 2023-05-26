@@ -26,6 +26,7 @@ public:
 public slots:
 //    void setComboBoxSelectedValue(const QString& value);
 
+
 private slots:
     void on_btnReadFile_clicked();
 
@@ -48,6 +49,7 @@ private:
     QString loadLastSelectedOption();
     void saveLastSelectedOption(const QString& selectedOption);
     void populateComboBox();
+    void handleComboBoxIndexChanged(int index);
 };
 
 #endif // MAINWINDOW_H

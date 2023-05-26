@@ -111,7 +111,7 @@ void CriarCarro::on_btnCriarCarro_clicked()
             }
         }
     } else {
-        QMessageBox::information(this, "Erro", "Erro. A pasta " + folderName + "já existe!");
+        QMessageBox::information(this, "Erro", "Erro. A pasta " + folderName + " já existe!");
     }
 
 }
