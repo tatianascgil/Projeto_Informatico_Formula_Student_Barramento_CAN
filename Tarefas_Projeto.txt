@@ -57,16 +57,24 @@ da visualizao de campos
 -Requesitaçao de arduinos Uno                                         ---feito---
 
 
-Tarefas 08-05/15-05
+Tarefas 15-05/29-05
 
--Mockup Add um Mensagem já existe com valores diferentes a um Modulo
--Mockup Editar Modulo (Apenas da para editar o nome)
--Criar Modulos
--Página dos Modulos
--Criar Mensagem num Respetivo Modulo
-BD (Carros-Modulos-Mensagens)
-Relatorio:
--Comecar a colocar a arquitetura no relatorio (barramento)
--BD (Carros-Modulos-Mensagens)
-Mockup Pagina Inicial,Gerir Módulo,Gerir Tipo de Mensagem,Campo                                          
+
+- Criar as mockups Pagina Inicial,Gerir Módulo,Gerir Tipo de Mensagem,Campo
+- Criar DER;
+- Criar Entity-Relationship UML;
+- Verificação com professores e cliente
+- Alteração dos campos mencionados consoante sugestões
+- Criação de todas as janelas propostas na mokcup geral da aplicação;
+- Abrir a aplicação com o último carro selecionado.
+- 
+- Gerir carro:
+	-> Criar carro, com todas as verificações feitas (incluindo a exclusão de ";"
+	-> Ver dados
+	-> Editar
+	-> Apagar
+
+- Gerir carro, completo
+
+                                          
 

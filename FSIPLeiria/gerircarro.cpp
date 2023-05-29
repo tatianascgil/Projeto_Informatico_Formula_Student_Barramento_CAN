@@ -87,6 +87,14 @@ void GerirCarro::on_commandButtonVoltar_clicked()
     QString targetDir = currentPath + "/../FSIPLeiria/settings";
     QString folderPath = targetDir + "/" + folderName;
 
+    // Check if folderPath exists
+    QDir folderDir(folderPath);
+    if (!folderDir.exists()) {
+        // Folder does not exist, handle the error condition
+        QMessageBox::critical(this, tr("Erro"), tr("A pasta" + folderName.toUtf8() + " não existe!"));
+        return;
+    }
+
     // Open the "caracteristicas.txt" file within the car's folder
     QString filePath = folderPath + "/caracteristicas.txt";
     QFile file(filePath);
@@ -174,10 +182,12 @@ void GerirCarro::on_btnApagarCarro_clicked()
             } else {
                 // Failed to delete folder
                 qDebug() << "Failed to delete folder: " << folderPath;
+                QMessageBox::critical(this, tr("Erro"), tr("Não foi possível apagar a pasta " + folderName.toUtf8() + "!"));
             }
         } else {
             // Folder does not exist
             qDebug() << "Folder does not exist: " << folderPath;
+            QMessageBox::critical(this, tr("Erro"), tr("A pasta " +  folderName.toUtf8() + " não existe!"));
         }
     } else {
         // User canceled the deletion
@@ -250,10 +260,13 @@ void GerirCarro::on_btnGuardarCarro_clicked()
         if (!allValuesMatch) {
             // Set the translated button texts
             QMessageBox msgBox(QMessageBox::Question, tr("Confirmar Atualização"), tr("Algumas informações foram alteradas. Tem certeza de que deseja atualizar os dados?"), QMessageBox::Yes | QMessageBox::No, this);
-            msgBox.setButtonText(QMessageBox::Yes, tr("Sim"));
-            msgBox.setButtonText(QMessageBox::No, tr("Não"));
 
-            if (msgBox.exec() == QMessageBox::Yes) {
+            QAbstractButton* yesButton = msgBox.addButton(tr("Sim"), QMessageBox::YesRole);
+            msgBox.addButton(tr("Não"), QMessageBox::NoRole);
+
+            msgBox.exec();
+
+            if (msgBox.clickedButton() == yesButton) {
                 // User confirmed, write the data from the QTableView to the file
                 if (file.open(QIODevice::WriteOnly | QIODevice::Text)) {
                     QTextStream out(&file);
@@ -262,12 +275,12 @@ void GerirCarro::on_btnGuardarCarro_clicked()
                     }
                     file.close();
                 } else {
-                    QMessageBox::critical(this, tr("Erro"), tr("Não foi possível abrir o arquivo para escrita."));
+                    QMessageBox::critical(this, tr("Erro"), tr("Não foi possível abrir o ficheiro para escrita."));
                 }
             }
         }
     } else {
-        QMessageBox::critical(this, tr("Erro"), tr("Não foi possível abrir o arquivo para leitura."));
+        QMessageBox::critical(this, tr("Erro"), tr("Não foi possível abrir o ficheiro para leitura."));
     }
 }
 

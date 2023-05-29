@@ -35,6 +35,7 @@ public:
     QPushButton *btnGuardarCarro;
     QPushButton *btnCriarModulo;
     QLabel *labelNomeCarro;
+    QLabel *label_3;
 
     void setupUi(QWidget *GerirCarro)
     {
@@ -136,6 +137,9 @@ public:
         labelNomeCarro = new QLabel(GerirCarro);
         labelNomeCarro->setObjectName("labelNomeCarro");
         labelNomeCarro->setGeometry(QRect(140, 20, 91, 31));
+        label_3 = new QLabel(GerirCarro);
+        label_3->setObjectName("label_3");
+        label_3->setGeometry(QRect(20, 470, 551, 20));
 
         retranslateUi(GerirCarro);
 
@@ -152,6 +156,7 @@ public:
         btnGuardarCarro->setText(QCoreApplication::translate("GerirCarro", "Guardar", nullptr));
         btnCriarModulo->setText(QCoreApplication::translate("GerirCarro", "Criar M\303\263dulo", nullptr));
         labelNomeCarro->setText(QCoreApplication::translate("GerirCarro", "TextLabel", nullptr));
+        label_3->setText(QCoreApplication::translate("GerirCarro", "Nota: Fazer double-lick na linha respetiva ao m\303\263dulo que pretende ver os dados a pormenor.", nullptr));
     } // retranslateUi
 
 };

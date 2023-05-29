@@ -235,6 +235,19 @@ QPushButton:pressed {
     <string>TextLabel</string>
    </property>
   </widget>
+  <widget class="QLabel" name="label_3">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>470</y>
+     <width>551</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Nota: Fazer double-lick na linha respetiva ao módulo que pretende ver os dados a pormenor.</string>
+   </property>
+  </widget>
  </widget>
  <resources/>
  <connections/>

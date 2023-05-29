@@ -56,6 +56,11 @@ void CriarCarro::on_btnCriarCarro_clicked()
         return;
     }
 
+    if(nomeCarro.contains(";")){
+        QMessageBox::critical(this, "Erro", "É proíbido utilizar semi-vírgulas ';'!");
+        return;
+    }
+
     QString folderName = nomeCarro.trimmed();
      folderName.replace(" ", "");
 
@@ -107,7 +112,7 @@ void CriarCarro::on_btnCriarCarro_clicked()
                 mainWindow->show();
                 this->close();
             } else {
-                QMessageBox::critical(this, "Error", "Failed to save data!");
+                QMessageBox::critical(this, "Erro", "Erro ao guardar os dados!");
             }
         }
     } else {
