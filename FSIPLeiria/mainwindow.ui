@@ -125,10 +125,10 @@ QPushButton:pressed {
 	border -bottom: 5px solid rgb(162, 155, 105);</string>
     </property>
     <property name="currentText">
-     <string>Configurar BD</string>
+     <string/>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>-1</number>
     </property>
     <property name="maxCount">
      <number>2147483634</number>
@@ -311,6 +311,9 @@ QPushButton:pressed {
     <property name="styleSheet">
      <string notr="true">background:white</string>
     </property>
+    <property name="placeholderText">
+     <string>&lt;Selecionar Carro&gt;</string>
+    </property>
    </widget>
    <widget class="QPushButton" name="btnCriarCarro">
     <property name="geometry">
@@ -350,6 +353,9 @@ QPushButton:pressed {
     </property>
    </widget>
    <widget class="QPushButton" name="btnVerCarro">
+    <property name="enabled">
+     <bool>true</bool>
+    </property>
     <property name="geometry">
      <rect>
       <x>240</x>
@@ -384,6 +390,9 @@ QPushButton:pressed {
     </property>
     <property name="text">
      <string>Ver Dados do Carro</string>
+    </property>
+    <property name="checkable">
+     <bool>false</bool>
     </property>
    </widget>
    <widget class="QPushButton" name="btnLocalConf">
@@ -467,7 +476,7 @@ QPushButton:pressed {
      <x>0</x>
      <y>0</y>
      <width>850</width>
-     <height>26</height>
+     <height>21</height>
     </rect>
    </property>
   </widget>

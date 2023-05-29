@@ -8,6 +8,7 @@
 
 
 
+
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
@@ -21,10 +22,13 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
+
+public slots:
+//    void setComboBoxSelectedValue(const QString& value);
+
+
 private slots:
     void on_btnReadFile_clicked();
-
-    void updateSaveButtonVisibility();
 
     void on_btnSaveFile_clicked();
 
@@ -36,8 +40,16 @@ private slots:
 
     void on_btnEstatisticas_clicked();
 
+
+
+
 private:
     Ui::MainWindow *ui;
+    void updateSaveButtonVisibility();
+    QString loadLastSelectedOption();
+    void saveLastSelectedOption(const QString& selectedOption);
+    void populateComboBox();
+    void handleComboBoxIndexChanged(int index);
 };
 
 #endif // MAINWINDOW_H

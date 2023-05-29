@@ -95,43 +95,6 @@ QPushButton:pressed {
     <string>Estatísticas</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="btnAlterarCarro">
-   <property name="geometry">
-    <rect>
-     <x>530</x>
-     <y>220</y>
-     <width>161</width>
-     <height>51</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <pointsize>10</pointsize>
-    </font>
-   </property>
-   <property name="cursor">
-    <cursorShape>PointingHandCursor</cursorShape>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">QPushButton{
-	background-color:rgb(255, 245, 166);
-	border:none;
-	color:rgb(95, 91, 61);
-	border -bottom: 5px solid rgb(162, 155, 105)
-}
-QPushButton:hover{
-	background-color:rgb(229, 217, 150);
-	border-bottom: 5px solid rgb(162, 155, 105)
-}
-QPushButton:pressed {
-	background-color:rgb(255, 242, 165);
-	border-bottom: 5px solid rgb(162, 155, 105)
-}</string>
-   </property>
-   <property name="text">
-    <string>Alterar de Carro</string>
-   </property>
-  </widget>
   <widget class="QLabel" name="label">
    <property name="geometry">
     <rect>
@@ -175,7 +138,7 @@ QPushButton:pressed {
     <rect>
      <x>60</x>
      <y>130</y>
-     <width>91</width>
+     <width>131</width>
      <height>31</height>
     </rect>
    </property>
@@ -186,7 +149,7 @@ QPushButton:pressed {
     </font>
    </property>
    <property name="text">
-    <string>OBS:</string>
+    <string>Observações:</string>
    </property>
   </widget>
   <widget class="QLabel" name="labelNomeCarro">
@@ -207,7 +170,7 @@ QPushButton:pressed {
     <string>Carro XPTO</string>
    </property>
   </widget>
-  <widget class="QLabel" name="labelMarcaCarro">
+  <widget class="QLabel" name="labelTipoCarro">
    <property name="geometry">
     <rect>
      <x>140</x>
@@ -251,8 +214,8 @@ QPushButton:pressed {
       <rect>
        <x>10</x>
        <y>10</y>
-       <width>301</width>
-       <height>31</height>
+       <width>411</width>
+       <height>111</height>
       </rect>
      </property>
      <property name="font">
@@ -262,24 +225,6 @@ QPushButton:pressed {
      </property>
      <property name="text">
       <string>Ano Xptodsajbjdkbk,a,bd</string>
-     </property>
-    </widget>
-    <widget class="QLabel" name="labelObsCarro_2">
-     <property name="geometry">
-      <rect>
-       <x>10</x>
-       <y>40</y>
-       <width>261</width>
-       <height>31</height>
-      </rect>
-     </property>
-     <property name="font">
-      <font>
-       <pointsize>16</pointsize>
-      </font>
-     </property>
-     <property name="text">
-      <string>hsagbjbgdhjbkj,d</string>
      </property>
     </widget>
    </widget>

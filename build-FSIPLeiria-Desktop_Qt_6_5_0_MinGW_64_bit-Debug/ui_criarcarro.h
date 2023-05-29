@@ -12,6 +12,7 @@
 #include <QtCore/QVariant>
 #include <QtGui/QIcon>
 #include <QtWidgets/QApplication>
+#include <QtWidgets/QComboBox>
 #include <QtWidgets/QCommandLinkButton>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QPushButton>
@@ -30,8 +31,8 @@ public:
     QLabel *label;
     QLabel *label_3;
     QTextEdit *textEditNomeCarro;
-    QTextEdit *textEditModeloCarro;
     QTextEdit *textEditObsCarro;
+    QComboBox *btnTipoCarro;
 
     void setupUi(QWidget *CriarCarro)
     {
@@ -91,38 +92,44 @@ public:
 "}"));
         label_2 = new QLabel(CriarCarro);
         label_2->setObjectName("label_2");
-        label_2->setGeometry(QRect(90, 60, 91, 31));
+        label_2->setGeometry(QRect(60, 80, 71, 31));
         QFont font1;
         font1.setPointSize(16);
         font1.setBold(true);
         label_2->setFont(font1);
         label = new QLabel(CriarCarro);
         label->setObjectName("label");
-        label->setGeometry(QRect(90, 10, 91, 31));
+        label->setGeometry(QRect(60, 20, 91, 31));
         label->setFont(font1);
         label_3 = new QLabel(CriarCarro);
         label_3->setObjectName("label_3");
-        label_3->setGeometry(QRect(180, 110, 91, 31));
+        label_3->setGeometry(QRect(180, 130, 51, 21));
         label_3->setFont(font1);
         textEditNomeCarro = new QTextEdit(CriarCarro);
         textEditNomeCarro->setObjectName("textEditNomeCarro");
-        textEditNomeCarro->setGeometry(QRect(190, 10, 361, 31));
+        textEditNomeCarro->setGeometry(QRect(160, 20, 361, 41));
         QFont font2;
         font2.setPointSize(12);
         textEditNomeCarro->setFont(font2);
         textEditNomeCarro->viewport()->setProperty("cursor", QVariant(QCursor(Qt::IBeamCursor)));
-        textEditModeloCarro = new QTextEdit(CriarCarro);
-        textEditModeloCarro->setObjectName("textEditModeloCarro");
-        textEditModeloCarro->setGeometry(QRect(190, 60, 361, 31));
-        textEditModeloCarro->setFont(font2);
-        textEditModeloCarro->viewport()->setProperty("cursor", QVariant(QCursor(Qt::IBeamCursor)));
+        textEditNomeCarro->setStyleSheet(QString::fromUtf8("background:rgb(234, 234, 234)"));
         textEditObsCarro = new QTextEdit(CriarCarro);
         textEditObsCarro->setObjectName("textEditObsCarro");
-        textEditObsCarro->setGeometry(QRect(240, 110, 311, 131));
+        textEditObsCarro->setGeometry(QRect(240, 130, 281, 111));
         textEditObsCarro->setFont(font2);
         textEditObsCarro->viewport()->setProperty("cursor", QVariant(QCursor(Qt::IBeamCursor)));
+        textEditObsCarro->setStyleSheet(QString::fromUtf8("background:rgb(234, 234, 234)"));
+        btnTipoCarro = new QComboBox(CriarCarro);
+        btnTipoCarro->addItem(QString());
+        btnTipoCarro->addItem(QString());
+        btnTipoCarro->addItem(QString());
+        btnTipoCarro->setObjectName("btnTipoCarro");
+        btnTipoCarro->setGeometry(QRect(160, 80, 361, 41));
 
         retranslateUi(CriarCarro);
+
+        btnTipoCarro->setCurrentIndex(-1);
+
 
         QMetaObject::connectSlotsByName(CriarCarro);
     } // setupUi
@@ -133,9 +140,14 @@ public:
         btnCriarCarro->setText(QCoreApplication::translate("CriarCarro", "Criar Carro", nullptr));
         commandButtonVoltar->setText(QString());
         btnCancelar->setText(QCoreApplication::translate("CriarCarro", "Cancelar", nullptr));
-        label_2->setText(QCoreApplication::translate("CriarCarro", "Modelo:", nullptr));
+        label_2->setText(QCoreApplication::translate("CriarCarro", "Tipo:", nullptr));
         label->setText(QCoreApplication::translate("CriarCarro", "Nome:", nullptr));
         label_3->setText(QCoreApplication::translate("CriarCarro", "Obs:", nullptr));
+        btnTipoCarro->setItemText(0, QCoreApplication::translate("CriarCarro", "Combust\303\243o", nullptr));
+        btnTipoCarro->setItemText(1, QCoreApplication::translate("CriarCarro", "El\303\251trico", nullptr));
+        btnTipoCarro->setItemText(2, QCoreApplication::translate("CriarCarro", "H\303\255brido", nullptr));
+
+        btnTipoCarro->setPlaceholderText(QCoreApplication::translate("CriarCarro", "<Selecionar Tipo de Carro>", nullptr));
     } // retranslateUi
 
 };

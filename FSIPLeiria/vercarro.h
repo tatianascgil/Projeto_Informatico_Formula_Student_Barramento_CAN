@@ -15,6 +15,13 @@ public:
     explicit VerCarro(QWidget *parent = nullptr);
     ~VerCarro();
 
+
+public slots:
+    void setNome(const QString& nome);
+    void setTipo(const QString& tipo);
+    void setObservacoes(const QString& obs);
+
+
 private slots:
 
     void on_commandButtonVoltar_clicked();
@@ -22,8 +29,6 @@ private slots:
     void on_btnDefinicoes_clicked();
 
     void on_btnEstatistica_clicked();
-
-    void on_btnAlterarCarro_clicked();
 
 private:
     Ui::VerCarro *ui;

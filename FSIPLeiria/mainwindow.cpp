@@ -7,6 +7,9 @@
 #include <QtWidgets>
 #include <QComboBox>
 #include <QPushButton>
+#include <QDir>
+#include <QSettings>
+#include <QDebug>
 
 #include <QTextStream>
 #include <QStandardItemModel>
@@ -40,8 +43,31 @@ MainWindow::MainWindow(QWidget *parent)
     // Connect the modelChanged() signal of the table view's model to a slot
     connect(ui->tableView->model(), SIGNAL(modelChanged()), this, SLOT(updateSaveButtonVisibility()));
 
-    ui->btnCreateFile->setPlaceholderText("Configurar");
     ui->btnSaveFile->setVisible(false);
+
+    // Connect the currentIndexChanged signal of the comboBoxCarro to a custom slot
+    connect(ui->comboBoxCarro, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &MainWindow::handleComboBoxIndexChanged);
+
+    // Update the initial visibility of the button
+    handleComboBoxIndexChanged(ui->comboBoxCarro->currentIndex());
+
+    populateComboBox();
+
+
+    // Load the last selected option:
+    QString lastSelectedOption = loadLastSelectedOption();
+    int index = ui->comboBoxCarro->findText(lastSelectedOption);
+    if (index != -1) {
+        ui->comboBoxCarro->setCurrentIndex(index);
+    }
+
+    // Connect the currentIndexChanged signal of comboBoxCarro to a lambda slot:
+    QObject::connect(ui->comboBoxCarro, QOverload<int>::of(&QComboBox::currentIndexChanged), this, [this](int index) {
+        QString selectedOption = ui->comboBoxCarro->currentText();
+        saveLastSelectedOption(selectedOption);
+    });
+
+
 }
 
 MainWindow::~MainWindow()
@@ -276,9 +302,6 @@ void MainWindow::on_btnSaveFile_clicked()
         // Open the file for reading and writing.
         QFile csvFile(fileName);
         if (csvFile.open(QIODevice::ReadWrite | QIODevice::Text)) {
-            // Read the header row and store it separately.
-            QString header = QString(csvFile.readLine()).trimmed();
-
             // Store the updated header names and data rows in separate QStringLists.
             QStringList headerNames;
             QStringList dataRows;
@@ -359,17 +382,45 @@ void MainWindow::on_btnCreateFile_activated(int index)
 
 void MainWindow::on_btnVerCarro_clicked()
 {
-        const int vercarroWidth = 700;
-        const int vercarroHeight = 350;
+
+    // Construct the path to the car's folder
+    QString folderName = ui->comboBoxCarro->currentText();
+
+    QString currentPath = QDir::currentPath();
+    QString targetDir = currentPath + "/../FSIPLeiria/settings";
+    QString folderPath = targetDir + "/" + folderName;
+
+    // Open the "caracteristicas.txt" file within the car's folder
+    QString filePath = folderPath + "/caracteristicas.txt";
+    QFile file(filePath);
+    if (file.open(QIODevice::ReadOnly | QIODevice::Text)) {
+        QTextStream stream(&file);
+
+        // Read the data
+        QString line = stream.readLine();
+        QStringList values = line.split(";");
+
+        file.close();
+
+        const int verCarroWidth = 700;
+        const int verCarroHeight = 350;
 
         // Cria a janela VerCarro
-        VerCarro *vercarro = new VerCarro();
+        VerCarro *verCarro = new VerCarro();
 
         // Define o tamanho mínimo e máximo da janela
-        vercarro->setMinimumSize(vercarroWidth, vercarroHeight);
-        vercarro->setMaximumSize(vercarroWidth, vercarroHeight);
-        vercarro->show();
+        verCarro->setMinimumSize(verCarroWidth, verCarroHeight);
+        verCarro->setMaximumSize(verCarroWidth, verCarroHeight);
+
+
+        // Set the data in the "vercarro" window's QLabel widgets
+        verCarro->setNome(values[0]);
+        verCarro->setTipo(values[1]);
+        verCarro->setObservacoes(values[2]);
+
+        verCarro->show();
         this->close();
+    }
 
 }
 
@@ -379,16 +430,20 @@ void MainWindow::on_btnCriarCarro_clicked()
         const int criarcarroWidth = 600;
         const int criarcarroHeight = 250;
 
+
         // Cria a janela principal
         CriarCarro *criarcarro = new CriarCarro();
+
 
         // Define o tamanho mínimo e máximo da janela
         criarcarro->setMinimumSize(criarcarroWidth, criarcarroHeight);
         criarcarro->setMaximumSize(criarcarroWidth, criarcarroHeight);
+
+        // Connect the carNameEntered signal to the setComboBoxSelectedValue slot
+//        connect(criarcarro, &CriarCarro::carNameEntered, this, &MainWindow::setComboBoxSelectedValue);
+
         criarcarro->show();
         this->close();
-
-
 }
 
 
@@ -406,4 +461,60 @@ void MainWindow::on_btnEstatisticas_clicked()
         estatisticas->show();
         this->close();
 }
+
+QString MainWindow::loadLastSelectedOption()
+{
+        QSettings settings("FSIPLeiria", "FSIPLeiria");
+        return settings.value("lastSelectedOption").toString();
+}
+
+void MainWindow::saveLastSelectedOption(const QString& selectedOption)
+{
+        QSettings settings("FSIPLeiria", "FSIPLeiria");
+        settings.setValue("lastSelectedOption", selectedOption);
+}
+
+//void MainWindow::setComboBoxSelectedValue(const QString& value)
+//{
+//        qDebug() << "Value: " << value;
+
+//        QTimer::singleShot(100, this, [this, value]() {
+//            int index = ui->comboBoxCarro->findText(value); // Find the index of the desired value
+
+//            qDebug() << "Value Index: " << index;
+//            if (index != -1) {
+//                ui->comboBoxCarro->setCurrentIndex(index); // Set the selected value based on the index
+//            }
+//        });
+//}
+
+void MainWindow::populateComboBox()
+{
+        QComboBox* comboBox = ui->comboBoxCarro;
+
+        QString settingsDir = QDir::currentPath() + "/../FSIPLeiria/settings";
+        QDir directory(settingsDir);
+        QStringList folders = directory.entryList(QDir::Dirs | QDir::NoDotAndDotDot);
+
+        qDebug() << "Folders: " << folders;
+        ui->comboBoxCarro->clear();
+        ui->comboBoxCarro->addItems(folders);
+
+        qDebug() << "Combo Box Items: " << comboBox->count();
+}
+
+void MainWindow::handleComboBoxIndexChanged(int index)
+{
+    if (ui->btnVerCarro) {
+        // If index is -1, no option is selected
+        bool isButtonVisible = (index != -1);
+        ui->btnVerCarro->setVisible(isButtonVisible);
+    }
+}
+
+
+
+
+
+
 

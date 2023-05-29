@@ -6,8 +6,7 @@
 #include "ui_gerircarro.h"
 #include "estatisticas.h"
 #include "ui_estatisticas.h"
-#include "alterarcarro.h"
-#include "ui_alterarcarro.h"
+
 
 VerCarro::VerCarro(QWidget *parent) :
     QWidget(parent),
@@ -15,11 +14,27 @@ VerCarro::VerCarro(QWidget *parent) :
 {
     ui->setupUi(this);
      //ui->btnCreateFile->setPlaceholderText("Criar");
+
+
 }
+
 
 VerCarro::~VerCarro()
 {
     delete ui;
+}
+
+
+void VerCarro::setNome(const QString& nome) {
+    ui->labelNomeCarro->setText(nome);
+}
+
+void VerCarro::setTipo(const QString& tipo) {
+    ui->labelTipoCarro->setText(tipo);
+}
+
+void VerCarro::setObservacoes(const QString& obs) {
+    ui->labelObsCarro->setText(obs);
 }
 
 
@@ -40,9 +55,16 @@ void VerCarro::on_btnDefinicoes_clicked()
     // Cria a janela GerirCarro
     GerirCarro *gerircarro = new GerirCarro();
 
+    QString nomeCarro = ui->labelNomeCarro->text().trimmed();
+
+    gerircarro->setNome(nomeCarro);
+    qDebug() << "Nome do carro: " << nomeCarro;
+
     // Define o tamanho mínimo e máximo da janela
     gerircarro->setMinimumSize(gerircarroWidth, gerircarroHeight);
     gerircarro->setMaximumSize(gerircarroWidth, gerircarroHeight);
+    gerircarro->lerDadosCarro(nomeCarro);
+
     gerircarro->show();
     this->close();
 }
@@ -64,18 +86,5 @@ void VerCarro::on_btnEstatistica_clicked()
 }
 
 
-void VerCarro::on_btnAlterarCarro_clicked()
-{
-    const int alterarcarroWidth = 800;
-    const int alterarcarroHeight = 500;
 
-    // Cria a janela
-    AlterarCarro *alterarcarro = new AlterarCarro();
-
-    // Define o tamanho mínimo e máximo da janela
-    alterarcarro->setMinimumSize(alterarcarroWidth, alterarcarroHeight);
-    alterarcarro->setMaximumSize(alterarcarroWidth, alterarcarroHeight);
-    alterarcarro->show();
-    this->close();
-}
 

@@ -178,7 +178,7 @@ public:
 "}"));
         label = new QLabel(centralwidget);
         label->setObjectName("label");
-        label->setGeometry(QRect(70, 340, 161, 41));
+        label->setGeometry(QRect(70, 340, 251, 41));
         QFont font1;
         font1.setPointSize(16);
         font1.setBold(true);
@@ -209,7 +209,8 @@ public:
 "}"));
         btnVerCarro = new QPushButton(centralwidget);
         btnVerCarro->setObjectName("btnVerCarro");
-        btnVerCarro->setGeometry(QRect(250, 460, 151, 61));
+        btnVerCarro->setEnabled(true);
+        btnVerCarro->setGeometry(QRect(240, 460, 161, 61));
         btnVerCarro->setFont(font);
         btnVerCarro->setCursor(QCursor(Qt::PointingHandCursor));
         btnVerCarro->setStyleSheet(QString::fromUtf8("QPushButton{\n"
@@ -226,6 +227,7 @@ public:
 "	background-color:rgb(255, 242, 165);\n"
 "	border-bottom: 5px solid rgb(162, 155, 105)\n"
 "}"));
+        btnVerCarro->setCheckable(false);
         btnLocalConf = new QPushButton(centralwidget);
         btnLocalConf->setObjectName("btnLocalConf");
         btnLocalConf->setGeometry(QRect(70, 530, 331, 61));
@@ -267,7 +269,7 @@ public:
         MainWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName("menubar");
-        menubar->setGeometry(QRect(0, 0, 850, 22));
+        menubar->setGeometry(QRect(0, 0, 850, 21));
         MainWindow->setMenuBar(menubar);
         statusbar = new QStatusBar(MainWindow);
         statusbar->setObjectName("statusbar");
@@ -275,7 +277,7 @@ public:
 
         retranslateUi(MainWindow);
 
-        btnCreateFile->setCurrentIndex(0);
+        btnCreateFile->setCurrentIndex(-1);
 
 
         QMetaObject::connectSlotsByName(MainWindow);
@@ -289,12 +291,13 @@ public:
         btnCreateFile->setItemText(0, QCoreApplication::translate("MainWindow", "Configurar BD", nullptr));
         btnCreateFile->setItemText(1, QCoreApplication::translate("MainWindow", "Criar Mensagem", nullptr));
 
-        btnCreateFile->setCurrentText(QCoreApplication::translate("MainWindow", "Configurar BD", nullptr));
+        btnCreateFile->setCurrentText(QString());
         btnCreateFile->setPlaceholderText(QCoreApplication::translate("MainWindow", "Configurar", nullptr));
         btnSaveFile->setText(QCoreApplication::translate("MainWindow", "Guardar Ficheiro", nullptr));
         btnTempoReal->setText(QCoreApplication::translate("MainWindow", "Tempo Real", nullptr));
         btnTabelaDados->setText(QCoreApplication::translate("MainWindow", "Tabela de Dados", nullptr));
         label->setText(QCoreApplication::translate("MainWindow", "Escolha o carro:", nullptr));
+        comboBoxCarro->setPlaceholderText(QCoreApplication::translate("MainWindow", "<Selecionar Carro>", nullptr));
         btnCriarCarro->setText(QCoreApplication::translate("MainWindow", "Criar Carro", nullptr));
         btnVerCarro->setText(QCoreApplication::translate("MainWindow", "Ver Dados do Carro", nullptr));
         btnLocalConf->setText(QCoreApplication::translate("MainWindow", "Localiza\303\247\303\243o  das Configura\303\247\303\265es  ", nullptr));

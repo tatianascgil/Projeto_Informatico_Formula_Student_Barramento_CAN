@@ -56,25 +56,7 @@
     </font>
    </property>
    <property name="text">
-    <string>Carro</string>
-   </property>
-  </widget>
-  <widget class="QLabel" name="labelNomeCarro">
-   <property name="geometry">
-    <rect>
-     <x>120</x>
-     <y>20</y>
-     <width>211</width>
-     <height>31</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <pointsize>16</pointsize>
-    </font>
-   </property>
-   <property name="text">
-    <string>Carro XPTO</string>
+    <string>Carro:</string>
    </property>
   </widget>
   <widget class="QTableView" name="tableViewCarro">
@@ -238,6 +220,32 @@ QPushButton:pressed {
    </property>
    <property name="text">
     <string>Criar Módulo</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="labelNomeCarro">
+   <property name="geometry">
+    <rect>
+     <x>140</x>
+     <y>20</y>
+     <width>91</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>TextLabel</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_3">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>470</y>
+     <width>551</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Nota: Fazer double-lick na linha respetiva ao módulo que pretende ver os dados a pormenor.</string>
    </property>
   </widget>
  </widget>

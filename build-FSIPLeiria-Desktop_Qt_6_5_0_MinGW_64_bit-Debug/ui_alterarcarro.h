@@ -15,7 +15,6 @@
 #include <QtWidgets/QCommandLinkButton>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
-#include <QtWidgets/QPushButton>
 #include <QtWidgets/QTableView>
 #include <QtWidgets/QWidget>
 
@@ -27,7 +26,6 @@ public:
     QCommandLinkButton *commandButtonVoltar;
     QTableView *tableViewModulosCarro;
     QLabel *label_2;
-    QPushButton *btnCriarCarro;
 
     void setupUi(QWidget *AlterarCarro)
     {
@@ -55,27 +53,6 @@ public:
         font.setPointSize(16);
         font.setBold(true);
         label_2->setFont(font);
-        btnCriarCarro = new QPushButton(AlterarCarro);
-        btnCriarCarro->setObjectName("btnCriarCarro");
-        btnCriarCarro->setGeometry(QRect(650, 440, 121, 41));
-        QFont font1;
-        font1.setPointSize(10);
-        btnCriarCarro->setFont(font1);
-        btnCriarCarro->setCursor(QCursor(Qt::PointingHandCursor));
-        btnCriarCarro->setStyleSheet(QString::fromUtf8("QPushButton{\n"
-"	background-color:rgb(255, 245, 166);\n"
-"	border:none;\n"
-"	color:rgb(95, 91, 61);\n"
-"	border -bottom: 5px solid rgb(162, 155, 105)\n"
-"}\n"
-"QPushButton:hover{\n"
-"	background-color:rgb(229, 217, 150);\n"
-"	border-bottom: 5px solid rgb(162, 155, 105)\n"
-"}\n"
-"QPushButton:pressed {\n"
-"	background-color:rgb(255, 242, 165);\n"
-"	border-bottom: 5px solid rgb(162, 155, 105)\n"
-"}"));
 
         retranslateUi(AlterarCarro);
 
@@ -87,7 +64,6 @@ public:
         AlterarCarro->setWindowTitle(QCoreApplication::translate("AlterarCarro", "Alterar de Carro", nullptr));
         commandButtonVoltar->setText(QString());
         label_2->setText(QCoreApplication::translate("AlterarCarro", "Selecionar Carro:", nullptr));
-        btnCriarCarro->setText(QCoreApplication::translate("AlterarCarro", "Criar Carro", nullptr));
     } // retranslateUi
 
 };
