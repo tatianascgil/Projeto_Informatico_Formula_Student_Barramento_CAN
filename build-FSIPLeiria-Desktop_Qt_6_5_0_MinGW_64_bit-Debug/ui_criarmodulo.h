@@ -88,18 +88,18 @@ public:
 "}"));
         label = new QLabel(CriarModulo);
         label->setObjectName("label");
-        label->setGeometry(QRect(10, 90, 91, 31));
+        label->setGeometry(QRect(10, 90, 71, 31));
         QFont font1;
         font1.setPointSize(14);
         font1.setBold(true);
         label->setFont(font1);
         label_2 = new QLabel(CriarModulo);
         label_2->setObjectName("label_2");
-        label_2->setGeometry(QRect(10, 140, 91, 31));
+        label_2->setGeometry(QRect(10, 140, 81, 31));
         label_2->setFont(font1);
         textEditNomeModulo = new QTextEdit(CriarModulo);
         textEditNomeModulo->setObjectName("textEditNomeModulo");
-        textEditNomeModulo->setGeometry(QRect(90, 80, 221, 41));
+        textEditNomeModulo->setGeometry(QRect(80, 90, 231, 31));
         QFont font2;
         font2.setPointSize(12);
         textEditNomeModulo->setFont(font2);
@@ -113,7 +113,7 @@ public:
         textEditObsModulo->setStyleSheet(QString::fromUtf8("background:rgb(234, 234, 234)"));
         textEditModeloModulo = new QTextEdit(CriarModulo);
         textEditModeloModulo->setObjectName("textEditModeloModulo");
-        textEditModeloModulo->setGeometry(QRect(100, 140, 201, 41));
+        textEditModeloModulo->setGeometry(QRect(90, 140, 221, 31));
         textEditModeloModulo->setFont(font2);
         textEditModeloModulo->viewport()->setProperty("cursor", QVariant(QCursor(Qt::IBeamCursor)));
         textEditModeloModulo->setStyleSheet(QString::fromUtf8("background:rgb(234, 234, 234)"));
@@ -126,7 +126,7 @@ public:
         commandButtonVoltar->setIcon(icon);
         label_3 = new QLabel(CriarModulo);
         label_3->setObjectName("label_3");
-        label_3->setGeometry(QRect(320, 0, 91, 21));
+        label_3->setGeometry(QRect(320, 0, 51, 21));
         label_3->setFont(font1);
         label_4 = new QLabel(CriarModulo);
         label_4->setObjectName("label_4");
@@ -149,7 +149,7 @@ public:
         radioButton_Bigendian->setStyleSheet(QString::fromUtf8("font: 10pt \"Segoe UI\";"));
         comboBoxCarro = new QComboBox(CriarModulo);
         comboBoxCarro->setObjectName("comboBoxCarro");
-        comboBoxCarro->setGeometry(QRect(80, 40, 221, 31));
+        comboBoxCarro->setGeometry(QRect(80, 40, 231, 31));
         comboBoxCarro->setCursor(QCursor(Qt::PointingHandCursor));
         comboBoxCarro->setStyleSheet(QString::fromUtf8("background:white"));
 

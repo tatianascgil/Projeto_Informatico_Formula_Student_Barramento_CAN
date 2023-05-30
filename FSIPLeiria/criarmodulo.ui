@@ -95,7 +95,7 @@ QPushButton:pressed {
     <rect>
      <x>10</x>
      <y>90</y>
-     <width>91</width>
+     <width>71</width>
      <height>31</height>
     </rect>
    </property>
@@ -114,7 +114,7 @@ QPushButton:pressed {
     <rect>
      <x>10</x>
      <y>140</y>
-     <width>91</width>
+     <width>81</width>
      <height>31</height>
     </rect>
    </property>
@@ -131,10 +131,10 @@ QPushButton:pressed {
   <widget class="QTextEdit" name="textEditNomeModulo">
    <property name="geometry">
     <rect>
-     <x>90</x>
-     <y>80</y>
-     <width>221</width>
-     <height>41</height>
+     <x>80</x>
+     <y>90</y>
+     <width>231</width>
+     <height>31</height>
     </rect>
    </property>
    <property name="font">
@@ -173,10 +173,10 @@ QPushButton:pressed {
   <widget class="QTextEdit" name="textEditModeloModulo">
    <property name="geometry">
     <rect>
-     <x>100</x>
+     <x>90</x>
      <y>140</y>
-     <width>201</width>
-     <height>41</height>
+     <width>221</width>
+     <height>31</height>
     </rect>
    </property>
    <property name="font">
@@ -216,7 +216,7 @@ QPushButton:pressed {
     <rect>
      <x>320</x>
      <y>0</y>
-     <width>91</width>
+     <width>51</width>
      <height>21</height>
     </rect>
    </property>
@@ -314,7 +314,7 @@ QPushButton:pressed {
     <rect>
      <x>80</x>
      <y>40</y>
-     <width>221</width>
+     <width>231</width>
      <height>31</height>
     </rect>
    </property>
