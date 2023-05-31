@@ -28,8 +28,12 @@ private slots:
 
     void on_btnGuardarCarro_clicked();
 
+    void updateButtonVisibility();
+
 private:
     Ui::GerirCarro *ui;
+
+    bool initialDataMatches = true;
 };
 
 #endif // GERIRCARRO_H

@@ -25,6 +25,7 @@ public:
 
 public slots:
 //    void setComboBoxSelectedValue(const QString& value);
+        void populateComboBox(QString option);
 
 
 private slots:
@@ -43,12 +44,13 @@ private slots:
 
 
 
+    void on_btnDuplicarCarro_clicked();
+
 private:
     Ui::MainWindow *ui;
     void updateSaveButtonVisibility();
     QString loadLastSelectedOption();
     void saveLastSelectedOption(const QString& selectedOption);
-    void populateComboBox();
     void handleComboBoxIndexChanged(int index);
 };
 

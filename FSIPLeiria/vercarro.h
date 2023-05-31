@@ -30,6 +30,8 @@ private slots:
 
     void on_btnEstatistica_clicked();
 
+    void on_btnGuardarComo_clicked();
+
 private:
     Ui::VerCarro *ui;
 };

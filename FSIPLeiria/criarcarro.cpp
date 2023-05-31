@@ -62,7 +62,6 @@ void CriarCarro::on_btnCriarCarro_clicked()
     }
 
     QString folderName = nomeCarro.trimmed();
-     folderName.replace(" ", "");
 
     QString currentPath = QDir::currentPath();
     QString targetDir = currentPath + "/../FSIPLeiria/settings";
@@ -109,6 +108,8 @@ void CriarCarro::on_btnCriarCarro_clicked()
 
 
                 MainWindow *mainWindow = new MainWindow();
+
+                mainWindow->populateComboBox(nomeCarro);
                 mainWindow->show();
                 this->close();
             } else {

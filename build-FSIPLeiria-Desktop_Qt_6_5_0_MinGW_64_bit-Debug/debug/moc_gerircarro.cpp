@@ -46,11 +46,12 @@ static constexpr auto qt_meta_stringdata_CLASSGerirCarroENDCLASS = QtMocHelpers:
     "on_commandButtonVoltar_clicked",
     "on_btnCriarModulo_clicked",
     "on_btnApagarCarro_clicked",
-    "on_btnGuardarCarro_clicked"
+    "on_btnGuardarCarro_clicked",
+    "updateButtonVisibility"
 );
 #else  // !QT_MOC_HAS_STRING_DATA
 struct qt_meta_stringdata_CLASSGerirCarroENDCLASS_t {
-    uint offsetsAndSizes[18];
+    uint offsetsAndSizes[20];
     char stringdata0[11];
     char stringdata1[8];
     char stringdata2[1];
@@ -60,6 +61,7 @@ struct qt_meta_stringdata_CLASSGerirCarroENDCLASS_t {
     char stringdata6[26];
     char stringdata7[26];
     char stringdata8[27];
+    char stringdata9[23];
 };
 #define QT_MOC_LITERAL(ofs, len) \
     uint(sizeof(qt_meta_stringdata_CLASSGerirCarroENDCLASS_t::offsetsAndSizes) + ofs), len 
@@ -73,7 +75,8 @@ Q_CONSTINIT static const qt_meta_stringdata_CLASSGerirCarroENDCLASS_t qt_meta_st
         QT_MOC_LITERAL(39, 30),  // "on_commandButtonVoltar_clicked"
         QT_MOC_LITERAL(70, 25),  // "on_btnCriarModulo_clicked"
         QT_MOC_LITERAL(96, 25),  // "on_btnApagarCarro_clicked"
-        QT_MOC_LITERAL(122, 26)   // "on_btnGuardarCarro_clicked"
+        QT_MOC_LITERAL(122, 26),  // "on_btnGuardarCarro_clicked"
+        QT_MOC_LITERAL(149, 22)   // "updateButtonVisibility"
     },
     "GerirCarro",
     "setNome",
@@ -83,7 +86,8 @@ Q_CONSTINIT static const qt_meta_stringdata_CLASSGerirCarroENDCLASS_t qt_meta_st
     "on_commandButtonVoltar_clicked",
     "on_btnCriarModulo_clicked",
     "on_btnApagarCarro_clicked",
-    "on_btnGuardarCarro_clicked"
+    "on_btnGuardarCarro_clicked",
+    "updateButtonVisibility"
 };
 #undef QT_MOC_LITERAL
 #endif // !QT_MOC_HAS_STRING_DATA
@@ -95,7 +99,7 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSGerirCarroENDCLASS[] = {
       11,       // revision
        0,       // classname
        0,    0, // classinfo
-       6,   14, // methods
+       7,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -103,16 +107,18 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSGerirCarroENDCLASS[] = {
        0,       // signalCount
 
  // slots: name, argc, parameters, tag, flags, initial metatype offsets
-       1,    1,   50,    2, 0x0a,    1 /* Public */,
-       4,    1,   53,    2, 0x0a,    3 /* Public */,
-       5,    0,   56,    2, 0x08,    5 /* Private */,
-       6,    0,   57,    2, 0x08,    6 /* Private */,
-       7,    0,   58,    2, 0x08,    7 /* Private */,
-       8,    0,   59,    2, 0x08,    8 /* Private */,
+       1,    1,   56,    2, 0x0a,    1 /* Public */,
+       4,    1,   59,    2, 0x0a,    3 /* Public */,
+       5,    0,   62,    2, 0x08,    5 /* Private */,
+       6,    0,   63,    2, 0x08,    6 /* Private */,
+       7,    0,   64,    2, 0x08,    7 /* Private */,
+       8,    0,   65,    2, 0x08,    8 /* Private */,
+       9,    0,   66,    2, 0x08,    9 /* Private */,
 
  // slots: parameters
     QMetaType::Void, QMetaType::QString,    3,
     QMetaType::Void, QMetaType::QString,    3,
+    QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
@@ -143,6 +149,8 @@ Q_CONSTINIT const QMetaObject GerirCarro::staticMetaObject = { {
         // method 'on_btnApagarCarro_clicked'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         // method 'on_btnGuardarCarro_clicked'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'updateButtonVisibility'
         QtPrivate::TypeAndForceComplete<void, std::false_type>
     >,
     nullptr
@@ -160,6 +168,7 @@ void GerirCarro::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         case 3: _t->on_btnCriarModulo_clicked(); break;
         case 4: _t->on_btnApagarCarro_clicked(); break;
         case 5: _t->on_btnGuardarCarro_clicked(); break;
+        case 6: _t->updateButtonVisibility(); break;
         default: ;
         }
     }
@@ -184,13 +193,13 @@ int GerirCarro::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 6)
+        if (_id < 7)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 6;
+        _id -= 7;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 6)
+        if (_id < 7)
             *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
-        _id -= 6;
+        _id -= 7;
     }
     return _id;
 }
