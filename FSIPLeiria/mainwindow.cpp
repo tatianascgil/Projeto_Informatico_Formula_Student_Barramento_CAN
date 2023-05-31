@@ -561,7 +561,7 @@ void MainWindow::on_btnDuplicarCarro_clicked()
 
         // Iterate over the .txt files in the new folder and replace the first element with the new folder's name
         QDir newFolderDir(newFolderPath);
-        QStringList txtFiles = newFolderDir.entryList(QStringList("*.txt"), QDir::Files);
+        QStringList txtFiles = QStringList("caracteristicas.txt");
 
         foreach (const QString& txtFile, txtFiles) {
             QString filePath = newFolderDir.absoluteFilePath(txtFile);
@@ -582,6 +582,7 @@ void MainWindow::on_btnDuplicarCarro_clicked()
                 QMessageBox::critical(this, tr("Erro"), tr("Não foi possível abrir o arquivo: ") + txtFile);
             }
         }
+
 
         // Inform the user that the folder has been duplicated
         QMessageBox::information(this, tr("Pasta Duplicada"), tr("A pasta foi duplicada com sucesso!"));
