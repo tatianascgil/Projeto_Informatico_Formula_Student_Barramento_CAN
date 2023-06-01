@@ -14,6 +14,7 @@
 #include <QStandardItemModel>
 #include <QDebug>
 #include <QMessageBox>
+#include <QDebug>
 
 
 GerirCarro::GerirCarro(QWidget *parent) :
@@ -22,6 +23,9 @@ GerirCarro::GerirCarro(QWidget *parent) :
 {
     ui->setupUi(this);
     connect(ui->tableViewModulosCarro, &QTableView::doubleClicked, this, &GerirCarro::openGerirModuloWindow);
+
+    // Connect the dataChanged signal to the updateButtonVisibility slot
+    connect(ui->tableViewCarro->model(), &QAbstractItemModel::dataChanged, this, &GerirCarro::updateButtonVisibility);
 
 }
 
@@ -59,7 +63,6 @@ void GerirCarro::lerDadosCarro(const QString& nome){
 
 // Construct the path to the car's folder
     QString folderName = nome;
-    folderName.remove(' ');
 
     QString currentPath = QDir::currentPath();
     QString targetDir = currentPath + "/../FSIPLeiria/settings";
@@ -154,7 +157,6 @@ void GerirCarro::on_commandButtonVoltar_clicked()
 
     // Construct the path to the car's folder
     QString folderName = ui->labelNomeCarro->text();
-    folderName.remove(' ');
 
     QString currentPath = QDir::currentPath();
     QString targetDir = currentPath + "/../FSIPLeiria/settings";
@@ -275,14 +277,39 @@ void GerirCarro::on_btnApagarCarro_clicked()
     }
 }
 
+// Function to update the button visibility dynamically
+void GerirCarro::updateButtonVisibility()
+{
+    qDebug() << "Im here!";
+    QAbstractItemModel* model = ui->tableViewCarro->model();
 
+    // Check if the current data matches the initial data
+    bool anyValueDifferent = false;
+    for (int row = 0; row < model->rowCount(); ++row) {
+        for (int column = 0; column < model->columnCount(); ++column) {
+            QModelIndex index = model->index(row, column);
+            QVariant currentData = model->data(index);
+            QVariant initialData = model->data(index, Qt::UserRole); // Assuming initial data is stored in UserRole
+
+            if (currentData != initialData) {
+                anyValueDifferent = true;
+                break;
+            }
+        }
+
+        if (anyValueDifferent) {
+            break;
+        }
+    }
+
+    ui->btnGuardarCarro->setVisible(anyValueDifferent);
+}
 void GerirCarro::on_btnGuardarCarro_clicked()
 {
     QAbstractItemModel* model = ui->tableViewCarro->model();
     int rowCount = model->rowCount();
     int columnCount = model->columnCount();
 
-    // Create a QVector to store the data from the QTableView
     QVector<QStringList> tableViewData;
     for (int row = 0; row < rowCount; ++row) {
         QStringList rowData;
@@ -295,7 +322,7 @@ void GerirCarro::on_btnGuardarCarro_clicked()
     }
 
     QString folderName = ui->labelNomeCarro->text();
-    folderName.remove(' ');
+
 
     QString currentPath = QDir::currentPath();
     QString targetDir = currentPath + "/../FSIPLeiria/settings";
@@ -306,21 +333,16 @@ void GerirCarro::on_btnGuardarCarro_clicked()
     if (file.open(QIODevice::ReadOnly | QIODevice::Text)) {
         QTextStream in(&file);
 
-        // Read the data from the file
         int row = 0;
         bool allValuesMatch = true;
         while (!in.atEnd() && row < tableViewData.size()) {
             QString line = in.readLine();
-
-            // Split the line into values (assuming tab-separated values)
             QStringList fileData = line.split(";");
 
-            // Compare each value with the corresponding value from the QTableView
             for (int column = 0; column < fileData.size(); ++column) {
                 QString fileValue = fileData[column];
                 QString tableViewValue = tableViewData[row][column];
 
-                // Perform the necessary comparison
                 if (fileValue != tableViewValue) {
                     allValuesMatch = false;
                     break;
@@ -332,31 +354,39 @@ void GerirCarro::on_btnGuardarCarro_clicked()
 
         file.close();
 
-        // Update the visibility of the btnGuardarFicheiro button based on the comparison results
-        ui->btnGuardarCarro->setVisible(!allValuesMatch);
-
-        // If at least one value does not match, prompt the user for confirmation before updating the file
         if (!allValuesMatch) {
-            // Set the translated button texts
-            QMessageBox msgBox(QMessageBox::Question, tr("Confirmar Atualização"), tr("Algumas informações foram alteradas. Tem certeza de que deseja atualizar os dados?"), QMessageBox::Yes | QMessageBox::No, this);
 
-            QAbstractButton* yesButton = msgBox.addButton(tr("Sim"), QMessageBox::YesRole);
-            msgBox.addButton(tr("Não"), QMessageBox::NoRole);
+            // Display confirmation dialog
+            QMessageBox confirmation(this);
 
-            msgBox.exec();
+            confirmation.setWindowTitle("Confirmar Atualização");
+            confirmation.setText("Algumas informações foram alteradas. Tem certeza de que deseja atualizar os dados?");
+            confirmation.setIcon(QMessageBox::Question);
 
-            if (msgBox.clickedButton() == yesButton) {
-                // User confirmed, write the data from the QTableView to the file
+            // Translate the buttons
+            QPushButton* yesButton = confirmation.addButton("Sim", QMessageBox::YesRole);
+            confirmation.addButton("Não", QMessageBox::NoRole);
+
+            confirmation.exec();
+
+            if (confirmation.clickedButton() == yesButton) {
                 if (file.open(QIODevice::WriteOnly | QIODevice::Text)) {
                     QTextStream out(&file);
                     for (const QStringList& rowData : tableViewData) {
                         out << rowData.join(";") << "\n";
                     }
                     file.close();
+
+                    QMessageBox::information(this, "Dados guardados", "Os dados foram guardados com sucesso!");
+
+
                 } else {
                     QMessageBox::critical(this, tr("Erro"), tr("Não foi possível abrir o ficheiro para escrita."));
                 }
             }
+        }
+        else{
+            QMessageBox::information(this, "Dados não alterados", "Não houve dados alterados!");
         }
     } else {
         QMessageBox::critical(this, tr("Erro"), tr("Não foi possível abrir o ficheiro para leitura."));

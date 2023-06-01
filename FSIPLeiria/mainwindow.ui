@@ -358,8 +358,8 @@ QPushButton:pressed {
     </property>
     <property name="geometry">
      <rect>
-      <x>240</x>
-      <y>460</y>
+      <x>350</x>
+      <y>400</y>
       <width>161</width>
       <height>61</height>
      </rect>
@@ -467,6 +467,43 @@ QPushButton:pressed {
     </property>
     <property name="text">
      <string>Carregamento de Dados</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="btnDuplicarCarro">
+    <property name="geometry">
+     <rect>
+      <x>350</x>
+      <y>330</y>
+      <width>161</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton{
+	background-color:rgb(255, 245, 166);
+	border:none;
+	color:rgb(95, 91, 61);
+	border -bottom: 5px solid rgb(162, 155, 105)
+}
+QPushButton:hover{
+	background-color:rgb(229, 217, 150);
+	border-bottom: 5px solid rgb(162, 155, 105)
+}
+QPushButton:pressed {
+	background-color:rgb(255, 242, 165);
+	border-bottom: 5px solid rgb(162, 155, 105)
+}</string>
+    </property>
+    <property name="text">
+     <string>Duplicar Carro</string>
     </property>
    </widget>
   </widget>

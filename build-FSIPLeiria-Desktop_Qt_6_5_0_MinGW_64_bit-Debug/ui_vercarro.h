@@ -34,6 +34,7 @@ public:
     QWidget *scrollAreaWidgetContents;
     QLabel *labelObsCarro;
     QCommandLinkButton *commandButtonVoltar;
+    QPushButton *btnGuardarComo;
 
     void setupUi(QWidget *VerCarro)
     {
@@ -129,6 +130,25 @@ public:
         QIcon icon1;
         icon1.addFile(QString::fromUtf8("../setavoltar.ico"), QSize(), QIcon::Normal, QIcon::Off);
         commandButtonVoltar->setIcon(icon1);
+        btnGuardarComo = new QPushButton(VerCarro);
+        btnGuardarComo->setObjectName("btnGuardarComo");
+        btnGuardarComo->setGeometry(QRect(530, 250, 161, 51));
+        btnGuardarComo->setFont(font);
+        btnGuardarComo->setCursor(QCursor(Qt::PointingHandCursor));
+        btnGuardarComo->setStyleSheet(QString::fromUtf8("QPushButton{\n"
+"	background-color:rgb(255, 245, 166);\n"
+"	border:none;\n"
+"	color:rgb(95, 91, 61);\n"
+"	border -bottom: 5px solid rgb(162, 155, 105)\n"
+"}\n"
+"QPushButton:hover{\n"
+"	background-color:rgb(229, 217, 150);\n"
+"	border-bottom: 5px solid rgb(162, 155, 105)\n"
+"}\n"
+"QPushButton:pressed {\n"
+"	background-color:rgb(255, 242, 165);\n"
+"	border-bottom: 5px solid rgb(162, 155, 105)\n"
+"}"));
 
         retranslateUi(VerCarro);
 
@@ -147,6 +167,7 @@ public:
         labelTipoCarro->setText(QCoreApplication::translate("VerCarro", "Eletrico", nullptr));
         labelObsCarro->setText(QCoreApplication::translate("VerCarro", "Ano Xptodsajbjdkbk,a,bd", nullptr));
         commandButtonVoltar->setText(QString());
+        btnGuardarComo->setText(QCoreApplication::translate("VerCarro", "Guardar como...", nullptr));
     } // retranslateUi
 
 };

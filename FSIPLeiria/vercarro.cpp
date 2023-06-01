@@ -7,13 +7,20 @@
 #include "estatisticas.h"
 #include "ui_estatisticas.h"
 
+#include <QFileDialog>
+#include <QMessageBox>
+#include <QDir>
+#include <QProcess>
+
+
+
 
 VerCarro::VerCarro(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::VerCarro)
 {
     ui->setupUi(this);
-     //ui->btnCreateFile->setPlaceholderText("Criar");
+
 
 
 }
@@ -49,23 +56,23 @@ void VerCarro::on_commandButtonVoltar_clicked()
 
 void VerCarro::on_btnDefinicoes_clicked()
 {
-    const int gerircarroWidth = 800;
-    const int gerircarroHeight = 500;
+    const int gerirCarroWidth = 800;
+    const int gerirCarroHeight = 500;
 
     // Cria a janela GerirCarro
-    GerirCarro *gerircarro = new GerirCarro();
+    GerirCarro *gerirCarro = new GerirCarro();
 
     QString nomeCarro = ui->labelNomeCarro->text().trimmed();
 
-    gerircarro->setNome(nomeCarro);
+    gerirCarro->setNome(nomeCarro);
     qDebug() << "Nome do carro: " << nomeCarro;
 
     // Define o tamanho mínimo e máximo da janela
-    gerircarro->setMinimumSize(gerircarroWidth, gerircarroHeight);
-    gerircarro->setMaximumSize(gerircarroWidth, gerircarroHeight);
-    gerircarro->lerDadosCarro(nomeCarro);
+    gerirCarro->setMinimumSize(gerirCarroWidth, gerirCarroHeight);
+    gerirCarro->setMaximumSize(gerirCarroWidth, gerirCarroHeight);
+    gerirCarro->lerDadosCarro(nomeCarro);
 
-    gerircarro->show();
+    gerirCarro->show();
     this->close();
 }
 
@@ -84,6 +91,76 @@ void VerCarro::on_btnEstatistica_clicked()
     estatisticas->show();
     this->close();
 }
+
+
+
+void VerCarro::on_btnGuardarComo_clicked()
+{
+    QString nomeCarro = ui->labelNomeCarro->text().trimmed();
+    QString folderName = nomeCarro.trimmed();
+
+    QString currentPath = QDir::currentPath();
+    QString targetDir = currentPath + "/../FSIPLeiria/settings";
+    QString sourceFolderPath = targetDir + "/" + folderName;
+
+    QString backupDirPath = currentPath + "/../FSIPLeiria/backups";
+
+    // Check if the "backups" directory exists
+    QDir backupDir(backupDirPath);
+    if (!backupDir.exists()) {
+        // Create the "backups" directory
+        if (!backupDir.mkpath(".")) {
+            QMessageBox::critical(this, tr("Erro"), tr("Não foi possível criar o diretório de backups!"));
+            return;
+        }
+    }
+
+    // Open file dialog to choose the save location for the .zip file
+    QString saveFilePath = QFileDialog::getSaveFileName(this, tr("Guardar como"), backupDirPath, tr("Arquivo ZIP (*.zip)"));
+
+    if (!saveFilePath.isEmpty()) {
+        // Check if the file already exists
+        if (QFile::exists(saveFilePath)) {
+            // Ask the user if they want to overwrite the existing file
+            QMessageBox msgBox(QMessageBox::Question, tr("Confirmar Sobrescrita"), tr("O arquivo já existe. Deseja substituí-lo?"), QMessageBox::Yes | QMessageBox::No, this);
+
+            QAbstractButton* yesButton = msgBox.addButton(tr("Sim"), QMessageBox::YesRole);
+            msgBox.addButton(tr("Não"), QMessageBox::NoRole);
+
+            msgBox.exec();
+
+            if (msgBox.clickedButton() == yesButton) {
+                // Remove the existing file
+                if (!QFile::remove(saveFilePath)) {
+                    QMessageBox::critical(this, tr("Erro"), tr("Não foi possível remover o arquivo existente!"));
+                    return;
+                }
+            } else {
+                // User chose not to overwrite, return without further action
+                return;
+            }
+        }
+
+        // Create the command to create the zip archive using 7z utility
+        QString command = "7z a -r -tzip \"" + saveFilePath + "\" \"" + sourceFolderPath + "\"";
+
+        // Create a QProcess to execute the command
+        QProcess zipProcess;
+        zipProcess.start("cmd.exe", QStringList() << "/C" << command);
+        if (zipProcess.waitForFinished() && zipProcess.exitCode() == 0) {
+            // Zip creation succeeded
+            QMessageBox::information(this, tr("Arquivo ZIP Criado"), tr("O arquivo ZIP foi criado com sucesso!"));
+        } else {
+            // Zip creation failed
+            QMessageBox::critical(this, tr("Erro"), tr("Não foi possível criar o arquivo ZIP!"));
+        }
+    }
+}
+
+
+
+
+
 
 
 

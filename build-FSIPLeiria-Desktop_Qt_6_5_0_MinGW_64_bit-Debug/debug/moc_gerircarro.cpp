@@ -49,10 +49,12 @@ static constexpr auto qt_meta_stringdata_CLASSGerirCarroENDCLASS = QtMocHelpers:
     "on_commandButtonVoltar_clicked",
     "on_btnCriarModulo_clicked",
     "on_btnApagarCarro_clicked",
-    "on_btnGuardarCarro_clicked"
+    "on_btnGuardarCarro_clicked",
+    "updateButtonVisibility"
 );
 #else  // !QT_MOC_HAS_STRING_DATA
 struct qt_meta_stringdata_CLASSGerirCarroENDCLASS_t {
+    uint offsetsAndSizes[20];
     uint offsetsAndSizes[24];
     char stringdata0[11];
     char stringdata1[8];
@@ -66,6 +68,7 @@ struct qt_meta_stringdata_CLASSGerirCarroENDCLASS_t {
     char stringdata9[26];
     char stringdata10[26];
     char stringdata11[27];
+    char stringdata9[23];
 };
 #define QT_MOC_LITERAL(ofs, len) \
     uint(sizeof(qt_meta_stringdata_CLASSGerirCarroENDCLASS_t::offsetsAndSizes) + ofs), len 
@@ -83,6 +86,7 @@ Q_CONSTINIT static const qt_meta_stringdata_CLASSGerirCarroENDCLASS_t qt_meta_st
         QT_MOC_LITERAL(110, 25),  // "on_btnCriarModulo_clicked"
         QT_MOC_LITERAL(136, 25),  // "on_btnApagarCarro_clicked"
         QT_MOC_LITERAL(162, 26)   // "on_btnGuardarCarro_clicked"
+        QT_MOC_LITERAL(149, 22)   // "updateButtonVisibility"
     },
     "GerirCarro",
     "setNome",
@@ -95,7 +99,8 @@ Q_CONSTINIT static const qt_meta_stringdata_CLASSGerirCarroENDCLASS_t qt_meta_st
     "on_commandButtonVoltar_clicked",
     "on_btnCriarModulo_clicked",
     "on_btnApagarCarro_clicked",
-    "on_btnGuardarCarro_clicked"
+    "on_btnGuardarCarro_clicked",
+    "updateButtonVisibility"
 };
 #undef QT_MOC_LITERAL
 #endif // !QT_MOC_HAS_STRING_DATA
@@ -131,6 +136,7 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSGerirCarroENDCLASS[] = {
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
+    QMetaType::Void,
 
        0        // eod
 };
@@ -160,6 +166,8 @@ Q_CONSTINIT const QMetaObject GerirCarro::staticMetaObject = { {
         // method 'on_btnApagarCarro_clicked'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         // method 'on_btnGuardarCarro_clicked'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'updateButtonVisibility'
         QtPrivate::TypeAndForceComplete<void, std::false_type>
     >,
     nullptr
@@ -178,6 +186,7 @@ void GerirCarro::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         case 4: _t->on_btnCriarModulo_clicked(); break;
         case 5: _t->on_btnApagarCarro_clicked(); break;
         case 6: _t->on_btnGuardarCarro_clicked(); break;
+        case 7: _t->updateButtonVisibility(); break;
         default: ;
         }
     }

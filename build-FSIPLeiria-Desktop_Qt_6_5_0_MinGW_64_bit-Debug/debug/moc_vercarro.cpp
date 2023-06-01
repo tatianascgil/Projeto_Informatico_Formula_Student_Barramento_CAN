@@ -48,11 +48,12 @@ static constexpr auto qt_meta_stringdata_CLASSVerCarroENDCLASS = QtMocHelpers::s
     "obs",
     "on_commandButtonVoltar_clicked",
     "on_btnDefinicoes_clicked",
-    "on_btnEstatistica_clicked"
+    "on_btnEstatistica_clicked",
+    "on_btnGuardarComo_clicked"
 );
 #else  // !QT_MOC_HAS_STRING_DATA
 struct qt_meta_stringdata_CLASSVerCarroENDCLASS_t {
-    uint offsetsAndSizes[22];
+    uint offsetsAndSizes[24];
     char stringdata0[9];
     char stringdata1[8];
     char stringdata2[1];
@@ -64,6 +65,7 @@ struct qt_meta_stringdata_CLASSVerCarroENDCLASS_t {
     char stringdata8[31];
     char stringdata9[25];
     char stringdata10[26];
+    char stringdata11[26];
 };
 #define QT_MOC_LITERAL(ofs, len) \
     uint(sizeof(qt_meta_stringdata_CLASSVerCarroENDCLASS_t::offsetsAndSizes) + ofs), len 
@@ -79,7 +81,8 @@ Q_CONSTINIT static const qt_meta_stringdata_CLASSVerCarroENDCLASS_t qt_meta_stri
         QT_MOC_LITERAL(51, 3),  // "obs"
         QT_MOC_LITERAL(55, 30),  // "on_commandButtonVoltar_clicked"
         QT_MOC_LITERAL(86, 24),  // "on_btnDefinicoes_clicked"
-        QT_MOC_LITERAL(111, 25)   // "on_btnEstatistica_clicked"
+        QT_MOC_LITERAL(111, 25),  // "on_btnEstatistica_clicked"
+        QT_MOC_LITERAL(137, 25)   // "on_btnGuardarComo_clicked"
     },
     "VerCarro",
     "setNome",
@@ -91,7 +94,8 @@ Q_CONSTINIT static const qt_meta_stringdata_CLASSVerCarroENDCLASS_t qt_meta_stri
     "obs",
     "on_commandButtonVoltar_clicked",
     "on_btnDefinicoes_clicked",
-    "on_btnEstatistica_clicked"
+    "on_btnEstatistica_clicked",
+    "on_btnGuardarComo_clicked"
 };
 #undef QT_MOC_LITERAL
 #endif // !QT_MOC_HAS_STRING_DATA
@@ -103,7 +107,7 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSVerCarroENDCLASS[] = {
       11,       // revision
        0,       // classname
        0,    0, // classinfo
-       6,   14, // methods
+       7,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -111,17 +115,19 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSVerCarroENDCLASS[] = {
        0,       // signalCount
 
  // slots: name, argc, parameters, tag, flags, initial metatype offsets
-       1,    1,   50,    2, 0x0a,    1 /* Public */,
-       4,    1,   53,    2, 0x0a,    3 /* Public */,
-       6,    1,   56,    2, 0x0a,    5 /* Public */,
-       8,    0,   59,    2, 0x08,    7 /* Private */,
-       9,    0,   60,    2, 0x08,    8 /* Private */,
-      10,    0,   61,    2, 0x08,    9 /* Private */,
+       1,    1,   56,    2, 0x0a,    1 /* Public */,
+       4,    1,   59,    2, 0x0a,    3 /* Public */,
+       6,    1,   62,    2, 0x0a,    5 /* Public */,
+       8,    0,   65,    2, 0x08,    7 /* Private */,
+       9,    0,   66,    2, 0x08,    8 /* Private */,
+      10,    0,   67,    2, 0x08,    9 /* Private */,
+      11,    0,   68,    2, 0x08,   10 /* Private */,
 
  // slots: parameters
     QMetaType::Void, QMetaType::QString,    3,
     QMetaType::Void, QMetaType::QString,    5,
     QMetaType::Void, QMetaType::QString,    7,
+    QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
@@ -152,6 +158,8 @@ Q_CONSTINIT const QMetaObject VerCarro::staticMetaObject = { {
         // method 'on_btnDefinicoes_clicked'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         // method 'on_btnEstatistica_clicked'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'on_btnGuardarComo_clicked'
         QtPrivate::TypeAndForceComplete<void, std::false_type>
     >,
     nullptr
@@ -169,6 +177,7 @@ void VerCarro::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, vo
         case 3: _t->on_commandButtonVoltar_clicked(); break;
         case 4: _t->on_btnDefinicoes_clicked(); break;
         case 5: _t->on_btnEstatistica_clicked(); break;
+        case 6: _t->on_btnGuardarComo_clicked(); break;
         default: ;
         }
     }
@@ -193,13 +202,13 @@ int VerCarro::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 6)
+        if (_id < 7)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 6;
+        _id -= 7;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 6)
+        if (_id < 7)
             *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
-        _id -= 6;
+        _id -= 7;
     }
     return _id;
 }
