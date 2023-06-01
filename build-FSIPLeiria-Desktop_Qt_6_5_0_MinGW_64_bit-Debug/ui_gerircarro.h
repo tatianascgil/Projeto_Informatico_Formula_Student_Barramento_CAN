@@ -62,7 +62,7 @@ public:
         label->setFont(font);
         tableViewCarro = new QTableView(GerirCarro);
         tableViewCarro->setObjectName("tableViewCarro");
-        tableViewCarro->setGeometry(QRect(20, 60, 761, 61));
+        tableViewCarro->setGeometry(QRect(20, 60, 761, 51));
         tableViewModulosCarro = new QTableView(GerirCarro);
         tableViewModulosCarro->setObjectName("tableViewModulosCarro");
         tableViewModulosCarro->setGeometry(QRect(20, 250, 761, 191));

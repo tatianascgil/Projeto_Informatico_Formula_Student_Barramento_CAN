@@ -113,7 +113,7 @@ public:
 "}"));
         labelNomeModulo = new QLabel(GerirModulo);
         labelNomeModulo->setObjectName("labelNomeModulo");
-        labelNomeModulo->setGeometry(QRect(140, 20, 211, 31));
+        labelNomeModulo->setGeometry(QRect(120, 20, 211, 31));
         QFont font2;
         font2.setPointSize(16);
         labelNomeModulo->setFont(font2);

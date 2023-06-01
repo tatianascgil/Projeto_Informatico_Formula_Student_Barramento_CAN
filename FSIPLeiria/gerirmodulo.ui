@@ -170,7 +170,7 @@ QPushButton:pressed {
   <widget class="QLabel" name="labelNomeModulo">
    <property name="geometry">
     <rect>
-     <x>140</x>
+     <x>120</x>
      <y>20</y>
      <width>211</width>
      <height>31</height>

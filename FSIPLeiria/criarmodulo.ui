@@ -11,7 +11,11 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Form</string>
+   <string>Criar Modulo</string>
+  </property>
+  <property name="windowIcon">
+   <iconset>
+    <normaloff>../icon.ico</normaloff>../icon.ico</iconset>
   </property>
   <property name="styleSheet">
    <string notr="true">background:white</string>
@@ -95,7 +99,7 @@ QPushButton:pressed {
     <rect>
      <x>10</x>
      <y>90</y>
-     <width>91</width>
+     <width>71</width>
      <height>31</height>
     </rect>
    </property>
@@ -114,7 +118,7 @@ QPushButton:pressed {
     <rect>
      <x>10</x>
      <y>140</y>
-     <width>91</width>
+     <width>81</width>
      <height>31</height>
     </rect>
    </property>
@@ -131,10 +135,10 @@ QPushButton:pressed {
   <widget class="QTextEdit" name="textEditNomeModulo">
    <property name="geometry">
     <rect>
-     <x>90</x>
-     <y>80</y>
-     <width>221</width>
-     <height>41</height>
+     <x>80</x>
+     <y>90</y>
+     <width>231</width>
+     <height>31</height>
     </rect>
    </property>
    <property name="font">
@@ -173,10 +177,10 @@ QPushButton:pressed {
   <widget class="QTextEdit" name="textEditModeloModulo">
    <property name="geometry">
     <rect>
-     <x>100</x>
+     <x>90</x>
      <y>140</y>
-     <width>201</width>
-     <height>41</height>
+     <width>221</width>
+     <height>31</height>
     </rect>
    </property>
    <property name="font">
@@ -216,7 +220,7 @@ QPushButton:pressed {
     <rect>
      <x>320</x>
      <y>0</y>
-     <width>91</width>
+     <width>51</width>
      <height>21</height>
     </rect>
    </property>
@@ -254,7 +258,7 @@ QPushButton:pressed {
     <rect>
      <x>10</x>
      <y>40</y>
-     <width>91</width>
+     <width>71</width>
      <height>31</height>
     </rect>
    </property>
@@ -265,7 +269,7 @@ QPushButton:pressed {
     </font>
    </property>
    <property name="text">
-    <string>Carro:</string>
+    <string>Carro</string>
    </property>
   </widget>
   <widget class="QRadioButton" name="radioButton_Littleendian">
@@ -309,20 +313,23 @@ QPushButton:pressed {
     <string>Big-Endian</string>
    </property>
   </widget>
-  <widget class="QComboBox" name="comboBoxCarro">
+  <widget class="QLabel" name="labelNomeCarro">
    <property name="geometry">
     <rect>
-     <x>80</x>
+     <x>90</x>
      <y>40</y>
-     <width>221</width>
+     <width>211</width>
      <height>31</height>
     </rect>
    </property>
-   <property name="cursor">
-    <cursorShape>PointingHandCursor</cursorShape>
+   <property name="font">
+    <font>
+     <pointsize>14</pointsize>
+     <bold>true</bold>
+    </font>
    </property>
-   <property name="styleSheet">
-    <string notr="true">background:white</string>
+   <property name="text">
+    <string>INDEFINIDO</string>
    </property>
   </widget>
  </widget>

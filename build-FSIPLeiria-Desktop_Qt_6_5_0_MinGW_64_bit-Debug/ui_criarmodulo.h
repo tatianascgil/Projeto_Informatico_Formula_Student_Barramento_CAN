@@ -12,7 +12,6 @@
 #include <QtCore/QVariant>
 #include <QtGui/QIcon>
 #include <QtWidgets/QApplication>
-#include <QtWidgets/QComboBox>
 #include <QtWidgets/QCommandLinkButton>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QPushButton>
@@ -38,13 +37,16 @@ public:
     QLabel *label_5;
     QRadioButton *radioButton_Littleendian;
     QRadioButton *radioButton_Bigendian;
-    QComboBox *comboBoxCarro;
+    QLabel *labelNomeCarro;
 
     void setupUi(QWidget *CriarModulo)
     {
         if (CriarModulo->objectName().isEmpty())
             CriarModulo->setObjectName("CriarModulo");
         CriarModulo->resize(600, 250);
+        QIcon icon;
+        icon.addFile(QString::fromUtf8("../icon.ico"), QSize(), QIcon::Normal, QIcon::Off);
+        CriarModulo->setWindowIcon(icon);
         CriarModulo->setStyleSheet(QString::fromUtf8("background:white"));
         btnCriarModulo = new QPushButton(CriarModulo);
         btnCriarModulo->setObjectName("btnCriarModulo");
@@ -88,18 +90,18 @@ public:
 "}"));
         label = new QLabel(CriarModulo);
         label->setObjectName("label");
-        label->setGeometry(QRect(10, 90, 91, 31));
+        label->setGeometry(QRect(10, 90, 71, 31));
         QFont font1;
         font1.setPointSize(14);
         font1.setBold(true);
         label->setFont(font1);
         label_2 = new QLabel(CriarModulo);
         label_2->setObjectName("label_2");
-        label_2->setGeometry(QRect(10, 140, 91, 31));
+        label_2->setGeometry(QRect(10, 140, 81, 31));
         label_2->setFont(font1);
         textEditNomeModulo = new QTextEdit(CriarModulo);
         textEditNomeModulo->setObjectName("textEditNomeModulo");
-        textEditNomeModulo->setGeometry(QRect(90, 80, 221, 41));
+        textEditNomeModulo->setGeometry(QRect(80, 90, 231, 31));
         QFont font2;
         font2.setPointSize(12);
         textEditNomeModulo->setFont(font2);
@@ -113,7 +115,7 @@ public:
         textEditObsModulo->setStyleSheet(QString::fromUtf8("background:rgb(234, 234, 234)"));
         textEditModeloModulo = new QTextEdit(CriarModulo);
         textEditModeloModulo->setObjectName("textEditModeloModulo");
-        textEditModeloModulo->setGeometry(QRect(100, 140, 201, 41));
+        textEditModeloModulo->setGeometry(QRect(90, 140, 221, 31));
         textEditModeloModulo->setFont(font2);
         textEditModeloModulo->viewport()->setProperty("cursor", QVariant(QCursor(Qt::IBeamCursor)));
         textEditModeloModulo->setStyleSheet(QString::fromUtf8("background:rgb(234, 234, 234)"));
@@ -121,12 +123,12 @@ public:
         commandButtonVoltar->setObjectName("commandButtonVoltar");
         commandButtonVoltar->setGeometry(QRect(0, 0, 31, 41));
         commandButtonVoltar->setCursor(QCursor(Qt::PointingHandCursor));
-        QIcon icon;
-        icon.addFile(QString::fromUtf8("../setavoltar.ico"), QSize(), QIcon::Normal, QIcon::Off);
-        commandButtonVoltar->setIcon(icon);
+        QIcon icon1;
+        icon1.addFile(QString::fromUtf8("../setavoltar.ico"), QSize(), QIcon::Normal, QIcon::Off);
+        commandButtonVoltar->setIcon(icon1);
         label_3 = new QLabel(CriarModulo);
         label_3->setObjectName("label_3");
-        label_3->setGeometry(QRect(320, 0, 91, 21));
+        label_3->setGeometry(QRect(320, 0, 51, 21));
         label_3->setFont(font1);
         label_4 = new QLabel(CriarModulo);
         label_4->setObjectName("label_4");
@@ -134,7 +136,7 @@ public:
         label_4->setFont(font1);
         label_5 = new QLabel(CriarModulo);
         label_5->setObjectName("label_5");
-        label_5->setGeometry(QRect(10, 40, 91, 31));
+        label_5->setGeometry(QRect(10, 40, 71, 31));
         label_5->setFont(font1);
         radioButton_Littleendian = new QRadioButton(CriarModulo);
         radioButton_Littleendian->setObjectName("radioButton_Littleendian");
@@ -147,11 +149,10 @@ public:
         radioButton_Bigendian->setGeometry(QRect(460, 190, 131, 31));
         radioButton_Bigendian->setCursor(QCursor(Qt::PointingHandCursor));
         radioButton_Bigendian->setStyleSheet(QString::fromUtf8("font: 10pt \"Segoe UI\";"));
-        comboBoxCarro = new QComboBox(CriarModulo);
-        comboBoxCarro->setObjectName("comboBoxCarro");
-        comboBoxCarro->setGeometry(QRect(80, 40, 221, 31));
-        comboBoxCarro->setCursor(QCursor(Qt::PointingHandCursor));
-        comboBoxCarro->setStyleSheet(QString::fromUtf8("background:white"));
+        labelNomeCarro = new QLabel(CriarModulo);
+        labelNomeCarro->setObjectName("labelNomeCarro");
+        labelNomeCarro->setGeometry(QRect(90, 40, 211, 31));
+        labelNomeCarro->setFont(font1);
 
         retranslateUi(CriarModulo);
 
@@ -160,7 +161,7 @@ public:
 
     void retranslateUi(QWidget *CriarModulo)
     {
-        CriarModulo->setWindowTitle(QCoreApplication::translate("CriarModulo", "Form", nullptr));
+        CriarModulo->setWindowTitle(QCoreApplication::translate("CriarModulo", "Criar Modulo", nullptr));
         btnCriarModulo->setText(QCoreApplication::translate("CriarModulo", "Criar M\303\263dulo", nullptr));
         btnCancelar->setText(QCoreApplication::translate("CriarModulo", "Cancelar", nullptr));
         label->setText(QCoreApplication::translate("CriarModulo", "Nome:", nullptr));
@@ -168,9 +169,10 @@ public:
         commandButtonVoltar->setText(QString());
         label_3->setText(QCoreApplication::translate("CriarModulo", "Obs:", nullptr));
         label_4->setText(QCoreApplication::translate("CriarModulo", "Tipo:", nullptr));
-        label_5->setText(QCoreApplication::translate("CriarModulo", "Carro:", nullptr));
+        label_5->setText(QCoreApplication::translate("CriarModulo", "Carro", nullptr));
         radioButton_Littleendian->setText(QCoreApplication::translate("CriarModulo", "Litlle-endian", nullptr));
         radioButton_Bigendian->setText(QCoreApplication::translate("CriarModulo", "Big-Endian", nullptr));
+        labelNomeCarro->setText(QCoreApplication::translate("CriarModulo", "INDEFINIDO", nullptr));
     } // retranslateUi
 
 };
