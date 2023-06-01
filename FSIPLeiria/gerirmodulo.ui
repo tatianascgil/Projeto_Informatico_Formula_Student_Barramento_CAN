@@ -91,9 +91,9 @@ QPushButton:pressed {
   <widget class="Line" name="line">
    <property name="geometry">
     <rect>
-     <x>-10</x>
+     <x>10</x>
      <y>190</y>
-     <width>791</width>
+     <width>771</width>
      <height>20</height>
     </rect>
    </property>
