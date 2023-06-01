@@ -14,7 +14,8 @@ class GerirModulo : public QDialog
 public:
     explicit GerirModulo(QWidget *parent = nullptr);
     ~GerirModulo();
-
+public slots:
+    void loadModuloData(const QStringList& data);
 private:
     Ui::GerirModulo *ui;
 };

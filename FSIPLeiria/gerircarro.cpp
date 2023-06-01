@@ -6,6 +6,9 @@
 #include "ui_criarmodulo.h"
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include "gerirmodulo.h"
+#include "ui_gerirmodulo.h"
+
 
 #include <QDir>
 #include <QStandardItemModel>
@@ -18,6 +21,7 @@ GerirCarro::GerirCarro(QWidget *parent) :
     ui(new Ui::GerirCarro)
 {
     ui->setupUi(this);
+    connect(ui->tableViewModulosCarro, &QTableView::doubleClicked, this, &GerirCarro::openGerirModuloWindow);
 
 }
 
@@ -29,6 +33,26 @@ GerirCarro::~GerirCarro()
 void GerirCarro::setNome(const QString& nome){
     ui->labelNomeCarro->setText(nome);
 }
+
+void GerirCarro::openGerirModuloWindow(const QModelIndex& index)
+{
+    QStandardItemModel* model = qobject_cast<QStandardItemModel*>(ui->tableViewModulosCarro->model());
+    if (!model)
+        return;
+
+    int row = index.row();
+    QStringList rowData;
+
+    for (int col = 0; col < model->columnCount(); ++col) {
+        QString value = model->index(row, col).data().toString();
+        rowData.append(value);
+    }
+
+    GerirModulo* gerirModulo = new GerirModulo(this);
+    gerirModulo->loadModuloData(rowData); // Pass the filtered data to the new window
+    gerirModulo->show();
+}
+
 
 void GerirCarro::lerDadosCarro(const QString& nome){
 
@@ -70,11 +94,60 @@ void GerirCarro::lerDadosCarro(const QString& nome){
             }
         }
 
+        // Set the mode of resizing for other columns
+        QHeaderView* horizontalHeader = ui->tableViewCarro->horizontalHeader();
+        horizontalHeader->setSectionResizeMode(QHeaderView::Stretch);
+        horizontalHeader->setStretchLastSection(false);
+
         // Set the model to the QTableView
-        ui->tableViewCarro->setModel(model);
+        ui->tableViewCarro->setModel(model);              
+    }
+
+    // Open the "modulos.txt" file within the car's folder
+    QString modulosPath = folderPath + "/modulos.txt";
+    QFile modulos(modulosPath);
+
+    qDebug() << "Modulos: " << modulosPath;
+    if (modulos.open(QIODevice::ReadOnly | QIODevice::Text)) {
+        QTextStream stream(&modulos);
+
+        QList<QStringList> data;
+
+        // Read all the lines and populate the data list
+        while (!stream.atEnd()) {
+            QString line = stream.readLine();
+            QStringList values = line.split(";");
+            data.append(values);
+        }
+
+        modulos.close();
+
+        // Display the data in the QTableView
+        QStandardItemModel* model = new QStandardItemModel(data.count(), data[0].count(), this);
+
+        // Set the headers
+        model->setHorizontalHeaderLabels({"Nome", "Modulo", "Endianess", "Observações"});
+
+        // Populate the model with data
+        for (int row = 0; row < data.count(); ++row) {
+            for (int col = 0; col < data[row].count(); ++col) {
+                QStandardItem* item = new QStandardItem(data[row][col]);
+                item->setEditable(false); // Set the item as read-only
+                model->setItem(row, col, item);
+            }
+        }
+
+        // Set the mode of resizing for other columns
+        QHeaderView* horizontalHeader = ui->tableViewModulosCarro->horizontalHeader();
+
+        horizontalHeader->setSectionResizeMode(QHeaderView::Stretch);
+        horizontalHeader->setStretchLastSection(false);
+
+
+        // Set the model to the QTableView
+        ui->tableViewModulosCarro->setModel(model);
     }
 }
-
 
 void GerirCarro::on_commandButtonVoltar_clicked()
 {
@@ -137,9 +210,16 @@ void GerirCarro::on_btnCriarModulo_clicked()
     // Cria a janela
     CriarModulo *criarmodulo = new CriarModulo();
 
+    QString nomeCarro = ui->labelNomeCarro->text().trimmed();
+
+    criarmodulo->setNome(nomeCarro);
+
+    qDebug() << "Nome do carro: " << nomeCarro;
+
     // Define o tamanho mínimo e máximo da janela
     criarmodulo->setMinimumSize(criarmoduloWidth, criarmoduloHeight);
     criarmodulo->setMaximumSize(criarmoduloWidth, criarmoduloHeight);
+
     criarmodulo->show();
     this->close();
 
@@ -220,7 +300,6 @@ void GerirCarro::on_btnGuardarCarro_clicked()
     QString currentPath = QDir::currentPath();
     QString targetDir = currentPath + "/../FSIPLeiria/settings";
     QString folderPath = targetDir + "/" + folderName;
-
     QString filePath = folderPath + "/caracteristicas.txt";
 
     QFile file(filePath);

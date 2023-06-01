@@ -38,20 +38,32 @@ namespace {
 #ifdef QT_MOC_HAS_STRINGDATA
 struct qt_meta_stringdata_CLASSGerirModuloENDCLASS_t {};
 static constexpr auto qt_meta_stringdata_CLASSGerirModuloENDCLASS = QtMocHelpers::stringData(
-    "GerirModulo"
+    "GerirModulo",
+    "loadModuloData",
+    "",
+    "data"
 );
 #else  // !QT_MOC_HAS_STRING_DATA
 struct qt_meta_stringdata_CLASSGerirModuloENDCLASS_t {
-    uint offsetsAndSizes[2];
+    uint offsetsAndSizes[8];
     char stringdata0[12];
+    char stringdata1[15];
+    char stringdata2[1];
+    char stringdata3[5];
 };
 #define QT_MOC_LITERAL(ofs, len) \
     uint(sizeof(qt_meta_stringdata_CLASSGerirModuloENDCLASS_t::offsetsAndSizes) + ofs), len 
 Q_CONSTINIT static const qt_meta_stringdata_CLASSGerirModuloENDCLASS_t qt_meta_stringdata_CLASSGerirModuloENDCLASS = {
     {
-        QT_MOC_LITERAL(0, 11)   // "GerirModulo"
+        QT_MOC_LITERAL(0, 11),  // "GerirModulo"
+        QT_MOC_LITERAL(12, 14),  // "loadModuloData"
+        QT_MOC_LITERAL(27, 0),  // ""
+        QT_MOC_LITERAL(28, 4)   // "data"
     },
-    "GerirModulo"
+    "GerirModulo",
+    "loadModuloData",
+    "",
+    "data"
 };
 #undef QT_MOC_LITERAL
 #endif // !QT_MOC_HAS_STRING_DATA
@@ -63,12 +75,18 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSGerirModuloENDCLASS[] = {
       11,       // revision
        0,       // classname
        0,    0, // classinfo
-       0,    0, // methods
+       1,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
        0,       // flags
        0,       // signalCount
+
+ // slots: name, argc, parameters, tag, flags, initial metatype offsets
+       1,    1,   20,    2, 0x0a,    1 /* Public */,
+
+ // slots: parameters
+    QMetaType::Void, QMetaType::QStringList,    3,
 
        0        // eod
 };
@@ -81,17 +99,24 @@ Q_CONSTINIT const QMetaObject GerirModulo::staticMetaObject = { {
     nullptr,
     qt_incomplete_metaTypeArray<qt_meta_stringdata_CLASSGerirModuloENDCLASS_t,
         // Q_OBJECT / Q_GADGET
-        QtPrivate::TypeAndForceComplete<GerirModulo, std::true_type>
+        QtPrivate::TypeAndForceComplete<GerirModulo, std::true_type>,
+        // method 'loadModuloData'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<const QStringList &, std::false_type>
     >,
     nullptr
 } };
 
 void GerirModulo::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
 {
-    (void)_o;
-    (void)_id;
-    (void)_c;
-    (void)_a;
+    if (_c == QMetaObject::InvokeMetaMethod) {
+        auto *_t = static_cast<GerirModulo *>(_o);
+        (void)_t;
+        switch (_id) {
+        case 0: _t->loadModuloData((*reinterpret_cast< std::add_pointer_t<QStringList>>(_a[1]))); break;
+        default: ;
+        }
+    }
 }
 
 const QMetaObject *GerirModulo::metaObject() const
@@ -110,6 +135,17 @@ void *GerirModulo::qt_metacast(const char *_clname)
 int GerirModulo::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
 {
     _id = QDialog::qt_metacall(_c, _id, _a);
+    if (_id < 0)
+        return _id;
+    if (_c == QMetaObject::InvokeMetaMethod) {
+        if (_id < 1)
+            qt_static_metacall(this, _c, _id, _a);
+        _id -= 1;
+    } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
+        if (_id < 1)
+            *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
+        _id -= 1;
+    }
     return _id;
 }
 QT_WARNING_POP
