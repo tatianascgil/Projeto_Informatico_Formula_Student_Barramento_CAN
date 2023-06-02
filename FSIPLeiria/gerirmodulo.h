@@ -16,6 +16,9 @@ public:
     ~GerirModulo();
 public slots:
     void loadModuloData(const QStringList& data);
+private slots:
+    void on_btnGuardarModulo_clicked();
+
 private:
     Ui::GerirModulo *ui;
 };
