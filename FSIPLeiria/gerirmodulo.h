@@ -16,6 +16,14 @@ public:
     ~GerirModulo();
 public slots:
     void loadModuloData(const QStringList& data);
+    void setNome(const QString& nome);
+private slots:
+    void on_btnGuardarModulo_clicked();
+
+    void on_commandButtonVoltar_clicked();
+
+    void on_btnApagarModulo_clicked();
+
 private:
     Ui::GerirModulo *ui;
 };

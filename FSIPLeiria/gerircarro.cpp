@@ -47,10 +47,24 @@ void GerirCarro::openGerirModuloWindow(const QModelIndex& index)
         QString value = model->index(row, col).data().toString();
         rowData.append(value);
     }
+    this->close();
+    const int gerirModuloWidth = 800;
+    const int gerirModuloHeight = 500;
 
     GerirModulo* gerirModulo = new GerirModulo(this);
+
+    QString nomeCarro = ui->labelNomeCarro->text().trimmed();
+
+    gerirModulo->setNome(nomeCarro);
+    qDebug() << "Nome do carro: " << nomeCarro;
+
+    // Define o tamanho mínimo e máximo da janela
+    gerirModulo->setMinimumSize(gerirModuloWidth, gerirModuloHeight);
+    gerirModulo->setMaximumSize(gerirModuloWidth, gerirModuloHeight);
+
     gerirModulo->loadModuloData(rowData); // Pass the filtered data to the new window
     gerirModulo->show();
+
 }
 
 
@@ -189,7 +203,6 @@ void GerirCarro::on_commandButtonVoltar_clicked()
         // Define o tamanho mínimo e máximo da janela
         verCarro->setMinimumSize(verCarroWidth, verCarroHeight);
         verCarro->setMaximumSize(verCarroWidth, verCarroHeight);
-
 
         // Set the data in the "vercarro" window's QLabel widgets
         verCarro->setNome(values[0]);

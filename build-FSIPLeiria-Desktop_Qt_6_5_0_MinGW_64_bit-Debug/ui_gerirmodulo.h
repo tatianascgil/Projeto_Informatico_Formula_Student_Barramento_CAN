@@ -30,11 +30,13 @@ public:
     QPushButton *btnApagarModulo;
     QFrame *line;
     QLabel *label;
-    QTableView *tableViewModulo;
+    QTableView *tableViewModulosCarro;
     QPushButton *btnGuardarModulo;
     QLabel *labelNomeModulo;
     QLabel *label_2;
     QPushButton *btnCriarTipoMensagem;
+    QLabel *labelNomeCarro;
+    QLabel *label_3;
 
     void setupUi(QDialog *GerirModulo)
     {
@@ -84,14 +86,14 @@ public:
         line->setFrameShadow(QFrame::Sunken);
         label = new QLabel(GerirModulo);
         label->setObjectName("label");
-        label->setGeometry(QRect(20, 20, 111, 31));
+        label->setGeometry(QRect(20, 30, 111, 31));
         QFont font1;
         font1.setPointSize(16);
         font1.setBold(true);
         label->setFont(font1);
-        tableViewModulo = new QTableView(GerirModulo);
-        tableViewModulo->setObjectName("tableViewModulo");
-        tableViewModulo->setGeometry(QRect(20, 60, 761, 61));
+        tableViewModulosCarro = new QTableView(GerirModulo);
+        tableViewModulosCarro->setObjectName("tableViewModulosCarro");
+        tableViewModulosCarro->setGeometry(QRect(20, 70, 761, 51));
         btnGuardarModulo = new QPushButton(GerirModulo);
         btnGuardarModulo->setObjectName("btnGuardarModulo");
         btnGuardarModulo->setGeometry(QRect(650, 140, 121, 41));
@@ -113,7 +115,7 @@ public:
 "}"));
         labelNomeModulo = new QLabel(GerirModulo);
         labelNomeModulo->setObjectName("labelNomeModulo");
-        labelNomeModulo->setGeometry(QRect(120, 20, 211, 31));
+        labelNomeModulo->setGeometry(QRect(110, 30, 211, 31));
         QFont font2;
         font2.setPointSize(16);
         labelNomeModulo->setFont(font2);
@@ -140,6 +142,13 @@ public:
 "	background-color:rgb(255, 242, 165);\n"
 "	border-bottom: 5px solid rgb(162, 155, 105)\n"
 "}"));
+        labelNomeCarro = new QLabel(GerirModulo);
+        labelNomeCarro->setObjectName("labelNomeCarro");
+        labelNomeCarro->setGeometry(QRect(120, 0, 91, 31));
+        label_3 = new QLabel(GerirModulo);
+        label_3->setObjectName("label_3");
+        label_3->setGeometry(QRect(40, 0, 81, 31));
+        label_3->setFont(font1);
 
         retranslateUi(GerirModulo);
 
@@ -156,6 +165,8 @@ public:
         labelNomeModulo->setText(QCoreApplication::translate("GerirModulo", "modulo xpto", nullptr));
         label_2->setText(QCoreApplication::translate("GerirModulo", "Tipo de Mensagem deste M\303\263dulo:", nullptr));
         btnCriarTipoMensagem->setText(QCoreApplication::translate("GerirModulo", "Criar Tipo de Mensagem", nullptr));
+        labelNomeCarro->setText(QCoreApplication::translate("GerirModulo", "Carro", nullptr));
+        label_3->setText(QCoreApplication::translate("GerirModulo", "Carro", nullptr));
     } // retranslateUi
 
 };
