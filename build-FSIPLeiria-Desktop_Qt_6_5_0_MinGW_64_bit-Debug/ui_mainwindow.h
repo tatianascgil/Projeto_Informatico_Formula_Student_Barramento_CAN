@@ -35,13 +35,12 @@ public:
     QPushButton *btnSaveFile;
     QPushButton *btnTempoReal;
     QPushButton *btnTabelaDados;
-    QPushButton *btnCarregamentoDados;
-    QPushButton *btnVerCarro;
-    QPushButton *btnCriarCarro;
-    QPushButton *btnDuplicarCarro;
-    QPushButton *btnLocalConf;
     QLabel *label;
     QComboBox *comboBoxCarro;
+    QPushButton *btnCriarCarro;
+    QPushButton *btnVerCarro;
+    QPushButton *btnLocalConf;
+    QPushButton *btnCarregamentoDados;
     QMenuBar *menubar;
     QStatusBar *statusbar;
 
@@ -177,6 +176,77 @@ public:
 "	background-color:rgb(255, 242, 165);\n"
 "	border-bottom: 5px solid rgb(162, 155, 105)\n"
 "}"));
+        label = new QLabel(centralwidget);
+        label->setObjectName("label");
+        label->setGeometry(QRect(70, 340, 251, 41));
+        QFont font1;
+        font1.setPointSize(16);
+        font1.setBold(true);
+        label->setFont(font1);
+        comboBoxCarro = new QComboBox(centralwidget);
+        comboBoxCarro->setObjectName("comboBoxCarro");
+        comboBoxCarro->setGeometry(QRect(70, 390, 211, 31));
+        comboBoxCarro->setCursor(QCursor(Qt::PointingHandCursor));
+        comboBoxCarro->setStyleSheet(QString::fromUtf8("background:white"));
+        btnCriarCarro = new QPushButton(centralwidget);
+        btnCriarCarro->setObjectName("btnCriarCarro");
+        btnCriarCarro->setGeometry(QRect(70, 460, 151, 61));
+        btnCriarCarro->setFont(font);
+        btnCriarCarro->setCursor(QCursor(Qt::PointingHandCursor));
+        btnCriarCarro->setStyleSheet(QString::fromUtf8("QPushButton{\n"
+"	background-color:rgb(255, 245, 166);\n"
+"	border:none;\n"
+"	color:rgb(95, 91, 61);\n"
+"	border -bottom: 5px solid rgb(162, 155, 105)\n"
+"}\n"
+"QPushButton:hover{\n"
+"	background-color:rgb(229, 217, 150);\n"
+"	border-bottom: 5px solid rgb(162, 155, 105)\n"
+"}\n"
+"QPushButton:pressed {\n"
+"	background-color:rgb(255, 242, 165);\n"
+"	border-bottom: 5px solid rgb(162, 155, 105)\n"
+"}"));
+        btnVerCarro = new QPushButton(centralwidget);
+        btnVerCarro->setObjectName("btnVerCarro");
+        btnVerCarro->setEnabled(true);
+        btnVerCarro->setGeometry(QRect(240, 460, 161, 61));
+        btnVerCarro->setFont(font);
+        btnVerCarro->setCursor(QCursor(Qt::PointingHandCursor));
+        btnVerCarro->setStyleSheet(QString::fromUtf8("QPushButton{\n"
+"	background-color:rgb(255, 245, 166);\n"
+"	border:none;\n"
+"	color:rgb(95, 91, 61);\n"
+"	border -bottom: 5px solid rgb(162, 155, 105)\n"
+"}\n"
+"QPushButton:hover{\n"
+"	background-color:rgb(229, 217, 150);\n"
+"	border-bottom: 5px solid rgb(162, 155, 105)\n"
+"}\n"
+"QPushButton:pressed {\n"
+"	background-color:rgb(255, 242, 165);\n"
+"	border-bottom: 5px solid rgb(162, 155, 105)\n"
+"}"));
+        btnVerCarro->setCheckable(false);
+        btnLocalConf = new QPushButton(centralwidget);
+        btnLocalConf->setObjectName("btnLocalConf");
+        btnLocalConf->setGeometry(QRect(70, 530, 331, 61));
+        btnLocalConf->setFont(font);
+        btnLocalConf->setCursor(QCursor(Qt::PointingHandCursor));
+        btnLocalConf->setStyleSheet(QString::fromUtf8("QPushButton{\n"
+"	background-color:rgb(255, 245, 166);\n"
+"	border:none;\n"
+"	color:rgb(95, 91, 61);\n"
+"	border -bottom: 5px solid rgb(162, 155, 105)\n"
+"}\n"
+"QPushButton:hover{\n"
+"	background-color:rgb(229, 217, 150);\n"
+"	border-bottom: 5px solid rgb(162, 155, 105)\n"
+"}\n"
+"QPushButton:pressed {\n"
+"	background-color:rgb(255, 242, 165);\n"
+"	border-bottom: 5px solid rgb(162, 155, 105)\n"
+"}"));
         btnCarregamentoDados = new QPushButton(centralwidget);
         btnCarregamentoDados->setObjectName("btnCarregamentoDados");
         btnCarregamentoDados->setGeometry(QRect(610, 440, 211, 61));
@@ -196,100 +266,10 @@ public:
 "	background-color:rgb(255, 242, 165);\n"
 "	border-bottom: 5px solid rgb(162, 155, 105)\n"
 "}"));
-        btnVerCarro = new QPushButton(centralwidget);
-        btnVerCarro->setObjectName("btnVerCarro");
-        btnVerCarro->setEnabled(true);
-        btnVerCarro->setGeometry(QRect(360, 390, 161, 61));
-        btnVerCarro->setFont(font);
-        btnVerCarro->setCursor(QCursor(Qt::PointingHandCursor));
-        btnVerCarro->setStyleSheet(QString::fromUtf8("QPushButton{\n"
-"	background-color:rgb(255, 245, 166);\n"
-"	border:none;\n"
-"	color:rgb(95, 91, 61);\n"
-"	border -bottom: 5px solid rgb(162, 155, 105)\n"
-"}\n"
-"QPushButton:hover{\n"
-"	background-color:rgb(229, 217, 150);\n"
-"	border-bottom: 5px solid rgb(162, 155, 105)\n"
-"}\n"
-"QPushButton:pressed {\n"
-"	background-color:rgb(255, 242, 165);\n"
-"	border-bottom: 5px solid rgb(162, 155, 105)\n"
-"}"));
-        btnVerCarro->setCheckable(false);
-        btnCriarCarro = new QPushButton(centralwidget);
-        btnCriarCarro->setObjectName("btnCriarCarro");
-        btnCriarCarro->setGeometry(QRect(80, 450, 151, 61));
-        btnCriarCarro->setFont(font);
-        btnCriarCarro->setCursor(QCursor(Qt::PointingHandCursor));
-        btnCriarCarro->setStyleSheet(QString::fromUtf8("QPushButton{\n"
-"	background-color:rgb(255, 245, 166);\n"
-"	border:none;\n"
-"	color:rgb(95, 91, 61);\n"
-"	border -bottom: 5px solid rgb(162, 155, 105)\n"
-"}\n"
-"QPushButton:hover{\n"
-"	background-color:rgb(229, 217, 150);\n"
-"	border-bottom: 5px solid rgb(162, 155, 105)\n"
-"}\n"
-"QPushButton:pressed {\n"
-"	background-color:rgb(255, 242, 165);\n"
-"	border-bottom: 5px solid rgb(162, 155, 105)\n"
-"}"));
-        btnDuplicarCarro = new QPushButton(centralwidget);
-        btnDuplicarCarro->setObjectName("btnDuplicarCarro");
-        btnDuplicarCarro->setGeometry(QRect(360, 320, 161, 61));
-        btnDuplicarCarro->setFont(font);
-        btnDuplicarCarro->setCursor(QCursor(Qt::PointingHandCursor));
-        btnDuplicarCarro->setStyleSheet(QString::fromUtf8("QPushButton{\n"
-"	background-color:rgb(255, 245, 166);\n"
-"	border:none;\n"
-"	color:rgb(95, 91, 61);\n"
-"	border -bottom: 5px solid rgb(162, 155, 105)\n"
-"}\n"
-"QPushButton:hover{\n"
-"	background-color:rgb(229, 217, 150);\n"
-"	border-bottom: 5px solid rgb(162, 155, 105)\n"
-"}\n"
-"QPushButton:pressed {\n"
-"	background-color:rgb(255, 242, 165);\n"
-"	border-bottom: 5px solid rgb(162, 155, 105)\n"
-"}"));
-        btnLocalConf = new QPushButton(centralwidget);
-        btnLocalConf->setObjectName("btnLocalConf");
-        btnLocalConf->setGeometry(QRect(80, 520, 331, 61));
-        btnLocalConf->setFont(font);
-        btnLocalConf->setCursor(QCursor(Qt::PointingHandCursor));
-        btnLocalConf->setStyleSheet(QString::fromUtf8("QPushButton{\n"
-"	background-color:rgb(255, 245, 166);\n"
-"	border:none;\n"
-"	color:rgb(95, 91, 61);\n"
-"	border -bottom: 5px solid rgb(162, 155, 105)\n"
-"}\n"
-"QPushButton:hover{\n"
-"	background-color:rgb(229, 217, 150);\n"
-"	border-bottom: 5px solid rgb(162, 155, 105)\n"
-"}\n"
-"QPushButton:pressed {\n"
-"	background-color:rgb(255, 242, 165);\n"
-"	border-bottom: 5px solid rgb(162, 155, 105)\n"
-"}"));
-        label = new QLabel(centralwidget);
-        label->setObjectName("label");
-        label->setGeometry(QRect(80, 330, 251, 41));
-        QFont font1;
-        font1.setPointSize(16);
-        font1.setBold(true);
-        label->setFont(font1);
-        comboBoxCarro = new QComboBox(centralwidget);
-        comboBoxCarro->setObjectName("comboBoxCarro");
-        comboBoxCarro->setGeometry(QRect(80, 380, 211, 31));
-        comboBoxCarro->setCursor(QCursor(Qt::PointingHandCursor));
-        comboBoxCarro->setStyleSheet(QString::fromUtf8("background:white"));
         MainWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName("menubar");
-        menubar->setGeometry(QRect(0, 0, 850, 22));
+        menubar->setGeometry(QRect(0, 0, 850, 21));
         MainWindow->setMenuBar(menubar);
         statusbar = new QStatusBar(MainWindow);
         statusbar->setObjectName("statusbar");
@@ -316,13 +296,12 @@ public:
         btnSaveFile->setText(QCoreApplication::translate("MainWindow", "Guardar Ficheiro", nullptr));
         btnTempoReal->setText(QCoreApplication::translate("MainWindow", "Tempo Real", nullptr));
         btnTabelaDados->setText(QCoreApplication::translate("MainWindow", "Tabela de Dados", nullptr));
-        btnCarregamentoDados->setText(QCoreApplication::translate("MainWindow", "Carregamento de Dados", nullptr));
-        btnVerCarro->setText(QCoreApplication::translate("MainWindow", "Ver Dados do Carro", nullptr));
-        btnCriarCarro->setText(QCoreApplication::translate("MainWindow", "Criar Carro", nullptr));
-        btnDuplicarCarro->setText(QCoreApplication::translate("MainWindow", "Duplicar Carro", nullptr));
-        btnLocalConf->setText(QCoreApplication::translate("MainWindow", "Localiza\303\247\303\243o  das Configura\303\247\303\265es  ", nullptr));
         label->setText(QCoreApplication::translate("MainWindow", "Escolha o carro:", nullptr));
         comboBoxCarro->setPlaceholderText(QCoreApplication::translate("MainWindow", "<Selecionar Carro>", nullptr));
+        btnCriarCarro->setText(QCoreApplication::translate("MainWindow", "Criar Carro", nullptr));
+        btnVerCarro->setText(QCoreApplication::translate("MainWindow", "Ver Dados do Carro", nullptr));
+        btnLocalConf->setText(QCoreApplication::translate("MainWindow", "Localiza\303\247\303\243o  das Configura\303\247\303\265es  ", nullptr));
+        btnCarregamentoDados->setText(QCoreApplication::translate("MainWindow", "Carregamento de Dados", nullptr));
     } // retranslateUi
 
 };
