@@ -121,7 +121,6 @@ void GerirCarro::lerDadosCarro(const QString& nome){
     QString modulosPath = folderPath + "/modulos.txt";
     QFile modulos(modulosPath);
 
-    qDebug() << "Modulos: " << modulosPath;
     if (modulos.open(QIODevice::ReadOnly | QIODevice::Text)) {
         QTextStream stream(&modulos);
 
@@ -136,31 +135,35 @@ void GerirCarro::lerDadosCarro(const QString& nome){
 
         modulos.close();
 
-        // Display the data in the QTableView
-        QStandardItemModel* model = new QStandardItemModel(data.count(), data[0].count(), this);
+        if (!data.isEmpty()) {
+            // Display the data in the QTableView
+            QStandardItemModel* model = new QStandardItemModel(data.count(), data[0].count(), this);
 
-        // Set the headers
-        model->setHorizontalHeaderLabels({"Nome", "Modulo", "Endianess", "Observações"});
+            // Set the headers
+            model->setHorizontalHeaderLabels({"Nome", "Modulo", "Endianess", "Observações"});
 
-        // Populate the model with data
-        for (int row = 0; row < data.count(); ++row) {
-            for (int col = 0; col < data[row].count(); ++col) {
-                QStandardItem* item = new QStandardItem(data[row][col]);
-                item->setEditable(false); // Set the item as read-only
-                model->setItem(row, col, item);
+            // Populate the model with data
+            for (int row = 0; row < data.count(); ++row) {
+                for (int col = 0; col < data[row].count(); ++col) {
+                    QStandardItem* item = new QStandardItem(data[row][col]);
+                    item->setEditable(false); // Set the item as read-only
+                    model->setItem(row, col, item);
+                }
             }
+
+            // Set the mode of resizing for other columns
+            QHeaderView* horizontalHeader = ui->tableViewModulosCarro->horizontalHeader();
+            horizontalHeader->setSectionResizeMode(QHeaderView::Stretch);
+            horizontalHeader->setStretchLastSection(false);
+
+            // Set the model to the QTableView
+            ui->tableViewModulosCarro->setModel(model);
+        } else {
+            // Handle the case when there is no data
+            // For example, you can display an empty model or show a message to the user
         }
-
-        // Set the mode of resizing for other columns
-        QHeaderView* horizontalHeader = ui->tableViewModulosCarro->horizontalHeader();
-
-        horizontalHeader->setSectionResizeMode(QHeaderView::Stretch);
-        horizontalHeader->setStretchLastSection(false);
-
-
-        // Set the model to the QTableView
-        ui->tableViewModulosCarro->setModel(model);
     }
+
 }
 
 void GerirCarro::on_commandButtonVoltar_clicked()

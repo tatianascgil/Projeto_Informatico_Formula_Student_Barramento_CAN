@@ -24,48 +24,11 @@
    <string notr="true">background:white</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QPushButton" name="btnReadFile">
-    <property name="geometry">
-     <rect>
-      <x>620</x>
-      <y>130</y>
-      <width>201</width>
-      <height>51</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>10</pointsize>
-     </font>
-    </property>
-    <property name="cursor">
-     <cursorShape>PointingHandCursor</cursorShape>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">QPushButton{
-	background-color:rgb(255, 245, 166);
-	border:none;
-	color:rgb(95, 91, 61);
-	border -bottom: 5px solid rgb(162, 155, 105)
-}
-QPushButton:hover{
-	background-color:rgb(229, 217, 150);
-	border-bottom: 5px solid rgb(162, 155, 105)
-}
-QPushButton:pressed {
-	background-color:rgb(255, 242, 165);
-	border-bottom: 5px solid rgb(162, 155, 105)
-}</string>
-    </property>
-    <property name="text">
-     <string>Ler ficheiro</string>
-    </property>
-   </widget>
    <widget class="QPushButton" name="btnEstatisticas">
     <property name="geometry">
      <rect>
-      <x>610</x>
-      <y>530</y>
+      <x>580</x>
+      <y>390</y>
       <width>211</width>
       <height>61</height>
      </rect>
@@ -98,116 +61,11 @@ QPushButton:pressed {
      <string>Estatísticas</string>
     </property>
    </widget>
-   <widget class="QComboBox" name="btnCreateFile">
-    <property name="geometry">
-     <rect>
-      <x>620</x>
-      <y>0</y>
-      <width>201</width>
-      <height>61</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>10</pointsize>
-     </font>
-    </property>
-    <property name="cursor">
-     <cursorShape>PointingHandCursor</cursorShape>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">
-	background-color:rgb(255, 245, 166);
-	border:none;
-	color:rgb(95, 91, 61);
-	border -left: 1px solid rgb(162, 155, 105);
-	border -right: 1px solid rgb(162, 155, 105);
-	border -bottom: 5px solid rgb(162, 155, 105);</string>
-    </property>
-    <property name="currentText">
-     <string/>
-    </property>
-    <property name="currentIndex">
-     <number>-1</number>
-    </property>
-    <property name="maxCount">
-     <number>2147483634</number>
-    </property>
-    <property name="placeholderText">
-     <string>Configurar</string>
-    </property>
-    <property name="duplicatesEnabled">
-     <bool>true</bool>
-    </property>
-    <item>
-     <property name="text">
-      <string>Configurar BD</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>Criar Mensagem</string>
-     </property>
-    </item>
-   </widget>
-   <widget class="QTableView" name="tableView">
-    <property name="geometry">
-     <rect>
-      <x>20</x>
-      <y>10</y>
-      <width>581</width>
-      <height>241</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="btnSaveFile">
-    <property name="enabled">
-     <bool>true</bool>
-    </property>
-    <property name="geometry">
-     <rect>
-      <x>620</x>
-      <y>70</y>
-      <width>201</width>
-      <height>51</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>10</pointsize>
-     </font>
-    </property>
-    <property name="cursor">
-     <cursorShape>PointingHandCursor</cursorShape>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">QPushButton{
-	background-color:rgb(125, 216, 133);
-	border:none;
-	color:black;
-}
-QPushButton:hover{
-	background-color:rgb(99, 171, 105);
-	border-left: 1px solid rgb(75, 130, 80);
-	border-right: 1px solid rgb(75, 130, 80);
-	border-bottom: 5px solid rgb(75, 130, 80);
-}
-QPushButton:pressed {
-	background-color:rgb(125, 220, 145);
-	border-left: 1px solid rgb(75, 130, 80);
-	border-right: 1px solid rgb(75, 130, 80);
-	border-bottom: 5px solid rgb(75, 130, 80);
-}</string>
-    </property>
-    <property name="text">
-     <string>Guardar Ficheiro</string>
-    </property>
-   </widget>
    <widget class="QPushButton" name="btnTempoReal">
     <property name="geometry">
      <rect>
-      <x>610</x>
-      <y>350</y>
+      <x>580</x>
+      <y>210</y>
       <width>211</width>
       <height>61</height>
      </rect>
@@ -243,8 +101,8 @@ QPushButton:pressed {
    <widget class="QPushButton" name="btnTabelaDados">
     <property name="geometry">
      <rect>
-      <x>610</x>
-      <y>260</y>
+      <x>580</x>
+      <y>120</y>
       <width>211</width>
       <height>61</height>
      </rect>
@@ -280,8 +138,8 @@ QPushButton:pressed {
    <widget class="QPushButton" name="btnCarregamentoDados">
     <property name="geometry">
      <rect>
-      <x>610</x>
-      <y>440</y>
+      <x>580</x>
+      <y>300</y>
       <width>211</width>
       <height>61</height>
      </rect>
@@ -317,8 +175,8 @@ QPushButton:pressed {
    <widget class="QComboBox" name="comboBoxCarro">
     <property name="geometry">
      <rect>
-      <x>90</x>
-      <y>390</y>
+      <x>60</x>
+      <y>250</y>
       <width>211</width>
       <height>31</height>
      </rect>
@@ -336,8 +194,8 @@ QPushButton:pressed {
    <widget class="QPushButton" name="btnLocalConf">
     <property name="geometry">
      <rect>
-      <x>90</x>
-      <y>530</y>
+      <x>60</x>
+      <y>390</y>
       <width>331</width>
       <height>61</height>
      </rect>
@@ -373,8 +231,8 @@ QPushButton:pressed {
    <widget class="QPushButton" name="btnCriarCarro">
     <property name="geometry">
      <rect>
-      <x>90</x>
-      <y>460</y>
+      <x>60</x>
+      <y>320</y>
       <width>151</width>
       <height>61</height>
      </rect>
@@ -413,8 +271,8 @@ QPushButton:pressed {
     </property>
     <property name="geometry">
      <rect>
-      <x>370</x>
-      <y>400</y>
+      <x>340</x>
+      <y>260</y>
       <width>161</width>
       <height>61</height>
      </rect>
@@ -453,8 +311,8 @@ QPushButton:pressed {
    <widget class="QPushButton" name="btnDuplicarCarro">
     <property name="geometry">
      <rect>
-      <x>370</x>
-      <y>330</y>
+      <x>340</x>
+      <y>190</y>
       <width>161</width>
       <height>61</height>
      </rect>
@@ -490,8 +348,8 @@ QPushButton:pressed {
    <widget class="QLabel" name="label">
     <property name="geometry">
      <rect>
-      <x>90</x>
-      <y>340</y>
+      <x>60</x>
+      <y>200</y>
       <width>251</width>
       <height>41</height>
      </rect>
@@ -513,7 +371,7 @@ QPushButton:pressed {
      <x>0</x>
      <y>0</y>
      <width>850</width>
-     <height>22</height>
+     <height>21</height>
     </rect>
    </property>
   </widget>

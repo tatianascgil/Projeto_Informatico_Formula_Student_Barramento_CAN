@@ -34,55 +34,66 @@ void GerirModulo::loadModuloData(const QStringList& data)
     ui->labelNomeModulo->setText(nomeModulo);
     QString folderName = ui->labelNomeCarro->text();
 
-    //  QString folderName = nome;
-
     QString currentPath = QDir::currentPath();
     QString targetDir = currentPath + "/../FSIPLeiria/settings";
     QString folderPath = targetDir + "/" + folderName;
 
-    // Open the "modulos.txt" file within the car's folder
     QString modulosPath = folderPath + "/modulos.txt";
     QFile modulos(modulosPath);
 
-    qDebug() << "Modulos: " << modulosPath;
     if (modulos.open(QIODevice::ReadOnly | QIODevice::Text)) {
         QTextStream stream(&modulos);
 
-        QList<QStringList> data;
+        QList<QStringList> filteredData; // To store the filtered data
 
-        // Read all the lines and populate the data list
+        // Read all the lines and filter the data based on nomeModulo
         while (!stream.atEnd()) {
             QString line = stream.readLine();
             QStringList values = line.split(";");
-            data.append(values);
+            if (values.size() > 0 && values.at(0) == nomeModulo) {
+                filteredData.append(values);
+            }
         }
 
         modulos.close();
 
-        // Display the data in the QTableView
-        QStandardItemModel* model = new QStandardItemModel(data.count(), data[0].count(), this);
+        if (!filteredData.isEmpty()) {
+            // Display the filtered data in the QTableView
+            QStandardItemModel* model = new QStandardItemModel(filteredData.count(), filteredData[0].count(), this);
 
-        // Set the headers
-        model->setHorizontalHeaderLabels({"Nome", "Modulo", "Endianess", "Observações"});
+            // Set the headers
+            model->setHorizontalHeaderLabels({"Nome", "Modulo", "Endianess", "Observações"});
 
-        // Populate the model with data
-            for (int row = 0; row < data.count(); ++row) {
-                for (int col = 0; col < data[row].count(); ++col) {
-                         model->setItem(row, col, new QStandardItem(data[row][col]));
+            // Populate the model with filtered data
+            for (int row = 0; row < filteredData.count(); ++row) {
+                for (int col = 0; col < filteredData[row].count(); ++col) {
+                    model->setItem(row, col, new QStandardItem(filteredData[row][col]));
                 }
             }
 
-        // Set the mode of resizing for other columns
-        QHeaderView* horizontalHeader = ui->tableViewModulosCarro->horizontalHeader();
+            // Set the mode of resizing for other columns
+            QHeaderView* horizontalHeader = ui->tableViewModulosCarro->horizontalHeader();
 
-        horizontalHeader->setSectionResizeMode(QHeaderView::Stretch);
-        horizontalHeader->setStretchLastSection(false);
+            horizontalHeader->setSectionResizeMode(QHeaderView::Stretch);
+            horizontalHeader->setStretchLastSection(false);
 
-
-        // Set the model to the QTableView
-        ui->tableViewModulosCarro->setModel(model);
+            // Set the model to the QTableView
+            ui->tableViewModulosCarro->setModel(model);
+        } else {
+            // Handle the case when there is no filtered data
+            // For example, you can display an empty model or show a message to the user
+            QStandardItemModel* emptyModel = new QStandardItemModel(0, 4, this);
+            // Set the headers
+            emptyModel->setHorizontalHeaderLabels({"Nome", "Modulo", "Endianess", "Observações"});
+            // Set the empty model to the QTableView
+            ui->tableViewModulosCarro->setModel(emptyModel);
+            // Show a message to the user
+            QMessageBox::information(this, "Sem Módulos", "Não foram encontrados módulos correspondentes.");
+        }
     }
 }
+
+
 
 void GerirModulo::on_btnGuardarModulo_clicked()
 {
@@ -103,7 +114,6 @@ void GerirModulo::on_btnGuardarModulo_clicked()
     }
 
     QString folderName = ui->labelNomeCarro->text();
-    folderName.remove(' ');
 
     QString currentPath = QDir::currentPath();
     QString targetDir = currentPath + "/../FSIPLeiria/settings";
@@ -115,61 +125,75 @@ void GerirModulo::on_btnGuardarModulo_clicked()
         QTextStream in(&file);
 
         // Read the data from the file
-        int row = 0;
-        bool allValuesMatch = true;
-        while (!in.atEnd() && row < tableViewData.size()) {
+        QVector<QStringList> fileData;
+        while (!in.atEnd()) {
             QString line = in.readLine();
-
-            // Split the line into values (assuming tab-separated values)
-            QStringList fileData = line.split(";");
-
-            // Compare each value with the corresponding value from the QTableView
-            for (int column = 0; column < fileData.size(); ++column) {
-                QString fileValue = fileData[column];
-                QString tableViewValue = tableViewData[row][column];
-
-                // Perform the necessary comparison
-                if (fileValue != tableViewValue) {
-                    allValuesMatch = false;
-                    break;
-                }
-            }
-
-            ++row;
+            QStringList values = line.split(";");
+            fileData.append(values);
         }
 
         file.close();
 
-        // Update the visibility of the btnGuardarFicheiro button based on the comparison results
-        ui->btnGuardarModulo->setVisible(!allValuesMatch);
+        bool allValuesMatch = true;
+        // Compare the file data with the modified data from the QTableView
+        for (int row = 0; row < tableViewData.size(); ++row) {
+            QStringList tableViewRowData = tableViewData[row];
+            QStringList fileRowData = fileData.value(row);
 
-        // If at least one value does not match, prompt the user for confirmation before updating the file
-        if (!allValuesMatch) {
-            // Set the translated button texts
-            QMessageBox msgBox(QMessageBox::Question, tr("Confirmar Atualização"), tr("Algumas informações foram alteradas. Tem certeza de que deseja atualizar os dados?"), QMessageBox::Yes | QMessageBox::No, this);
+            if (fileRowData != tableViewRowData) {
+                allValuesMatch = false;
+                break;
+            }
+        }
 
-            QAbstractButton* yesButton = msgBox.addButton(tr("Sim"), QMessageBox::YesRole);
-            msgBox.addButton(tr("Não"), QMessageBox::NoRole);
+        // If all values match, prompt the user with an error message
+        if (allValuesMatch) {
+            QMessageBox::critical(this, tr("Erro"), tr("Não houve dados alterados!"));
+            return;
+        }
 
-            msgBox.exec();
+        // Display confirmation dialog
+        QMessageBox confirmation(this);
+        confirmation.setWindowTitle("Confirmar Atualização");
+        confirmation.setText("Algumas informações foram alteradas. Tem certeza de que deseja atualizar os dados?");
+        confirmation.setIcon(QMessageBox::Question);
 
-            if (msgBox.clickedButton() == yesButton) {
-                // User confirmed, write the data from the QTableView to the file
-                if (file.open(QIODevice::WriteOnly | QIODevice::Text)) {
-                    QTextStream out(&file);
-                    for (const QStringList& rowData : tableViewData) {
-                        out << rowData.join(";") << "\n";
+        // Translate the buttons
+        QPushButton* yesButton = confirmation.addButton("Sim", QMessageBox::YesRole);
+        confirmation.addButton("Não", QMessageBox::NoRole);
+
+        confirmation.exec();
+
+        if (confirmation.clickedButton() == yesButton) {
+            // User confirmed, write the data from the QTableView to the file
+            if (file.open(QIODevice::WriteOnly | QIODevice::Text)) {
+                QTextStream out(&file);
+
+                // Write the modified line to the file
+                for (int row = 0; row < tableViewData.size(); ++row) {
+                    if (tableViewData[row] != fileData.value(row)) {
+                        out << tableViewData[row].join(";") << "\n";
+                    } else {
+                        out << fileData.value(row).join(";") << "\n";
                     }
-                    file.close();
-                } else {
-                    QMessageBox::critical(this, tr("Erro"), tr("Não foi possível abrir o ficheiro para escrita."));
                 }
+
+                // Write the remaining lines from the file if any
+                for (int row = tableViewData.size(); row < fileData.size(); ++row) {
+                    out << fileData.value(row).join(";") << "\n";
+                }
+
+                file.close();
+            } else {
+                QMessageBox::critical(this, tr("Erro"), tr("Não foi possível abrir o ficheiro para escrita."));
             }
         }
     } else {
         QMessageBox::critical(this, tr("Erro"), tr("Não foi possível abrir o ficheiro para leitura."));
     }
 }
+
+
 
 void GerirModulo::on_commandButtonVoltar_clicked()
 {
@@ -196,17 +220,30 @@ void GerirModulo::on_commandButtonVoltar_clicked()
 
 void GerirModulo::on_btnApagarModulo_clicked()
 {
-    QString folderName = ui->labelNomeModulo->text();
+    QString folderName = ui->labelNomeCarro->text().trimmed();
+    QString moduloName = ui->labelNomeModulo->text().trimmed();
 
     QString currentPath = QDir::currentPath();
     QString targetDir = currentPath + "/../FSIPLeiria/settings";
     QString folderPath = targetDir + "/" + folderName;
 
+    QString modulosPath = folderPath + "/modulos.txt";
+
+
+    qDebug() << "Modulos: " << modulosPath;
+
+    // Check if the modulos.txt file exists
+    if (!QFile::exists(modulosPath)) {
+        qDebug() << "modulos.txt file does not exist: " << modulosPath;
+        QMessageBox::critical(this, tr("Erro"), tr("O arquivo modulos.txt não existe!"));
+        return;
+    }
+
     // Display confirmation dialog
     QMessageBox confirmation(this);
 
     confirmation.setWindowTitle("Apagar Módulo");
-    confirmation.setText("Tem certeza que deseja apagar o módulo " + folderName + "? Todos os dados serão excluídos!");
+    confirmation.setText("Tem certeza que deseja apagar o módulo " + moduloName + "? Todos os dados serão excluídos!");
     confirmation.setIcon(QMessageBox::Question);
 
     // Translate the buttons
@@ -217,7 +254,6 @@ void GerirModulo::on_btnApagarModulo_clicked()
 
     if (confirmation.clickedButton() == yesButton) {
         // Open the modulos.txt file
-        QString modulosPath = folderPath + "/modulos.txt";
         QFile modulosFile(modulosPath);
 
         if (modulosFile.open(QIODevice::ReadWrite | QIODevice::Text)) {
@@ -228,7 +264,7 @@ void GerirModulo::on_btnApagarModulo_clicked()
             while (!stream.atEnd()) {
                 QString line = stream.readLine();
                 QStringList values = line.split(";");
-                if (values[1] != folderName) {
+                if (values[0] != moduloName) {  // Change index to match the column of the module name
                     newModulosData.append(values);
                 }
             }
@@ -244,7 +280,7 @@ void GerirModulo::on_btnApagarModulo_clicked()
             modulosFile.close();
 
             // Folder deleted successfully
-            QMessageBox::information(this, "Módulo Removido", "O módulo \"" + folderName + "\" foi removido com sucesso!");
+            QMessageBox::information(this, "Módulo Removido", "O módulo \"" + moduloName + "\" foi removido com sucesso!");
 
             this->close();
 
@@ -267,6 +303,7 @@ void GerirModulo::on_btnApagarModulo_clicked()
         qDebug() << "Module deletion canceled by user.";
     }
 }
+
 
 
 

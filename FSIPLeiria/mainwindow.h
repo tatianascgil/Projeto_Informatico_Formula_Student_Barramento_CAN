@@ -28,11 +28,7 @@ public slots:
 
 
 private slots:
-    void on_btnReadFile_clicked();
 
-    void on_btnSaveFile_clicked();
-
-    void on_btnCreateFile_activated(int index);
 
     void on_btnVerCarro_clicked();
 
@@ -47,7 +43,6 @@ private slots:
 
 private:
     Ui::MainWindow *ui;
-    void updateSaveButtonVisibility();
     QString loadLastSelectedOption();
     void saveLastSelectedOption(const QString& selectedOption);
     void handleComboBoxIndexChanged(int index);

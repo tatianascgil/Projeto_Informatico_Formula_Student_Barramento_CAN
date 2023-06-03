@@ -1,2 +1,0 @@
-TATA;VRUM;BigEndian;vai que e teuu
-mario;yyy;LittleEndian;rfffff
