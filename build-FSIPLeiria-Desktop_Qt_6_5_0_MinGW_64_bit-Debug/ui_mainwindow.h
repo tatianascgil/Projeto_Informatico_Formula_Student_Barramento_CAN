@@ -41,7 +41,6 @@ public:
     QPushButton *btnVerCarro;
     QPushButton *btnLocalConf;
     QPushButton *btnCarregamentoDados;
-    QPushButton *btnDuplicarCarro;
     QMenuBar *menubar;
     QStatusBar *statusbar;
 
@@ -211,7 +210,7 @@ public:
         btnVerCarro = new QPushButton(centralwidget);
         btnVerCarro->setObjectName("btnVerCarro");
         btnVerCarro->setEnabled(true);
-        btnVerCarro->setGeometry(QRect(350, 400, 161, 61));
+        btnVerCarro->setGeometry(QRect(240, 460, 161, 61));
         btnVerCarro->setFont(font);
         btnVerCarro->setCursor(QCursor(Qt::PointingHandCursor));
         btnVerCarro->setStyleSheet(QString::fromUtf8("QPushButton{\n"
@@ -267,25 +266,6 @@ public:
 "	background-color:rgb(255, 242, 165);\n"
 "	border-bottom: 5px solid rgb(162, 155, 105)\n"
 "}"));
-        btnDuplicarCarro = new QPushButton(centralwidget);
-        btnDuplicarCarro->setObjectName("btnDuplicarCarro");
-        btnDuplicarCarro->setGeometry(QRect(350, 330, 161, 61));
-        btnDuplicarCarro->setFont(font);
-        btnDuplicarCarro->setCursor(QCursor(Qt::PointingHandCursor));
-        btnDuplicarCarro->setStyleSheet(QString::fromUtf8("QPushButton{\n"
-"	background-color:rgb(255, 245, 166);\n"
-"	border:none;\n"
-"	color:rgb(95, 91, 61);\n"
-"	border -bottom: 5px solid rgb(162, 155, 105)\n"
-"}\n"
-"QPushButton:hover{\n"
-"	background-color:rgb(229, 217, 150);\n"
-"	border-bottom: 5px solid rgb(162, 155, 105)\n"
-"}\n"
-"QPushButton:pressed {\n"
-"	background-color:rgb(255, 242, 165);\n"
-"	border-bottom: 5px solid rgb(162, 155, 105)\n"
-"}"));
         MainWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName("menubar");
@@ -322,7 +302,6 @@ public:
         btnVerCarro->setText(QCoreApplication::translate("MainWindow", "Ver Dados do Carro", nullptr));
         btnLocalConf->setText(QCoreApplication::translate("MainWindow", "Localiza\303\247\303\243o  das Configura\303\247\303\265es  ", nullptr));
         btnCarregamentoDados->setText(QCoreApplication::translate("MainWindow", "Carregamento de Dados", nullptr));
-        btnDuplicarCarro->setText(QCoreApplication::translate("MainWindow", "Duplicar Carro", nullptr));
     } // retranslateUi
 
 };
