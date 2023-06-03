@@ -40,15 +40,14 @@ private slots:
 
     void on_btnEstatisticas_clicked();
 
-
-
+    void on_btnDuplicarCarro_clicked();
 
 private:
     Ui::MainWindow *ui;
     void updateSaveButtonVisibility();
     QString loadLastSelectedOption();
     void saveLastSelectedOption(const QString& selectedOption);
-    void populateComboBox();
+    void populateComboBox(QString option);
     void handleComboBoxIndexChanged(int index);
 };
 

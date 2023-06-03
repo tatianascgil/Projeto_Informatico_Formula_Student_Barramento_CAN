@@ -40,10 +40,11 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
 
-    // Connect the modelChanged() signal of the table view's model to a slot
-    connect(ui->tableView->model(), SIGNAL(modelChanged()), this, SLOT(updateSaveButtonVisibility()));
 
     ui->btnSaveFile->setVisible(false);
+
+    // Connect the modelChanged() signal of the table view's model to a slot
+    connect(ui->tableView->model(), SIGNAL(modelChanged()), this, SLOT(updateSaveButtonVisibility()));
 
     // Connect the currentIndexChanged signal of the comboBoxCarro to a custom slot
     connect(ui->comboBoxCarro, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &MainWindow::handleComboBoxIndexChanged);
@@ -51,23 +52,16 @@ MainWindow::MainWindow(QWidget *parent)
     // Update the initial visibility of the button
     handleComboBoxIndexChanged(ui->comboBoxCarro->currentIndex());
 
-    populateComboBox();
-
 
     // Load the last selected option:
     QString lastSelectedOption = loadLastSelectedOption();
-    int index = ui->comboBoxCarro->findText(lastSelectedOption);
-    if (index != -1) {
-        ui->comboBoxCarro->setCurrentIndex(index);
-    }
+    populateComboBox(lastSelectedOption);
 
     // Connect the currentIndexChanged signal of comboBoxCarro to a lambda slot:
     QObject::connect(ui->comboBoxCarro, QOverload<int>::of(&QComboBox::currentIndexChanged), this, [this](int index) {
         QString selectedOption = ui->comboBoxCarro->currentText();
         saveLastSelectedOption(selectedOption);
     });
-
-
 }
 
 MainWindow::~MainWindow()
@@ -488,7 +482,7 @@ void MainWindow::saveLastSelectedOption(const QString& selectedOption)
 //        });
 //}
 
-void MainWindow::populateComboBox()
+void MainWindow::populateComboBox(QString option)
 {
         QComboBox* comboBox = ui->comboBoxCarro;
 
@@ -501,20 +495,96 @@ void MainWindow::populateComboBox()
         ui->comboBoxCarro->addItems(folders);
 
         qDebug() << "Combo Box Items: " << comboBox->count();
+
+        ui->comboBoxCarro->setCurrentText(option);
 }
+
 
 void MainWindow::handleComboBoxIndexChanged(int index)
 {
-    if (ui->btnVerCarro) {
-        // If index is -1, no option is selected
-        bool isButtonVisible = (index != -1);
-        ui->btnVerCarro->setVisible(isButtonVisible);
-    }
+        if (ui->btnVerCarro && ui->btnDuplicarCarro) {
+            // If index is -1, no option is selected
+            bool isButtonVisible = (index != -1);
+            ui->btnVerCarro->setVisible(isButtonVisible);
+            ui->btnDuplicarCarro->setVisible(isButtonVisible);
+        }
 }
 
 
+void MainWindow::on_btnDuplicarCarro_clicked()
+{
+ QString nomeCarro = ui->comboBoxCarro->currentText();
+
+    QString folderName = nomeCarro.trimmed();
+
+    QString currentPath = QDir::currentPath();
+    QString targetDir = currentPath + "/../FSIPLeiria/settings";
+    QString sourceFolderPath = targetDir + "/" + folderName;
+
+    // Ask the user for the new folder name
+    QString newFolderName = QInputDialog::getText(this, tr("Nome da Pasta"), tr("Digite o nome da nova pasta:"));
+
+    while (!newFolderName.isEmpty() && QDir(targetDir + "/" + newFolderName).exists()) {
+        QMessageBox::critical(this, tr("Erro"), tr("A pasta com o nome especificado já existe!"));
+
+        newFolderName = QInputDialog::getText(this, tr("Nome da Pasta"), tr("Digite outro nome para a nova pasta:"));
+    }
+
+    if (!newFolderName.isEmpty()) {
+
+        // Check if the new folder name contains the invalid character ";"
+        if (newFolderName.contains(';')) {
+            QMessageBox::critical(this, tr("Erro"), tr("O nome da pasta não pode conter o caracter ';'."));
+
+            newFolderName = QInputDialog::getText(this, tr("Nome da Pasta"), tr("Digite outro nome para a nova pasta:"));
+        }
+
+        QString newFolderPath = targetDir + "/" + newFolderName;
+
+        // Create the new folder
+        if (!QDir().mkdir(newFolderPath)) {
+            QMessageBox::critical(this, tr("Erro"), tr("Não foi possível criar a nova pasta!"));
+            return;
+        }
+
+        // Copy the contents of the source folder to the new folder
+        QDir(sourceFolderPath).setNameFilters(QStringList("*.*"));
+        QStringList files = QDir(sourceFolderPath).entryList();
+        foreach (QString file, files) {
+            QString sourceFilePath = sourceFolderPath + "/" + file;
+            QString destFilePath = newFolderPath + "/" + file;
+            QFile::copy(sourceFilePath, destFilePath);
+        }
+
+        // Iterate over the .txt files in the new folder and replace the first element with the new folder's name
+        QDir newFolderDir(newFolderPath);
+        QStringList txtFiles = QStringList("caracteristicas.txt");
+
+        foreach (const QString& txtFile, txtFiles) {
+            QString filePath = newFolderDir.absoluteFilePath(txtFile);
+
+            QFile file(filePath);
+            if (file.open(QIODevice::ReadWrite | QIODevice::Text)) {
+                QString content = file.readAll();
+                file.seek(0);
+
+                // Replace the first element with the new folder's name
+                QStringList elements = content.split(';');
+                elements.replace(0, newFolderName);
+                QString newContent = elements.join(';');
+
+                file.write(newContent.toUtf8());
+                file.close();
+            } else {
+                QMessageBox::critical(this, tr("Erro"), tr("Não foi possível abrir o arquivo: ") + txtFile);
+            }
+        }
 
 
+        // Inform the user that the folder has been duplicated
+        QMessageBox::information(this, tr("Pasta Duplicada"), tr("A pasta foi duplicada com sucesso!"));
 
-
+        populateComboBox(newFolderName);
+    }
+}
 
