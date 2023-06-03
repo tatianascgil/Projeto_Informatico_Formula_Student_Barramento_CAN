@@ -39,8 +39,10 @@ namespace {
 struct qt_meta_stringdata_CLASSMainWindowENDCLASS_t {};
 static constexpr auto qt_meta_stringdata_CLASSMainWindowENDCLASS = QtMocHelpers::stringData(
     "MainWindow",
-    "on_btnReadFile_clicked",
+    "populateComboBox",
     "",
+    "option",
+    "on_btnReadFile_clicked",
     "on_btnSaveFile_clicked",
     "on_btnCreateFile_activated",
     "index",
@@ -51,9 +53,10 @@ static constexpr auto qt_meta_stringdata_CLASSMainWindowENDCLASS = QtMocHelpers:
 );
 #else  // !QT_MOC_HAS_STRING_DATA
 struct qt_meta_stringdata_CLASSMainWindowENDCLASS_t {
+
     uint offsetsAndSizes[20];
     char stringdata0[11];
-    char stringdata1[23];
+    char stringdata1[17];
     char stringdata2[1];
     char stringdata3[23];
     char stringdata4[27];
@@ -62,6 +65,7 @@ struct qt_meta_stringdata_CLASSMainWindowENDCLASS_t {
     char stringdata7[25];
     char stringdata8[27];
     char stringdata9[28];
+
 };
 #define QT_MOC_LITERAL(ofs, len) \
     uint(sizeof(qt_meta_stringdata_CLASSMainWindowENDCLASS_t::offsetsAndSizes) + ofs), len 
@@ -79,8 +83,10 @@ Q_CONSTINIT static const qt_meta_stringdata_CLASSMainWindowENDCLASS_t qt_meta_st
         QT_MOC_LITERAL(166, 27)   // "on_btnDuplicarCarro_clicked"
     },
     "MainWindow",
-    "on_btnReadFile_clicked",
+    "populateComboBox",
     "",
+    "option",
+    "on_btnReadFile_clicked",
     "on_btnSaveFile_clicked",
     "on_btnCreateFile_activated",
     "index",
@@ -107,6 +113,7 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSMainWindowENDCLASS[] = {
        0,       // signalCount
 
  // slots: name, argc, parameters, tag, flags, initial metatype offsets
+
        1,    0,   56,    2, 0x08,    1 /* Private */,
        3,    0,   57,    2, 0x08,    2 /* Private */,
        4,    1,   58,    2, 0x08,    3 /* Private */,
@@ -116,9 +123,11 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSMainWindowENDCLASS[] = {
        9,    0,   64,    2, 0x08,    8 /* Private */,
 
  // slots: parameters
+    QMetaType::Void, QMetaType::QString,    3,
     QMetaType::Void,
     QMetaType::Void,
-    QMetaType::Void, QMetaType::Int,    5,
+    QMetaType::Void, QMetaType::Int,    7,
+    QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
@@ -136,6 +145,9 @@ Q_CONSTINIT const QMetaObject MainWindow::staticMetaObject = { {
     qt_incomplete_metaTypeArray<qt_meta_stringdata_CLASSMainWindowENDCLASS_t,
         // Q_OBJECT / Q_GADGET
         QtPrivate::TypeAndForceComplete<MainWindow, std::true_type>,
+        // method 'populateComboBox'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<QString, std::false_type>,
         // method 'on_btnReadFile_clicked'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         // method 'on_btnSaveFile_clicked'

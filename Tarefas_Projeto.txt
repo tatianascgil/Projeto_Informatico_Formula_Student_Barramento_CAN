@@ -69,7 +69,7 @@ Tarefas 15-05/29-05
 - Abrir a aplicação com o último carro selecionado.
 - 
 - Gerir carro:
-	-> Criar carro, com todas as verificações feitas (incluindo a exclusão de ";"
+	-> Criar carro, com todas as verificações feitas (incluindo a exclusão de ";")
 	-> Ver dados
 	-> Editar
 	-> Apagar
