@@ -49,6 +49,7 @@ FORMS += \
     gerirtipomensagem.ui \
     mainwindow.ui \
     modulo.ui \
+    tabeladados.ui \
     vercarro.ui
 
 # Default rules for deployment.
