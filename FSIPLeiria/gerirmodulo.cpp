@@ -4,6 +4,10 @@
 #include "ui_gerircarro.h"
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include "criartipomensagem.h"
+#include "ui_criartipomensagem.h"
+#include "gerirtipomensagem.h"
+#include "ui_gerirtipomensagem.h"
 
 #include <QDir>
 #include <QStandardItemModel>
@@ -16,6 +20,8 @@ GerirModulo::GerirModulo(QWidget *parent) :
     ui(new Ui::GerirModulo)
 {
     ui->setupUi(this);
+
+    connect(ui->tableViewTipodeMensagemModulo, &QTableView::doubleClicked, this, &GerirModulo::openGerirTipoMensagemWindow);
 }
 
 GerirModulo::~GerirModulo()
@@ -27,9 +33,111 @@ void GerirModulo::setNome(const QString& nome){
     ui->labelNomeCarro->setText(nome);
 }
 
-void GerirModulo::loadModuloData(const QStringList& data)
+void GerirModulo::setNomeModulo(const QString& nome){
+    ui->labelNomeModulo->setText(nome);
+}
+
+void GerirModulo::openGerirTipoMensagemWindow(const QModelIndex& index)
 {
-    QString nomeModulo = data.at(0);
+    QStandardItemModel* model = qobject_cast<QStandardItemModel*>(ui->tableViewTipodeMensagemModulo->model());
+    if (!model)
+        return;
+
+    int row = index.row();
+    QStringList rowData;
+
+    for (int col = 0; col < model->columnCount(); ++col) {
+        QString value = model->index(row, col).data().toString();
+        rowData.append(value);
+    }
+
+    this->close();
+    const int gerirTipoMensagemWidth = 800;
+    const int gerirTipoMensagemHeight = 600;
+
+    GerirTipoMensagem* gerirTipoMensagem = new GerirTipoMensagem(this);
+
+    QString nomeCarro = ui->labelNomeCarro->text().trimmed();
+    QString nomeModulo = ui->labelNomeModulo->text().trimmed();
+    QString codHex = rowData.at(0);
+    QString obs = rowData.at(2);
+
+    gerirTipoMensagem->setNome(nomeCarro);
+    gerirTipoMensagem->setNomeModulo(nomeModulo);
+    gerirTipoMensagem->setCodigoHexadecimal(codHex);
+    gerirTipoMensagem->setObservacoes(obs);
+
+    // Define o tamanho mínimo e máximo da janela
+    gerirTipoMensagem->setMinimumSize(gerirTipoMensagemWidth, gerirTipoMensagemHeight);
+    gerirTipoMensagem->setMaximumSize(gerirTipoMensagemWidth, gerirTipoMensagemHeight);
+
+    gerirTipoMensagem->show();
+
+}
+
+
+
+void GerirModulo::lerDadosTiposMensagem(const QString& nomeModulo)
+{
+
+    ui->labelNomeModulo->setText(nomeModulo);
+    QString folderName = ui->labelNomeCarro->text();
+
+    QString currentPath = QDir::currentPath();
+    QString targetDir = currentPath + "/../FSIPLeiria/settings";
+    QString folderPath = targetDir + "/" + folderName;
+
+    QString modulosPath = folderPath + "/tiposMensagem.txt";
+    QFile modulos(modulosPath);
+
+    if (modulos.open(QIODevice::ReadOnly | QIODevice::Text)) {
+        QTextStream stream(&modulos);
+
+        QList<QStringList> filteredData; // To store the filtered data
+
+        // Read all the lines and filter the data based on nomeModulo
+        while (!stream.atEnd()) {
+            QString line = stream.readLine();
+            QStringList values = line.split(";");
+            if (values.size() > 0 && values.at(0) == nomeModulo) {
+                filteredData.append(values.mid(1, 4));
+            }
+        }
+
+        modulos.close();
+
+        if (!filteredData.isEmpty()) {
+            // Display the filtered data in the QTableView
+            QStandardItemModel* model = new QStandardItemModel(filteredData.count(), filteredData[0].count(), this);
+
+
+            // Set the headers
+            model->setHorizontalHeaderLabels({"Código Hex", "Nº Mensagens", "Observações"});
+
+            // Populate the model with filtered data
+            for (int row = 0; row < filteredData.count(); ++row) {
+                for (int col = 0; col < filteredData[row].count(); ++col) {
+                    QStandardItem* item = new QStandardItem(filteredData[row][col]);
+                    item->setEditable(false); // Set the item as read-only
+                    model->setItem(row, col, item);
+                }
+            }
+
+            // Set the mode of resizing for other columns
+            QHeaderView* horizontalHeader = ui->tableViewTipodeMensagemModulo->horizontalHeader();
+
+            horizontalHeader->setSectionResizeMode(QHeaderView::Stretch);
+            horizontalHeader->setStretchLastSection(false);
+
+            // Set the model to the QTableView
+            ui->tableViewTipodeMensagemModulo->setModel(model);
+        }
+    }
+}
+
+
+void GerirModulo::lerDadosModulo(const QString& nomeModulo)
+{
 
     ui->labelNomeModulo->setText(nomeModulo);
     QString folderName = ui->labelNomeCarro->text();
@@ -62,7 +170,7 @@ void GerirModulo::loadModuloData(const QStringList& data)
             QStandardItemModel* model = new QStandardItemModel(filteredData.count(), filteredData[0].count(), this);
 
             // Set the headers
-            model->setHorizontalHeaderLabels({"Nome", "Modulo", "Endianess", "Observações"});
+            model->setHorizontalHeaderLabels({"Nome", "Endianess", "Observações"});
 
             // Populate the model with filtered data
             for (int row = 0; row < filteredData.count(); ++row) {
@@ -305,5 +413,26 @@ void GerirModulo::on_btnApagarModulo_clicked()
 }
 
 
+void GerirModulo::on_btnCriarTipoMensagem_clicked()
+{
 
+    const int criarTipoMensagemWidth = 700;
+    const int criarTipoMensagemHeight = 250;
+
+    CriarTipoMensagem* criarTipoMensagem = new CriarTipoMensagem(this);
+
+    QString nomeCarro = ui->labelNomeCarro->text().trimmed();
+    QString nomeModulo = ui->labelNomeModulo->text().trimmed();
+
+    criarTipoMensagem->setNome(nomeCarro);
+    criarTipoMensagem->setNomeModulo(nomeModulo);
+
+    qDebug() << "Nome do carro: " << nomeCarro;
+
+    // Define o tamanho mínimo e máximo da janela
+    criarTipoMensagem->setMinimumSize(criarTipoMensagemWidth, criarTipoMensagemHeight);
+    criarTipoMensagem->setMaximumSize(criarTipoMensagemWidth, criarTipoMensagemHeight);
+    criarTipoMensagem->show();
+    this->close();
+}
 

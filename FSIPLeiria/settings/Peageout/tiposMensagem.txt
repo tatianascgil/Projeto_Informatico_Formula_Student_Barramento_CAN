@@ -1,0 +1,2 @@
+Dynamics;101;72;Módulo 2.
+Thermal Sensor;130;5;Módulo 2.

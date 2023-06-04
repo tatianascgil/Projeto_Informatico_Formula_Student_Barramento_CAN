@@ -47,6 +47,9 @@ void GerirCarro::openGerirModuloWindow(const QModelIndex& index)
         QString value = model->index(row, col).data().toString();
         rowData.append(value);
     }
+
+    QString nomeModulo = rowData.at(0);
+
     this->close();
     const int gerirModuloWidth = 800;
     const int gerirModuloHeight = 500;
@@ -56,13 +59,13 @@ void GerirCarro::openGerirModuloWindow(const QModelIndex& index)
     QString nomeCarro = ui->labelNomeCarro->text().trimmed();
 
     gerirModulo->setNome(nomeCarro);
-    qDebug() << "Nome do carro: " << nomeCarro;
 
     // Define o tamanho mínimo e máximo da janela
     gerirModulo->setMinimumSize(gerirModuloWidth, gerirModuloHeight);
     gerirModulo->setMaximumSize(gerirModuloWidth, gerirModuloHeight);
 
-    gerirModulo->loadModuloData(rowData); // Pass the filtered data to the new window
+    gerirModulo->lerDadosModulo(nomeModulo); // Pass the filtered data to the new window
+    gerirModulo->lerDadosTiposMensagem(nomeModulo);
     gerirModulo->show();
 
 }
@@ -140,7 +143,7 @@ void GerirCarro::lerDadosCarro(const QString& nome){
             QStandardItemModel* model = new QStandardItemModel(data.count(), data[0].count(), this);
 
             // Set the headers
-            model->setHorizontalHeaderLabels({"Nome", "Modulo", "Endianess", "Observações"});
+            model->setHorizontalHeaderLabels({"Nome", "Endianess", "Observações"});
 
             // Populate the model with data
             for (int row = 0; row < data.count(); ++row) {
@@ -171,7 +174,7 @@ void GerirCarro::on_commandButtonVoltar_clicked()
 
     // Construct the path to the car's folder
     QString folderName = ui->labelNomeCarro->text();
-    folderName.remove(' ');
+
 
     QString currentPath = QDir::currentPath();
     QString targetDir = currentPath + "/../FSIPLeiria/settings";

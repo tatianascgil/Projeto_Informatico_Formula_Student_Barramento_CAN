@@ -66,6 +66,7 @@ public:
         tableViewModulosCarro = new QTableView(GerirCarro);
         tableViewModulosCarro->setObjectName("tableViewModulosCarro");
         tableViewModulosCarro->setGeometry(QRect(20, 250, 761, 191));
+        tableViewModulosCarro->setStyleSheet(QString::fromUtf8(""));
         label_2 = new QLabel(GerirCarro);
         label_2->setObjectName("label_2");
         label_2->setGeometry(QRect(10, 210, 311, 31));

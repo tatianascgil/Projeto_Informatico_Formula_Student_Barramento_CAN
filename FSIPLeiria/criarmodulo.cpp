@@ -51,31 +51,22 @@ void CriarModulo::on_btnCriarModulo_clicked()
 {
 
     QString nomeModulo = ui->textEditNomeModulo->toPlainText();
-    QString modeloModulo = ui->textEditModeloModulo->toPlainText();
     QString obsModulo = ui->textEditObsModulo->toPlainText();
     QString nomeCarro = ui->labelNomeCarro->text().trimmed();
 
     bool nomeModuloEmpty = nomeModulo.trimmed().isEmpty();
-    bool modeloModuloEmpty = modeloModulo.trimmed().isEmpty();
 
-    if (nomeModuloEmpty && modeloModuloEmpty) {
-        QMessageBox::critical(this, "Erro", "É obrigatório preencher os campos 'Nome' e 'Modelo'!");
-        return;
-    } else if (nomeModuloEmpty) {
+    if (nomeModuloEmpty) {
         QMessageBox::critical(this, "Erro", "É obrigatório preencher o campo 'Nome'!");
-        return;
-    } else if (modeloModuloEmpty) {
-        QMessageBox::critical(this, "Erro", "É obrigatório preencher o campo 'Modelo'!");
         return;
     }
 
-    if(nomeModulo.contains(";")){
+    if((nomeModulo.contains(";")) || (obsModulo.contains(";"))){
         QMessageBox::critical(this, "Erro", "É proíbido utilizar semi-vírgulas ';'!");
         return;
     }
 
     QString folderName = nomeCarro.trimmed();
-     folderName.replace(" ", "");
 
     QString currentPath = QDir::currentPath();
     QString targetDir = currentPath + "/../FSIPLeiria/settings";
@@ -96,7 +87,6 @@ void CriarModulo::on_btnCriarModulo_clicked()
 
                 // Write the data
                 QString nome = nomeModulo;
-                QString modelo = modeloModulo;
                 QString endianess;
                 if (ui->radioButton_Littleendian->isChecked()) {
                     endianess = "LittleEndian";
@@ -104,7 +94,7 @@ void CriarModulo::on_btnCriarModulo_clicked()
                     endianess = "BigEndian";
                 }
                 QString observacoes = obsModulo;
-                stream << nome << ";" << modelo << ";" << endianess <<";" << observacoes << "\n";
+                stream << nome << ";"  << endianess << ";" << observacoes << "\n";
 
                 file.close();
 
@@ -122,15 +112,24 @@ void CriarModulo::on_btnCriarModulo_clicked()
 
 void CriarModulo::on_btnCancelar_clicked()
 {
+
+    //TODO - Verificar se os campos estão preenchidos
     const int gerircarroWidth = 800;
     const int gerircarroHeight = 500;
 
     // Cria a janela GerirCarro
     GerirCarro *gerircarro = new GerirCarro();
 
+    QString nomeCarro = ui->labelNomeCarro->text().trimmed();
+
+    gerircarro->setNome(nomeCarro);
+    qDebug() << "Nome do carro: " << nomeCarro;
+
     // Define o tamanho mínimo e máximo da janela
     gerircarro->setMinimumSize(gerircarroWidth, gerircarroHeight);
     gerircarro->setMaximumSize(gerircarroWidth, gerircarroHeight);
+    gerircarro->lerDadosCarro(nomeCarro);
+
     gerircarro->show();
     this->close();
 }

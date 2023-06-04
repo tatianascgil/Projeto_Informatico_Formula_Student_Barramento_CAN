@@ -15,14 +15,20 @@ public:
     explicit GerirModulo(QWidget *parent = nullptr);
     ~GerirModulo();
 public slots:
-    void loadModuloData(const QStringList& data);
+    void lerDadosModulo(const QString& nomeModulo);
+    void lerDadosTiposMensagem(const QString& nomeModulo);
+    void openGerirTipoMensagemWindow(const QModelIndex& index);
     void setNome(const QString& nome);
+    void setNomeModulo(const QString& nome);
+
 private slots:
     void on_btnGuardarModulo_clicked();
 
     void on_commandButtonVoltar_clicked();
 
     void on_btnApagarModulo_clicked();
+
+    void on_btnCriarTipoMensagem_clicked();
 
 private:
     Ui::GerirModulo *ui;

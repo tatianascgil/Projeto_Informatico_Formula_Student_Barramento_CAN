@@ -17,8 +17,6 @@
 
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-#include "modulo.h"
-#include "ui_modulo.h"
 #include "vercarro.h"
 #include "ui_vercarro.h"
 #include "criarcarro.h"

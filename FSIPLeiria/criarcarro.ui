@@ -222,6 +222,9 @@ QPushButton:pressed {
      <height>41</height>
     </rect>
    </property>
+   <property name="styleSheet">
+    <string notr="true">background: rgb(220,220,220)</string>
+   </property>
    <property name="currentIndex">
     <number>-1</number>
    </property>

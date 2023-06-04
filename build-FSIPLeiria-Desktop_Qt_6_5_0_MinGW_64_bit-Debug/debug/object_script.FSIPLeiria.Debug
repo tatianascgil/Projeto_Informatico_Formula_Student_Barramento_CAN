@@ -40,7 +40,6 @@ debug/gerirmodulo.o
 debug/gerirtipomensagem.o
 debug/main.o
 debug/mainwindow.o
-debug/modulo.o
 debug/vercarro.o
 debug/moc_xlsxdocument.o
 debug/moc_criarcarro.o
@@ -51,5 +50,4 @@ debug/moc_gerircarro.o
 debug/moc_gerirmodulo.o
 debug/moc_gerirtipomensagem.o
 debug/moc_mainwindow.o
-debug/moc_modulo.o
 debug/moc_vercarro.o

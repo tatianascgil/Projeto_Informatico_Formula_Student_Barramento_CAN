@@ -37,11 +37,6 @@ void CriarCarro::on_btnCriarCarro_clicked()
     QString tipoCarro = ui->btnTipoCarro->currentText();
     QString obsCarro = ui->textEditObsCarro->toPlainText();
 
-//    // Emit the carNameEntered signal after a delay
-//    QMetaObject::invokeMethod(this, [this, nomeCarro]() {
-//            emit carNameEntered(nomeCarro);
-//        }, Qt::QueuedConnection);;
-
     bool nomeCarroEmpty = nomeCarro.trimmed().isEmpty();
     bool tipoCarroEmpty = tipoCarro.isEmpty();
 
@@ -82,15 +77,6 @@ void CriarCarro::on_btnCriarCarro_clicked()
         if (folderDir.mkpath(folderPath)) {
             QMessageBox::information(this, "Successo", "Pasta " + folderName + " criada com sucesso!");
 
-//            // Emit the signal with the car name
-//            emit carNameEntered(nomeCarro);
-
-//            // Set the selected value of the QComboBox
-//            MainWindow* mainWindow = qobject_cast<MainWindow*>(parent());
-//            if (mainWindow) {
-//                mainWindow->setComboBoxSelectedValue(nomeCarro);
-//            }
-
             // Saving the car data in a TXT file
             QString filePath = folderPath + "/caracteristicas.txt";
             QFile file(filePath);
@@ -98,10 +84,7 @@ void CriarCarro::on_btnCriarCarro_clicked()
                 QTextStream stream(&file);
 
                 // Write the data
-                QString nome = nomeCarro;
-                QString tipo = tipoCarro;
-                QString observacoes = obsCarro;
-                stream << nome << ";" << tipo << ";" << observacoes << "\n";
+                stream << nomeCarro << ";" << tipoCarro << ";" << obsCarro << "\n";
 
                 file.close();
 
@@ -109,6 +92,7 @@ void CriarCarro::on_btnCriarCarro_clicked()
 
 
                 MainWindow *mainWindow = new MainWindow();
+                mainWindow->populateComboBox(nomeCarro);
                 mainWindow->show();
                 this->close();
             } else {

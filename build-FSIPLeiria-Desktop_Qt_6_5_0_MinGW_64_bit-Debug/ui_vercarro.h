@@ -137,7 +137,7 @@ public:
 
     void retranslateUi(QWidget *VerCarro)
     {
-        VerCarro->setWindowTitle(QCoreApplication::translate("VerCarro", "Ver Carrro", nullptr));
+        VerCarro->setWindowTitle(QCoreApplication::translate("VerCarro", "Ver Carro", nullptr));
         btnDefinicoes->setText(QCoreApplication::translate("VerCarro", "Defini\303\247\303\265es", nullptr));
         btnEstatistica->setText(QCoreApplication::translate("VerCarro", "Estat\303\255sticas", nullptr));
         label->setText(QCoreApplication::translate("VerCarro", "Carro:", nullptr));

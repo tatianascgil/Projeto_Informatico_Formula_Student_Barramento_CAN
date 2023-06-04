@@ -37,6 +37,7 @@ public:
     QPushButton *btnCriarTipoMensagem;
     QLabel *labelNomeCarro;
     QLabel *label_3;
+    QLabel *label_4;
 
     void setupUi(QDialog *GerirModulo)
     {
@@ -51,6 +52,7 @@ public:
         tableViewTipodeMensagemModulo = new QTableView(GerirModulo);
         tableViewTipodeMensagemModulo->setObjectName("tableViewTipodeMensagemModulo");
         tableViewTipodeMensagemModulo->setGeometry(QRect(20, 250, 761, 191));
+        tableViewTipodeMensagemModulo->setStyleSheet(QString::fromUtf8(""));
         commandButtonVoltar = new QCommandLinkButton(GerirModulo);
         commandButtonVoltar->setObjectName("commandButtonVoltar");
         commandButtonVoltar->setGeometry(QRect(0, -10, 31, 31));
@@ -86,7 +88,7 @@ public:
         line->setFrameShadow(QFrame::Sunken);
         label = new QLabel(GerirModulo);
         label->setObjectName("label");
-        label->setGeometry(QRect(20, 30, 111, 31));
+        label->setGeometry(QRect(20, 30, 81, 31));
         QFont font1;
         font1.setPointSize(16);
         font1.setBold(true);
@@ -125,7 +127,7 @@ public:
         label_2->setFont(font1);
         btnCriarTipoMensagem = new QPushButton(GerirModulo);
         btnCriarTipoMensagem->setObjectName("btnCriarTipoMensagem");
-        btnCriarTipoMensagem->setGeometry(QRect(520, 450, 251, 41));
+        btnCriarTipoMensagem->setGeometry(QRect(530, 450, 251, 41));
         btnCriarTipoMensagem->setFont(font);
         btnCriarTipoMensagem->setCursor(QCursor(Qt::PointingHandCursor));
         btnCriarTipoMensagem->setStyleSheet(QString::fromUtf8("QPushButton{\n"
@@ -144,11 +146,18 @@ public:
 "}"));
         labelNomeCarro = new QLabel(GerirModulo);
         labelNomeCarro->setObjectName("labelNomeCarro");
-        labelNomeCarro->setGeometry(QRect(120, 0, 91, 31));
+        labelNomeCarro->setGeometry(QRect(100, 0, 91, 31));
+        QFont font3;
+        font3.setPointSize(16);
+        font3.setBold(false);
+        labelNomeCarro->setFont(font3);
         label_3 = new QLabel(GerirModulo);
         label_3->setObjectName("label_3");
-        label_3->setGeometry(QRect(40, 0, 81, 31));
+        label_3->setGeometry(QRect(40, 0, 61, 31));
         label_3->setFont(font1);
+        label_4 = new QLabel(GerirModulo);
+        label_4->setObjectName("label_4");
+        label_4->setGeometry(QRect(20, 470, 501, 20));
 
         retranslateUi(GerirModulo);
 
@@ -167,6 +176,7 @@ public:
         btnCriarTipoMensagem->setText(QCoreApplication::translate("GerirModulo", "Criar Tipo de Mensagem", nullptr));
         labelNomeCarro->setText(QCoreApplication::translate("GerirModulo", "Carro", nullptr));
         label_3->setText(QCoreApplication::translate("GerirModulo", "Carro", nullptr));
+        label_4->setText(QCoreApplication::translate("GerirModulo", "Nota: Fazer double-lick na linha respetiva ao m\303\263dulo que pretende ver os dados a pormenor.", nullptr));
     } // retranslateUi
 
 };

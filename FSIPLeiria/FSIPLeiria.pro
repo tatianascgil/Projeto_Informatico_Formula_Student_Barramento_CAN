@@ -24,7 +24,6 @@ SOURCES += \
     gerirtipomensagem.cpp \
     main.cpp \
     mainwindow.cpp \
-    modulo.cpp \
     vercarro.cpp
 
 HEADERS += \
@@ -36,7 +35,6 @@ HEADERS += \
     gerirmodulo.h \
     gerirtipomensagem.h \
     mainwindow.h \
-    modulo.h \
     vercarro.h
 
 FORMS += \
@@ -48,7 +46,6 @@ FORMS += \
     gerirmodulo.ui \
     gerirtipomensagem.ui \
     mainwindow.ui \
-    modulo.ui \
     tabeladados.ui \
     vercarro.ui
 

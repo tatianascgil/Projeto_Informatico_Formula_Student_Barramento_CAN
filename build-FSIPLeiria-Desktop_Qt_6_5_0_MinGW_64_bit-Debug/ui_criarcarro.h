@@ -125,6 +125,7 @@ public:
         btnTipoCarro->addItem(QString());
         btnTipoCarro->setObjectName("btnTipoCarro");
         btnTipoCarro->setGeometry(QRect(160, 80, 361, 41));
+        btnTipoCarro->setStyleSheet(QString::fromUtf8("background: rgb(220,220,220)"));
 
         retranslateUi(CriarCarro);
 

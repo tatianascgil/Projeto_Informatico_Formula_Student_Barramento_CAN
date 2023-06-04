@@ -53,6 +53,9 @@
    <property name="cursor">
     <cursorShape>PointingHandCursor</cursorShape>
    </property>
+   <property name="styleSheet">
+    <string notr="true">background: rgb(220,220,220)</string>
+   </property>
    <property name="minimum">
     <number>0</number>
    </property>
@@ -75,6 +78,9 @@
    <property name="cursor">
     <cursorShape>PointingHandCursor</cursorShape>
    </property>
+   <property name="styleSheet">
+    <string notr="true">background: rgb(220,220,220)</string>
+   </property>
    <property name="minimum">
     <number>0</number>
    </property>
@@ -88,7 +94,7 @@
     <number>0</number>
    </property>
   </widget>
-  <widget class="QLabel" name="label_5">
+  <widget class="QLabel" name="labelOffset">
    <property name="geometry">
     <rect>
      <x>480</x>
@@ -139,6 +145,9 @@
    <property name="cursor" stdset="0">
     <cursorShape>IBeamCursor</cursorShape>
    </property>
+   <property name="styleSheet">
+    <string notr="true">background: rgb(220,220,220)</string>
+   </property>
   </widget>
   <widget class="QTextEdit" name="textEdit_Fator4">
    <property name="geometry">
@@ -152,6 +161,9 @@
    <property name="cursor" stdset="0">
     <cursorShape>IBeamCursor</cursorShape>
    </property>
+   <property name="styleSheet">
+    <string notr="true">background: rgb(220,220,220)</string>
+   </property>
   </widget>
   <widget class="QSpinBox" name="spinBox_Final4">
    <property name="geometry">
@@ -164,6 +176,9 @@
    </property>
    <property name="cursor">
     <cursorShape>PointingHandCursor</cursorShape>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background: rgb(220,220,220)</string>
    </property>
    <property name="minimum">
     <number>0</number>
@@ -206,6 +221,9 @@
    <property name="cursor" stdset="0">
     <cursorShape>IBeamCursor</cursorShape>
    </property>
+   <property name="styleSheet">
+    <string notr="true">background: rgb(220,220,220)</string>
+   </property>
   </widget>
   <widget class="QTextEdit" name="textEdit_Offset5">
    <property name="geometry">
@@ -218,6 +236,9 @@
    </property>
    <property name="cursor" stdset="0">
     <cursorShape>IBeamCursor</cursorShape>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background: rgb(220,220,220)</string>
    </property>
   </widget>
   <widget class="QTextEdit" name="textEdit_Fator7">
@@ -232,6 +253,9 @@
    <property name="cursor" stdset="0">
     <cursorShape>IBeamCursor</cursorShape>
    </property>
+   <property name="styleSheet">
+    <string notr="true">background: rgb(220,220,220)</string>
+   </property>
   </widget>
   <widget class="QTextEdit" name="textEdit_Unidade5">
    <property name="geometry">
@@ -245,6 +269,9 @@
    <property name="cursor" stdset="0">
     <cursorShape>IBeamCursor</cursorShape>
    </property>
+   <property name="styleSheet">
+    <string notr="true">background: rgb(220,220,220)</string>
+   </property>
   </widget>
   <widget class="QSpinBox" name="spinBox_Final8">
    <property name="geometry">
@@ -257,6 +284,9 @@
    </property>
    <property name="cursor">
     <cursorShape>PointingHandCursor</cursorShape>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background: rgb(220,220,220)</string>
    </property>
    <property name="minimum">
     <number>0</number>
@@ -283,7 +313,7 @@
    </property>
    <property name="geometry">
     <rect>
-     <x>70</x>
+     <x>80</x>
      <y>160</y>
      <width>191</width>
      <height>31</height>
@@ -292,11 +322,14 @@
    <property name="cursor" stdset="0">
     <cursorShape>IBeamCursor</cursorShape>
    </property>
+   <property name="styleSheet">
+    <string notr="true">background: rgb(220,220,220)</string>
+   </property>
   </widget>
   <widget class="QTextEdit" name="textEdit_Nome4">
    <property name="geometry">
     <rect>
-     <x>70</x>
+     <x>80</x>
      <y>280</y>
      <width>191</width>
      <height>31</height>
@@ -304,6 +337,9 @@
    </property>
    <property name="cursor" stdset="0">
     <cursorShape>IBeamCursor</cursorShape>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background: rgb(220,220,220)</string>
    </property>
   </widget>
   <widget class="QTextEdit" name="textEdit_Fator5">
@@ -317,6 +353,9 @@
    </property>
    <property name="cursor" stdset="0">
     <cursorShape>IBeamCursor</cursorShape>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background: rgb(220,220,220)</string>
    </property>
   </widget>
   <widget class="QLabel" name="label_2">
@@ -357,6 +396,9 @@
    <property name="cursor">
     <cursorShape>PointingHandCursor</cursorShape>
    </property>
+   <property name="styleSheet">
+    <string notr="true">background: rgb(220,220,220)</string>
+   </property>
    <property name="minimum">
     <number>0</number>
    </property>
@@ -382,6 +424,9 @@
    <property name="cursor" stdset="0">
     <cursorShape>IBeamCursor</cursorShape>
    </property>
+   <property name="styleSheet">
+    <string notr="true">background: rgb(220,220,220)</string>
+   </property>
   </widget>
   <widget class="QTextEdit" name="textEdit_Offset4">
    <property name="geometry">
@@ -395,6 +440,9 @@
    <property name="cursor" stdset="0">
     <cursorShape>IBeamCursor</cursorShape>
    </property>
+   <property name="styleSheet">
+    <string notr="true">background: rgb(220,220,220)</string>
+   </property>
   </widget>
   <widget class="QSpinBox" name="spinBox_Inicial2">
    <property name="geometry">
@@ -407,6 +455,9 @@
    </property>
    <property name="cursor">
     <cursorShape>PointingHandCursor</cursorShape>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background: rgb(220,220,220)</string>
    </property>
    <property name="minimum">
     <number>0</number>
@@ -430,6 +481,9 @@
    <property name="cursor" stdset="0">
     <cursorShape>IBeamCursor</cursorShape>
    </property>
+   <property name="styleSheet">
+    <string notr="true">background: rgb(220,220,220)</string>
+   </property>
   </widget>
   <widget class="QSpinBox" name="spinBox_Inicial4">
    <property name="geometry">
@@ -442,6 +496,9 @@
    </property>
    <property name="cursor">
     <cursorShape>PointingHandCursor</cursorShape>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background: rgb(220,220,220)</string>
    </property>
    <property name="minimum">
     <number>0</number>
@@ -468,6 +525,9 @@
    <property name="cursor" stdset="0">
     <cursorShape>IBeamCursor</cursorShape>
    </property>
+   <property name="styleSheet">
+    <string notr="true">background: rgb(220,220,220)</string>
+   </property>
   </widget>
   <widget class="QSpinBox" name="spinBox_Inicial8">
    <property name="geometry">
@@ -480,6 +540,9 @@
    </property>
    <property name="cursor">
     <cursorShape>PointingHandCursor</cursorShape>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background: rgb(220,220,220)</string>
    </property>
    <property name="minimum">
     <number>0</number>
@@ -516,11 +579,14 @@
    <property name="cursor" stdset="0">
     <cursorShape>IBeamCursor</cursorShape>
    </property>
+   <property name="styleSheet">
+    <string notr="true">background: rgb(220,220,220)</string>
+   </property>
   </widget>
   <widget class="QTextEdit" name="textEdit_Nome6">
    <property name="geometry">
     <rect>
-     <x>70</x>
+     <x>80</x>
      <y>360</y>
      <width>191</width>
      <height>31</height>
@@ -528,6 +594,9 @@
    </property>
    <property name="cursor" stdset="0">
     <cursorShape>IBeamCursor</cursorShape>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background: rgb(220,220,220)</string>
    </property>
   </widget>
   <widget class="QSpinBox" name="spinBox_Inicial3">
@@ -541,6 +610,9 @@
    </property>
    <property name="cursor">
     <cursorShape>PointingHandCursor</cursorShape>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background: rgb(220,220,220)</string>
    </property>
    <property name="minimum">
     <number>0</number>
@@ -589,6 +661,9 @@
    <property name="cursor" stdset="0">
     <cursorShape>IBeamCursor</cursorShape>
    </property>
+   <property name="styleSheet">
+    <string notr="true">background: rgb(220,220,220)</string>
+   </property>
   </widget>
   <widget class="QTextEdit" name="textEdit_Offset6">
    <property name="geometry">
@@ -601,6 +676,9 @@
    </property>
    <property name="cursor" stdset="0">
     <cursorShape>IBeamCursor</cursorShape>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background: rgb(220,220,220)</string>
    </property>
   </widget>
   <widget class="QTextEdit" name="textEdit_Unidade1">
@@ -615,6 +693,9 @@
    <property name="cursor" stdset="0">
     <cursorShape>IBeamCursor</cursorShape>
    </property>
+   <property name="styleSheet">
+    <string notr="true">background: rgb(220,220,220)</string>
+   </property>
   </widget>
   <widget class="QSpinBox" name="spinBox_Inicial7">
    <property name="geometry">
@@ -627,6 +708,9 @@
    </property>
    <property name="cursor">
     <cursorShape>PointingHandCursor</cursorShape>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background: rgb(220,220,220)</string>
    </property>
    <property name="minimum">
     <number>0</number>
@@ -663,6 +747,9 @@
    <property name="cursor" stdset="0">
     <cursorShape>IBeamCursor</cursorShape>
    </property>
+   <property name="styleSheet">
+    <string notr="true">background: rgb(220,220,220)</string>
+   </property>
   </widget>
   <widget class="QSpinBox" name="spinBox">
    <property name="geometry">
@@ -676,11 +763,14 @@
    <property name="cursor">
     <cursorShape>PointingHandCursor</cursorShape>
    </property>
+   <property name="styleSheet">
+    <string notr="true">background: rgb(220,220,220)</string>
+   </property>
    <property name="maximum">
     <number>8</number>
    </property>
   </widget>
-  <widget class="QLabel" name="label_7">
+  <widget class="QLabel" name="labelUnidade">
    <property name="geometry">
     <rect>
      <x>620</x>
@@ -705,6 +795,9 @@
    <property name="cursor" stdset="0">
     <cursorShape>IBeamCursor</cursorShape>
    </property>
+   <property name="styleSheet">
+    <string notr="true">background: rgb(220,220,220)</string>
+   </property>
   </widget>
   <widget class="QTextEdit" name="textEdit_Unidade3">
    <property name="geometry">
@@ -718,11 +811,14 @@
    <property name="cursor" stdset="0">
     <cursorShape>IBeamCursor</cursorShape>
    </property>
+   <property name="styleSheet">
+    <string notr="true">background: rgb(220,220,220)</string>
+   </property>
   </widget>
   <widget class="QTextEdit" name="textEdit_Nome2">
    <property name="geometry">
     <rect>
-     <x>70</x>
+     <x>80</x>
      <y>200</y>
      <width>191</width>
      <height>31</height>
@@ -730,6 +826,9 @@
    </property>
    <property name="cursor" stdset="0">
     <cursorShape>IBeamCursor</cursorShape>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background: rgb(220,220,220)</string>
    </property>
   </widget>
   <widget class="QTextEdit" name="textEdit_Fator1">
@@ -744,8 +843,11 @@
    <property name="cursor" stdset="0">
     <cursorShape>IBeamCursor</cursorShape>
    </property>
+   <property name="styleSheet">
+    <string notr="true">background: rgb(220,220,220)</string>
+   </property>
   </widget>
-  <widget class="QLabel" name="label_6">
+  <widget class="QLabel" name="labelFator">
    <property name="geometry">
     <rect>
      <x>550</x>
@@ -758,7 +860,7 @@
     <string>Fator:</string>
    </property>
   </widget>
-  <widget class="QLabel" name="label_16">
+  <widget class="QLabel" name="labelFinal">
    <property name="geometry">
     <rect>
      <x>390</x>
@@ -771,7 +873,7 @@
     <string>Byte Final:*</string>
    </property>
   </widget>
-  <widget class="QLabel" name="label_15">
+  <widget class="QLabel" name="labelInicial">
    <property name="geometry">
     <rect>
      <x>290</x>
@@ -798,6 +900,9 @@
    </property>
    <property name="cursor">
     <cursorShape>PointingHandCursor</cursorShape>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background: rgb(220,220,220)</string>
    </property>
    <property name="minimum">
     <number>0</number>
@@ -834,6 +939,9 @@
    <property name="cursor" stdset="0">
     <cursorShape>IBeamCursor</cursorShape>
    </property>
+   <property name="styleSheet">
+    <string notr="true">background: rgb(220,220,220)</string>
+   </property>
   </widget>
   <widget class="QSpinBox" name="spinBox_Final1">
    <property name="geometry">
@@ -846,6 +954,9 @@
    </property>
    <property name="cursor">
     <cursorShape>PointingHandCursor</cursorShape>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background: rgb(220,220,220)</string>
    </property>
    <property name="minimum">
     <number>0</number>
@@ -872,6 +983,9 @@
    <property name="cursor" stdset="0">
     <cursorShape>IBeamCursor</cursorShape>
    </property>
+   <property name="styleSheet">
+    <string notr="true">background: rgb(220,220,220)</string>
+   </property>
   </widget>
   <widget class="QSpinBox" name="spinBox_Final5">
    <property name="geometry">
@@ -884,6 +998,9 @@
    </property>
    <property name="cursor">
     <cursorShape>PointingHandCursor</cursorShape>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background: rgb(220,220,220)</string>
    </property>
    <property name="minimum">
     <number>0</number>
@@ -923,11 +1040,14 @@
    <property name="cursor" stdset="0">
     <cursorShape>IBeamCursor</cursorShape>
    </property>
+   <property name="styleSheet">
+    <string notr="true">background: rgb(220,220,220)</string>
+   </property>
   </widget>
   <widget class="QTextEdit" name="textEdit_Nome8">
    <property name="geometry">
     <rect>
-     <x>70</x>
+     <x>80</x>
      <y>440</y>
      <width>191</width>
      <height>31</height>
@@ -935,6 +1055,9 @@
    </property>
    <property name="cursor" stdset="0">
     <cursorShape>IBeamCursor</cursorShape>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background: rgb(220,220,220)</string>
    </property>
   </widget>
   <widget class="QTextEdit" name="textEdit_Offset2">
@@ -948,6 +1071,9 @@
    </property>
    <property name="cursor" stdset="0">
     <cursorShape>IBeamCursor</cursorShape>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background: rgb(220,220,220)</string>
    </property>
   </widget>
   <widget class="Line" name="line_2">
@@ -978,6 +1104,9 @@
    <property name="cursor">
     <cursorShape>PointingHandCursor</cursorShape>
    </property>
+   <property name="styleSheet">
+    <string notr="true">background: rgb(220,220,220)</string>
+   </property>
    <property name="minimum">
     <number>0</number>
    </property>
@@ -1002,6 +1131,9 @@
    </property>
    <property name="cursor" stdset="0">
     <cursorShape>IBeamCursor</cursorShape>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background: rgb(220,220,220)</string>
    </property>
   </widget>
   <widget class="QLabel" name="label_17">
@@ -1028,6 +1160,9 @@
    </property>
    <property name="cursor">
     <cursorShape>PointingHandCursor</cursorShape>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background: rgb(220,220,220)</string>
    </property>
    <property name="minimum">
     <number>0</number>
@@ -1057,6 +1192,9 @@
    <property name="cursor">
     <cursorShape>PointingHandCursor</cursorShape>
    </property>
+   <property name="styleSheet">
+    <string notr="true">background: rgb(220,220,220)</string>
+   </property>
    <property name="minimum">
     <number>0</number>
    </property>
@@ -1073,7 +1211,7 @@
    </property>
    <property name="geometry">
     <rect>
-     <x>70</x>
+     <x>80</x>
      <y>240</y>
      <width>191</width>
      <height>31</height>
@@ -1081,6 +1219,9 @@
    </property>
    <property name="cursor" stdset="0">
     <cursorShape>IBeamCursor</cursorShape>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background: rgb(220,220,220)</string>
    </property>
   </widget>
   <widget class="QLabel" name="label4">
@@ -1099,7 +1240,7 @@
   <widget class="QTextEdit" name="textEdit_Nome7">
    <property name="geometry">
     <rect>
-     <x>70</x>
+     <x>80</x>
      <y>400</y>
      <width>191</width>
      <height>31</height>
@@ -1108,11 +1249,14 @@
    <property name="cursor" stdset="0">
     <cursorShape>IBeamCursor</cursorShape>
    </property>
+   <property name="styleSheet">
+    <string notr="true">background: rgb(220,220,220)</string>
+   </property>
   </widget>
   <widget class="QTextEdit" name="textEdit_Nome5">
    <property name="geometry">
     <rect>
-     <x>70</x>
+     <x>80</x>
      <y>320</y>
      <width>191</width>
      <height>31</height>
@@ -1121,15 +1265,172 @@
    <property name="cursor" stdset="0">
     <cursorShape>IBeamCursor</cursorShape>
    </property>
+   <property name="styleSheet">
+    <string notr="true">background: rgb(220,220,220)</string>
+   </property>
   </widget>
-  <widget class="QTextEdit" name="textEdit">
+  <widget class="QLabel" name="labelNomeModulo">
    <property name="geometry">
     <rect>
-     <x>100</x>
-     <y>490</y>
-     <width>361</width>
-     <height>91</height>
+     <x>130</x>
+     <y>60</y>
+     <width>111</width>
+     <height>31</height>
     </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>14</pointsize>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="text">
+    <string>INDEFINIDO</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="labelNomeCarro">
+   <property name="geometry">
+    <rect>
+     <x>120</x>
+     <y>10</y>
+     <width>111</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>14</pointsize>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="text">
+    <string>INDEFINIDO</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label">
+   <property name="geometry">
+    <rect>
+     <x>40</x>
+     <y>60</y>
+     <width>71</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>14</pointsize>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="text">
+    <string>Módulo:</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_4">
+   <property name="geometry">
+    <rect>
+     <x>480</x>
+     <y>30</y>
+     <width>141</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>14</pointsize>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="text">
+    <string>Código Hex: 0x</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_8">
+   <property name="geometry">
+    <rect>
+     <x>40</x>
+     <y>10</y>
+     <width>71</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>14</pointsize>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="text">
+    <string>Carro</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="labelCodHex">
+   <property name="geometry">
+    <rect>
+     <x>630</x>
+     <y>30</y>
+     <width>111</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>14</pointsize>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="text">
+    <string>INDEFINIDO</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="btnGuardarCarro">
+   <property name="geometry">
+    <rect>
+     <x>650</x>
+     <y>540</y>
+     <width>131</width>
+     <height>51</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>10</pointsize>
+    </font>
+   </property>
+   <property name="cursor">
+    <cursorShape>PointingHandCursor</cursorShape>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton{
+	background-color:rgb(255, 245, 166);
+	border:none;
+	color:rgb(95, 91, 61);
+	border -bottom: 5px solid rgb(162, 155, 105)
+}
+QPushButton:hover{
+	background-color:rgb(229, 217, 150);
+	border-bottom: 5px solid rgb(162, 155, 105)
+}
+QPushButton:pressed {
+	background-color:rgb(255, 242, 165);
+	border-bottom: 5px solid rgb(162, 155, 105)
+}</string>
+   </property>
+   <property name="text">
+    <string>Guardar</string>
+   </property>
+  </widget>
+  <widget class="QPlainTextEdit" name="plainTextEditObs">
+   <property name="geometry">
+    <rect>
+     <x>110</x>
+     <y>490</y>
+     <width>491</width>
+     <height>101</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background: rgb(220,220,220)</string>
    </property>
   </widget>
  </widget>

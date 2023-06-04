@@ -10,20 +10,115 @@
 #define UI_CRIARTIPOMENSAGEM_H
 
 #include <QtCore/QVariant>
+#include <QtGui/QIcon>
 #include <QtWidgets/QApplication>
+#include <QtWidgets/QCommandLinkButton>
 #include <QtWidgets/QDialog>
+#include <QtWidgets/QLabel>
+#include <QtWidgets/QPlainTextEdit>
+#include <QtWidgets/QPushButton>
+#include <QtWidgets/QSpinBox>
 
 QT_BEGIN_NAMESPACE
 
 class Ui_CriarTipoMensagem
 {
 public:
+    QLabel *label_5;
+    QPushButton *btnCriarTipoMensagem;
+    QCommandLinkButton *commandButtonVoltar;
+    QLabel *labelNomeCarro;
+    QLabel *label_2;
+    QLabel *label_3;
+    QLabel *label;
+    QLabel *label_4;
+    QLabel *labelNomeModulo;
+    QPlainTextEdit *plainTextEditObs;
+    QSpinBox *spinBoxCodHex;
+    QSpinBox *spinBoxNMsg;
 
     void setupUi(QDialog *CriarTipoMensagem)
     {
         if (CriarTipoMensagem->objectName().isEmpty())
             CriarTipoMensagem->setObjectName("CriarTipoMensagem");
-        CriarTipoMensagem->resize(733, 333);
+        CriarTipoMensagem->resize(700, 250);
+        QIcon icon;
+        icon.addFile(QString::fromUtf8("../icon.ico"), QSize(), QIcon::Normal, QIcon::Off);
+        CriarTipoMensagem->setWindowIcon(icon);
+        CriarTipoMensagem->setStyleSheet(QString::fromUtf8("background: white"));
+        label_5 = new QLabel(CriarTipoMensagem);
+        label_5->setObjectName("label_5");
+        label_5->setGeometry(QRect(20, 50, 71, 31));
+        QFont font;
+        font.setPointSize(14);
+        font.setBold(true);
+        label_5->setFont(font);
+        btnCriarTipoMensagem = new QPushButton(CriarTipoMensagem);
+        btnCriarTipoMensagem->setObjectName("btnCriarTipoMensagem");
+        btnCriarTipoMensagem->setGeometry(QRect(30, 200, 171, 41));
+        QFont font1;
+        font1.setPointSize(10);
+        btnCriarTipoMensagem->setFont(font1);
+        btnCriarTipoMensagem->setCursor(QCursor(Qt::PointingHandCursor));
+        btnCriarTipoMensagem->setStyleSheet(QString::fromUtf8("QPushButton{\n"
+"	background-color:rgb(255, 245, 166);\n"
+"	border:none;\n"
+"	color:rgb(95, 91, 61);\n"
+"	border -bottom: 5px solid rgb(162, 155, 105)\n"
+"}\n"
+"QPushButton:hover{\n"
+"	background-color:rgb(229, 217, 150);\n"
+"	border-bottom: 5px solid rgb(162, 155, 105)\n"
+"}\n"
+"QPushButton:pressed {\n"
+"	background-color:rgb(255, 242, 165);\n"
+"	border-bottom: 5px solid rgb(162, 155, 105)\n"
+"}"));
+        commandButtonVoltar = new QCommandLinkButton(CriarTipoMensagem);
+        commandButtonVoltar->setObjectName("commandButtonVoltar");
+        commandButtonVoltar->setGeometry(QRect(10, 10, 31, 41));
+        commandButtonVoltar->setCursor(QCursor(Qt::PointingHandCursor));
+        QIcon icon1;
+        icon1.addFile(QString::fromUtf8("../setavoltar.ico"), QSize(), QIcon::Normal, QIcon::Off);
+        commandButtonVoltar->setIcon(icon1);
+        labelNomeCarro = new QLabel(CriarTipoMensagem);
+        labelNomeCarro->setObjectName("labelNomeCarro");
+        labelNomeCarro->setGeometry(QRect(100, 50, 131, 31));
+        labelNomeCarro->setFont(font);
+        label_2 = new QLabel(CriarTipoMensagem);
+        label_2->setObjectName("label_2");
+        label_2->setGeometry(QRect(250, 50, 141, 31));
+        label_2->setFont(font);
+        label_3 = new QLabel(CriarTipoMensagem);
+        label_3->setObjectName("label_3");
+        label_3->setGeometry(QRect(250, 130, 51, 21));
+        label_3->setFont(font);
+        label = new QLabel(CriarTipoMensagem);
+        label->setObjectName("label");
+        label->setGeometry(QRect(20, 100, 71, 31));
+        label->setFont(font);
+        label_4 = new QLabel(CriarTipoMensagem);
+        label_4->setObjectName("label_4");
+        label_4->setGeometry(QRect(480, 50, 141, 31));
+        label_4->setFont(font);
+        labelNomeModulo = new QLabel(CriarTipoMensagem);
+        labelNomeModulo->setObjectName("labelNomeModulo");
+        labelNomeModulo->setGeometry(QRect(110, 100, 211, 31));
+        labelNomeModulo->setFont(font);
+        plainTextEditObs = new QPlainTextEdit(CriarTipoMensagem);
+        plainTextEditObs->setObjectName("plainTextEditObs");
+        plainTextEditObs->setGeometry(QRect(320, 140, 351, 101));
+        plainTextEditObs->setStyleSheet(QString::fromUtf8("background: rgb(220, 220, 220)"));
+        spinBoxCodHex = new QSpinBox(CriarTipoMensagem);
+        spinBoxCodHex->setObjectName("spinBoxCodHex");
+        spinBoxCodHex->setGeometry(QRect(400, 50, 71, 31));
+        spinBoxCodHex->setStyleSheet(QString::fromUtf8("background: rgb(220, 220, 220)"));
+        spinBoxCodHex->setMaximum(999999);
+        spinBoxNMsg = new QSpinBox(CriarTipoMensagem);
+        spinBoxNMsg->setObjectName("spinBoxNMsg");
+        spinBoxNMsg->setGeometry(QRect(620, 50, 71, 31));
+        spinBoxNMsg->setStyleSheet(QString::fromUtf8("background: rgb(220, 220, 220)"));
+        spinBoxNMsg->setMaximum(999999);
 
         retranslateUi(CriarTipoMensagem);
 
@@ -32,7 +127,16 @@ public:
 
     void retranslateUi(QDialog *CriarTipoMensagem)
     {
-        CriarTipoMensagem->setWindowTitle(QCoreApplication::translate("CriarTipoMensagem", "Dialog", nullptr));
+        CriarTipoMensagem->setWindowTitle(QCoreApplication::translate("CriarTipoMensagem", "Criar Tipo de Mensagem", nullptr));
+        label_5->setText(QCoreApplication::translate("CriarTipoMensagem", "Carro", nullptr));
+        btnCriarTipoMensagem->setText(QCoreApplication::translate("CriarTipoMensagem", "Criar Tipo de Mensagem", nullptr));
+        commandButtonVoltar->setText(QString());
+        labelNomeCarro->setText(QCoreApplication::translate("CriarTipoMensagem", "INDEFINIDO", nullptr));
+        label_2->setText(QCoreApplication::translate("CriarTipoMensagem", "C\303\263digo Hex: 0x", nullptr));
+        label_3->setText(QCoreApplication::translate("CriarTipoMensagem", "Obs:", nullptr));
+        label->setText(QCoreApplication::translate("CriarTipoMensagem", "M\303\263dulo:", nullptr));
+        label_4->setText(QCoreApplication::translate("CriarTipoMensagem", "N\302\272 Mensagens:", nullptr));
+        labelNomeModulo->setText(QCoreApplication::translate("CriarTipoMensagem", "INDEFINIDO", nullptr));
     } // retranslateUi
 
 };
