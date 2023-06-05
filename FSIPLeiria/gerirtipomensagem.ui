@@ -1274,7 +1274,7 @@
     <rect>
      <x>130</x>
      <y>60</y>
-     <width>111</width>
+     <width>321</width>
      <height>31</height>
     </rect>
    </property>
@@ -1283,6 +1283,9 @@
      <pointsize>14</pointsize>
      <bold>true</bold>
     </font>
+   </property>
+   <property name="cursor">
+    <cursorShape>ForbiddenCursor</cursorShape>
    </property>
    <property name="text">
     <string>INDEFINIDO</string>
@@ -1293,7 +1296,7 @@
     <rect>
      <x>120</x>
      <y>10</y>
-     <width>111</width>
+     <width>181</width>
      <height>31</height>
     </rect>
    </property>
@@ -1302,6 +1305,9 @@
      <pointsize>14</pointsize>
      <bold>true</bold>
     </font>
+   </property>
+   <property name="cursor">
+    <cursorShape>ForbiddenCursor</cursorShape>
    </property>
    <property name="text">
     <string>INDEFINIDO</string>
@@ -1322,6 +1328,9 @@
      <bold>true</bold>
     </font>
    </property>
+   <property name="cursor">
+    <cursorShape>ForbiddenCursor</cursorShape>
+   </property>
    <property name="text">
     <string>Módulo:</string>
    </property>
@@ -1340,6 +1349,9 @@
      <pointsize>14</pointsize>
      <bold>true</bold>
     </font>
+   </property>
+   <property name="cursor">
+    <cursorShape>ForbiddenCursor</cursorShape>
    </property>
    <property name="text">
     <string>Código Hex: 0x</string>
@@ -1360,6 +1372,9 @@
      <bold>true</bold>
     </font>
    </property>
+   <property name="cursor">
+    <cursorShape>ForbiddenCursor</cursorShape>
+   </property>
    <property name="text">
     <string>Carro</string>
    </property>
@@ -1378,6 +1393,9 @@
      <pointsize>14</pointsize>
      <bold>true</bold>
     </font>
+   </property>
+   <property name="cursor">
+    <cursorShape>ForbiddenCursor</cursorShape>
    </property>
    <property name="text">
     <string>INDEFINIDO</string>

@@ -76,5 +76,19 @@ Tarefas 15-05/29-05
 
 - Gerir carro, completo
 
+
+Tarefas 29-05/04/06
+
+- Gerir módulo:
+	-> Criar módulo;
+	-> Ver dados do módulo; (double-click)
+	-> Editar dados do módulo;
+	-> Criar tipo de mensagem;
+	-> Ver dados do tipo de mensagem; (double-click)
+
+- Duplicar Carro;
+
+- Correções:
+	-> Carro acabado de criar / duplicado é selecionado automaticamente.
                                           
 

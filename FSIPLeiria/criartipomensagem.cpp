@@ -5,12 +5,16 @@
 #include <QMessageBox>
 #include <QDir>
 #include <QFile>
+#include <QPlainTextEdit>
+#include <QDebug>
+
 
 CriarTipoMensagem::CriarTipoMensagem(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::CriarTipoMensagem)
 {
     ui->setupUi(this);
+
 }
 
 CriarTipoMensagem::~CriarTipoMensagem()
@@ -57,10 +61,12 @@ void CriarTipoMensagem::on_commandButtonVoltar_clicked()
 void CriarTipoMensagem::on_btnCriarTipoMensagem_clicked()
 {
     int nMensagens = ui->spinBoxNMsg->value();
-    int codHex = ui->spinBoxCodHex->value();
+
+    QString codHex = ui->plainTextEditCodHex->toPlainText().toUpper();
     QString obs = ui->plainTextEditObs->toPlainText();
     QString nomeCarro = ui->labelNomeCarro->text().trimmed();
     QString nomeModulo = ui->labelNomeModulo->text().trimmed();
+
 
     if (obs.contains(";")) {
         QMessageBox::critical(this, "Erro", "É proibido utilizar semi-vírgulas ';'!");
@@ -85,12 +91,15 @@ void CriarTipoMensagem::on_btnCriarTipoMensagem_clicked()
         // Check if codHex already exists
         if (file.open(QIODevice::ReadOnly | QIODevice::Text)) {
             QTextStream in(&file);
-            while (!in.atEnd()) {
+            while (!in.atEnd())
+            {
                 QString line = in.readLine();
                 QStringList fields = line.split(';');
-                if (fields.size() >= 2) {
-                    int existingCodHex = fields[1].toInt();
-                    if (existingCodHex == codHex) {
+                if (fields.size() >= 2)
+                {
+                    QString existingCodHex = fields[1];
+                    if (existingCodHex == codHex)
+                    {
                         file.close();
                         QMessageBox::critical(this, "Erro", "O código Hexadecimal já existe!");
                         return;
@@ -112,5 +121,7 @@ void CriarTipoMensagem::on_btnCriarTipoMensagem_clicked()
         }
     }
 }
+
+
 
 

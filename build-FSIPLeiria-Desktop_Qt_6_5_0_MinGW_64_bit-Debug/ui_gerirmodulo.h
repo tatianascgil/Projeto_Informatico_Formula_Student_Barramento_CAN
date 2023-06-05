@@ -117,7 +117,7 @@ public:
 "}"));
         labelNomeModulo = new QLabel(GerirModulo);
         labelNomeModulo->setObjectName("labelNomeModulo");
-        labelNomeModulo->setGeometry(QRect(110, 30, 211, 31));
+        labelNomeModulo->setGeometry(QRect(110, 30, 251, 31));
         QFont font2;
         font2.setPointSize(16);
         labelNomeModulo->setFont(font2);
@@ -146,7 +146,7 @@ public:
 "}"));
         labelNomeCarro = new QLabel(GerirModulo);
         labelNomeCarro->setObjectName("labelNomeCarro");
-        labelNomeCarro->setGeometry(QRect(100, 0, 91, 31));
+        labelNomeCarro->setGeometry(QRect(100, 0, 271, 31));
         QFont font3;
         font3.setPointSize(16);
         font3.setBold(false);

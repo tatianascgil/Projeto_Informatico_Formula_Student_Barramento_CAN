@@ -34,8 +34,8 @@ public:
     QLabel *label_4;
     QLabel *labelNomeModulo;
     QPlainTextEdit *plainTextEditObs;
-    QSpinBox *spinBoxCodHex;
     QSpinBox *spinBoxNMsg;
+    QPlainTextEdit *plainTextEditCodHex;
 
     void setupUi(QDialog *CriarTipoMensagem)
     {
@@ -109,16 +109,14 @@ public:
         plainTextEditObs->setObjectName("plainTextEditObs");
         plainTextEditObs->setGeometry(QRect(320, 140, 351, 101));
         plainTextEditObs->setStyleSheet(QString::fromUtf8("background: rgb(220, 220, 220)"));
-        spinBoxCodHex = new QSpinBox(CriarTipoMensagem);
-        spinBoxCodHex->setObjectName("spinBoxCodHex");
-        spinBoxCodHex->setGeometry(QRect(400, 50, 71, 31));
-        spinBoxCodHex->setStyleSheet(QString::fromUtf8("background: rgb(220, 220, 220)"));
-        spinBoxCodHex->setMaximum(999999);
         spinBoxNMsg = new QSpinBox(CriarTipoMensagem);
         spinBoxNMsg->setObjectName("spinBoxNMsg");
         spinBoxNMsg->setGeometry(QRect(620, 50, 71, 31));
         spinBoxNMsg->setStyleSheet(QString::fromUtf8("background: rgb(220, 220, 220)"));
         spinBoxNMsg->setMaximum(999999);
+        plainTextEditCodHex = new QPlainTextEdit(CriarTipoMensagem);
+        plainTextEditCodHex->setObjectName("plainTextEditCodHex");
+        plainTextEditCodHex->setGeometry(QRect(400, 50, 71, 31));
 
         retranslateUi(CriarTipoMensagem);
 

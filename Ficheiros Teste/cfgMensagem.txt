@@ -1,0 +1,7 @@
+22065010;17;S10;T20;U30;V40;W50;X60;Y70;Z80
+
+22:06:50.10;Dynamics;17;Rotação:3000rpm;Temperatura:150º;Travagem:2000psi; 
+
+22:06:50.10;Dynamics;17;Rotação:3000;Temperatura:150;Travagem:2000;
+
+22:06:50.10;Dynamics;17;3000rpm;150º;2000psi;

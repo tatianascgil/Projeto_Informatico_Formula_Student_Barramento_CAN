@@ -137,7 +137,10 @@ public:
 "}"));
         labelNomeCarro = new QLabel(GerirCarro);
         labelNomeCarro->setObjectName("labelNomeCarro");
-        labelNomeCarro->setGeometry(QRect(140, 20, 91, 31));
+        labelNomeCarro->setGeometry(QRect(100, 20, 241, 31));
+        QFont font2;
+        font2.setPointSize(16);
+        labelNomeCarro->setFont(font2);
         label_3 = new QLabel(GerirCarro);
         label_3->setObjectName("label_3");
         label_3->setGeometry(QRect(20, 470, 551, 20));

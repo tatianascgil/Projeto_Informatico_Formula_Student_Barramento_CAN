@@ -223,22 +223,6 @@ QPushButton:pressed {
     <string notr="true">background: rgb(220, 220, 220)</string>
    </property>
   </widget>
-  <widget class="QSpinBox" name="spinBoxCodHex">
-   <property name="geometry">
-    <rect>
-     <x>400</x>
-     <y>50</y>
-     <width>71</width>
-     <height>31</height>
-    </rect>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">background: rgb(220, 220, 220)</string>
-   </property>
-   <property name="maximum">
-    <number>999999</number>
-   </property>
-  </widget>
   <widget class="QSpinBox" name="spinBoxNMsg">
    <property name="geometry">
     <rect>
@@ -253,6 +237,16 @@ QPushButton:pressed {
    </property>
    <property name="maximum">
     <number>999999</number>
+   </property>
+  </widget>
+  <widget class="QPlainTextEdit" name="plainTextEditCodHex">
+   <property name="geometry">
+    <rect>
+     <x>400</x>
+     <y>50</y>
+     <width>71</width>
+     <height>31</height>
+    </rect>
    </property>
   </widget>
  </widget>
