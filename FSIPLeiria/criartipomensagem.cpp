@@ -111,7 +111,7 @@ void CriarTipoMensagem::on_btnCriarTipoMensagem_clicked()
 
         if (file.open(QIODevice::WriteOnly | QIODevice::Append | QIODevice::Text)) {
             QTextStream stream(&file);
-            stream << nomeModulo << ";" << codHex << ";" << nMensagens << ";" << obs << "\n";
+            stream << nomeModulo << ";" << codHex << ";" << nMensagens << ";" << obs << ";\n";
             file.close();
 
             QMessageBox::information(this, "Guardar Dados", "Dados salvados com sucesso!");

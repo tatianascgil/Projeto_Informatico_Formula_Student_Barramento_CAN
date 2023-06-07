@@ -76,7 +76,6 @@ void GerirCarro::lerDadosCarro(const QString& nome){
 
 // Construct the path to the car's folder
     QString folderName = nome;
-    folderName.remove(' ');
 
     QString currentPath = QDir::currentPath();
     QString targetDir = currentPath + "/../FSIPLeiria/settings";
@@ -161,9 +160,6 @@ void GerirCarro::lerDadosCarro(const QString& nome){
 
             // Set the model to the QTableView
             ui->tableViewModulosCarro->setModel(model);
-        } else {
-            // Handle the case when there is no data
-            // For example, you can display an empty model or show a message to the user
         }
     }
 
@@ -223,23 +219,21 @@ void GerirCarro::on_commandButtonVoltar_clicked()
 
 void GerirCarro::on_btnCriarModulo_clicked()
 {
-    const int criarmoduloWidth = 600;
-    const int criarmoduloHeight = 250;
+    const int criarModuloWidth = 600;
+    const int criarModuloHeight = 250;
 
     // Cria a janela
-    CriarModulo *criarmodulo = new CriarModulo();
+    CriarModulo *criarModulo = new CriarModulo();
 
     QString nomeCarro = ui->labelNomeCarro->text().trimmed();
 
-    criarmodulo->setNome(nomeCarro);
-
-    qDebug() << "Nome do carro: " << nomeCarro;
+    criarModulo->setNome(nomeCarro);
 
     // Define o tamanho mínimo e máximo da janela
-    criarmodulo->setMinimumSize(criarmoduloWidth, criarmoduloHeight);
-    criarmodulo->setMaximumSize(criarmoduloWidth, criarmoduloHeight);
+    criarModulo->setMinimumSize(criarModuloWidth, criarModuloHeight);
+    criarModulo->setMaximumSize(criarModuloWidth, criarModuloHeight);
 
-    criarmodulo->show();
+    criarModulo->show();
     this->close();
 
 }
@@ -248,7 +242,6 @@ void GerirCarro::on_btnCriarModulo_clicked()
 void GerirCarro::on_btnApagarCarro_clicked()
 {
     QString folderName = ui->labelNomeCarro->text();
-    folderName.remove(' ');
 
     QString currentPath = QDir::currentPath();
     QString targetDir = currentPath + "/../FSIPLeiria/settings";
@@ -280,17 +273,12 @@ void GerirCarro::on_btnApagarCarro_clicked()
                 mainWindow->show();
             } else {
                 // Failed to delete folder
-                qDebug() << "Failed to delete folder: " << folderPath;
                 QMessageBox::critical(this, tr("Erro"), tr("Não foi possível apagar a pasta " + folderName.toUtf8() + "!"));
             }
         } else {
             // Folder does not exist
-            qDebug() << "Folder does not exist: " << folderPath;
             QMessageBox::critical(this, tr("Erro"), tr("A pasta " +  folderName.toUtf8() + " não existe!"));
         }
-    } else {
-        // User canceled the deletion
-        qDebug() << "Folder deletion canceled by user.";
     }
 }
 
@@ -314,7 +302,6 @@ void GerirCarro::on_btnGuardarCarro_clicked()
     }
 
     QString folderName = ui->labelNomeCarro->text();
-    folderName.remove(' ');
 
     QString currentPath = QDir::currentPath();
     QString targetDir = currentPath + "/../FSIPLeiria/settings";
@@ -326,57 +313,61 @@ void GerirCarro::on_btnGuardarCarro_clicked()
         QTextStream in(&file);
 
         // Read the data from the file
-        int row = 0;
-        bool allValuesMatch = true;
-        while (!in.atEnd() && row < tableViewData.size()) {
+        QVector<QStringList> fileData;
+        while (!in.atEnd()) {
             QString line = in.readLine();
-
-            // Split the line into values (assuming tab-separated values)
-            QStringList fileData = line.split(";");
-
-            // Compare each value with the corresponding value from the QTableView
-            for (int column = 0; column < fileData.size(); ++column) {
-                QString fileValue = fileData[column];
-                QString tableViewValue = tableViewData[row][column];
-
-                // Perform the necessary comparison
-                if (fileValue != tableViewValue) {
-                    allValuesMatch = false;
-                    break;
-                }
-            }
-
-            ++row;
+            QStringList values = line.split(";");
+            fileData.append(values);
         }
 
         file.close();
 
-        // Update the visibility of the btnGuardarFicheiro button based on the comparison results
-        ui->btnGuardarCarro->setVisible(!allValuesMatch);
+        bool allValuesMatch = true;
+        // Compare the file data with the modified data from the QTableView
+        for (int row = 0; row < tableViewData.size(); ++row) {
+            QStringList tableViewRowData = tableViewData[row];
+            QStringList fileRowData = fileData.value(row);
 
-        // If at least one value does not match, prompt the user for confirmation before updating the file
-        if (!allValuesMatch) {
-            // Set the translated button texts
-            QMessageBox msgBox(QMessageBox::Question, tr("Confirmar Atualização"), tr("Algumas informações foram alteradas. Tem certeza de que deseja atualizar os dados?"), QMessageBox::Yes | QMessageBox::No, this);
-
-            QAbstractButton* yesButton = msgBox.addButton(tr("Sim"), QMessageBox::YesRole);
-            msgBox.addButton(tr("Não"), QMessageBox::NoRole);
-
-            msgBox.exec();
-
-            if (msgBox.clickedButton() == yesButton) {
-                // User confirmed, write the data from the QTableView to the file
-                if (file.open(QIODevice::WriteOnly | QIODevice::Text)) {
-                    QTextStream out(&file);
-                    for (const QStringList& rowData : tableViewData) {
-                        out << rowData.join(";") << "\n";
-                    }
-                    file.close();
-                } else {
-                    QMessageBox::critical(this, tr("Erro"), tr("Não foi possível abrir o ficheiro para escrita."));
-                }
+            if (fileRowData != tableViewRowData) {
+                allValuesMatch = false;
+                break;
             }
         }
+
+        // If all values match, prompt the user with an error message
+        if (allValuesMatch) {
+            QMessageBox::critical(this, tr("Erro"), tr("Não houve dados alterados!"));
+                return;
+        }
+
+        // Display confirmation dialog
+        QMessageBox confirmation(this);
+        confirmation.setWindowTitle("Confirmar Atualização");
+        confirmation.setText("Algumas informações foram alteradas. Tem certeza de que deseja atualizar os dados?");
+        confirmation.setIcon(QMessageBox::Question);
+
+        // Translate the buttons
+        QPushButton* yesButton = confirmation.addButton("Sim", QMessageBox::YesRole);
+        confirmation.addButton("Não", QMessageBox::NoRole);
+
+        confirmation.exec();
+
+        if (confirmation.clickedButton() == yesButton) {
+            // User confirmed, write the data from the QTableView to the file
+            if (file.open(QIODevice::WriteOnly | QIODevice::Text)) {
+                QTextStream out(&file);
+                for (const QStringList& rowData : tableViewData) {
+                    out << rowData.join(";") << "\n";
+                }
+                file.close();
+
+                // Inform the user about successful saving
+                QMessageBox::information(this, tr("Sucesso"), tr("Dados salvos com sucesso!"));
+            } else {
+                QMessageBox::critical(this, tr("Erro"), tr("Não foi possível abrir o arquivo para escrita."));
+            }
+        }
+
     } else {
         QMessageBox::critical(this, tr("Erro"), tr("Não foi possível abrir o ficheiro para leitura."));
     }

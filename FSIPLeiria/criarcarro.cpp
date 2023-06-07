@@ -57,7 +57,7 @@ void CriarCarro::on_btnCriarCarro_clicked()
     }
 
     QString folderName = nomeCarro.trimmed();
-     folderName.replace(" ", "");
+//     folderName.replace(" ", "");
 
     QString currentPath = QDir::currentPath();
     QString targetDir = currentPath + "/../FSIPLeiria/settings";
@@ -67,7 +67,7 @@ void CriarCarro::on_btnCriarCarro_clicked()
     if (!dir.exists()) {
         if (dir.mkpath(targetDir)) {
         } else {
-            QMessageBox::critical(this, "Error", "Failed to create target directory!");
+            QMessageBox::critical(this, "Erro", "Erro ao criar a diretoria " + targetDir);
             return;
         }
     }
@@ -84,7 +84,7 @@ void CriarCarro::on_btnCriarCarro_clicked()
                 QTextStream stream(&file);
 
                 // Write the data
-                stream << nomeCarro << ";" << tipoCarro << ";" << obsCarro << "\n";
+                stream << nomeCarro << ";" << tipoCarro << ";" << obsCarro << ";\n";
 
                 file.close();
 

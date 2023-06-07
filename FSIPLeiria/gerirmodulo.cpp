@@ -100,7 +100,7 @@ void GerirModulo::lerDadosTiposMensagem(const QString& nomeModulo)
             QString line = stream.readLine();
             QStringList values = line.split(";");
             if (values.size() > 0 && values.at(0) == nomeModulo) {
-                filteredData.append(values.mid(1, 4));
+                filteredData.append(values.mid(1, 3));
             }
         }
 

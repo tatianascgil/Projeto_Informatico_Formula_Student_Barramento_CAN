@@ -1,3 +1,2 @@
-Dynamics;101;72;Módulo 2.
-Thermal Sensor;130;5;Módulo 2.
-Dynamics;81;5;asdasd
+Thermal Sensor;130;5;Módulo 2;
+Dynamics;69;5;Módulo 1;2;Cenas;0;1;5;1;V;Fixe;2;2;3;2;km;
