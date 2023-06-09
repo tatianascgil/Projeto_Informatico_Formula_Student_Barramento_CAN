@@ -147,6 +147,120 @@ void GerirTipoMensagem::setObservacoes(const QString& obs){
     ui->plainTextEditObs->setPlainText(obs);
 }
 
+void GerirTipoMensagem::lerDadosTipoMensagem(){
+    QString codHex = ui->labelCodHex->text().trimmed().toUpper();
+    QString obs = ui->plainTextEditObs->toPlainText().trimmed();
+    QString nomeCarro = ui->labelNomeCarro->text().trimmed();
+
+    if (obs.contains(";")) {
+        QMessageBox::critical(this, "Erro", "É proibido utilizar semi-vírgulas ';'!");
+        return;
+    }
+
+    QString folderName = nomeCarro.trimmed();
+
+    QString currentPath = QDir::currentPath();
+    QString targetDir = currentPath + "/../FSIPLeiria/settings";
+    QString folderPath = targetDir + "/" + folderName;
+
+    QDir folderDir(folderPath);
+    if (!folderDir.exists()) {
+        QMessageBox::information(this, "Erro", "Erro. A pasta " + folderPath + " não existe!");
+        return;
+    }
+
+    QString filePath = folderPath + "/tiposMensagem.txt";
+    QFile file(filePath);
+
+    if (!file.open(QIODevice::ReadWrite | QIODevice::Text)) {
+        QMessageBox::critical(this, "Erro", "Erro ao abrir o arquivo " + filePath + " para escrita!");
+        return;
+    }
+
+    QTextStream out(&file);
+
+    QStringList updatedLines;  // Store updated lines
+
+    while (!out.atEnd()) {
+        QString currentLine = out.readLine();
+        QStringList values = currentLine.split(';');
+        // Check the 4th value
+        if (values.size() >= 4 && values[1].trimmed().toUpper() == codHex) {
+            // Index for widgets
+            int index = 1;
+            ui->spinBox->setValue(values[3].toInt());
+            for (int i = 4; i + 5 < values.size(); i += 6) {
+                QString valueNome = values[i].trimmed();
+                QString valueInicial = values[i + 1].trimmed();
+                QString valueFinal = values[i + 2].trimmed();
+                QString valueOffset = values[i + 3].trimmed();
+                QString valueFator = values[i + 4].trimmed();
+                QString valueUnidade = values[i + 5].trimmed();
+
+                QTextEdit *textEditNome = findChild<QTextEdit*>("textEdit_Nome" + QString::number(index));
+                if (!textEditNome) {
+                    // Handle error: Widget not found
+                    QMessageBox::critical(this, "Erro", "Não foi possível encontrar o widget textEdit_Nome" + QString::number(index));
+                    return;
+                }
+                textEditNome->setPlainText(valueNome);
+
+                QSpinBox *spinBoxInicial = findChild<QSpinBox*>("spinBox_Inicial" + QString::number(index));
+                if (!spinBoxInicial) {
+                    // Handle error: Widget not found
+                    QMessageBox::critical(this, "Erro", "Não foi possível encontrar o widget spinBox_Inicial" + QString::number(index));
+                    return;
+                }
+                spinBoxInicial->setValue(valueInicial.toInt());
+
+                QSpinBox *spinBoxFinal = findChild<QSpinBox*>("spinBox_Final" + QString::number(index));
+                if (!spinBoxFinal) {
+                    // Handle error: Widget not found
+                    QMessageBox::critical(this, "Erro", "Não foi possível encontrar o widget spinBox_Final" + QString::number(index));
+                    return;
+                }
+                spinBoxFinal->setValue(valueFinal.toInt());
+
+                QTextEdit *textEditOffset = findChild<QTextEdit*>("textEdit_Offset" + QString::number(index));
+                if (!textEditOffset) {
+                    // Handle error: Widget not found
+                    QMessageBox::critical(this, "Erro", "Não foi possível encontrar o widget textEdit_Offset" + QString::number(index));
+                    return;
+                }
+                textEditOffset->setPlainText(valueOffset);
+
+                QTextEdit *textEditFator = findChild<QTextEdit*>("textEdit_Fator" + QString::number(index));
+                if (!textEditFator) {
+                    // Handle error: Widget not found
+                    QMessageBox::critical(this, "Erro", "Não foi possível encontrar o widget textEdit_Fator" + QString::number(index));
+                    return;
+                }
+                textEditFator->setPlainText(valueFator);
+
+                QTextEdit *textEditUnidade = findChild<QTextEdit*>("textEdit_Unidade" + QString::number(index));
+                if (!textEditUnidade) {
+                    // Handle error: Widget not found
+                    QMessageBox::critical(this, "Erro", "Não foi possível encontrar o widget textEdit_Unidade" + QString::number(index));
+                    return;
+                }
+                textEditUnidade->setPlainText(valueUnidade);
+
+                // Increment the index for the next set of widgets
+                index++;
+            }
+
+            // Update the current line with the new values
+            currentLine = values.join(";");  // Reconstruct the line
+        }
+
+        updatedLines.append(currentLine);  // Store the updated line
+    }
+
+
+    file.close();
+}
+
+
 void GerirTipoMensagem::on_btnGuardarCarro_clicked()
 {
 
@@ -243,7 +357,9 @@ void GerirTipoMensagem::on_btnGuardarCarro_clicked()
                 line += textEditUnidade->toPlainText() + ";";
             }
 
-            currentLine = line;  // Update the current line
+            QStringList updatedValues = values;
+            updatedValues[2] = obs;  // Update the third value with the value of 'obs'
+            currentLine = updatedValues.join(';');  // Reconstruct the line
         }
 
         updatedLines.append(currentLine);  // Store the updated line

@@ -60,7 +60,6 @@ void CriarTipoMensagem::on_commandButtonVoltar_clicked()
 
 void CriarTipoMensagem::on_btnCriarTipoMensagem_clicked()
 {
-    int nMensagens = ui->spinBoxNMsg->value();
 
     QString codHex = ui->plainTextEditCodHex->toPlainText().toUpper();
     QString obs = ui->plainTextEditObs->toPlainText();
@@ -111,7 +110,7 @@ void CriarTipoMensagem::on_btnCriarTipoMensagem_clicked()
 
         if (file.open(QIODevice::WriteOnly | QIODevice::Append | QIODevice::Text)) {
             QTextStream stream(&file);
-            stream << nomeModulo << ";" << codHex << ";" << nMensagens << ";" << obs << ";\n";
+            stream << nomeModulo << ";" << codHex << ";" << obs << ";\n";
             file.close();
 
             QMessageBox::information(this, "Guardar Dados", "Dados salvados com sucesso!");

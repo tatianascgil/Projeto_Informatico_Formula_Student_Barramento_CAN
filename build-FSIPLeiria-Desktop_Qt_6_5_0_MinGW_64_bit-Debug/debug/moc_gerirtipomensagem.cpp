@@ -47,6 +47,7 @@ static constexpr auto qt_meta_stringdata_CLASSGerirTipoMensagemENDCLASS = QtMocH
     "codHex",
     "setObservacoes",
     "obs",
+    "lerDadosTipoMensagem",
     "on_spinBox_valueChanged",
     "arg1",
     "on_commandButtonVoltar_clicked",
@@ -54,7 +55,7 @@ static constexpr auto qt_meta_stringdata_CLASSGerirTipoMensagemENDCLASS = QtMocH
 );
 #else  // !QT_MOC_HAS_STRING_DATA
 struct qt_meta_stringdata_CLASSGerirTipoMensagemENDCLASS_t {
-    uint offsetsAndSizes[26];
+    uint offsetsAndSizes[28];
     char stringdata0[18];
     char stringdata1[8];
     char stringdata2[1];
@@ -64,10 +65,11 @@ struct qt_meta_stringdata_CLASSGerirTipoMensagemENDCLASS_t {
     char stringdata6[7];
     char stringdata7[15];
     char stringdata8[4];
-    char stringdata9[24];
-    char stringdata10[5];
-    char stringdata11[31];
-    char stringdata12[27];
+    char stringdata9[21];
+    char stringdata10[24];
+    char stringdata11[5];
+    char stringdata12[31];
+    char stringdata13[27];
 };
 #define QT_MOC_LITERAL(ofs, len) \
     uint(sizeof(qt_meta_stringdata_CLASSGerirTipoMensagemENDCLASS_t::offsetsAndSizes) + ofs), len 
@@ -82,10 +84,11 @@ Q_CONSTINIT static const qt_meta_stringdata_CLASSGerirTipoMensagemENDCLASS_t qt_
         QT_MOC_LITERAL(67, 6),  // "codHex"
         QT_MOC_LITERAL(74, 14),  // "setObservacoes"
         QT_MOC_LITERAL(89, 3),  // "obs"
-        QT_MOC_LITERAL(93, 23),  // "on_spinBox_valueChanged"
-        QT_MOC_LITERAL(117, 4),  // "arg1"
-        QT_MOC_LITERAL(122, 30),  // "on_commandButtonVoltar_clicked"
-        QT_MOC_LITERAL(153, 26)   // "on_btnGuardarCarro_clicked"
+        QT_MOC_LITERAL(93, 20),  // "lerDadosTipoMensagem"
+        QT_MOC_LITERAL(114, 23),  // "on_spinBox_valueChanged"
+        QT_MOC_LITERAL(138, 4),  // "arg1"
+        QT_MOC_LITERAL(143, 30),  // "on_commandButtonVoltar_clicked"
+        QT_MOC_LITERAL(174, 26)   // "on_btnGuardarCarro_clicked"
     },
     "GerirTipoMensagem",
     "setNome",
@@ -96,6 +99,7 @@ Q_CONSTINIT static const qt_meta_stringdata_CLASSGerirTipoMensagemENDCLASS_t qt_
     "codHex",
     "setObservacoes",
     "obs",
+    "lerDadosTipoMensagem",
     "on_spinBox_valueChanged",
     "arg1",
     "on_commandButtonVoltar_clicked",
@@ -111,7 +115,7 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSGerirTipoMensagemENDCLASS[] = {
       11,       // revision
        0,       // classname
        0,    0, // classinfo
-       7,   14, // methods
+       8,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -119,20 +123,22 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSGerirTipoMensagemENDCLASS[] = {
        0,       // signalCount
 
  // slots: name, argc, parameters, tag, flags, initial metatype offsets
-       1,    1,   56,    2, 0x0a,    1 /* Public */,
-       4,    1,   59,    2, 0x0a,    3 /* Public */,
-       5,    1,   62,    2, 0x0a,    5 /* Public */,
-       7,    1,   65,    2, 0x0a,    7 /* Public */,
-       9,    1,   68,    2, 0x08,    9 /* Private */,
-      11,    0,   71,    2, 0x08,   11 /* Private */,
-      12,    0,   72,    2, 0x08,   12 /* Private */,
+       1,    1,   62,    2, 0x0a,    1 /* Public */,
+       4,    1,   65,    2, 0x0a,    3 /* Public */,
+       5,    1,   68,    2, 0x0a,    5 /* Public */,
+       7,    1,   71,    2, 0x0a,    7 /* Public */,
+       9,    0,   74,    2, 0x0a,    9 /* Public */,
+      10,    1,   75,    2, 0x08,   10 /* Private */,
+      12,    0,   78,    2, 0x08,   12 /* Private */,
+      13,    0,   79,    2, 0x08,   13 /* Private */,
 
  // slots: parameters
     QMetaType::Void, QMetaType::QString,    3,
     QMetaType::Void, QMetaType::QString,    3,
     QMetaType::Void, QMetaType::QString,    6,
     QMetaType::Void, QMetaType::QString,    8,
-    QMetaType::Void, QMetaType::Int,   10,
+    QMetaType::Void,
+    QMetaType::Void, QMetaType::Int,   11,
     QMetaType::Void,
     QMetaType::Void,
 
@@ -160,6 +166,8 @@ Q_CONSTINIT const QMetaObject GerirTipoMensagem::staticMetaObject = { {
         // method 'setObservacoes'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         QtPrivate::TypeAndForceComplete<const QString &, std::false_type>,
+        // method 'lerDadosTipoMensagem'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
         // method 'on_spinBox_valueChanged'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         QtPrivate::TypeAndForceComplete<int, std::false_type>,
@@ -181,9 +189,10 @@ void GerirTipoMensagem::qt_static_metacall(QObject *_o, QMetaObject::Call _c, in
         case 1: _t->setNomeModulo((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;
         case 2: _t->setCodigoHexadecimal((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;
         case 3: _t->setObservacoes((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;
-        case 4: _t->on_spinBox_valueChanged((*reinterpret_cast< std::add_pointer_t<int>>(_a[1]))); break;
-        case 5: _t->on_commandButtonVoltar_clicked(); break;
-        case 6: _t->on_btnGuardarCarro_clicked(); break;
+        case 4: _t->lerDadosTipoMensagem(); break;
+        case 5: _t->on_spinBox_valueChanged((*reinterpret_cast< std::add_pointer_t<int>>(_a[1]))); break;
+        case 6: _t->on_commandButtonVoltar_clicked(); break;
+        case 7: _t->on_btnGuardarCarro_clicked(); break;
         default: ;
         }
     }
@@ -208,13 +217,13 @@ int GerirTipoMensagem::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 7)
+        if (_id < 8)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 7;
+        _id -= 8;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 7)
+        if (_id < 8)
             *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
-        _id -= 7;
+        _id -= 8;
     }
     return _id;
 }

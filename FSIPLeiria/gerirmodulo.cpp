@@ -39,6 +39,7 @@ void GerirModulo::setNomeModulo(const QString& nome){
 
 void GerirModulo::openGerirTipoMensagemWindow(const QModelIndex& index)
 {
+
     QStandardItemModel* model = qobject_cast<QStandardItemModel*>(ui->tableViewTipodeMensagemModulo->model());
     if (!model)
         return;
@@ -66,6 +67,9 @@ void GerirModulo::openGerirTipoMensagemWindow(const QModelIndex& index)
     gerirTipoMensagem->setNomeModulo(nomeModulo);
     gerirTipoMensagem->setCodigoHexadecimal(codHex);
     gerirTipoMensagem->setObservacoes(obs);
+    gerirTipoMensagem->lerDadosTipoMensagem();
+
+
 
     // Define o tamanho mínimo e máximo da janela
     gerirTipoMensagem->setMinimumSize(gerirTipoMensagemWidth, gerirTipoMensagemHeight);

@@ -20,6 +20,7 @@ public slots:
     void setNomeModulo(const QString& nome);
     void setCodigoHexadecimal(const QString& codHex);
     void setObservacoes(const QString& obs);
+    void lerDadosTipoMensagem();
 
 private slots:
     void on_spinBox_valueChanged(int arg1);

@@ -1,2 +1,2 @@
-Thermal Sensor;130;5;Módulo 2;
-Dynamics;69;5;Módulo 1;2;Cenas;0;1;5;1;V;Fixe;2;2;3;2;km;
+Thermal Sensor;130;Bora bora;4;França;0;1;1;10;Km;Portugal;2;3;2;2.5;V;China;4;4;3;0.5;s;Japão;5;7;4;1;J;4;França;0;1;1;10;Km;Portugal;2;3;2;2.5;V;China;4;4;3;0.5;s;Japão;5;7;4;1;J;
+Dynamics;69;Mega fixe;2;Cenas;0;1;5;1;V;Fixe;2;2;3;2;km;

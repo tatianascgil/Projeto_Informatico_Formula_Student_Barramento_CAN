@@ -85,7 +85,6 @@ void GerirCarro::lerDadosCarro(const QString& nome){
     QString filePath = folderPath + "/caracteristicas.txt";
     QFile file(filePath);
 
-    qDebug() << "File Path: " << filePath;
     if (file.open(QIODevice::ReadOnly | QIODevice::Text)) {
         QTextStream stream(&file);
 

@@ -5,3 +5,4 @@
 22:06:50.10;Dynamics;17;Rotação:3000;Temperatura:150;Travagem:2000;
 
 22:06:50.10;Dynamics;17;3000rpm;150º;2000psi;
+
