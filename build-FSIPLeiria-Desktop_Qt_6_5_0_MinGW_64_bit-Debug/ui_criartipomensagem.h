@@ -17,7 +17,6 @@
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QPlainTextEdit>
 #include <QtWidgets/QPushButton>
-#include <QtWidgets/QSpinBox>
 
 QT_BEGIN_NAMESPACE
 
@@ -31,10 +30,8 @@ public:
     QLabel *label_2;
     QLabel *label_3;
     QLabel *label;
-    QLabel *label_4;
     QLabel *labelNomeModulo;
     QPlainTextEdit *plainTextEditObs;
-    QSpinBox *spinBoxNMsg;
     QPlainTextEdit *plainTextEditCodHex;
 
     void setupUi(QDialog *CriarTipoMensagem)
@@ -97,10 +94,6 @@ public:
         label->setObjectName("label");
         label->setGeometry(QRect(20, 100, 71, 31));
         label->setFont(font);
-        label_4 = new QLabel(CriarTipoMensagem);
-        label_4->setObjectName("label_4");
-        label_4->setGeometry(QRect(480, 50, 141, 31));
-        label_4->setFont(font);
         labelNomeModulo = new QLabel(CriarTipoMensagem);
         labelNomeModulo->setObjectName("labelNomeModulo");
         labelNomeModulo->setGeometry(QRect(110, 100, 211, 31));
@@ -109,11 +102,6 @@ public:
         plainTextEditObs->setObjectName("plainTextEditObs");
         plainTextEditObs->setGeometry(QRect(320, 140, 351, 101));
         plainTextEditObs->setStyleSheet(QString::fromUtf8("background: rgb(220, 220, 220)"));
-        spinBoxNMsg = new QSpinBox(CriarTipoMensagem);
-        spinBoxNMsg->setObjectName("spinBoxNMsg");
-        spinBoxNMsg->setGeometry(QRect(620, 50, 71, 31));
-        spinBoxNMsg->setStyleSheet(QString::fromUtf8("background: rgb(220, 220, 220)"));
-        spinBoxNMsg->setMaximum(999999);
         plainTextEditCodHex = new QPlainTextEdit(CriarTipoMensagem);
         plainTextEditCodHex->setObjectName("plainTextEditCodHex");
         plainTextEditCodHex->setGeometry(QRect(400, 50, 71, 31));
@@ -133,7 +121,6 @@ public:
         label_2->setText(QCoreApplication::translate("CriarTipoMensagem", "C\303\263digo Hex: 0x", nullptr));
         label_3->setText(QCoreApplication::translate("CriarTipoMensagem", "Obs:", nullptr));
         label->setText(QCoreApplication::translate("CriarTipoMensagem", "M\303\263dulo:", nullptr));
-        label_4->setText(QCoreApplication::translate("CriarTipoMensagem", "N\302\272 Mensagens:", nullptr));
         labelNomeModulo->setText(QCoreApplication::translate("CriarTipoMensagem", "INDEFINIDO", nullptr));
     } // retranslateUi
 

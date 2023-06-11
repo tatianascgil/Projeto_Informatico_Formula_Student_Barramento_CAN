@@ -1,2 +1,0 @@
-Dynamics;LittleEndian;Módulo das dinâmicas.;
-Thermal Sensor;BigEndian;Módulo do sensor termal.;

@@ -23,6 +23,8 @@
 #include "ui_criarcarro.h"
 #include "estatisticas.h"
 #include "ui_estatisticas.h"
+#include "tabeladados.h"
+#include "ui_tabeladados.h"
 
 #include "xlsxdocument.h"
 #include "xlsxchartsheet.h"
@@ -277,3 +279,26 @@ void MainWindow::on_btnDuplicarCarro_clicked()
 
 
 
+
+void MainWindow::on_btnTabelaDados_clicked()
+{
+    const int tabelaDadosWidth = 1000;
+    const int tabelaDadosHeight = 700;
+
+    // Cria a janela principal
+    TabelaDados *tabelaDados = new TabelaDados();
+
+    // Define o tamanho mínimo e máximo da janela
+    tabelaDados->setMinimumSize(tabelaDadosWidth, tabelaDadosHeight);
+    tabelaDados->setMaximumSize(tabelaDadosWidth, tabelaDadosHeight);
+
+    QString nomeCarro = ui->comboBoxCarro->currentText().trimmed();
+    tabelaDados->setNome(nomeCarro);
+    tabelaDados->setModulos(nomeCarro);
+    tabelaDados->setCodigosHex(nomeCarro);
+    tabelaDados->setCampos(nomeCarro);
+    tabelaDados->setOperador();
+    tabelaDados->loadMensagens();
+    tabelaDados->show();
+    this->close();
+}

@@ -292,7 +292,7 @@ QPushButton:pressed {
     </rect>
    </property>
    <property name="text">
-    <string>Nota: Fazer double-lick na linha respetiva ao módulo que pretende ver os dados a pormenor.</string>
+    <string>Nota: Fazer double-lick na linha respetiva ao tipo de mensagem que pretende vizualizar.</string>
    </property>
   </widget>
  </widget>

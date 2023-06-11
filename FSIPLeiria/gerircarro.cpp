@@ -9,7 +9,7 @@
 #include "gerirmodulo.h"
 #include "ui_gerirmodulo.h"
 
-
+#include <QElapsedTimer>
 #include <QDir>
 #include <QStandardItemModel>
 #include <QDebug>
@@ -31,7 +31,7 @@ GerirCarro::~GerirCarro()
 }
 
 void GerirCarro::setNome(const QString& nome){
-    ui->labelNomeCarro->setText(nome);
+    ui->labelNomeCarro->setText(nome.trimmed());
 }
 
 void GerirCarro::openGerirModuloWindow(const QModelIndex& index)
@@ -51,32 +51,31 @@ void GerirCarro::openGerirModuloWindow(const QModelIndex& index)
     QString nomeModulo = rowData.at(0);
 
     this->close();
-    const int gerirModuloWidth = 800;
-    const int gerirModuloHeight = 500;
 
     GerirModulo* gerirModulo = new GerirModulo(this);
 
-    QString nomeCarro = ui->labelNomeCarro->text().trimmed();
+    QString nomeCarro = ui->labelNomeCarro->text();
 
+    // Passar os dados filtrados para a nova janela
     gerirModulo->setNome(nomeCarro);
+    gerirModulo->lerDadosModulo(nomeModulo);
+    gerirModulo->lerDadosTiposMensagem(nomeModulo);
 
     // Define o tamanho mínimo e máximo da janela
+    const int gerirModuloWidth = 800;
+    const int gerirModuloHeight = 500;
+
     gerirModulo->setMinimumSize(gerirModuloWidth, gerirModuloHeight);
     gerirModulo->setMaximumSize(gerirModuloWidth, gerirModuloHeight);
-
-    gerirModulo->lerDadosModulo(nomeModulo); // Pass the filtered data to the new window
-    gerirModulo->lerDadosTiposMensagem(nomeModulo);
     gerirModulo->show();
 
 }
 
 
-void GerirCarro::lerDadosCarro(const QString& nome){
+void GerirCarro::lerDadosCarro(const QString& nome) {
 
-
-// Construct the path to the car's folder
+    // Construct the path to the car's folder
     QString folderName = nome;
-
     QString currentPath = QDir::currentPath();
     QString targetDir = currentPath + "/../FSIPLeiria/settings";
     QString folderPath = targetDir + "/" + folderName;
@@ -88,42 +87,61 @@ void GerirCarro::lerDadosCarro(const QString& nome){
     if (file.open(QIODevice::ReadOnly | QIODevice::Text)) {
         QTextStream stream(&file);
 
-        // Read the data
-        QString line = stream.readLine();
-        QStringList values = line.split(";");
         QList<QStringList> data;
-        data.append(values);
 
-        file.close();
-
-        // Display the data in the QTableView
-        QStandardItemModel* model = new QStandardItemModel(data.count(), values.count(), this);
-
-        // Set the headers
-        model->setHorizontalHeaderLabels({"Nome", "Tipo", "Observações"});
-
-        // Populate the model with data
-        for (int row = 0; row < data.count(); ++row) {
-            for (int col = 0; col < values.count(); ++col) {
-                model->setItem(row, col, new QStandardItem(data[row][col]));
+        // Read the data
+        while (!stream.atEnd()) {
+            QString line = stream.readLine();
+            QStringList values = line.split(";");
+            if (values.size() > 2) {
+                data.append(values.mid(0, 3));
             }
         }
 
-        // Set the mode of resizing for other columns
-        QHeaderView* horizontalHeader = ui->tableViewCarro->horizontalHeader();
-        horizontalHeader->setSectionResizeMode(QHeaderView::Stretch);
-        horizontalHeader->setStretchLastSection(false);
+        file.close();
 
-        // Set the model to the QTableView
-        ui->tableViewCarro->setModel(model);              
+        if (!data.isEmpty()) {
+            // Display the data in the QTableView
+            QStandardItemModel* model = new QStandardItemModel(data.count(), data[0].count(), this);
+
+            // Set the headers
+            model->setHorizontalHeaderLabels({"Nome", "Tipo", "Observações"});
+
+            // Populate the model with data
+            for (int row = 0; row < data.count(); ++row) {
+                for (int col = 0; col < data[row].count(); ++col) {
+                    model->setItem(row, col, new QStandardItem(data[row][col]));
+                }
+            }
+
+            // Set the mode of resizing for other columns
+            QHeaderView* horizontalHeader = ui->tableViewCarro->horizontalHeader();
+            horizontalHeader->setSectionResizeMode(QHeaderView::Stretch);
+            horizontalHeader->setStretchLastSection(false);
+
+            // Set the model to the QTableView
+            ui->tableViewCarro->setModel(model);
+        }
     }
+}
+
+
+
+void GerirCarro::lerDadosModulo(const QString& nome) {
+
+    // Construct the path to the car's folder
+    QString folderName = nome;
+    QString currentPath = QDir::currentPath();
+    QString targetDir = currentPath + "/../FSIPLeiria/settings";
+    QString folderPath = targetDir + "/" + folderName;
 
     // Open the "modulos.txt" file within the car's folder
-    QString modulosPath = folderPath + "/modulos.txt";
-    QFile modulos(modulosPath);
+    QString filePath = folderPath + "/modulos.txt";
+    QFile file(filePath);
 
-    if (modulos.open(QIODevice::ReadOnly | QIODevice::Text)) {
-        QTextStream stream(&modulos);
+
+    if (file.open(QIODevice::ReadOnly | QIODevice::Text)) {
+        QTextStream stream(&file);
 
         QList<QStringList> data;
 
@@ -131,37 +149,39 @@ void GerirCarro::lerDadosCarro(const QString& nome){
         while (!stream.atEnd()) {
             QString line = stream.readLine();
             QStringList values = line.split(";");
-            data.append(values);
+            data.append(values.mid(0, 3));
         }
 
-        modulos.close();
+        file.close();
 
-        if (!data.isEmpty()) {
-            // Display the data in the QTableView
-            QStandardItemModel* model = new QStandardItemModel(data.count(), data[0].count(), this);
+        // Create the model and set the data
+        QStandardItemModel* model = new QStandardItemModel(data.count(), data[0].count(), this);
+        model->setHorizontalHeaderLabels({"Nome", "Endianess", "Observações"});
 
-            // Set the headers
-            model->setHorizontalHeaderLabels({"Nome", "Endianess", "Observações"});
+        if (data.isEmpty()) {
+            // If data is empty, set an empty model with headers to the QTableView
+            ui->tableViewCarro->setModel(model);
+            return;
+        }
 
-            // Populate the model with data
-            for (int row = 0; row < data.count(); ++row) {
-                for (int col = 0; col < data[row].count(); ++col) {
-                    QStandardItem* item = new QStandardItem(data[row][col]);
-                    item->setEditable(false); // Set the item as read-only
-                    model->setItem(row, col, item);
-                }
+        for (int row = 0; row < data.count(); ++row) {
+            for (int col = 0; col < data[row].count(); ++col) {
+                QStandardItem* item = new QStandardItem(data[row][col]);
+                // Set the item as read-only
+                item->setEditable(false);
+                model->setItem(row, col, item);
             }
-
-            // Set the mode of resizing for other columns
-            QHeaderView* horizontalHeader = ui->tableViewModulosCarro->horizontalHeader();
-            horizontalHeader->setSectionResizeMode(QHeaderView::Stretch);
-            horizontalHeader->setStretchLastSection(false);
-
-            // Set the model to the QTableView
-            ui->tableViewModulosCarro->setModel(model);
         }
-    }
 
+        // Set the mode of resizing for other columns
+        QHeaderView* horizontalHeader = ui->tableViewModulosCarro->horizontalHeader();
+        horizontalHeader->setSectionResizeMode(QHeaderView::Stretch);
+        horizontalHeader->setStretchLastSection(false);
+
+        // Set the model to the QTableView
+        ui->tableViewModulosCarro->setModel(model);
+
+    }
 }
 
 void GerirCarro::on_commandButtonVoltar_clicked()
@@ -169,8 +189,6 @@ void GerirCarro::on_commandButtonVoltar_clicked()
 
     // Construct the path to the car's folder
     QString folderName = ui->labelNomeCarro->text();
-
-
     QString currentPath = QDir::currentPath();
     QString targetDir = currentPath + "/../FSIPLeiria/settings";
     QString folderPath = targetDir + "/" + folderName;
@@ -178,7 +196,6 @@ void GerirCarro::on_commandButtonVoltar_clicked()
     // Check if folderPath exists
     QDir folderDir(folderPath);
     if (!folderDir.exists()) {
-        // Folder does not exist, handle the error condition
         QMessageBox::critical(this, tr("Erro"), tr("A pasta" + folderName.toUtf8() + " não existe!"));
         return;
     }
@@ -186,55 +203,53 @@ void GerirCarro::on_commandButtonVoltar_clicked()
     // Open the "caracteristicas.txt" file within the car's folder
     QString filePath = folderPath + "/caracteristicas.txt";
     QFile file(filePath);
-    if (file.open(QIODevice::ReadOnly | QIODevice::Text)) {
-        QTextStream stream(&file);
-
-        // Read the data
-        QString line = stream.readLine();
-        QStringList values = line.split(";");
-
-        file.close();
-
-        const int verCarroWidth = 700;
-        const int verCarroHeight = 350;
-
-        // Cria a janela VerCarro
-        VerCarro *verCarro = new VerCarro();
-
-        // Define o tamanho mínimo e máximo da janela
-        verCarro->setMinimumSize(verCarroWidth, verCarroHeight);
-        verCarro->setMaximumSize(verCarroWidth, verCarroHeight);
-
-        // Set the data in the "vercarro" window's QLabel widgets
-        verCarro->setNome(values[0]);
-        verCarro->setTipo(values[1]);
-        verCarro->setObservacoes(values[2]);
-
-        verCarro->show();
-        this->close();
+    if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
+        QMessageBox::critical(this, "Erro", "Erro ao abrir o ficheiro para leitura!");
+        return;
     }
+
+    QTextStream stream(&file);
+
+    // Read the data
+    QString line = stream.readLine();
+    QStringList values = line.split(";");
+
+    file.close();
+
+    const int verCarroWidth = 700;
+    const int verCarroHeight = 350;
+
+    // Create the VerCarro window and set its properties
+    VerCarro* verCarro = new VerCarro();
+    verCarro->setFixedSize(verCarroWidth, verCarroHeight);
+
+    // Set the data in the VerCarro window's QLabel widgets
+    verCarro->setNome(values.value(0));
+    verCarro->setTipo(values.value(1));
+    verCarro->setObservacoes(values.value(2));
+
+    verCarro->show();
+    this->close();
 }
 
 
 void GerirCarro::on_btnCriarModulo_clicked()
 {
-    const int criarModuloWidth = 600;
-    const int criarModuloHeight = 250;
-
-    // Cria a janela
     CriarModulo *criarModulo = new CriarModulo();
 
-    QString nomeCarro = ui->labelNomeCarro->text().trimmed();
+    QString nomeCarro = ui->labelNomeCarro->text();
 
     criarModulo->setNome(nomeCarro);
 
     // Define o tamanho mínimo e máximo da janela
+    const int criarModuloWidth = 600;
+    const int criarModuloHeight = 250;
+
     criarModulo->setMinimumSize(criarModuloWidth, criarModuloHeight);
     criarModulo->setMaximumSize(criarModuloWidth, criarModuloHeight);
 
     criarModulo->show();
     this->close();
-
 }
 
 
@@ -262,22 +277,17 @@ void GerirCarro::on_btnApagarCarro_clicked()
     if (confirmation.clickedButton() == yesButton) {
         QDir dir(folderPath);
 
-        if (dir.exists()) {
-            if (dir.removeRecursively()) {
-                // Folder deleted successfully
-                QMessageBox::information(this, "Pasta Removida", "A pasta \"" + folderName + "\" foi removida com sucesso!");
-
-                this->close();
-                MainWindow *mainWindow = new MainWindow();
-                mainWindow->show();
-            } else {
-                // Failed to delete folder
-                QMessageBox::critical(this, tr("Erro"), tr("Não foi possível apagar a pasta " + folderName.toUtf8() + "!"));
-            }
-        } else {
-            // Folder does not exist
-            QMessageBox::critical(this, tr("Erro"), tr("A pasta " +  folderName.toUtf8() + " não existe!"));
+        if (!(dir.exists() && dir.removeRecursively())) {
+            // Failed to delete folder
+            QMessageBox::critical(this, tr("Erro"), tr("Não foi possível apagar a pasta " + folderName.toUtf8() + "!"));
+            return;
         }
+
+        // Folder deleted successfully
+        QMessageBox::information(this, "Pasta Removida", "A pasta \"" + folderName + "\" foi removida com sucesso!");
+        this->close();
+        MainWindow* mainWindow = new MainWindow();
+        mainWindow->show();
     }
 }
 
@@ -301,13 +311,13 @@ void GerirCarro::on_btnGuardarCarro_clicked()
     }
 
     QString folderName = ui->labelNomeCarro->text();
-
     QString currentPath = QDir::currentPath();
     QString targetDir = currentPath + "/../FSIPLeiria/settings";
     QString folderPath = targetDir + "/" + folderName;
     QString filePath = folderPath + "/caracteristicas.txt";
 
     QFile file(filePath);
+
     if (file.open(QIODevice::ReadOnly | QIODevice::Text)) {
         QTextStream in(&file);
 
@@ -363,7 +373,7 @@ void GerirCarro::on_btnGuardarCarro_clicked()
                 // Inform the user about successful saving
                 QMessageBox::information(this, tr("Sucesso"), tr("Dados salvos com sucesso!"));
             } else {
-                QMessageBox::critical(this, tr("Erro"), tr("Não foi possível abrir o arquivo para escrita."));
+                QMessageBox::critical(this, tr("Erro"), tr("Não foi possível abrir o ficheiro para escrita."));
             }
         }
 
@@ -371,4 +381,3 @@ void GerirCarro::on_btnGuardarCarro_clicked()
         QMessageBox::critical(this, tr("Erro"), tr("Não foi possível abrir o ficheiro para leitura."));
     }
 }
-

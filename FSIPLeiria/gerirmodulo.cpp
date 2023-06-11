@@ -9,6 +9,7 @@
 #include "gerirtipomensagem.h"
 #include "ui_gerirtipomensagem.h"
 
+#include <QElapsedTimer>
 #include <QDir>
 #include <QStandardItemModel>
 #include <QDebug>
@@ -30,11 +31,11 @@ GerirModulo::~GerirModulo()
 }
 
 void GerirModulo::setNome(const QString& nome){
-    ui->labelNomeCarro->setText(nome);
+    ui->labelNomeCarro->setText(nome.trimmed());
 }
 
 void GerirModulo::setNomeModulo(const QString& nome){
-    ui->labelNomeModulo->setText(nome);
+    ui->labelNomeModulo->setText(nome.trimmed());
 }
 
 void GerirModulo::openGerirTipoMensagemWindow(const QModelIndex& index)
@@ -61,7 +62,7 @@ void GerirModulo::openGerirTipoMensagemWindow(const QModelIndex& index)
     QString nomeCarro = ui->labelNomeCarro->text().trimmed();
     QString nomeModulo = ui->labelNomeModulo->text().trimmed();
     QString codHex = rowData.at(0);
-    QString obs = rowData.at(2);
+    QString obs = rowData.at(1);
 
     gerirTipoMensagem->setNome(nomeCarro);
     gerirTipoMensagem->setNomeModulo(nomeModulo);
@@ -94,6 +95,7 @@ void GerirModulo::lerDadosTiposMensagem(const QString& nomeModulo)
     QString modulosPath = folderPath + "/tiposMensagem.txt";
     QFile modulos(modulosPath);
 
+
     if (modulos.open(QIODevice::ReadOnly | QIODevice::Text)) {
         QTextStream stream(&modulos);
 
@@ -104,7 +106,7 @@ void GerirModulo::lerDadosTiposMensagem(const QString& nomeModulo)
             QString line = stream.readLine();
             QStringList values = line.split(";");
             if (values.size() > 0 && values.at(0) == nomeModulo) {
-                filteredData.append(values.mid(1, 3));
+                filteredData.append(values.mid(1, 2));
             }
         }
 
@@ -116,7 +118,7 @@ void GerirModulo::lerDadosTiposMensagem(const QString& nomeModulo)
 
 
             // Set the headers
-            model->setHorizontalHeaderLabels({"Código Hex", "Nº Mensagens", "Observações"});
+            model->setHorizontalHeaderLabels({"Código Hex", "Observações"});
 
             // Populate the model with filtered data
             for (int row = 0; row < filteredData.count(); ++row) {
@@ -163,7 +165,7 @@ void GerirModulo::lerDadosModulo(const QString& nomeModulo)
             QString line = stream.readLine();
             QStringList values = line.split(";");
             if (values.size() > 0 && values.at(0) == nomeModulo) {
-                filteredData.append(values);
+                filteredData.append(values.mid(0,3));
             }
         }
 
@@ -199,8 +201,6 @@ void GerirModulo::lerDadosModulo(const QString& nomeModulo)
             emptyModel->setHorizontalHeaderLabels({"Nome", "Modulo", "Endianess", "Observações"});
             // Set the empty model to the QTableView
             ui->tableViewModulosCarro->setModel(emptyModel);
-            // Show a message to the user
-            QMessageBox::information(this, "Sem Módulos", "Não foram encontrados módulos correspondentes.");
         }
     }
 }
@@ -210,122 +210,89 @@ void GerirModulo::lerDadosModulo(const QString& nomeModulo)
 void GerirModulo::on_btnGuardarModulo_clicked()
 {
     QAbstractItemModel* model = ui->tableViewModulosCarro->model();
-    int rowCount = model->rowCount();
-    int columnCount = model->columnCount();
+    int selectedRow = ui->tableViewModulosCarro->currentIndex().row();
+    int selectedColumn = ui->tableViewModulosCarro->currentIndex().column();
 
-    // Create a QVector to store the data from the QTableView
-    QVector<QStringList> tableViewData;
-    for (int row = 0; row < rowCount; ++row) {
-        QStringList rowData;
-        for (int column = 0; column < columnCount; ++column) {
-            QModelIndex index = model->index(row, column);
-            QVariant data = model->data(index);
-            rowData.append(data.toString());
-        }
-        tableViewData.append(rowData);
-    }
+    // Make sure a valid cell is selected
+    if (selectedRow >= 0 && selectedRow < model->rowCount() && selectedColumn >= 0 && selectedColumn < model->columnCount()) {
+        QString folderName = ui->labelNomeCarro->text();
+        QString currentPath = QDir::currentPath();
+        QString targetDir = currentPath + "/../FSIPLeiria/settings";
+        QString folderPath = targetDir + "/" + folderName;
+        QString filePath = folderPath + "/modulos.txt";
 
-    QString folderName = ui->labelNomeCarro->text();
+        QFile file(filePath);
 
-    QString currentPath = QDir::currentPath();
-    QString targetDir = currentPath + "/../FSIPLeiria/settings";
-    QString folderPath = targetDir + "/" + folderName;
-    QString filePath = folderPath + "/modulos.txt";
-
-    QFile file(filePath);
-    if (file.open(QIODevice::ReadOnly | QIODevice::Text)) {
-        QTextStream in(&file);
-
-        // Read the data from the file
-        QVector<QStringList> fileData;
-        while (!in.atEnd()) {
-            QString line = in.readLine();
-            QStringList values = line.split(";");
-            fileData.append(values);
-        }
-
-        file.close();
-
-        bool allValuesMatch = true;
-        // Compare the file data with the modified data from the QTableView
-        for (int row = 0; row < tableViewData.size(); ++row) {
-            QStringList tableViewRowData = tableViewData[row];
-            QStringList fileRowData = fileData.value(row);
-
-            if (fileRowData != tableViewRowData) {
-                allValuesMatch = false;
-                break;
+        if (file.open(QIODevice::ReadOnly | QIODevice::Text)) {
+            // Read the data from the file
+            QStringList fileData;
+            while (!file.atEnd()) {
+                QString line = file.readLine().trimmed();
+                fileData.append(line);
             }
-        }
 
-        // If all values match, prompt the user with an error message
-        if (allValuesMatch) {
-            QMessageBox::critical(this, tr("Erro"), tr("Não houve dados alterados!"));
-            return;
-        }
+            file.close();
 
-        // Display confirmation dialog
-        QMessageBox confirmation(this);
-        confirmation.setWindowTitle("Confirmar Atualização");
-        confirmation.setText("Algumas informações foram alteradas. Tem certeza de que deseja atualizar os dados?");
-        confirmation.setIcon(QMessageBox::Question);
+            // Update the selected cell's value in the fileData
+            if (selectedRow < fileData.size()) {
+                QStringList rowData = fileData[selectedRow].split(";");
+                if (selectedColumn < rowData.size()) {
+                    rowData.replace(selectedColumn, model->data(model->index(selectedRow, selectedColumn)).toString());
+                    fileData[selectedRow] = rowData.join(";");
+                } else {
+                    QMessageBox::critical(this, tr("Erro"), tr("A coluna selecionada não existe."));
+                    return;
+                }
+            } else {
+                QMessageBox::critical(this, tr("Erro"), tr("A linha selecionada não existe."));
+                return;
+            }
 
-        // Translate the buttons
-        QPushButton* yesButton = confirmation.addButton("Sim", QMessageBox::YesRole);
-        confirmation.addButton("Não", QMessageBox::NoRole);
-
-        confirmation.exec();
-
-        if (confirmation.clickedButton() == yesButton) {
-            // User confirmed, write the data from the QTableView to the file
+            // Write the updated data to the file
             if (file.open(QIODevice::WriteOnly | QIODevice::Text)) {
                 QTextStream out(&file);
-
-                // Write the modified line to the file
-                for (int row = 0; row < tableViewData.size(); ++row) {
-                    if (tableViewData[row] != fileData.value(row)) {
-                        out << tableViewData[row].join(";") << "\n";
-                    } else {
-                        out << fileData.value(row).join(";") << "\n";
-                    }
+                for (const QString& line : fileData) {
+                    out << line << "\n";
                 }
-
-                // Write the remaining lines from the file if any
-                for (int row = tableViewData.size(); row < fileData.size(); ++row) {
-                    out << fileData.value(row).join(";") << "\n";
-                }
-
                 file.close();
+
+                // Inform the user about successful saving
+                QMessageBox::information(this, tr("Sucesso"), tr("Dados salvos com sucesso!"));
             } else {
                 QMessageBox::critical(this, tr("Erro"), tr("Não foi possível abrir o ficheiro para escrita."));
             }
+        } else {
+            QMessageBox::critical(this, tr("Erro"), tr("Não foi possível abrir o ficheiro para leitura."));
         }
     } else {
-        QMessageBox::critical(this, tr("Erro"), tr("Não foi possível abrir o ficheiro para leitura."));
+        QMessageBox::critical(this, tr("Erro"), tr("Selecione uma célula válida para atualizar."));
     }
+
+
 }
 
 
 
 void GerirModulo::on_commandButtonVoltar_clicked()
 {
-    const int gerircarroWidth = 800;
-    const int gerircarroHeight = 500;
 
     // Cria a janela GerirCarro
-    GerirCarro *gerircarro = new GerirCarro();
+    GerirCarro *gerirCarro = new GerirCarro();
 
-    QString nomeCarro = ui->labelNomeCarro->text().trimmed();
+    QString nomeCarro = ui->labelNomeCarro->text();
 
-    gerircarro->setNome(nomeCarro);
-    qDebug() << "Nome do carro: " << nomeCarro;
 
     // Define o tamanho mínimo e máximo da janela
-    gerircarro->setMinimumSize(gerircarroWidth, gerircarroHeight);
-    gerircarro->setMaximumSize(gerircarroWidth, gerircarroHeight);
-    gerircarro->lerDadosCarro(nomeCarro);
+    const int gerirCarroWidth = 800;
+    const int gerirCarroHeight = 500;
+    gerirCarro->setMinimumSize(gerirCarroWidth, gerirCarroHeight);
+    gerirCarro->setMaximumSize(gerirCarroWidth, gerirCarroHeight);
 
-    gerircarro->show();
+    gerirCarro->setNome(nomeCarro);
+    gerirCarro->lerDadosCarro(nomeCarro);
+    gerirCarro->lerDadosModulo(nomeCarro);
+
+    gerirCarro->show();
     this->close();
 }
 
@@ -346,7 +313,6 @@ void GerirModulo::on_btnApagarModulo_clicked()
 
     // Check if the modulos.txt file exists
     if (!QFile::exists(modulosPath)) {
-        qDebug() << "modulos.txt file does not exist: " << modulosPath;
         QMessageBox::critical(this, tr("Erro"), tr("O arquivo modulos.txt não existe!"));
         return;
     }
@@ -397,13 +363,14 @@ void GerirModulo::on_btnApagarModulo_clicked()
             this->close();
 
             // Cria a janela GerirCarro
-            GerirCarro *gerircarro = new GerirCarro();
+            GerirCarro *gerirCarro = new GerirCarro();
 
             QString nomeCarro = ui->labelNomeCarro->text().trimmed();
 
-            gerircarro->setNome(nomeCarro);
-            gerircarro->lerDadosCarro(nomeCarro);
-            gerircarro->show();
+            gerirCarro->setNome(nomeCarro);
+            gerirCarro->lerDadosCarro(nomeCarro);
+            gerirCarro->lerDadosModulo(nomeCarro);
+            gerirCarro->show();
 
         } else {
             // Failed to open modulos.txt file for editing
@@ -431,7 +398,6 @@ void GerirModulo::on_btnCriarTipoMensagem_clicked()
     criarTipoMensagem->setNome(nomeCarro);
     criarTipoMensagem->setNomeModulo(nomeModulo);
 
-    qDebug() << "Nome do carro: " << nomeCarro;
 
     // Define o tamanho mínimo e máximo da janela
     criarTipoMensagem->setMinimumSize(criarTipoMensagemWidth, criarTipoMensagemHeight);

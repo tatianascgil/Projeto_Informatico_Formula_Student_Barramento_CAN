@@ -28,7 +28,7 @@
     <property name="geometry">
      <rect>
       <x>580</x>
-      <y>390</y>
+      <y>300</y>
       <width>211</width>
       <height>61</height>
      </rect>
@@ -135,43 +135,6 @@ QPushButton:pressed {
      <string>Tabela de Dados</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="btnCarregamentoDados">
-    <property name="geometry">
-     <rect>
-      <x>580</x>
-      <y>300</y>
-      <width>211</width>
-      <height>61</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>10</pointsize>
-     </font>
-    </property>
-    <property name="cursor">
-     <cursorShape>PointingHandCursor</cursorShape>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">QPushButton{
-	background-color:rgb(255, 245, 166);
-	border:none;
-	color:rgb(95, 91, 61);
-	border -bottom: 5px solid rgb(162, 155, 105)
-}
-QPushButton:hover{
-	background-color:rgb(229, 217, 150);
-	border-bottom: 5px solid rgb(162, 155, 105)
-}
-QPushButton:pressed {
-	background-color:rgb(255, 242, 165);
-	border-bottom: 5px solid rgb(162, 155, 105)
-}</string>
-    </property>
-    <property name="text">
-     <string>Carregamento de Dados</string>
-    </property>
-   </widget>
    <widget class="QComboBox" name="comboBoxCarro">
     <property name="geometry">
      <rect>
@@ -185,47 +148,10 @@ QPushButton:pressed {
      <cursorShape>PointingHandCursor</cursorShape>
     </property>
     <property name="styleSheet">
-     <string notr="true">background:white</string>
+     <string notr="true">background:rgb(234, 234, 234)</string>
     </property>
     <property name="placeholderText">
      <string>&lt;Selecionar Carro&gt;</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="btnLocalConf">
-    <property name="geometry">
-     <rect>
-      <x>60</x>
-      <y>390</y>
-      <width>331</width>
-      <height>61</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>10</pointsize>
-     </font>
-    </property>
-    <property name="cursor">
-     <cursorShape>PointingHandCursor</cursorShape>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">QPushButton{
-	background-color:rgb(255, 245, 166);
-	border:none;
-	color:rgb(95, 91, 61);
-	border -bottom: 5px solid rgb(162, 155, 105)
-}
-QPushButton:hover{
-	background-color:rgb(229, 217, 150);
-	border-bottom: 5px solid rgb(162, 155, 105)
-}
-QPushButton:pressed {
-	background-color:rgb(255, 242, 165);
-	border-bottom: 5px solid rgb(162, 155, 105)
-}</string>
-    </property>
-    <property name="text">
-     <string>Localização  das Configurações  </string>
     </property>
    </widget>
    <widget class="QPushButton" name="btnCriarCarro">

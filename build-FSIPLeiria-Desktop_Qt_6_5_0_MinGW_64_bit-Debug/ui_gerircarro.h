@@ -160,7 +160,7 @@ public:
         btnGuardarCarro->setText(QCoreApplication::translate("GerirCarro", "Guardar", nullptr));
         btnCriarModulo->setText(QCoreApplication::translate("GerirCarro", "Criar M\303\263dulo", nullptr));
         labelNomeCarro->setText(QCoreApplication::translate("GerirCarro", "TextLabel", nullptr));
-        label_3->setText(QCoreApplication::translate("GerirCarro", "Nota: Fazer double-lick na linha respetiva ao m\303\263dulo que pretende ver os dados a pormenor.", nullptr));
+        label_3->setText(QCoreApplication::translate("GerirCarro", "Nota: Fazer double-lick na linha respetiva ao m\303\263dulo que pretende vizualizar.", nullptr));
     } // retranslateUi
 
 };

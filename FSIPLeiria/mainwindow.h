@@ -23,7 +23,6 @@ public:
 
 
 public slots:
-    //    void setComboBoxSelectedValue(const QString& value);
     void populateComboBox(QString option);
 
 
@@ -40,6 +39,8 @@ private slots:
 
 
     void on_btnDuplicarCarro_clicked();
+
+    void on_btnTabelaDados_clicked();
 
 private:
     Ui::MainWindow *ui;

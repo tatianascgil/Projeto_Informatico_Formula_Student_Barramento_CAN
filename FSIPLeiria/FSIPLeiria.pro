@@ -24,6 +24,7 @@ SOURCES += \
     gerirtipomensagem.cpp \
     main.cpp \
     mainwindow.cpp \
+    tabeladados.cpp \
     vercarro.cpp
 
 HEADERS += \
@@ -35,6 +36,7 @@ HEADERS += \
     gerirmodulo.h \
     gerirtipomensagem.h \
     mainwindow.h \
+    tabeladados.h \
     vercarro.h
 
 FORMS += \

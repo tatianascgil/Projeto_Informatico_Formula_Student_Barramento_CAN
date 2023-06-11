@@ -16,8 +16,9 @@ GerirTipoMensagem::GerirTipoMensagem(QWidget *parent) :
     // Conectar o sinal valueChanged da spinBox_Inicial1 para atualizar o valor mínimo da spinBox_Final1
     connect(ui->spinBox_Inicial1, QOverload<int>::of(&QSpinBox::valueChanged), [=](){ ui->spinBox_Final1->setMinimum(ui->spinBox_Inicial1->value());});
     // Conectar o sinal valueChanged da spinBox_Final1 para atualizar o valor mínimo da spinBox_Inicial2 + 1
-    connect(ui->spinBox_Final1, QOverload<int>::of(&QSpinBox::valueChanged), [=](){ ui->spinBox_Inicial2->setMinimum(ui->spinBox_Final1->value()+1);});
-
+    connect(ui->spinBox_Final1, QOverload<int>::of(&QSpinBox::valueChanged), [=](){
+        ui->spinBox_Inicial2->setMinimum(ui->spinBox_Final1->value() + 1);
+    });
     // Conectar o sinal valueChanged da spinBox_Inicial2 para atualizar o valor mínimo da spinBox_Final2
     connect(ui->spinBox_Inicial2, QOverload<int>::of(&QSpinBox::valueChanged), [=](){ ui->spinBox_Final2->setMinimum(ui->spinBox_Inicial2->value());});
     // Conectar o sinal valueChanged da spinBox_Final2 para atualizar o valor mínimo da spinBox_Inicial3 + 1
@@ -132,25 +133,25 @@ GerirTipoMensagem::~GerirTipoMensagem()
 
 
 void GerirTipoMensagem::setNome(const QString& nome){
-    ui->labelNomeCarro->setText(nome);
+    ui->labelNomeCarro->setText(nome.trimmed());
 }
 
 void GerirTipoMensagem::setNomeModulo(const QString& nome){
-    ui->labelNomeModulo->setText(nome);
+    ui->labelNomeModulo->setText(nome.trimmed());
 }
 
 void GerirTipoMensagem::setCodigoHexadecimal(const QString& codHex){
-    ui->labelCodHex->setText(codHex);
+    ui->labelCodHex->setText(codHex.trimmed());
 }
 
 void GerirTipoMensagem::setObservacoes(const QString& obs){
-    ui->plainTextEditObs->setPlainText(obs);
+    ui->plainTextEditObs->setPlainText(obs.trimmed());
 }
 
 void GerirTipoMensagem::lerDadosTipoMensagem(){
-    QString codHex = ui->labelCodHex->text().trimmed().toUpper();
-    QString obs = ui->plainTextEditObs->toPlainText().trimmed();
-    QString nomeCarro = ui->labelNomeCarro->text().trimmed();
+    QString codHex = ui->labelCodHex->text().toUpper();
+    QString obs = ui->plainTextEditObs->toPlainText();
+    QString nomeCarro = ui->labelNomeCarro->text();
 
     if (obs.contains(";")) {
         QMessageBox::critical(this, "Erro", "É proibido utilizar semi-vírgulas ';'!");
@@ -260,13 +261,12 @@ void GerirTipoMensagem::lerDadosTipoMensagem(){
     file.close();
 }
 
-
 void GerirTipoMensagem::on_btnGuardarCarro_clicked()
 {
 
-    QString codHex = ui->labelCodHex->text().trimmed();
-    QString obs = ui->plainTextEditObs->toPlainText().trimmed();
-    QString nomeCarro = ui->labelNomeCarro->text().trimmed();
+    QString codHex = ui->labelCodHex->text();
+    QString obs = ui->plainTextEditObs->toPlainText();
+    QString nomeCarro = ui->labelNomeCarro->text();
 
     if (obs.contains(";")) {
         QMessageBox::critical(this, "Erro", "É proibido utilizar semi-vírgulas ';'!");
@@ -297,73 +297,115 @@ void GerirTipoMensagem::on_btnGuardarCarro_clicked()
 
     int numFields = ui->spinBox->value();
 
+    QString obsValue = ui->plainTextEditObs->toPlainText();
+
     QStringList updatedLines;  // Store updated lines
 
     while (!out.atEnd()) {
         QString currentLine = out.readLine();
         QStringList values = currentLine.split(';');
         if (values.size() >= 2 && values[1].trimmed() == codHex) {
-            QString line = currentLine + QString::number(numFields) + ";";
+            values[2] = obsValue;
+            values[3] = QString::number(numFields);
+            currentLine = values.mid(0, 4).join(';') + ";";  // Append semicolon after the first 4 values
+
+            QString line = currentLine;
+
+            QSet<QString> uniqueTextEditNome;
 
             for (int i = 1; i <= numFields; ++i) {
                 QString index = QString::number(i);
 
                 QTextEdit *textEditNome = findChild<QTextEdit*>("textEdit_Nome" + index);
+                QSpinBox *spinBoxInicial = findChild<QSpinBox*>("spinBox_Inicial" + index);
+                QSpinBox *spinBoxFinal = findChild<QSpinBox*>("spinBox_Final" + index);
+                QTextEdit *textEditOffset = findChild<QTextEdit*>("textEdit_Offset" + index);
+                QTextEdit *textEditFator = findChild<QTextEdit*>("textEdit_Fator" + index);
+                QTextEdit *textEditUnidade = findChild<QTextEdit*>("textEdit_Unidade" + index);
+
+                bool textEditNomeIsEmpty = textEditNome->toPlainText().isEmpty();
+                bool spinBoxInicialIsEmpty = spinBoxInicial->text().isEmpty();
+                bool spinBoxFinalIsEmpty = spinBoxFinal->text().isEmpty();
+                bool textEditOffsetIsEmpty = textEditOffset->toPlainText().isEmpty();
+                bool textEditFatorIsEmpty = textEditFator->toPlainText().isEmpty();
+                bool textEditUnidadeIsEmpty = textEditUnidade->toPlainText().isEmpty();
+
+                if (textEditNomeIsEmpty || spinBoxInicialIsEmpty || spinBoxFinalIsEmpty || textEditOffsetIsEmpty || textEditFatorIsEmpty || textEditUnidadeIsEmpty) {
+                    QMessageBox::critical(this, "Erro", "Não podem existir campos vazios!");
+                        return;
+                }
+
                 if (!textEditNome) {
                     // Handle error: Widget not found
                     QMessageBox::critical(this, "Erro", "Não foi possível encontrar o widget textEdit_Nome" + index);
                     return;
                 }
+
+                QString textEditNomeValue = textEditNome->toPlainText();
+
+                if (uniqueTextEditNome.contains(textEditNomeValue)) {
+                    // Handle error: Duplicate textEditNome found
+                    QMessageBox::critical(this, "Erro", "O nome do campo" + index + " está duplicado.");
+                    return;
+                }
+
+                // Add the textEditNome value to the set
+                uniqueTextEditNome.insert(textEditNomeValue);
+
+
                 line += textEditNome->toPlainText() + ";";
 
-                QSpinBox *spinBoxInicial = findChild<QSpinBox*>("spinBox_Inicial" + index);
-                if (!spinBoxInicial) {
-                    // Handle error: Widget not found
-                    QMessageBox::critical(this, "Erro", "Não foi possível encontrar o widget spinBox_Inicial" + index);
-                    return;
+                if (i > 1) {
+                    if (!spinBoxInicial || !spinBoxFinal) {
+                        // Handle error: Widget not found
+                        QMessageBox::critical(this, "Erro", "Não foi possível encontrar os widgets spinBox_Inicial" + index + " e spinBox_Final" + index);
+                        return;
+                    }
+
+                    if (spinBoxInicial->value() == 0 || spinBoxFinal->value() == 0) {
+                        // Handle error: spinBoxInicial or spinBoxFinal is 0
+                        QMessageBox::critical(this, "Erro", "Os valores do campo " + index + " Byte Inicial e Byte Final não podem ser iguais a zero");
+                        return;
+                    }
                 }
+
                 line += spinBoxInicial->text() + ";";
 
-                QSpinBox *spinBoxFinal = findChild<QSpinBox*>("spinBox_Final" + index);
-                if (!spinBoxFinal) {
-                    // Handle error: Widget not found
-                    QMessageBox::critical(this, "Erro", "Não foi possível encontrar o widget spinBox_Final" + index);
-                    return;
-                }
                 line += spinBoxFinal->text() + ";";
 
-                QTextEdit *textEditOffset = findChild<QTextEdit*>("textEdit_Offset" + index);
                 if (!textEditOffset) {
                     // Handle error: Widget not found
                     QMessageBox::critical(this, "Erro", "Não foi possível encontrar o widget textEdit_Offset" + index);
                     return;
                 }
+
                 line += textEditOffset->toPlainText() + ";";
 
-                QTextEdit *textEditFator = findChild<QTextEdit*>("textEdit_Fator" + index);
+
                 if (!textEditFator) {
                     // Handle error: Widget not found
                     QMessageBox::critical(this, "Erro", "Não foi possível encontrar o widget textEdit_Fator" + index);
                     return;
                 }
+
                 line += textEditFator->toPlainText() + ";";
 
-                QTextEdit *textEditUnidade = findChild<QTextEdit*>("textEdit_Unidade" + index);
+
                 if (!textEditUnidade) {
                     // Handle error: Widget not found
                     QMessageBox::critical(this, "Erro", "Não foi possível encontrar o widget textEdit_Unidade" + index);
                     return;
                 }
                 line += textEditUnidade->toPlainText() + ";";
+
             }
 
-            QStringList updatedValues = values;
-            updatedValues[2] = obs;  // Update the third value with the value of 'obs'
-            currentLine = updatedValues.join(';');  // Reconstruct the line
+            currentLine = line;  // Update the current line
         }
 
         updatedLines.append(currentLine);  // Store the updated line
     }
+
 
     // Write the updated lines back to the file
     file.resize(0);  // Clear the file content
@@ -387,8 +429,8 @@ void GerirTipoMensagem::on_commandButtonVoltar_clicked()
     // Cria a janela GerirCarro
     GerirModulo *gerirModulo= new GerirModulo();
 
-    QString nomeCarro = ui->labelNomeCarro->text().trimmed();
-    QString nomeModulo = ui->labelNomeModulo->text().trimmed();
+    QString nomeCarro = ui->labelNomeCarro->text();
+    QString nomeModulo = ui->labelNomeModulo->text();
 
     gerirModulo->setNome(nomeCarro);
     gerirModulo->setNomeModulo(nomeModulo);
@@ -1063,13 +1105,13 @@ void GerirTipoMensagem::on_spinBox_valueChanged(int arg1)
 
     case 8:
         ui->spinBox_Inicial1->setMaximum(0);
-        ui->spinBox_Inicial2->setMaximum(1);
-        ui->spinBox_Inicial3->setMaximum(2);
-        ui->spinBox_Inicial4->setMaximum(3);
-        ui->spinBox_Inicial5->setMaximum(4);
-        ui->spinBox_Inicial6->setMaximum(5);
-        ui->spinBox_Inicial7->setMaximum(6);
-        ui->spinBox_Inicial8->setMaximum(7);
+        ui->spinBox_Inicial2->setMaximum(ui->spinBox_Final1->value()+1);
+        ui->spinBox_Inicial3->setMaximum(ui->spinBox_Final2->value()+1);
+        ui->spinBox_Inicial4->setMaximum(ui->spinBox_Final3->value()+1);
+        ui->spinBox_Inicial5->setMaximum(ui->spinBox_Final4->value()+1);
+        ui->spinBox_Inicial6->setMaximum(ui->spinBox_Final5->value()+1);
+        ui->spinBox_Inicial7->setMaximum(ui->spinBox_Final6->value()+1);
+        ui->spinBox_Inicial8->setMaximum(ui->spinBox_Final7->value()+1);
 
         ui->spinBox_Final1->setMaximum(0);
         ui->spinBox_Final2->setMaximum(1);

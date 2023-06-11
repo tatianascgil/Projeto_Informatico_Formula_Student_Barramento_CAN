@@ -26,7 +26,7 @@ VerCarro::~VerCarro()
 
 
 void VerCarro::setNome(const QString& nome) {
-    ui->labelNomeCarro->setText(nome);
+    ui->labelNomeCarro->setText(nome.trimmed());
 }
 
 void VerCarro::setTipo(const QString& tipo) {
@@ -34,7 +34,7 @@ void VerCarro::setTipo(const QString& tipo) {
 }
 
 void VerCarro::setObservacoes(const QString& obs) {
-    ui->labelObsCarro->setText(obs);
+    ui->labelObsCarro->setText(obs.trimmed());
 }
 
 
@@ -49,23 +49,23 @@ void VerCarro::on_commandButtonVoltar_clicked()
 
 void VerCarro::on_btnDefinicoes_clicked()
 {
-    const int gerircarroWidth = 800;
-    const int gerircarroHeight = 500;
 
     // Cria a janela GerirCarro
-    GerirCarro *gerircarro = new GerirCarro();
+    GerirCarro *gerirCarro = new GerirCarro();
 
-    QString nomeCarro = ui->labelNomeCarro->text().trimmed();
+    QString nomeCarro = ui->labelNomeCarro->text();
 
-    gerircarro->setNome(nomeCarro);
-    qDebug() << "Nome do carro: " << nomeCarro;
 
     // Define o tamanho mínimo e máximo da janela
-    gerircarro->setMinimumSize(gerircarroWidth, gerircarroHeight);
-    gerircarro->setMaximumSize(gerircarroWidth, gerircarroHeight);
-    gerircarro->lerDadosCarro(nomeCarro);
+    const int gerirCarroWidth = 800;
+    const int gerirCarroHeight = 500;
+    gerirCarro->setMinimumSize(gerirCarroWidth, gerirCarroHeight);
+    gerirCarro->setMaximumSize(gerirCarroWidth, gerirCarroHeight);
 
-    gerircarro->show();
+    gerirCarro->setNome(nomeCarro);
+    gerirCarro->lerDadosCarro(nomeCarro);
+    gerirCarro->lerDadosModulo(nomeCarro);
+    gerirCarro->show();
     this->close();
 }
 

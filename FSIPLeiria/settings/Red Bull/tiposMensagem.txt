@@ -1,0 +1,2 @@
+Engine;70;Detalhes do motor.;2;Temperatura;0;0;1;3;ºC;Óleo;2;5;2;1;L;
+Aerodynamics;456;Detalhes da aerodinâmica.;0;

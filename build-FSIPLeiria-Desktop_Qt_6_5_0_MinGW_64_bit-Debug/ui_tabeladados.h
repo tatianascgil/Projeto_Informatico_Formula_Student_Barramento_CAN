@@ -14,114 +14,54 @@
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QComboBox>
 #include <QtWidgets/QCommandLinkButton>
+#include <QtWidgets/QDialog>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QPlainTextEdit>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QTableView>
-#include <QtWidgets/QWidget>
 
 QT_BEGIN_NAMESPACE
 
-class Ui_Form
+class Ui_TabelaDados
 {
 public:
     QTableView *tableViewTabelaDados;
-    QCommandLinkButton *commandButtonVoltar;
-    QLabel *label_3;
-    QLabel *label;
-    QLabel *labelNomeCarro;
-    QLabel *label_2;
-    QLabel *label_4;
-    QLabel *label_5;
-    QPlainTextEdit *plainTextEditValor;
-    QPlainTextEdit *plainTextEditPesquisa;
-    QComboBox *comboBoxModulo;
-    QComboBox *comboBoxCodigoHEX;
-    QComboBox *comboBoxCampo;
-    QComboBox *comboBoxCampo2;
-    QLabel *label_6;
-    QLabel *labelNMensagens;
     QPushButton *btnFiltrar;
+    QComboBox *comboBoxModulo;
+    QPlainTextEdit *plainTextEditPesquisa;
+    QComboBox *comboBoxOperador;
+    QLabel *label_4;
+    QLabel *label_6;
+    QLabel *label_5;
+    QLabel *labelNMensagens;
+    QLabel *label_2;
+    QComboBox *comboBoxCampo;
+    QLabel *labelNomeCarro;
+    QComboBox *comboBoxCodigoHEX;
+    QLabel *label;
+    QLabel *label_3;
+    QCommandLinkButton *commandButtonVoltar;
+    QPlainTextEdit *plainTextEditValor;
 
-    void setupUi(QWidget *Form)
+    void setupUi(QDialog *TabelaDados)
     {
-        if (Form->objectName().isEmpty())
-            Form->setObjectName("Form");
-        Form->resize(984, 626);
-        Form->setStyleSheet(QString::fromUtf8("background:white\n"
-""));
-        tableViewTabelaDados = new QTableView(Form);
-        tableViewTabelaDados->setObjectName("tableViewTabelaDados");
-        tableViewTabelaDados->setGeometry(QRect(10, 180, 961, 431));
-        commandButtonVoltar = new QCommandLinkButton(Form);
-        commandButtonVoltar->setObjectName("commandButtonVoltar");
-        commandButtonVoltar->setGeometry(QRect(0, 0, 31, 31));
-        commandButtonVoltar->setCursor(QCursor(Qt::PointingHandCursor));
+        if (TabelaDados->objectName().isEmpty())
+            TabelaDados->setObjectName("TabelaDados");
+        TabelaDados->resize(1000, 700);
         QIcon icon;
-        icon.addFile(QString::fromUtf8("../setavoltar.ico"), QSize(), QIcon::Normal, QIcon::Off);
-        commandButtonVoltar->setIcon(icon);
-        label_3 = new QLabel(Form);
-        label_3->setObjectName("label_3");
-        label_3->setGeometry(QRect(20, 30, 71, 31));
-        QFont font;
-        font.setPointSize(16);
-        font.setBold(true);
-        label_3->setFont(font);
-        label = new QLabel(Form);
-        label->setObjectName("label");
-        label->setGeometry(QRect(20, 60, 91, 31));
-        label->setFont(font);
-        labelNomeCarro = new QLabel(Form);
-        labelNomeCarro->setObjectName("labelNomeCarro");
-        labelNomeCarro->setGeometry(QRect(90, 30, 91, 31));
-        QFont font1;
-        font1.setPointSize(16);
-        labelNomeCarro->setFont(font1);
-        label_2 = new QLabel(Form);
-        label_2->setObjectName("label_2");
-        label_2->setGeometry(QRect(20, 100, 131, 31));
-        label_2->setFont(font);
-        label_4 = new QLabel(Form);
-        label_4->setObjectName("label_4");
-        label_4->setGeometry(QRect(20, 140, 81, 31));
-        label_4->setFont(font);
-        label_5 = new QLabel(Form);
-        label_5->setObjectName("label_5");
-        label_5->setGeometry(QRect(380, 140, 81, 31));
-        label_5->setFont(font);
-        plainTextEditValor = new QPlainTextEdit(Form);
-        plainTextEditValor->setObjectName("plainTextEditValor");
-        plainTextEditValor->setGeometry(QRect(450, 140, 91, 31));
-        plainTextEditPesquisa = new QPlainTextEdit(Form);
-        plainTextEditPesquisa->setObjectName("plainTextEditPesquisa");
-        plainTextEditPesquisa->setGeometry(QRect(710, 10, 251, 31));
-        comboBoxModulo = new QComboBox(Form);
-        comboBoxModulo->setObjectName("comboBoxModulo");
-        comboBoxModulo->setGeometry(QRect(120, 70, 151, 21));
-        comboBoxCodigoHEX = new QComboBox(Form);
-        comboBoxCodigoHEX->setObjectName("comboBoxCodigoHEX");
-        comboBoxCodigoHEX->setGeometry(QRect(150, 110, 151, 21));
-        comboBoxCampo = new QComboBox(Form);
-        comboBoxCampo->setObjectName("comboBoxCampo");
-        comboBoxCampo->setGeometry(QRect(110, 150, 151, 21));
-        comboBoxCampo2 = new QComboBox(Form);
-        comboBoxCampo2->setObjectName("comboBoxCampo2");
-        comboBoxCampo2->setGeometry(QRect(290, 150, 71, 21));
-        label_6 = new QLabel(Form);
-        label_6->setObjectName("label_6");
-        label_6->setGeometry(QRect(720, 140, 191, 31));
-        label_6->setFont(font);
-        labelNMensagens = new QLabel(Form);
-        labelNMensagens->setObjectName("labelNMensagens");
-        labelNMensagens->setGeometry(QRect(910, 140, 41, 31));
-        labelNMensagens->setFont(font1);
-        btnFiltrar = new QPushButton(Form);
+        icon.addFile(QString::fromUtf8("../icon.ico"), QSize(), QIcon::Normal, QIcon::Off);
+        TabelaDados->setWindowIcon(icon);
+        TabelaDados->setStyleSheet(QString::fromUtf8("background: white;"));
+        tableViewTabelaDados = new QTableView(TabelaDados);
+        tableViewTabelaDados->setObjectName("tableViewTabelaDados");
+        tableViewTabelaDados->setGeometry(QRect(20, 190, 961, 431));
+        btnFiltrar = new QPushButton(TabelaDados);
         btnFiltrar->setObjectName("btnFiltrar");
-        btnFiltrar->setGeometry(QRect(710, 100, 251, 31));
-        QFont font2;
-        font2.setPointSize(10);
-        btnFiltrar->setFont(font2);
+        btnFiltrar->setGeometry(QRect(720, 110, 251, 31));
+        QFont font;
+        font.setPointSize(10);
+        btnFiltrar->setFont(font);
         btnFiltrar->setCursor(QCursor(Qt::PointingHandCursor));
         btnFiltrar->setStyleSheet(QString::fromUtf8("QPushButton{\n"
 "	background-color:rgb(255, 245, 166);\n"
@@ -137,32 +77,108 @@ public:
 "	background-color:rgb(255, 242, 165);\n"
 "	border-bottom: 5px solid rgb(162, 155, 105)\n"
 "}"));
+        comboBoxModulo = new QComboBox(TabelaDados);
+        comboBoxModulo->setObjectName("comboBoxModulo");
+        comboBoxModulo->setGeometry(QRect(120, 70, 151, 31));
+        comboBoxModulo->setStyleSheet(QString::fromUtf8("background:rgb(234, 234, 234)"));
+        plainTextEditPesquisa = new QPlainTextEdit(TabelaDados);
+        plainTextEditPesquisa->setObjectName("plainTextEditPesquisa");
+        plainTextEditPesquisa->setGeometry(QRect(720, 20, 251, 31));
+        plainTextEditPesquisa->setStyleSheet(QString::fromUtf8("background:rgb(234, 234, 234)"));
+        comboBoxOperador = new QComboBox(TabelaDados);
+        comboBoxOperador->setObjectName("comboBoxOperador");
+        comboBoxOperador->setGeometry(QRect(300, 150, 71, 31));
+        comboBoxOperador->setStyleSheet(QString::fromUtf8("background:rgb(234, 234, 234)"));
+        label_4 = new QLabel(TabelaDados);
+        label_4->setObjectName("label_4");
+        label_4->setGeometry(QRect(30, 150, 81, 31));
+        QFont font1;
+        font1.setPointSize(16);
+        font1.setBold(true);
+        label_4->setFont(font1);
+        label_6 = new QLabel(TabelaDados);
+        label_6->setObjectName("label_6");
+        label_6->setGeometry(QRect(730, 150, 191, 31));
+        label_6->setFont(font1);
+        label_5 = new QLabel(TabelaDados);
+        label_5->setObjectName("label_5");
+        label_5->setGeometry(QRect(390, 150, 81, 31));
+        label_5->setFont(font1);
+        labelNMensagens = new QLabel(TabelaDados);
+        labelNMensagens->setObjectName("labelNMensagens");
+        labelNMensagens->setGeometry(QRect(920, 150, 41, 31));
+        QFont font2;
+        font2.setPointSize(16);
+        labelNMensagens->setFont(font2);
+        label_2 = new QLabel(TabelaDados);
+        label_2->setObjectName("label_2");
+        label_2->setGeometry(QRect(30, 110, 131, 31));
+        label_2->setFont(font1);
+        comboBoxCampo = new QComboBox(TabelaDados);
+        comboBoxCampo->setObjectName("comboBoxCampo");
+        comboBoxCampo->setGeometry(QRect(120, 150, 161, 31));
+        comboBoxCampo->setStyleSheet(QString::fromUtf8("background:rgb(234, 234, 234)"));
+        labelNomeCarro = new QLabel(TabelaDados);
+        labelNomeCarro->setObjectName("labelNomeCarro");
+        labelNomeCarro->setGeometry(QRect(100, 40, 91, 31));
+        labelNomeCarro->setFont(font2);
+        comboBoxCodigoHEX = new QComboBox(TabelaDados);
+        comboBoxCodigoHEX->setObjectName("comboBoxCodigoHEX");
+        comboBoxCodigoHEX->setGeometry(QRect(160, 110, 161, 31));
+        comboBoxCodigoHEX->setStyleSheet(QString::fromUtf8("background:rgb(234, 234, 234)"));
+        label = new QLabel(TabelaDados);
+        label->setObjectName("label");
+        label->setGeometry(QRect(30, 70, 91, 31));
+        label->setFont(font1);
+        label_3 = new QLabel(TabelaDados);
+        label_3->setObjectName("label_3");
+        label_3->setGeometry(QRect(30, 40, 71, 31));
+        label_3->setFont(font1);
+        commandButtonVoltar = new QCommandLinkButton(TabelaDados);
+        commandButtonVoltar->setObjectName("commandButtonVoltar");
+        commandButtonVoltar->setGeometry(QRect(10, 10, 31, 31));
+        commandButtonVoltar->setCursor(QCursor(Qt::PointingHandCursor));
+        QIcon icon1;
+        icon1.addFile(QString::fromUtf8("../setavoltar.ico"), QSize(), QIcon::Normal, QIcon::Off);
+        commandButtonVoltar->setIcon(icon1);
+        plainTextEditValor = new QPlainTextEdit(TabelaDados);
+        plainTextEditValor->setObjectName("plainTextEditValor");
+        plainTextEditValor->setGeometry(QRect(460, 150, 91, 31));
+        plainTextEditValor->setStyleSheet(QString::fromUtf8("background:rgb(234, 234, 234)"));
 
-        retranslateUi(Form);
+        retranslateUi(TabelaDados);
 
-        QMetaObject::connectSlotsByName(Form);
+        comboBoxOperador->setCurrentIndex(-1);
+
+
+        QMetaObject::connectSlotsByName(TabelaDados);
     } // setupUi
 
-    void retranslateUi(QWidget *Form)
+    void retranslateUi(QDialog *TabelaDados)
     {
-        Form->setWindowTitle(QCoreApplication::translate("Form", "Form", nullptr));
+        TabelaDados->setWindowTitle(QCoreApplication::translate("TabelaDados", "Tabela de Dados", nullptr));
+        btnFiltrar->setText(QCoreApplication::translate("TabelaDados", "Filtrar", nullptr));
+        comboBoxModulo->setPlaceholderText(QCoreApplication::translate("TabelaDados", "<Selecionar M\303\263dulo>", nullptr));
+        plainTextEditPesquisa->setPlainText(QString());
+        plainTextEditPesquisa->setPlaceholderText(QCoreApplication::translate("TabelaDados", "Pesquisar", nullptr));
+        comboBoxOperador->setPlaceholderText(QString());
+        label_4->setText(QCoreApplication::translate("TabelaDados", "Campo:", nullptr));
+        label_6->setText(QCoreApplication::translate("TabelaDados", "N\302\272 de Mensagens:", nullptr));
+        label_5->setText(QCoreApplication::translate("TabelaDados", "Valor:", nullptr));
+        labelNMensagens->setText(QCoreApplication::translate("TabelaDados", "000", nullptr));
+        label_2->setText(QCoreApplication::translate("TabelaDados", "C\303\263digo HEX:", nullptr));
+        comboBoxCampo->setPlaceholderText(QCoreApplication::translate("TabelaDados", "<Selecionar Campo>", nullptr));
+        labelNomeCarro->setText(QCoreApplication::translate("TabelaDados", "Carro", nullptr));
+        comboBoxCodigoHEX->setPlaceholderText(QCoreApplication::translate("TabelaDados", "<Selecionar C\303\263digo Hex>", nullptr));
+        label->setText(QCoreApplication::translate("TabelaDados", "M\303\263dulo :", nullptr));
+        label_3->setText(QCoreApplication::translate("TabelaDados", "Carro", nullptr));
         commandButtonVoltar->setText(QString());
-        label_3->setText(QCoreApplication::translate("Form", "Carro", nullptr));
-        label->setText(QCoreApplication::translate("Form", "M\303\263dulo :", nullptr));
-        labelNomeCarro->setText(QCoreApplication::translate("Form", "Carro", nullptr));
-        label_2->setText(QCoreApplication::translate("Form", "C\303\263digo HEX:", nullptr));
-        label_4->setText(QCoreApplication::translate("Form", "Campo:", nullptr));
-        label_5->setText(QCoreApplication::translate("Form", "Valor:", nullptr));
-        plainTextEditPesquisa->setPlainText(QCoreApplication::translate("Form", "Pesquisar", nullptr));
-        label_6->setText(QCoreApplication::translate("Form", "N\302\272 de Mensagens:", nullptr));
-        labelNMensagens->setText(QCoreApplication::translate("Form", "000", nullptr));
-        btnFiltrar->setText(QCoreApplication::translate("Form", "Filtrar", nullptr));
     } // retranslateUi
 
 };
 
 namespace Ui {
-    class Form: public Ui_Form {};
+    class TabelaDados: public Ui_TabelaDados {};
 } // namespace Ui
 
 QT_END_NAMESPACE

@@ -18,6 +18,7 @@ public:
 public slots:
     void setNome(const QString& nome);
     void lerDadosCarro(const QString& nome);
+    void lerDadosModulo(const QString& nome);
     void openGerirModuloWindow(const QModelIndex& index);
 
 private slots:

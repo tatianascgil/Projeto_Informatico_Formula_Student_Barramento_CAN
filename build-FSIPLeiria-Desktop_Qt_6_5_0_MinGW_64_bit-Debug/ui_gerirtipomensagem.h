@@ -49,7 +49,6 @@ public:
     QSpinBox *spinBox_Inicial5;
     QTextEdit *textEdit_Unidade7;
     QTextEdit *textEdit_Offset4;
-    QSpinBox *spinBox_Inicial2;
     QTextEdit *textEdit_Offset8;
     QSpinBox *spinBox_Inicial4;
     QTextEdit *textEdit_Offset1;
@@ -102,6 +101,7 @@ public:
     QLabel *labelCodHex;
     QPushButton *btnGuardarCarro;
     QPlainTextEdit *plainTextEditObs;
+    QSpinBox *spinBox_Inicial2;
 
     void setupUi(QDialog *GerirTipoMensagem)
     {
@@ -241,14 +241,6 @@ public:
         textEdit_Offset4->setGeometry(QRect(480, 280, 51, 31));
         textEdit_Offset4->viewport()->setProperty("cursor", QVariant(QCursor(Qt::IBeamCursor)));
         textEdit_Offset4->setStyleSheet(QString::fromUtf8("background: rgb(220,220,220)"));
-        spinBox_Inicial2 = new QSpinBox(GerirTipoMensagem);
-        spinBox_Inicial2->setObjectName("spinBox_Inicial2");
-        spinBox_Inicial2->setGeometry(QRect(320, 200, 51, 31));
-        spinBox_Inicial2->setCursor(QCursor(Qt::PointingHandCursor));
-        spinBox_Inicial2->setStyleSheet(QString::fromUtf8("background: rgb(220,220,220)"));
-        spinBox_Inicial2->setMinimum(0);
-        spinBox_Inicial2->setMaximum(7);
-        spinBox_Inicial2->setValue(0);
         textEdit_Offset8 = new QTextEdit(GerirTipoMensagem);
         textEdit_Offset8->setObjectName("textEdit_Offset8");
         textEdit_Offset8->setGeometry(QRect(480, 440, 51, 31));
@@ -551,6 +543,14 @@ public:
         plainTextEditObs->setObjectName("plainTextEditObs");
         plainTextEditObs->setGeometry(QRect(110, 490, 491, 101));
         plainTextEditObs->setStyleSheet(QString::fromUtf8("background: rgb(220,220,220)"));
+        spinBox_Inicial2 = new QSpinBox(GerirTipoMensagem);
+        spinBox_Inicial2->setObjectName("spinBox_Inicial2");
+        spinBox_Inicial2->setGeometry(QRect(320, 200, 51, 31));
+        spinBox_Inicial2->setCursor(QCursor(Qt::PointingHandCursor));
+        spinBox_Inicial2->setStyleSheet(QString::fromUtf8("background: rgb(220,220,220)"));
+        spinBox_Inicial2->setMinimum(0);
+        spinBox_Inicial2->setMaximum(7);
+        spinBox_Inicial2->setValue(0);
 
         retranslateUi(GerirTipoMensagem);
 

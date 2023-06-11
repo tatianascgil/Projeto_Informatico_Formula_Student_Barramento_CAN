@@ -44,12 +44,10 @@ void CriarTipoMensagem::on_commandButtonVoltar_clicked()
     QString nomeCarro = ui->labelNomeCarro->text().trimmed();
     QString nomeModulo = ui->labelNomeModulo->text().trimmed();
 
-    gerirModulo->setNome(nomeCarro);
-    gerirModulo->setNomeModulo(nomeModulo);
-
-
     gerirModulo->setMinimumSize(gerirModuloWidth, gerirModuloHeight);
     gerirModulo->setMaximumSize(gerirModuloWidth, gerirModuloHeight);
+    gerirModulo->setNome(nomeCarro);
+    gerirModulo->setNomeModulo(nomeModulo);
     gerirModulo->lerDadosModulo(nomeModulo);
     gerirModulo->lerDadosTiposMensagem(nomeModulo);
 
@@ -72,7 +70,7 @@ void CriarTipoMensagem::on_btnCriarTipoMensagem_clicked()
         return;
     }
 
-    QString folderName = nomeCarro.trimmed();
+    QString folderName = nomeCarro;
     QString currentPath = QDir::currentPath();
     QString targetDir = currentPath + "/../FSIPLeiria/settings";
     QString folderPath = targetDir + "/" + folderName;
@@ -83,42 +81,46 @@ void CriarTipoMensagem::on_btnCriarTipoMensagem_clicked()
         return;
     }
 
-    if (folderDir.mkpath(folderPath)) {
-        QString filePath = folderPath + "/tiposMensagem.txt";
-        QFile file(filePath);
+    if (!folderDir.mkpath(folderPath)) {
+        QMessageBox::critical(this, "Erro", "Erro. A pasta " + folderPath + " não existe!");
+        return;
+    }
 
-        // Check if codHex already exists
-        if (file.open(QIODevice::ReadOnly | QIODevice::Text)) {
-            QTextStream in(&file);
-            while (!in.atEnd())
-            {
-                QString line = in.readLine();
-                QStringList fields = line.split(';');
-                if (fields.size() >= 2)
-                {
-                    QString existingCodHex = fields[1];
-                    if (existingCodHex == codHex)
-                    {
-                        file.close();
-                        QMessageBox::critical(this, "Erro", "O código Hexadecimal já existe!");
-                        return;
-                    }
-                }
+    QString filePath = folderPath + "/tiposMensagem.txt";
+    QFile file(filePath);
+
+    if (!file.open(QIODevice::ReadWrite | QIODevice::Text)) {
+        QMessageBox::critical(this, "Erro", "Erro ao abrir o arquivo " + filePath + " para escrita!");
+        return;
+    }
+
+    QTextStream stream(&file);
+
+    // Check if codHex already exists
+    bool codHexExists = false;
+    while (!stream.atEnd()) {
+        QString line = stream.readLine();
+        QStringList fields = line.split(';');
+        if (fields.size() >= 2) {
+            QString existingCodHex = fields[1];
+            if (existingCodHex == codHex) {
+                codHexExists = true;
+                break;
             }
-            file.close();
-        }
-
-        if (file.open(QIODevice::WriteOnly | QIODevice::Append | QIODevice::Text)) {
-            QTextStream stream(&file);
-            stream << nomeModulo << ";" << codHex << ";" << obs << ";\n";
-            file.close();
-
-            QMessageBox::information(this, "Guardar Dados", "Dados salvados com sucesso!");
-            on_commandButtonVoltar_clicked();
-        } else {
-            QMessageBox::critical(this, "Erro", "Erro ao guardar os dados!");
         }
     }
+
+    if (codHexExists) {
+        file.close();
+        QMessageBox::critical(this, "Erro", "O código Hexadecimal já existe!");
+        return;
+    }
+
+    stream << nomeModulo << ";" << codHex << ";" << obs << ";\n";
+    file.close();
+
+    QMessageBox::information(this, "Guardar Dados", "Dados salvados com sucesso!");
+    on_commandButtonVoltar_clicked();
 }
 
 

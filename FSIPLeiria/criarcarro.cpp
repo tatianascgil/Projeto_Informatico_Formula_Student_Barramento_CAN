@@ -33,75 +33,76 @@ void CriarCarro::on_btnCancelar_clicked()
 void CriarCarro::on_btnCriarCarro_clicked()
 {
 
-    QString nomeCarro = ui->textEditNomeCarro->toPlainText();
+    QString nomeCarro = ui->textEditNomeCarro->toPlainText().trimmed();
     QString tipoCarro = ui->btnTipoCarro->currentText();
-    QString obsCarro = ui->textEditObsCarro->toPlainText();
+    QString obsCarro = ui->textEditObsCarro->toPlainText().trimmed();
 
-    bool nomeCarroEmpty = nomeCarro.trimmed().isEmpty();
+    bool nomeCarroEmpty = nomeCarro.isEmpty();
     bool tipoCarroEmpty = tipoCarro.isEmpty();
 
     if (nomeCarroEmpty && tipoCarroEmpty) {
         QMessageBox::critical(this, "Erro", "É obrigatório preencher os campos 'Nome' e 'Tipo'!");
         return;
-    } else if (nomeCarroEmpty) {
+    }
+
+    if (nomeCarroEmpty) {
         QMessageBox::critical(this, "Erro", "É obrigatório preencher o campo 'Nome'!");
         return;
-    } else if (tipoCarroEmpty) {
+    }
+
+    if (tipoCarroEmpty) {
         QMessageBox::critical(this, "Erro", "É obrigatório preencher o campo 'Tipo'!");
         return;
     }
 
-    if(nomeCarro.contains(";")){
+    if(nomeCarro.contains(";") || obsCarro.contains(";")){
         QMessageBox::critical(this, "Erro", "É proíbido utilizar semi-vírgulas ';'!");
         return;
     }
 
-    QString folderName = nomeCarro.trimmed();
-//     folderName.replace(" ", "");
-
+    QString folderName = nomeCarro;
     QString currentPath = QDir::currentPath();
     QString targetDir = currentPath + "/../FSIPLeiria/settings";
     QString folderPath = targetDir + "/" + folderName;
 
     QDir dir(targetDir);
-    if (!dir.exists()) {
-        if (dir.mkpath(targetDir)) {
-        } else {
-            QMessageBox::critical(this, "Erro", "Erro ao criar a diretoria " + targetDir);
-            return;
-        }
+    if (!dir.exists() && !dir.mkpath(targetDir)) {
+        QMessageBox::critical(this, "Erro", "Erro ao criar a diretoria " + targetDir);
+        return;
     }
 
     QDir folderDir(folderPath);
-    if (!folderDir.exists()) {
-        if (folderDir.mkpath(folderPath)) {
-            QMessageBox::information(this, "Successo", "Pasta " + folderName + " criada com sucesso!");
-
-            // Saving the car data in a TXT file
-            QString filePath = folderPath + "/caracteristicas.txt";
-            QFile file(filePath);
-            if (file.open(QIODevice::WriteOnly | QIODevice::Text)) {
-                QTextStream stream(&file);
-
-                // Write the data
-                stream << nomeCarro << ";" << tipoCarro << ";" << obsCarro << ";\n";
-
-                file.close();
-
-                QMessageBox::information(this, "Guardar Dados", "Dados salvados com sucesso!");
-
-
-                MainWindow *mainWindow = new MainWindow();
-                mainWindow->populateComboBox(nomeCarro);
-                mainWindow->show();
-                this->close();
-            } else {
-                QMessageBox::critical(this, "Erro", "Erro ao guardar os dados!");
-            }
-        }
-    } else {
+    if (folderDir.exists()) {
         QMessageBox::information(this, "Erro", "Erro. A pasta " + folderName + " já existe!");
+        return;
     }
+
+    if (!folderDir.mkpath(folderPath)) {
+        QMessageBox::critical(this, "Erro", "Erro ao criar a pasta " + folderName);
+        return;
+    }
+
+    // Saving the car data in a TXT file
+    QString filePath = folderPath + "/caracteristicas.txt";
+    QFile file(filePath);
+    if (!file.open(QIODevice::WriteOnly | QIODevice::Text)) {
+        QMessageBox::critical(this, "Erro", "Erro ao abrir o arquivo " + filePath + " para escrita!");
+        return;
+    }
+
+    QTextStream stream(&file);
+
+    // Write the data
+    stream << nomeCarro << ";" << tipoCarro << ";" << obsCarro << ";\n";
+
+    file.close();
+
+    QMessageBox::information(this, "Guardar Dados", "Dados salvados com sucesso!");
+
+    MainWindow *mainWindow = new MainWindow();
+    mainWindow->populateComboBox(nomeCarro);
+    mainWindow->show();
+    this->close();
 
 }
 

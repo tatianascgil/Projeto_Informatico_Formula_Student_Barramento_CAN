@@ -29,9 +29,7 @@ public:
     QPushButton *btnEstatisticas;
     QPushButton *btnTempoReal;
     QPushButton *btnTabelaDados;
-    QPushButton *btnCarregamentoDados;
     QComboBox *comboBoxCarro;
-    QPushButton *btnLocalConf;
     QPushButton *btnCriarCarro;
     QPushButton *btnVerCarro;
     QPushButton *btnDuplicarCarro;
@@ -53,7 +51,7 @@ public:
         centralwidget->setObjectName("centralwidget");
         btnEstatisticas = new QPushButton(centralwidget);
         btnEstatisticas->setObjectName("btnEstatisticas");
-        btnEstatisticas->setGeometry(QRect(580, 390, 211, 61));
+        btnEstatisticas->setGeometry(QRect(580, 300, 211, 61));
         QFont font;
         font.setPointSize(10);
         btnEstatisticas->setFont(font);
@@ -110,49 +108,11 @@ public:
 "	background-color:rgb(255, 242, 165);\n"
 "	border-bottom: 5px solid rgb(162, 155, 105)\n"
 "}"));
-        btnCarregamentoDados = new QPushButton(centralwidget);
-        btnCarregamentoDados->setObjectName("btnCarregamentoDados");
-        btnCarregamentoDados->setGeometry(QRect(580, 300, 211, 61));
-        btnCarregamentoDados->setFont(font);
-        btnCarregamentoDados->setCursor(QCursor(Qt::PointingHandCursor));
-        btnCarregamentoDados->setStyleSheet(QString::fromUtf8("QPushButton{\n"
-"	background-color:rgb(255, 245, 166);\n"
-"	border:none;\n"
-"	color:rgb(95, 91, 61);\n"
-"	border -bottom: 5px solid rgb(162, 155, 105)\n"
-"}\n"
-"QPushButton:hover{\n"
-"	background-color:rgb(229, 217, 150);\n"
-"	border-bottom: 5px solid rgb(162, 155, 105)\n"
-"}\n"
-"QPushButton:pressed {\n"
-"	background-color:rgb(255, 242, 165);\n"
-"	border-bottom: 5px solid rgb(162, 155, 105)\n"
-"}"));
         comboBoxCarro = new QComboBox(centralwidget);
         comboBoxCarro->setObjectName("comboBoxCarro");
         comboBoxCarro->setGeometry(QRect(60, 250, 211, 31));
         comboBoxCarro->setCursor(QCursor(Qt::PointingHandCursor));
-        comboBoxCarro->setStyleSheet(QString::fromUtf8("background:white"));
-        btnLocalConf = new QPushButton(centralwidget);
-        btnLocalConf->setObjectName("btnLocalConf");
-        btnLocalConf->setGeometry(QRect(60, 390, 331, 61));
-        btnLocalConf->setFont(font);
-        btnLocalConf->setCursor(QCursor(Qt::PointingHandCursor));
-        btnLocalConf->setStyleSheet(QString::fromUtf8("QPushButton{\n"
-"	background-color:rgb(255, 245, 166);\n"
-"	border:none;\n"
-"	color:rgb(95, 91, 61);\n"
-"	border -bottom: 5px solid rgb(162, 155, 105)\n"
-"}\n"
-"QPushButton:hover{\n"
-"	background-color:rgb(229, 217, 150);\n"
-"	border-bottom: 5px solid rgb(162, 155, 105)\n"
-"}\n"
-"QPushButton:pressed {\n"
-"	background-color:rgb(255, 242, 165);\n"
-"	border-bottom: 5px solid rgb(162, 155, 105)\n"
-"}"));
+        comboBoxCarro->setStyleSheet(QString::fromUtf8("background:rgb(234, 234, 234)"));
         btnCriarCarro = new QPushButton(centralwidget);
         btnCriarCarro->setObjectName("btnCriarCarro");
         btnCriarCarro->setGeometry(QRect(60, 320, 151, 61));
@@ -239,9 +199,7 @@ public:
         btnEstatisticas->setText(QCoreApplication::translate("MainWindow", "Estat\303\255sticas", nullptr));
         btnTempoReal->setText(QCoreApplication::translate("MainWindow", "Tempo Real", nullptr));
         btnTabelaDados->setText(QCoreApplication::translate("MainWindow", "Tabela de Dados", nullptr));
-        btnCarregamentoDados->setText(QCoreApplication::translate("MainWindow", "Carregamento de Dados", nullptr));
         comboBoxCarro->setPlaceholderText(QCoreApplication::translate("MainWindow", "<Selecionar Carro>", nullptr));
-        btnLocalConf->setText(QCoreApplication::translate("MainWindow", "Localiza\303\247\303\243o  das Configura\303\247\303\265es  ", nullptr));
         btnCriarCarro->setText(QCoreApplication::translate("MainWindow", "Criar Carro", nullptr));
         btnVerCarro->setText(QCoreApplication::translate("MainWindow", "Ver Dados do Carro", nullptr));
         btnDuplicarCarro->setText(QCoreApplication::translate("MainWindow", "Duplicar Carro", nullptr));

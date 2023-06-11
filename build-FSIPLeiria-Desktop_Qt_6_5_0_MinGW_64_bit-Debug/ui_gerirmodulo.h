@@ -176,7 +176,7 @@ public:
         btnCriarTipoMensagem->setText(QCoreApplication::translate("GerirModulo", "Criar Tipo de Mensagem", nullptr));
         labelNomeCarro->setText(QCoreApplication::translate("GerirModulo", "Carro", nullptr));
         label_3->setText(QCoreApplication::translate("GerirModulo", "Carro", nullptr));
-        label_4->setText(QCoreApplication::translate("GerirModulo", "Nota: Fazer double-lick na linha respetiva ao m\303\263dulo que pretende ver os dados a pormenor.", nullptr));
+        label_4->setText(QCoreApplication::translate("GerirModulo", "Nota: Fazer double-lick na linha respetiva ao tipo de mensagem que pretende vizualizar.", nullptr));
     } // retranslateUi
 
 };
