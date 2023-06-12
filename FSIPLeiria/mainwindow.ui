@@ -27,8 +27,8 @@
    <widget class="QPushButton" name="btnEstatisticas">
     <property name="geometry">
      <rect>
-      <x>580</x>
-      <y>300</y>
+      <x>560</x>
+      <y>280</y>
       <width>211</width>
       <height>61</height>
      </rect>
@@ -64,8 +64,8 @@ QPushButton:pressed {
    <widget class="QPushButton" name="btnTempoReal">
     <property name="geometry">
      <rect>
-      <x>580</x>
-      <y>210</y>
+      <x>560</x>
+      <y>190</y>
       <width>211</width>
       <height>61</height>
      </rect>
@@ -101,8 +101,8 @@ QPushButton:pressed {
    <widget class="QPushButton" name="btnTabelaDados">
     <property name="geometry">
      <rect>
-      <x>580</x>
-      <y>120</y>
+      <x>560</x>
+      <y>100</y>
       <width>211</width>
       <height>61</height>
      </rect>
@@ -138,8 +138,8 @@ QPushButton:pressed {
    <widget class="QComboBox" name="comboBoxCarro">
     <property name="geometry">
      <rect>
-      <x>60</x>
-      <y>250</y>
+      <x>150</x>
+      <y>200</y>
       <width>211</width>
       <height>31</height>
      </rect>
@@ -157,9 +157,9 @@ QPushButton:pressed {
    <widget class="QPushButton" name="btnCriarCarro">
     <property name="geometry">
      <rect>
-      <x>60</x>
-      <y>320</y>
-      <width>151</width>
+      <x>280</x>
+      <y>550</y>
+      <width>191</width>
       <height>61</height>
      </rect>
     </property>
@@ -188,7 +188,7 @@ QPushButton:pressed {
 }</string>
     </property>
     <property name="text">
-     <string>Criar Carro</string>
+     <string>Criar</string>
     </property>
    </widget>
    <widget class="QPushButton" name="btnVerCarro">
@@ -197,8 +197,8 @@ QPushButton:pressed {
     </property>
     <property name="geometry">
      <rect>
-      <x>340</x>
-      <y>260</y>
+      <x>290</x>
+      <y>280</y>
       <width>161</width>
       <height>61</height>
      </rect>
@@ -237,8 +237,8 @@ QPushButton:pressed {
    <widget class="QPushButton" name="btnDuplicarCarro">
     <property name="geometry">
      <rect>
-      <x>340</x>
-      <y>190</y>
+      <x>80</x>
+      <y>280</y>
       <width>161</width>
       <height>61</height>
      </rect>
@@ -274,8 +274,8 @@ QPushButton:pressed {
    <widget class="QLabel" name="label">
     <property name="geometry">
      <rect>
-      <x>60</x>
-      <y>200</y>
+      <x>150</x>
+      <y>150</y>
       <width>251</width>
       <height>41</height>
      </rect>
@@ -290,6 +290,77 @@ QPushButton:pressed {
      <string>Escolha o carro:</string>
     </property>
    </widget>
+   <widget class="Line" name="line">
+    <property name="geometry">
+     <rect>
+      <x>-10</x>
+      <y>20</y>
+      <width>471</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="orientation">
+     <enum>Qt::Horizontal</enum>
+    </property>
+   </widget>
+   <widget class="Line" name="line_2">
+    <property name="geometry">
+     <rect>
+      <x>-10</x>
+      <y>440</y>
+      <width>471</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="orientation">
+     <enum>Qt::Horizontal</enum>
+    </property>
+   </widget>
+   <widget class="Line" name="line_3">
+    <property name="geometry">
+     <rect>
+      <x>430</x>
+      <y>20</y>
+      <width>471</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="orientation">
+     <enum>Qt::Horizontal</enum>
+    </property>
+   </widget>
+   <widget class="Line" name="line_4">
+    <property name="geometry">
+     <rect>
+      <x>450</x>
+      <y>440</y>
+      <width>471</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="orientation">
+     <enum>Qt::Horizontal</enum>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_2">
+    <property name="geometry">
+     <rect>
+      <x>60</x>
+      <y>500</y>
+      <width>251</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>16</pointsize>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="text">
+     <string>Cria o teu Carro:</string>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
@@ -297,7 +368,7 @@ QPushButton:pressed {
      <x>0</x>
      <y>0</y>
      <width>850</width>
-     <height>21</height>
+     <height>22</height>
     </rect>
    </property>
   </widget>

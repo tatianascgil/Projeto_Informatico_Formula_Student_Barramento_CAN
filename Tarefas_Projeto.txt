@@ -77,7 +77,7 @@ Tarefas 15-05/29-05
 - Gerir carro, completo
 
 
-Tarefas 29-05/04/06
+Tarefas 29-05/05-06
 
 - Gerir módulo:
 	-> Criar módulo;
@@ -91,4 +91,13 @@ Tarefas 29-05/04/06
 - Correções:
 	-> Carro acabado de criar / duplicado é selecionado automaticamente.
                                           
+Tarefas 29-05/05-06
+
+- Gerir o tipo de mensagem;
+- Ler o ficheiro TXT;
+- Criar Tabela de dados;
+- Intrudir as settings existentes na Tabela de Dados;
+
+
+
 

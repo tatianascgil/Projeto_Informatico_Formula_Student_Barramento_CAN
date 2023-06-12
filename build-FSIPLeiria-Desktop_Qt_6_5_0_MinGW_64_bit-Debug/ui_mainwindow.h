@@ -13,6 +13,7 @@
 #include <QtGui/QIcon>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QComboBox>
+#include <QtWidgets/QFrame>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QMenuBar>
@@ -34,6 +35,11 @@ public:
     QPushButton *btnVerCarro;
     QPushButton *btnDuplicarCarro;
     QLabel *label;
+    QFrame *line;
+    QFrame *line_2;
+    QFrame *line_3;
+    QFrame *line_4;
+    QLabel *label_2;
     QMenuBar *menubar;
     QStatusBar *statusbar;
 
@@ -51,7 +57,7 @@ public:
         centralwidget->setObjectName("centralwidget");
         btnEstatisticas = new QPushButton(centralwidget);
         btnEstatisticas->setObjectName("btnEstatisticas");
-        btnEstatisticas->setGeometry(QRect(580, 300, 211, 61));
+        btnEstatisticas->setGeometry(QRect(560, 280, 211, 61));
         QFont font;
         font.setPointSize(10);
         btnEstatisticas->setFont(font);
@@ -72,7 +78,7 @@ public:
 "}"));
         btnTempoReal = new QPushButton(centralwidget);
         btnTempoReal->setObjectName("btnTempoReal");
-        btnTempoReal->setGeometry(QRect(580, 210, 211, 61));
+        btnTempoReal->setGeometry(QRect(560, 190, 211, 61));
         btnTempoReal->setFont(font);
         btnTempoReal->setCursor(QCursor(Qt::PointingHandCursor));
         btnTempoReal->setStyleSheet(QString::fromUtf8("QPushButton{\n"
@@ -91,7 +97,7 @@ public:
 "}"));
         btnTabelaDados = new QPushButton(centralwidget);
         btnTabelaDados->setObjectName("btnTabelaDados");
-        btnTabelaDados->setGeometry(QRect(580, 120, 211, 61));
+        btnTabelaDados->setGeometry(QRect(560, 100, 211, 61));
         btnTabelaDados->setFont(font);
         btnTabelaDados->setCursor(QCursor(Qt::PointingHandCursor));
         btnTabelaDados->setStyleSheet(QString::fromUtf8("QPushButton{\n"
@@ -110,12 +116,12 @@ public:
 "}"));
         comboBoxCarro = new QComboBox(centralwidget);
         comboBoxCarro->setObjectName("comboBoxCarro");
-        comboBoxCarro->setGeometry(QRect(60, 250, 211, 31));
+        comboBoxCarro->setGeometry(QRect(150, 200, 211, 31));
         comboBoxCarro->setCursor(QCursor(Qt::PointingHandCursor));
         comboBoxCarro->setStyleSheet(QString::fromUtf8("background:rgb(234, 234, 234)"));
         btnCriarCarro = new QPushButton(centralwidget);
         btnCriarCarro->setObjectName("btnCriarCarro");
-        btnCriarCarro->setGeometry(QRect(60, 320, 151, 61));
+        btnCriarCarro->setGeometry(QRect(280, 550, 191, 61));
         btnCriarCarro->setFont(font);
         btnCriarCarro->setCursor(QCursor(Qt::PointingHandCursor));
         btnCriarCarro->setStyleSheet(QString::fromUtf8("QPushButton{\n"
@@ -135,7 +141,7 @@ public:
         btnVerCarro = new QPushButton(centralwidget);
         btnVerCarro->setObjectName("btnVerCarro");
         btnVerCarro->setEnabled(true);
-        btnVerCarro->setGeometry(QRect(340, 260, 161, 61));
+        btnVerCarro->setGeometry(QRect(290, 280, 161, 61));
         btnVerCarro->setFont(font);
         btnVerCarro->setCursor(QCursor(Qt::PointingHandCursor));
         btnVerCarro->setStyleSheet(QString::fromUtf8("QPushButton{\n"
@@ -155,7 +161,7 @@ public:
         btnVerCarro->setCheckable(false);
         btnDuplicarCarro = new QPushButton(centralwidget);
         btnDuplicarCarro->setObjectName("btnDuplicarCarro");
-        btnDuplicarCarro->setGeometry(QRect(340, 190, 161, 61));
+        btnDuplicarCarro->setGeometry(QRect(80, 280, 161, 61));
         btnDuplicarCarro->setFont(font);
         btnDuplicarCarro->setCursor(QCursor(Qt::PointingHandCursor));
         btnDuplicarCarro->setStyleSheet(QString::fromUtf8("QPushButton{\n"
@@ -174,15 +180,39 @@ public:
 "}"));
         label = new QLabel(centralwidget);
         label->setObjectName("label");
-        label->setGeometry(QRect(60, 200, 251, 41));
+        label->setGeometry(QRect(150, 150, 251, 41));
         QFont font1;
         font1.setPointSize(16);
         font1.setBold(true);
         label->setFont(font1);
+        line = new QFrame(centralwidget);
+        line->setObjectName("line");
+        line->setGeometry(QRect(-10, 20, 471, 16));
+        line->setFrameShape(QFrame::HLine);
+        line->setFrameShadow(QFrame::Sunken);
+        line_2 = new QFrame(centralwidget);
+        line_2->setObjectName("line_2");
+        line_2->setGeometry(QRect(-10, 440, 471, 16));
+        line_2->setFrameShape(QFrame::HLine);
+        line_2->setFrameShadow(QFrame::Sunken);
+        line_3 = new QFrame(centralwidget);
+        line_3->setObjectName("line_3");
+        line_3->setGeometry(QRect(430, 20, 471, 16));
+        line_3->setFrameShape(QFrame::HLine);
+        line_3->setFrameShadow(QFrame::Sunken);
+        line_4 = new QFrame(centralwidget);
+        line_4->setObjectName("line_4");
+        line_4->setGeometry(QRect(450, 440, 471, 16));
+        line_4->setFrameShape(QFrame::HLine);
+        line_4->setFrameShadow(QFrame::Sunken);
+        label_2 = new QLabel(centralwidget);
+        label_2->setObjectName("label_2");
+        label_2->setGeometry(QRect(60, 500, 251, 41));
+        label_2->setFont(font1);
         MainWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName("menubar");
-        menubar->setGeometry(QRect(0, 0, 850, 21));
+        menubar->setGeometry(QRect(0, 0, 850, 22));
         MainWindow->setMenuBar(menubar);
         statusbar = new QStatusBar(MainWindow);
         statusbar->setObjectName("statusbar");
@@ -200,10 +230,11 @@ public:
         btnTempoReal->setText(QCoreApplication::translate("MainWindow", "Tempo Real", nullptr));
         btnTabelaDados->setText(QCoreApplication::translate("MainWindow", "Tabela de Dados", nullptr));
         comboBoxCarro->setPlaceholderText(QCoreApplication::translate("MainWindow", "<Selecionar Carro>", nullptr));
-        btnCriarCarro->setText(QCoreApplication::translate("MainWindow", "Criar Carro", nullptr));
+        btnCriarCarro->setText(QCoreApplication::translate("MainWindow", "Criar", nullptr));
         btnVerCarro->setText(QCoreApplication::translate("MainWindow", "Ver Dados do Carro", nullptr));
         btnDuplicarCarro->setText(QCoreApplication::translate("MainWindow", "Duplicar Carro", nullptr));
         label->setText(QCoreApplication::translate("MainWindow", "Escolha o carro:", nullptr));
+        label_2->setText(QCoreApplication::translate("MainWindow", "Cria o teu Carro:", nullptr));
     } // retranslateUi
 
 };
