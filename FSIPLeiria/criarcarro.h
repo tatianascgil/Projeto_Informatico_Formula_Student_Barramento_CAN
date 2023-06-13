@@ -16,7 +16,7 @@ public:
     ~CriarCarro();
 
 public slots:
-//    void loadTiposCarro();
+    void loadTiposCarro();
 
 private slots:
     void on_btnCancelar_clicked();

@@ -30,6 +30,9 @@ private slots:
 
     void on_btnGuardarCarro_clicked();
 
+    void handleTableViewDoubleClick(const QModelIndex& index);
+
+
 private:
     Ui::GerirCarro *ui;
 };

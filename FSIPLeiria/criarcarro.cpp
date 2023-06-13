@@ -30,33 +30,31 @@ void CriarCarro::on_btnCancelar_clicked()
     this->close();
 }
 
-//void CriarCarro::loadTiposCarro(){
+void CriarCarro::loadTiposCarro(){
 
-//    QString currentPath = QDir::currentPath();
-//    QString targetFile = currentPath + "/../FSIPLeiria/tiposCarro.txt";
+    QString currentPath = QDir::currentPath();
+    QString targetFile = currentPath + "/../FSIPLeiria/tiposCarro.txt";
 
+    QFile file(targetFile);
+    if (file.open(QIODevice::ReadOnly | QIODevice::Text)) {
+        QTextStream in(&file);
+        QString line = in.readLine();
 
-//    QFile file(targetFile);
-//    if (file.open(QIODevice::ReadOnly | QIODevice::Text)) {
-//        QTextStream in(&file);
+        if (!line.isEmpty()) {
+            QStringList values = line.split(';');
+            for (const QString& value : values) {
+                QString trimmedValue = value.trimmed();
+                if (!trimmedValue.isEmpty()) {
+                    ui->btnTipoCarro->addItem(trimmedValue);
+                }
+            }
+        }
 
-//        // Read the only line of the file
-//        QString line = in.readLine();
-
-//        // Split the line into values using the delimiter ";"
-//        QStringList values = line.split(';');
-
-//        // Add the values to the QComboBox
-//        ui->btnTipoCarro->clear();
-//        ui->btnTipoCarro->addItems(values);
-
-//        // Close the file
-//        file.close();
-//    } else {
-//        // Failed to open the file, handle the error
-//        QMessageBox::critical(this, "Erro", "Não foi possível abrir o ficheiro " + targetFile);
-//    }
-//}
+        file.close();
+    } else {
+        QMessageBox::critical(this, "Erro", "Não foi possível abrir o ficheiro " + targetFile);
+    }
+}
 
 void CriarCarro::on_btnCriarCarro_clicked()
 {

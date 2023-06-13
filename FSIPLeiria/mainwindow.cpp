@@ -132,7 +132,7 @@ void MainWindow::on_btnCriarCarro_clicked()
         // Define o tamanho mínimo e máximo da janela
         criarCarro->setMinimumSize(criarCarroWidth, criarCarroHeight);
         criarCarro->setMaximumSize(criarCarroWidth, criarCarroHeight);
-//        criarCarro->loadTiposCarro();
+        criarCarro->loadTiposCarro();
 
         criarCarro->show();
         this->close();

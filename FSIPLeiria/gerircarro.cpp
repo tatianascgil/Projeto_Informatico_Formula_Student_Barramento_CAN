@@ -14,6 +14,7 @@
 #include <QStandardItemModel>
 #include <QDebug>
 #include <QMessageBox>
+#include <QInputDialog>
 
 
 GerirCarro::GerirCarro(QWidget *parent) :
@@ -22,6 +23,9 @@ GerirCarro::GerirCarro(QWidget *parent) :
 {
     ui->setupUi(this);
     connect(ui->tableViewModulosCarro, &QTableView::doubleClicked, this, &GerirCarro::openGerirModuloWindow);
+
+    connect(ui->tableViewCarro, &QTableView::doubleClicked, this, &GerirCarro::handleTableViewDoubleClick);
+
 
 }
 
@@ -110,7 +114,14 @@ void GerirCarro::lerDadosCarro(const QString& nome) {
             // Populate the model with data
             for (int row = 0; row < data.count(); ++row) {
                 for (int col = 0; col < data[row].count(); ++col) {
-                    model->setItem(row, col, new QStandardItem(data[row][col]));
+                    QStandardItem* item = new QStandardItem(data[row][col]);
+
+                    // Set the first two cells as non-editable
+                    if (col < 2) {
+                        item->setEditable(false);
+                    }
+
+                    model->setItem(row, col, item);
                 }
             }
 
@@ -124,6 +135,7 @@ void GerirCarro::lerDadosCarro(const QString& nome) {
         }
     }
 }
+
 
 
 
@@ -291,6 +303,47 @@ void GerirCarro::on_btnApagarCarro_clicked()
     }
 }
 
+void GerirCarro::handleTableViewDoubleClick(const QModelIndex& index)
+{
+    if (index.isValid() && index.column() == 1) {
+        QString currentPath = QDir::currentPath();
+        QString targetFile = currentPath + "/../FSIPLeiria/tiposCarro.txt";
+
+        QFile tiposCarroFile(targetFile);
+        if (tiposCarroFile.open(QIODevice::ReadOnly | QIODevice::Text)) {
+            QTextStream tiposCarroIn(&tiposCarroFile);
+            QString line = tiposCarroIn.readLine();
+            QStringList tiposCarroData;
+            QStringList values = line.split(';');
+            for (const QString& value : values) {
+                if (!value.isEmpty()) {
+                    tiposCarroData.append(value);
+                }
+            }
+            tiposCarroFile.close();
+
+            // Get the current value of the double-clicked cell
+            QAbstractItemModel* model = ui->tableViewCarro->model();
+            QVariant currentValue = model->data(index);
+
+            // Display a dialog to let the user choose from the available options
+            bool ok;
+            QString selectedTipoCarro = QInputDialog::getItem(this, tr("Selecionar Tipo de Carro"), tr("Tipo de Carro:"), tiposCarroData, tiposCarroData.indexOf(currentValue.toString()), false, &ok);
+            if (ok) {
+                // Update the selected value in the QTableView
+                model->setData(index, selectedTipoCarro);
+            } else {
+                // User canceled the selection
+            }
+        } else {
+            QMessageBox::critical(this, tr("Erro"), tr("Não foi possível abrir o ficheiro tiposCarro.txt."));
+            return;
+        }
+    }
+}
+
+
+
 
 void GerirCarro::on_btnGuardarCarro_clicked()
 {
@@ -333,15 +386,23 @@ void GerirCarro::on_btnGuardarCarro_clicked()
 
         bool allValuesMatch = true;
         // Compare the file data with the modified data from the QTableView
-        for (int row = 0; row < tableViewData.size(); ++row) {
-            QStringList tableViewRowData = tableViewData[row];
-            QStringList fileRowData = fileData.value(row);
+        if (tableViewData.size() == fileData.size()) {
+            for (int row = 0; row < tableViewData.size(); ++row) {
+                QStringList tableViewRowData = tableViewData[row];
+                QStringList fileRowData = fileData[row];
 
-            if (fileRowData != tableViewRowData) {
-                allValuesMatch = false;
-                break;
+                tableViewRowData.sort();
+                fileRowData.sort();
+
+                if (fileRowData != tableViewRowData) {
+                    allValuesMatch = false;
+                    break;
+                }
             }
+        } else {
+            allValuesMatch = false;
         }
+
 
         // If all values match, prompt the user with an error message
         if (allValuesMatch) {

@@ -108,7 +108,6 @@ void TabelaDados::setCodigosHex(int index){
 }
 
 void TabelaDados::setCampos(int index){
-
     QString selectedCodHex = ui->comboBoxCodigoHEX->itemText(index);
     ui->comboBoxCampo->clear();
 
@@ -130,7 +129,9 @@ void TabelaDados::setCampos(int index){
     QStringList campos;
 
     QString placeholderText = ui->comboBoxCampo->placeholderText();
-    campos.append(placeholderText);
+    if (!placeholderText.isEmpty()) {
+        campos.append(placeholderText);
+    }
 
     // Read the file line by line
     while (!in.atEnd()) {
@@ -139,7 +140,9 @@ void TabelaDados::setCampos(int index){
 
         if (values.size() >= 5 && values.at(1).trimmed() == selectedCodHex) {
             QString value = values.at(4).trimmed();
-            campos.append(value);
+            if (!value.isEmpty()) {
+                campos.append(value);
+            }
         }
 
         for (int i = 10; i < values.size(); i += 6) {
@@ -154,10 +157,11 @@ void TabelaDados::setCampos(int index){
 
     file.close();
 
-    // Add the values to the comboBoxCampo
+    // Add the non-empty values to the comboBoxCampo
     ui->comboBoxCampo->clear();
     ui->comboBoxCampo->addItems(campos);
 }
+
 
 void TabelaDados::setOperador(){
     ui->comboBoxOperador->setPlaceholderText(" ");
