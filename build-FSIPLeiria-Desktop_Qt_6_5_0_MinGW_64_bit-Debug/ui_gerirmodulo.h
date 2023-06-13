@@ -52,6 +52,9 @@ public:
         tableViewTipodeMensagemModulo = new QTableView(GerirModulo);
         tableViewTipodeMensagemModulo->setObjectName("tableViewTipodeMensagemModulo");
         tableViewTipodeMensagemModulo->setGeometry(QRect(20, 250, 761, 191));
+        QFont font;
+        font.setPointSize(10);
+        tableViewTipodeMensagemModulo->setFont(font);
         tableViewTipodeMensagemModulo->setStyleSheet(QString::fromUtf8(""));
         commandButtonVoltar = new QCommandLinkButton(GerirModulo);
         commandButtonVoltar->setObjectName("commandButtonVoltar");
@@ -63,8 +66,6 @@ public:
         btnApagarModulo = new QPushButton(GerirModulo);
         btnApagarModulo->setObjectName("btnApagarModulo");
         btnApagarModulo->setGeometry(QRect(500, 140, 141, 41));
-        QFont font;
-        font.setPointSize(10);
         btnApagarModulo->setFont(font);
         btnApagarModulo->setCursor(QCursor(Qt::PointingHandCursor));
         btnApagarModulo->setStyleSheet(QString::fromUtf8("QPushButton{\n"
@@ -96,6 +97,7 @@ public:
         tableViewModulosCarro = new QTableView(GerirModulo);
         tableViewModulosCarro->setObjectName("tableViewModulosCarro");
         tableViewModulosCarro->setGeometry(QRect(20, 70, 761, 51));
+        tableViewModulosCarro->setFont(font);
         btnGuardarModulo = new QPushButton(GerirModulo);
         btnGuardarModulo->setObjectName("btnGuardarModulo");
         btnGuardarModulo->setGeometry(QRect(650, 140, 121, 41));

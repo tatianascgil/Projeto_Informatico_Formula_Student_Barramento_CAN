@@ -1255,7 +1255,7 @@
    </property>
    <property name="font">
     <font>
-     <pointsize>14</pointsize>
+     <pointsize>12</pointsize>
      <bold>true</bold>
     </font>
    </property>
@@ -1277,7 +1277,7 @@
    </property>
    <property name="font">
     <font>
-     <pointsize>14</pointsize>
+     <pointsize>12</pointsize>
      <bold>true</bold>
     </font>
    </property>
@@ -1365,7 +1365,7 @@
    </property>
    <property name="font">
     <font>
-     <pointsize>14</pointsize>
+     <pointsize>12</pointsize>
      <bold>true</bold>
     </font>
    </property>
@@ -1379,7 +1379,7 @@
   <widget class="QPushButton" name="btnGuardarCarro">
    <property name="geometry">
     <rect>
-     <x>650</x>
+     <x>660</x>
      <y>540</y>
      <width>131</width>
      <height>51</height>
@@ -1421,6 +1421,11 @@ QPushButton:pressed {
      <width>491</width>
      <height>101</height>
     </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>10</pointsize>
+    </font>
    </property>
    <property name="styleSheet">
     <string notr="true">background: rgb(220,220,220)</string>

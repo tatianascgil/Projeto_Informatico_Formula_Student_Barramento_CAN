@@ -117,11 +117,12 @@ public:
         comboBoxCarro = new QComboBox(centralwidget);
         comboBoxCarro->setObjectName("comboBoxCarro");
         comboBoxCarro->setGeometry(QRect(150, 200, 211, 31));
+        comboBoxCarro->setFont(font);
         comboBoxCarro->setCursor(QCursor(Qt::PointingHandCursor));
         comboBoxCarro->setStyleSheet(QString::fromUtf8("background:rgb(234, 234, 234)"));
         btnCriarCarro = new QPushButton(centralwidget);
         btnCriarCarro->setObjectName("btnCriarCarro");
-        btnCriarCarro->setGeometry(QRect(280, 550, 191, 61));
+        btnCriarCarro->setGeometry(QRect(320, 550, 191, 61));
         btnCriarCarro->setFont(font);
         btnCriarCarro->setCursor(QCursor(Qt::PointingHandCursor));
         btnCriarCarro->setStyleSheet(QString::fromUtf8("QPushButton{\n"
@@ -182,7 +183,7 @@ public:
         label->setObjectName("label");
         label->setGeometry(QRect(150, 150, 251, 41));
         QFont font1;
-        font1.setPointSize(16);
+        font1.setPointSize(14);
         font1.setBold(true);
         label->setFont(font1);
         line = new QFrame(centralwidget);
@@ -207,12 +208,12 @@ public:
         line_4->setFrameShadow(QFrame::Sunken);
         label_2 = new QLabel(centralwidget);
         label_2->setObjectName("label_2");
-        label_2->setGeometry(QRect(60, 500, 251, 41));
+        label_2->setGeometry(QRect(340, 500, 151, 41));
         label_2->setFont(font1);
         MainWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName("menubar");
-        menubar->setGeometry(QRect(0, 0, 850, 22));
+        menubar->setGeometry(QRect(0, 0, 850, 21));
         MainWindow->setMenuBar(menubar);
         statusbar = new QStatusBar(MainWindow);
         statusbar->setObjectName("statusbar");

@@ -15,9 +15,8 @@ public:
     explicit CriarCarro(QWidget *parent = nullptr);
     ~CriarCarro();
 
-
-signals:
-    void carNameEntered(const QString& carName);
+public slots:
+//    void loadTiposCarro();
 
 private slots:
     void on_btnCancelar_clicked();

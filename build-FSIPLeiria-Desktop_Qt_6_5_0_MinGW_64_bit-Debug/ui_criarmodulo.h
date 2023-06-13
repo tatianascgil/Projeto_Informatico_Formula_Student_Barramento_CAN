@@ -140,7 +140,10 @@ public:
         labelNomeCarro = new QLabel(CriarModulo);
         labelNomeCarro->setObjectName("labelNomeCarro");
         labelNomeCarro->setGeometry(QRect(90, 40, 211, 31));
-        labelNomeCarro->setFont(font1);
+        QFont font3;
+        font3.setPointSize(12);
+        font3.setBold(true);
+        labelNomeCarro->setFont(font3);
 
         retranslateUi(CriarModulo);
 

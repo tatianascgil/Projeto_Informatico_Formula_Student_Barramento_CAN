@@ -63,9 +63,13 @@ public:
         tableViewCarro = new QTableView(GerirCarro);
         tableViewCarro->setObjectName("tableViewCarro");
         tableViewCarro->setGeometry(QRect(20, 60, 761, 51));
+        QFont font1;
+        font1.setPointSize(10);
+        tableViewCarro->setFont(font1);
         tableViewModulosCarro = new QTableView(GerirCarro);
         tableViewModulosCarro->setObjectName("tableViewModulosCarro");
         tableViewModulosCarro->setGeometry(QRect(20, 250, 761, 191));
+        tableViewModulosCarro->setFont(font1);
         tableViewModulosCarro->setStyleSheet(QString::fromUtf8(""));
         label_2 = new QLabel(GerirCarro);
         label_2->setObjectName("label_2");
@@ -79,8 +83,6 @@ public:
         btnApagarCarro = new QPushButton(GerirCarro);
         btnApagarCarro->setObjectName("btnApagarCarro");
         btnApagarCarro->setGeometry(QRect(530, 140, 121, 41));
-        QFont font1;
-        font1.setPointSize(10);
         btnApagarCarro->setFont(font1);
         btnApagarCarro->setCursor(QCursor(Qt::PointingHandCursor));
         btnApagarCarro->setStyleSheet(QString::fromUtf8("QPushButton{\n"

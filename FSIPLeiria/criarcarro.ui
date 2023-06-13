@@ -125,7 +125,7 @@ QPushButton:pressed {
    </property>
    <property name="font">
     <font>
-     <pointsize>16</pointsize>
+     <pointsize>14</pointsize>
      <bold>true</bold>
     </font>
    </property>
@@ -144,7 +144,7 @@ QPushButton:pressed {
    </property>
    <property name="font">
     <font>
-     <pointsize>16</pointsize>
+     <pointsize>14</pointsize>
      <bold>true</bold>
     </font>
    </property>
@@ -222,6 +222,11 @@ QPushButton:pressed {
      <height>41</height>
     </rect>
    </property>
+   <property name="font">
+    <font>
+     <pointsize>12</pointsize>
+    </font>
+   </property>
    <property name="styleSheet">
     <string notr="true">background: rgb(220,220,220)</string>
    </property>
@@ -231,21 +236,6 @@ QPushButton:pressed {
    <property name="placeholderText">
     <string>&lt;Selecionar Tipo de Carro&gt;</string>
    </property>
-   <item>
-    <property name="text">
-     <string>Combustão</string>
-    </property>
-   </item>
-   <item>
-    <property name="text">
-     <string>Elétrico</string>
-    </property>
-   </item>
-   <item>
-    <property name="text">
-     <string>Híbrido</string>
-    </property>
-   </item>
   </widget>
  </widget>
  <resources/>

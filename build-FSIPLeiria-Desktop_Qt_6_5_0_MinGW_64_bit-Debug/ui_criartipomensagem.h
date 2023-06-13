@@ -101,10 +101,12 @@ public:
         plainTextEditObs = new QPlainTextEdit(CriarTipoMensagem);
         plainTextEditObs->setObjectName("plainTextEditObs");
         plainTextEditObs->setGeometry(QRect(320, 140, 351, 101));
+        plainTextEditObs->setFont(font1);
         plainTextEditObs->setStyleSheet(QString::fromUtf8("background: rgb(220, 220, 220)"));
         plainTextEditCodHex = new QPlainTextEdit(CriarTipoMensagem);
         plainTextEditCodHex->setObjectName("plainTextEditCodHex");
         plainTextEditCodHex->setGeometry(QRect(400, 50, 71, 31));
+        plainTextEditCodHex->setFont(font1);
 
         retranslateUi(CriarTipoMensagem);
 

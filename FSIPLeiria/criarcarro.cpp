@@ -15,6 +15,7 @@ CriarCarro::CriarCarro(QWidget *parent) :
     ui(new Ui::CriarCarro)
 {
     ui->setupUi(this);
+
 }
 
 CriarCarro::~CriarCarro()
@@ -29,9 +30,37 @@ void CriarCarro::on_btnCancelar_clicked()
     this->close();
 }
 
+//void CriarCarro::loadTiposCarro(){
+
+//    QString currentPath = QDir::currentPath();
+//    QString targetFile = currentPath + "/../FSIPLeiria/tiposCarro.txt";
+
+
+//    QFile file(targetFile);
+//    if (file.open(QIODevice::ReadOnly | QIODevice::Text)) {
+//        QTextStream in(&file);
+
+//        // Read the only line of the file
+//        QString line = in.readLine();
+
+//        // Split the line into values using the delimiter ";"
+//        QStringList values = line.split(';');
+
+//        // Add the values to the QComboBox
+//        ui->btnTipoCarro->clear();
+//        ui->btnTipoCarro->addItems(values);
+
+//        // Close the file
+//        file.close();
+//    } else {
+//        // Failed to open the file, handle the error
+//        QMessageBox::critical(this, "Erro", "Não foi possível abrir o ficheiro " + targetFile);
+//    }
+//}
 
 void CriarCarro::on_btnCriarCarro_clicked()
 {
+
 
     QString nomeCarro = ui->textEditNomeCarro->toPlainText().trimmed();
     QString tipoCarro = ui->btnTipoCarro->currentText();

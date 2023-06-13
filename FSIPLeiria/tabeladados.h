@@ -16,11 +16,11 @@ public:
     ~TabelaDados();
 
 public slots:
-    void loadMensagens();
+    void loadMensagens(const QString& filePath);
     void setNome(const QString& nome);
     void setModulos(const QString& nome);
-    void setCodigosHex(const QString& nome);
-    void setCampos(const QString& nome);
+    void setCodigosHex(int index);
+    void setCampos(int index);
     void setOperador();
 
 private slots:

@@ -87,9 +87,9 @@ public:
 "}"));
         label = new QLabel(VerCarro);
         label->setObjectName("label");
-        label->setGeometry(QRect(60, 40, 91, 31));
+        label->setGeometry(QRect(60, 40, 61, 31));
         QFont font1;
-        font1.setPointSize(16);
+        font1.setPointSize(14);
         font1.setBold(true);
         label->setFont(font1);
         label_2 = new QLabel(VerCarro);
@@ -102,13 +102,13 @@ public:
         label_3->setFont(font1);
         labelNomeCarro = new QLabel(VerCarro);
         labelNomeCarro->setObjectName("labelNomeCarro");
-        labelNomeCarro->setGeometry(QRect(150, 40, 361, 31));
+        labelNomeCarro->setGeometry(QRect(130, 40, 321, 31));
         QFont font2;
-        font2.setPointSize(16);
+        font2.setPointSize(12);
         labelNomeCarro->setFont(font2);
         labelTipoCarro = new QLabel(VerCarro);
         labelTipoCarro->setObjectName("labelTipoCarro");
-        labelTipoCarro->setGeometry(QRect(140, 90, 351, 31));
+        labelTipoCarro->setGeometry(QRect(120, 90, 131, 31));
         labelTipoCarro->setFont(font2);
         scrollArea = new QScrollArea(VerCarro);
         scrollArea->setObjectName("scrollArea");

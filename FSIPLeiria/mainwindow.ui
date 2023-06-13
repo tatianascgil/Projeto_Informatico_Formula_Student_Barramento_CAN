@@ -144,6 +144,11 @@ QPushButton:pressed {
       <height>31</height>
      </rect>
     </property>
+    <property name="font">
+     <font>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
     <property name="cursor">
      <cursorShape>PointingHandCursor</cursorShape>
     </property>
@@ -157,7 +162,7 @@ QPushButton:pressed {
    <widget class="QPushButton" name="btnCriarCarro">
     <property name="geometry">
      <rect>
-      <x>280</x>
+      <x>320</x>
       <y>550</y>
       <width>191</width>
       <height>61</height>
@@ -282,7 +287,7 @@ QPushButton:pressed {
     </property>
     <property name="font">
      <font>
-      <pointsize>16</pointsize>
+      <pointsize>14</pointsize>
       <bold>true</bold>
      </font>
     </property>
@@ -345,15 +350,15 @@ QPushButton:pressed {
    <widget class="QLabel" name="label_2">
     <property name="geometry">
      <rect>
-      <x>60</x>
+      <x>340</x>
       <y>500</y>
-      <width>251</width>
+      <width>151</width>
       <height>41</height>
      </rect>
     </property>
     <property name="font">
      <font>
-      <pointsize>16</pointsize>
+      <pointsize>14</pointsize>
       <bold>true</bold>
      </font>
     </property>
@@ -368,7 +373,7 @@ QPushButton:pressed {
      <x>0</x>
      <y>0</y>
      <width>850</width>
-     <height>22</height>
+     <height>21</height>
     </rect>
    </property>
   </widget>

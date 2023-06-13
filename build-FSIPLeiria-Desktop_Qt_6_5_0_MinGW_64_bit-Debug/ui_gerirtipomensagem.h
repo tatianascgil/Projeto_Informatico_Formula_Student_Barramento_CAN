@@ -489,7 +489,7 @@ public:
         labelNomeModulo->setObjectName("labelNomeModulo");
         labelNomeModulo->setGeometry(QRect(130, 60, 321, 31));
         QFont font;
-        font.setPointSize(14);
+        font.setPointSize(12);
         font.setBold(true);
         labelNomeModulo->setFont(font);
         labelNomeModulo->setCursor(QCursor(Qt::ForbiddenCursor));
@@ -501,17 +501,20 @@ public:
         label = new QLabel(GerirTipoMensagem);
         label->setObjectName("label");
         label->setGeometry(QRect(40, 60, 71, 31));
-        label->setFont(font);
+        QFont font1;
+        font1.setPointSize(14);
+        font1.setBold(true);
+        label->setFont(font1);
         label->setCursor(QCursor(Qt::ForbiddenCursor));
         label_4 = new QLabel(GerirTipoMensagem);
         label_4->setObjectName("label_4");
         label_4->setGeometry(QRect(480, 30, 141, 31));
-        label_4->setFont(font);
+        label_4->setFont(font1);
         label_4->setCursor(QCursor(Qt::ForbiddenCursor));
         label_8 = new QLabel(GerirTipoMensagem);
         label_8->setObjectName("label_8");
         label_8->setGeometry(QRect(40, 10, 71, 31));
-        label_8->setFont(font);
+        label_8->setFont(font1);
         label_8->setCursor(QCursor(Qt::ForbiddenCursor));
         labelCodHex = new QLabel(GerirTipoMensagem);
         labelCodHex->setObjectName("labelCodHex");
@@ -520,10 +523,10 @@ public:
         labelCodHex->setCursor(QCursor(Qt::ForbiddenCursor));
         btnGuardarCarro = new QPushButton(GerirTipoMensagem);
         btnGuardarCarro->setObjectName("btnGuardarCarro");
-        btnGuardarCarro->setGeometry(QRect(650, 540, 131, 51));
-        QFont font1;
-        font1.setPointSize(10);
-        btnGuardarCarro->setFont(font1);
+        btnGuardarCarro->setGeometry(QRect(660, 540, 131, 51));
+        QFont font2;
+        font2.setPointSize(10);
+        btnGuardarCarro->setFont(font2);
         btnGuardarCarro->setCursor(QCursor(Qt::PointingHandCursor));
         btnGuardarCarro->setStyleSheet(QString::fromUtf8("QPushButton{\n"
 "	background-color:rgb(255, 245, 166);\n"
@@ -542,6 +545,7 @@ public:
         plainTextEditObs = new QPlainTextEdit(GerirTipoMensagem);
         plainTextEditObs->setObjectName("plainTextEditObs");
         plainTextEditObs->setGeometry(QRect(110, 490, 491, 101));
+        plainTextEditObs->setFont(font2);
         plainTextEditObs->setStyleSheet(QString::fromUtf8("background: rgb(220,220,220)"));
         spinBox_Inicial2 = new QSpinBox(GerirTipoMensagem);
         spinBox_Inicial2->setObjectName("spinBox_Inicial2");

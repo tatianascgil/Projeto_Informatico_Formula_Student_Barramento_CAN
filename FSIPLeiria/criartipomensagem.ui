@@ -200,6 +200,11 @@ QPushButton:pressed {
      <height>101</height>
     </rect>
    </property>
+   <property name="font">
+    <font>
+     <pointsize>10</pointsize>
+    </font>
+   </property>
    <property name="styleSheet">
     <string notr="true">background: rgb(220, 220, 220)</string>
    </property>
@@ -212,6 +217,11 @@ QPushButton:pressed {
      <width>71</width>
      <height>31</height>
     </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>10</pointsize>
+    </font>
    </property>
   </widget>
  </widget>

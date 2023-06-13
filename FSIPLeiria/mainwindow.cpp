@@ -121,22 +121,20 @@ void MainWindow::on_btnVerCarro_clicked()
 
 void MainWindow::on_btnCriarCarro_clicked()
 {
-        const int criarcarroWidth = 600;
-        const int criarcarroHeight = 250;
+        const int criarCarroWidth = 600;
+        const int criarCarroHeight = 250;
 
 
         // Cria a janela principal
-        CriarCarro *criarcarro = new CriarCarro();
+        CriarCarro *criarCarro = new CriarCarro();
 
 
         // Define o tamanho mínimo e máximo da janela
-        criarcarro->setMinimumSize(criarcarroWidth, criarcarroHeight);
-        criarcarro->setMaximumSize(criarcarroWidth, criarcarroHeight);
+        criarCarro->setMinimumSize(criarCarroWidth, criarCarroHeight);
+        criarCarro->setMaximumSize(criarCarroWidth, criarCarroHeight);
+//        criarCarro->loadTiposCarro();
 
-        // Connect the carNameEntered signal to the setComboBoxSelectedValue slot
-//        connect(criarcarro, &CriarCarro::carNameEntered, this, &MainWindow::setComboBoxSelectedValue);
-
-        criarcarro->show();
+        criarCarro->show();
         this->close();
 }
 
@@ -282,23 +280,28 @@ void MainWindow::on_btnDuplicarCarro_clicked()
 
 void MainWindow::on_btnTabelaDados_clicked()
 {
-    const int tabelaDadosWidth = 1000;
-    const int tabelaDadosHeight = 700;
 
-    // Cria a janela principal
-    TabelaDados *tabelaDados = new TabelaDados();
+    QString filePath = QFileDialog::getOpenFileName(this, "Selecione um ficheiro", QDir::homePath(), "Text Files (*.txt)");
 
-    // Define o tamanho mínimo e máximo da janela
-    tabelaDados->setMinimumSize(tabelaDadosWidth, tabelaDadosHeight);
-    tabelaDados->setMaximumSize(tabelaDadosWidth, tabelaDadosHeight);
+    QFile file(filePath);
+    if (file.open(QIODevice::ReadOnly | QIODevice::Text)) {
+        const int tabelaDadosWidth = 1000;
+        const int tabelaDadosHeight = 700;
 
-    QString nomeCarro = ui->comboBoxCarro->currentText().trimmed();
-    tabelaDados->setNome(nomeCarro);
-    tabelaDados->setModulos(nomeCarro);
-    tabelaDados->setCodigosHex(nomeCarro);
-    tabelaDados->setCampos(nomeCarro);
-    tabelaDados->setOperador();
-    tabelaDados->loadMensagens();
-    tabelaDados->show();
-    this->close();
+        // Cria a janela principal
+        TabelaDados *tabelaDados = new TabelaDados();
+
+        // Define o tamanho mínimo e máximo da janela
+        tabelaDados->setMinimumSize(tabelaDadosWidth, tabelaDadosHeight);
+        tabelaDados->setMaximumSize(tabelaDadosWidth, tabelaDadosHeight);
+
+        QString nomeCarro = ui->comboBoxCarro->currentText().trimmed();
+        tabelaDados->setNome(nomeCarro);
+        tabelaDados->setModulos(nomeCarro);
+        tabelaDados->setOperador();
+        tabelaDados->loadMensagens(filePath);
+        tabelaDados->show();
+        this->close();
+    }
+
 }
