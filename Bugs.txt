@@ -15,9 +15,9 @@ Window criarTipoMensagem:
 
 Window gerirMódulo:
   -> Botões "Apagar Módulo" e "Guardar" guardam os novos dados ao substituirem a 1ª linha.
-  -> Campo "Nome" está editável.
-  -> Campo "Endianess" deve ser editável a partir de um QInputDialog. 
+  -> Campo "Nome" está editável. (Resolvido)
+  -> Campo "Endianess" deve ser editável a partir de um QInputDialog. (Resolvido)
 
 Window gerirTipoMensagem:
   -> Criar botão "Apagar Tipo Mensagem".
-  -> Pedir autorização ao utlizador para guardar os dados.
+  -> Pedir autorização ao utlizador para guardar os dados. (Resolvido)

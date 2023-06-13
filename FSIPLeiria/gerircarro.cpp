@@ -332,8 +332,6 @@ void GerirCarro::handleTableViewDoubleClick(const QModelIndex& index)
             if (ok) {
                 // Update the selected value in the QTableView
                 model->setData(index, selectedTipoCarro);
-            } else {
-                // User canceled the selection
             }
         } else {
             QMessageBox::critical(this, tr("Erro"), tr("Não foi possível abrir o ficheiro tiposCarro.txt."));

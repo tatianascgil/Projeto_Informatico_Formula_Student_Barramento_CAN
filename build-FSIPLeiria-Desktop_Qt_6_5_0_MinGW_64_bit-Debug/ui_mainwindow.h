@@ -226,7 +226,7 @@ public:
 
     void retranslateUi(QMainWindow *MainWindow)
     {
-        MainWindow->setWindowTitle(QCoreApplication::translate("MainWindow", "FSLeiria", nullptr));
+        MainWindow->setWindowTitle(QCoreApplication::translate("MainWindow", "Menu Principal", nullptr));
         btnEstatisticas->setText(QCoreApplication::translate("MainWindow", "Estat\303\255sticas", nullptr));
         btnTempoReal->setText(QCoreApplication::translate("MainWindow", "Tempo Real", nullptr));
         btnTabelaDados->setText(QCoreApplication::translate("MainWindow", "Tabela de Dados", nullptr));

@@ -14,6 +14,7 @@
 #include <QStandardItemModel>
 #include <QDebug>
 #include <QMessageBox>
+#include <QInputDialog>
 
 
 GerirModulo::GerirModulo(QWidget *parent) :
@@ -23,7 +24,10 @@ GerirModulo::GerirModulo(QWidget *parent) :
     ui->setupUi(this);
 
     connect(ui->tableViewTipodeMensagemModulo, &QTableView::doubleClicked, this, &GerirModulo::openGerirTipoMensagemWindow);
+
+    connect(ui->tableViewModulosCarro, &QTableView::doubleClicked, this, &GerirModulo::handleDoubleClick);
 }
+
 
 GerirModulo::~GerirModulo()
 {
@@ -141,10 +145,28 @@ void GerirModulo::lerDadosTiposMensagem(const QString& nomeModulo)
     }
 }
 
+void GerirModulo::handleDoubleClick(const QModelIndex& index)
+{
+    // Check if the double-clicked cell is in the second column
+    if (index.isValid() && index.column() == 1) {
+        // Get the current value of the double-clicked cell
+        QAbstractItemModel* model = ui->tableViewModulosCarro->model();
+        QVariant currentValue = model->data(index);
+
+        // Display a dialog to let the user choose from the available options
+        bool ok;
+        QStringList endianOptions = {"Little Endian", "Big Endian"};
+        QString selectedEndian = QInputDialog::getItem(this, tr("Select Endianess"), tr("Choose the Endianess:"), endianOptions, endianOptions.indexOf(currentValue), false, &ok);
+        if (ok) {
+            // Update the selected value in the QTableView
+            model->setData(index, selectedEndian);
+        }
+    }
+}
+
 
 void GerirModulo::lerDadosModulo(const QString& nomeModulo)
 {
-
     ui->labelNomeModulo->setText(nomeModulo);
     QString folderName = ui->labelNomeCarro->text();
 
@@ -181,13 +203,19 @@ void GerirModulo::lerDadosModulo(const QString& nomeModulo)
             // Populate the model with filtered data
             for (int row = 0; row < filteredData.count(); ++row) {
                 for (int col = 0; col < filteredData[row].count(); ++col) {
-                    model->setItem(row, col, new QStandardItem(filteredData[row][col]));
+                    QStandardItem* item = new QStandardItem(filteredData[row][col]);
+
+                    // Set the first two cells as non-editable
+                    if (col < 2) {
+                        item->setEditable(false);
+                    }
+
+                    model->setItem(row, col, item);
                 }
             }
 
             // Set the mode of resizing for other columns
             QHeaderView* horizontalHeader = ui->tableViewModulosCarro->horizontalHeader();
-
             horizontalHeader->setSectionResizeMode(QHeaderView::Stretch);
             horizontalHeader->setStretchLastSection(false);
 
@@ -204,6 +232,7 @@ void GerirModulo::lerDadosModulo(const QString& nomeModulo)
         }
     }
 }
+
 
 
 

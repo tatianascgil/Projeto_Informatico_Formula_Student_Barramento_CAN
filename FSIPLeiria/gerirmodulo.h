@@ -30,6 +30,8 @@ private slots:
 
     void on_btnCriarTipoMensagem_clicked();
 
+    void handleDoubleClick(const QModelIndex& index);
+
 private:
     Ui::GerirModulo *ui;
 };

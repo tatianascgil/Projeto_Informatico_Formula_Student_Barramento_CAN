@@ -1,4 +1,4 @@
-Engine;70;Detalhes do motor.;2;Temperatura;0;0;1;3;ºC;Pressão;1;2;40;1;PSI;
+Engine;70;Detalhes do motor.;2;Temperatura;0;0;1;3;ºC;Pressão;1;2;32;1;PSI;
 Aerodynamics;456;Detalhes da aerodinâmica.;3;Floor;0;1;1;2;Km/h;Front Wing;2;3;2;1;PSI;Rear Wing;4;5;3;1.5;s;
 Engine;120;Módulo 3.;
 Aerodynamics;654;Tipo 2.;

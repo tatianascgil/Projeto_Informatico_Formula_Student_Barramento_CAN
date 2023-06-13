@@ -264,6 +264,14 @@ void GerirTipoMensagem::lerDadosTipoMensagem(){
 void GerirTipoMensagem::on_btnGuardarCarro_clicked()
 {
 
+    // Ask the user for confirmation
+    QMessageBox::StandardButton confirmation = QMessageBox::question(this, "Guardar Dados", "Tem a certeza que pretende guardar os dados?", QMessageBox::Yes | QMessageBox::No);
+    if (confirmation == QMessageBox::No) {
+        // User canceled the operation
+        return;
+    }
+
+
     QString codHex = ui->labelCodHex->text();
     QString obs = ui->plainTextEditObs->toPlainText();
     QString nomeCarro = ui->labelNomeCarro->text();
@@ -397,18 +405,16 @@ void GerirTipoMensagem::on_btnGuardarCarro_clicked()
                     return;
                 }
                 line += textEditUnidade->toPlainText() + ";";
-
             }
-
-            currentLine = line;  // Update the current line
+            currentLine = line;
         }
-
-        updatedLines.append(currentLine);  // Store the updated line
+        updatedLines.append(currentLine);
     }
 
 
     // Write the updated lines back to the file
-    file.resize(0);  // Clear the file content
+    // Clear the file content
+    file.resize(0);
     out << updatedLines.join("\n") << "\n";
 
     file.close();
