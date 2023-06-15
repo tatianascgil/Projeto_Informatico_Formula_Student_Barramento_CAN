@@ -199,6 +199,12 @@ void GerirCarro::lerDadosModulo(const QString& nome) {
 void GerirCarro::on_commandButtonVoltar_clicked()
 {
 
+    QMessageBox::StandardButton confirmation = QMessageBox::question(this, "Voltar atrás", "Tem a certeza que pretende voltar atrás? Todos os dados serão perdidos!", QMessageBox::Yes | QMessageBox::No);
+    if (confirmation == QMessageBox::No) {
+        // User canceled the operation
+        return;
+    }
+
     // Construct the path to the car's folder
     QString folderName = ui->labelNomeCarro->text();
     QString currentPath = QDir::currentPath();
@@ -209,7 +215,7 @@ void GerirCarro::on_commandButtonVoltar_clicked()
     QDir folderDir(folderPath);
     if (!folderDir.exists()) {
         QMessageBox::critical(this, tr("Erro"), tr("A pasta" + folderName.toUtf8() + " não existe!"));
-        return;
+            return;
     }
 
     // Open the "caracteristicas.txt" file within the car's folder

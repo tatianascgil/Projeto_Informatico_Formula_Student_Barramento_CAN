@@ -126,37 +126,29 @@ void CriarCarro::on_btnCriarCarro_clicked()
 
     QMessageBox::information(this, "Guardar Dados", "Dados salvados com sucesso!");
 
-    MainWindow *mainWindow = new MainWindow();
-    mainWindow->populateComboBox(nomeCarro);
-    mainWindow->show();
-    this->close();
+    previousWindow();
 
 }
 
 
 void CriarCarro::on_commandButtonVoltar_clicked()
 {
-    QString nomeCarro = ui->textEditNomeCarro->toPlainText().trimmed();
-    QString tipoCarro = ui->btnTipoCarro->currentText();
-    QString obsCarro = ui->textEditObsCarro->toPlainText().trimmed();
-
-    bool nomeCarroEmpty = nomeCarro.isEmpty();
-    bool tipoCarroEmpty = tipoCarro.isEmpty();
-    bool obsCarroEmpty = obsCarro.isEmpty();
-
-    if(!nomeCarroEmpty || !tipoCarroEmpty || !obsCarroEmpty){
-        // Ask the user for confirmation
-        QMessageBox::StandardButton confirmation = QMessageBox::question(this, "Voltar atrás", "Tem a certeza que pretende voltar atrás? Todos os dados serão perdidos!", QMessageBox::Yes | QMessageBox::No);
-        if (confirmation == QMessageBox::No) {
-            // User canceled the operation
-            return;
-        }
+    QMessageBox::StandardButton confirmation = QMessageBox::question(this, "Voltar atrás", "Tem a certeza que pretende voltar atrás? Todos os dados serão perdidos!", QMessageBox::Yes | QMessageBox::No);
+    if (confirmation == QMessageBox::No) {
+        // User canceled the operation
+        return;
     }
+
+    previousWindow();
+
+}
+
+void CriarCarro::previousWindow()
+{
 
     MainWindow *mainWindow = new MainWindow();
     mainWindow->show();
     this->close();
-
 
 }
 

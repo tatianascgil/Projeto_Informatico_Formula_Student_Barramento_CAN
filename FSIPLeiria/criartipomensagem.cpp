@@ -121,20 +121,12 @@ void CriarTipoMensagem::on_btnCriarTipoMensagem_clicked()
 void CriarTipoMensagem::on_commandButtonVoltar_clicked()
 {
 
-    QString codHex = ui->plainTextEditCodHex->toPlainText().toUpper();
-    QString obs = ui->plainTextEditObs->toPlainText();
-
-    bool codHexEmpty = codHex.isEmpty();
-    bool obsEmpty = obs.isEmpty();
-
-    if(!codHexEmpty || !obsEmpty){
-        // Ask the user for confirmation
-        QMessageBox::StandardButton confirmation = QMessageBox::question(this, "Voltar atrás", "Tem a certeza que pretende voltar atrás? Todos os dados serão perdidos!", QMessageBox::Yes | QMessageBox::No);
-        if (confirmation == QMessageBox::No) {
-            // User canceled the operation
-            return;
-        }
+    QMessageBox::StandardButton confirmation = QMessageBox::question(this, "Voltar atrás", "Tem a certeza que pretende voltar atrás? Todos os dados serão perdidos!", QMessageBox::Yes | QMessageBox::No);
+    if (confirmation == QMessageBox::No) {
+        // User canceled the operation
+        return;
     }
+
 
     previousWindow();
 

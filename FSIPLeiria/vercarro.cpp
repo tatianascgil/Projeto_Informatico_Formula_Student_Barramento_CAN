@@ -7,6 +7,8 @@
 #include "estatisticas.h"
 #include "ui_estatisticas.h"
 
+#include <QMessageBox>
+
 
 VerCarro::VerCarro(QWidget *parent) :
     QWidget(parent),
@@ -40,6 +42,13 @@ void VerCarro::setObservacoes(const QString& obs) {
 
 void VerCarro::on_commandButtonVoltar_clicked()
 {
+
+    QMessageBox::StandardButton confirmation = QMessageBox::question(this, "Voltar atrás", "Tem a certeza que pretende voltar atrás? Todos os dados serão perdidos!", QMessageBox::Yes | QMessageBox::No);
+    if (confirmation == QMessageBox::No) {
+        // User canceled the operation
+        return;
+    }
+
     MainWindow *mainWindow = new MainWindow();
     mainWindow->show();
     this->close();

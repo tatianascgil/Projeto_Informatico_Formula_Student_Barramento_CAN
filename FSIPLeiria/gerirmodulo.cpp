@@ -325,6 +325,12 @@ void GerirModulo::on_btnGuardarModulo_clicked()
 void GerirModulo::on_commandButtonVoltar_clicked()
 {
 
+    QMessageBox::StandardButton confirmation = QMessageBox::question(this, "Voltar atrás", "Tem a certeza que pretende voltar atrás? Todos os dados serão perdidos!", QMessageBox::Yes | QMessageBox::No);
+    if (confirmation == QMessageBox::No) {
+        // User canceled the operation
+        return;
+    }
+
     // Cria a janela GerirCarro
     GerirCarro *gerirCarro = new GerirCarro();
 
@@ -356,9 +362,6 @@ void GerirModulo::on_btnApagarModulo_clicked()
     QString folderPath = targetDir + "/" + folderName;
 
     QString modulosPath = folderPath + "/modulos.txt";
-
-
-    qDebug() << "Modulos: " << modulosPath;
 
     // Check if the modulos.txt file exists
     if (!QFile::exists(modulosPath)) {

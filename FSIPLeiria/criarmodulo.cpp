@@ -120,19 +120,10 @@ void CriarModulo::on_btnCriarModulo_clicked()
 void CriarModulo::on_commandButtonVoltar_clicked()
 {
 
-    QString nomeModulo = ui->textEditNomeModulo->toPlainText().trimmed();
-    QString obsModulo = ui->textEditObsModulo->toPlainText().trimmed();
-
-    bool nomeModuloEmpty = nomeModulo.isEmpty();
-    bool obsModuloEmpty = obsModulo.isEmpty();
-
-    if(!nomeModuloEmpty || !obsModuloEmpty){
-        // Ask the user for confirmation
-        QMessageBox::StandardButton confirmation = QMessageBox::question(this, "Voltar atrás", "Tem a certeza que pretende voltar atrás? Todos os dados serão perdidos!", QMessageBox::Yes | QMessageBox::No);
-        if (confirmation == QMessageBox::No) {
-            // User canceled the operation
-            return;
-        }
+    QMessageBox::StandardButton confirmation = QMessageBox::question(this, "Voltar atrás", "Tem a certeza que pretende voltar atrás? Todos os dados serão perdidos!", QMessageBox::Yes | QMessageBox::No);
+    if (confirmation == QMessageBox::No) {
+        // User canceled the operation
+        return;
     }
 
     previousWindow();

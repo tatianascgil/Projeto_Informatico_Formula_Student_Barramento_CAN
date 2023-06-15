@@ -422,6 +422,12 @@ void GerirTipoMensagem::on_btnGuardarCarro_clicked()
 void GerirTipoMensagem::on_commandButtonVoltar_clicked()
 {
 
+    QMessageBox::StandardButton confirmation = QMessageBox::question(this, "Voltar atrás", "Tem a certeza que pretende voltar atrás? Todos os dados serão perdidos!", QMessageBox::Yes | QMessageBox::No);
+    if (confirmation == QMessageBox::No) {
+        // User canceled the operation
+        return;
+    }
+
     const int gerirModuloWidth = 800;
     const int gerirModuloHeight = 500;
 
