@@ -42,9 +42,9 @@ static constexpr auto qt_meta_stringdata_CLASSCriarModuloENDCLASS = QtMocHelpers
     "setNome",
     "",
     "nome",
-    "on_commandButtonVoltar_clicked",
     "on_btnCriarModulo_clicked",
-    "on_btnCancelar_clicked"
+    "on_commandButtonVoltar_clicked",
+    "previousWindow"
 );
 #else  // !QT_MOC_HAS_STRING_DATA
 struct qt_meta_stringdata_CLASSCriarModuloENDCLASS_t {
@@ -53,9 +53,9 @@ struct qt_meta_stringdata_CLASSCriarModuloENDCLASS_t {
     char stringdata1[8];
     char stringdata2[1];
     char stringdata3[5];
-    char stringdata4[31];
-    char stringdata5[26];
-    char stringdata6[23];
+    char stringdata4[26];
+    char stringdata5[31];
+    char stringdata6[15];
 };
 #define QT_MOC_LITERAL(ofs, len) \
     uint(sizeof(qt_meta_stringdata_CLASSCriarModuloENDCLASS_t::offsetsAndSizes) + ofs), len 
@@ -65,17 +65,17 @@ Q_CONSTINIT static const qt_meta_stringdata_CLASSCriarModuloENDCLASS_t qt_meta_s
         QT_MOC_LITERAL(12, 7),  // "setNome"
         QT_MOC_LITERAL(20, 0),  // ""
         QT_MOC_LITERAL(21, 4),  // "nome"
-        QT_MOC_LITERAL(26, 30),  // "on_commandButtonVoltar_clicked"
-        QT_MOC_LITERAL(57, 25),  // "on_btnCriarModulo_clicked"
-        QT_MOC_LITERAL(83, 22)   // "on_btnCancelar_clicked"
+        QT_MOC_LITERAL(26, 25),  // "on_btnCriarModulo_clicked"
+        QT_MOC_LITERAL(52, 30),  // "on_commandButtonVoltar_clicked"
+        QT_MOC_LITERAL(83, 14)   // "previousWindow"
     },
     "CriarModulo",
     "setNome",
     "",
     "nome",
-    "on_commandButtonVoltar_clicked",
     "on_btnCriarModulo_clicked",
-    "on_btnCancelar_clicked"
+    "on_commandButtonVoltar_clicked",
+    "previousWindow"
 };
 #undef QT_MOC_LITERAL
 #endif // !QT_MOC_HAS_STRING_DATA
@@ -121,11 +121,11 @@ Q_CONSTINIT const QMetaObject CriarModulo::staticMetaObject = { {
         // method 'setNome'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         QtPrivate::TypeAndForceComplete<const QString &, std::false_type>,
-        // method 'on_commandButtonVoltar_clicked'
-        QtPrivate::TypeAndForceComplete<void, std::false_type>,
         // method 'on_btnCriarModulo_clicked'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
-        // method 'on_btnCancelar_clicked'
+        // method 'on_commandButtonVoltar_clicked'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'previousWindow'
         QtPrivate::TypeAndForceComplete<void, std::false_type>
     >,
     nullptr
@@ -138,9 +138,9 @@ void CriarModulo::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id,
         (void)_t;
         switch (_id) {
         case 0: _t->setNome((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;
-        case 1: _t->on_commandButtonVoltar_clicked(); break;
-        case 2: _t->on_btnCriarModulo_clicked(); break;
-        case 3: _t->on_btnCancelar_clicked(); break;
+        case 1: _t->on_btnCriarModulo_clicked(); break;
+        case 2: _t->on_commandButtonVoltar_clicked(); break;
+        case 3: _t->previousWindow(); break;
         default: ;
         }
     }

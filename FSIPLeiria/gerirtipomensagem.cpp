@@ -150,15 +150,9 @@ void GerirTipoMensagem::setObservacoes(const QString& obs){
 
 void GerirTipoMensagem::lerDadosTipoMensagem(){
     QString codHex = ui->labelCodHex->text().toUpper();
-    QString obs = ui->plainTextEditObs->toPlainText();
     QString nomeCarro = ui->labelNomeCarro->text();
 
-    if (obs.contains(";")) {
-        QMessageBox::critical(this, "Erro", "É proibido utilizar semi-vírgulas ';'!");
-        return;
-    }
-
-    QString folderName = nomeCarro.trimmed();
+    QString folderName = nomeCarro;
 
     QString currentPath = QDir::currentPath();
     QString targetDir = currentPath + "/../FSIPLeiria/settings";
@@ -264,14 +258,6 @@ void GerirTipoMensagem::lerDadosTipoMensagem(){
 void GerirTipoMensagem::on_btnGuardarCarro_clicked()
 {
 
-    // Ask the user for confirmation
-    QMessageBox::StandardButton confirmation = QMessageBox::question(this, "Guardar Dados", "Tem a certeza que pretende guardar os dados?", QMessageBox::Yes | QMessageBox::No);
-    if (confirmation == QMessageBox::No) {
-        // User canceled the operation
-        return;
-    }
-
-
     QString codHex = ui->labelCodHex->text();
     QString obs = ui->plainTextEditObs->toPlainText();
     QString nomeCarro = ui->labelNomeCarro->text();
@@ -298,6 +284,13 @@ void GerirTipoMensagem::on_btnGuardarCarro_clicked()
 
     if (!file.open(QIODevice::ReadWrite | QIODevice::Text)) {
         QMessageBox::critical(this, "Erro", "Erro ao abrir o arquivo " + filePath + " para escrita!");
+        return;
+    }
+
+    // Ask the user for confirmation
+    QMessageBox::StandardButton confirmation = QMessageBox::question(this, "Guardar Dados", "Tem a certeza que pretende guardar os dados?", QMessageBox::Yes | QMessageBox::No);
+    if (confirmation == QMessageBox::No) {
+        // User canceled the operation
         return;
     }
 

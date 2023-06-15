@@ -57,43 +57,6 @@ QPushButton:pressed {
     <string>Criar Módulo</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="btnCancelar">
-   <property name="geometry">
-    <rect>
-     <x>140</x>
-     <y>190</y>
-     <width>121</width>
-     <height>41</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <pointsize>10</pointsize>
-    </font>
-   </property>
-   <property name="cursor">
-    <cursorShape>PointingHandCursor</cursorShape>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">QPushButton{
-	background-color:rgb(255, 245, 166);
-	border:none;
-	color:rgb(95, 91, 61);
-	border -bottom: 5px solid rgb(162, 155, 105)
-}
-QPushButton:hover{
-	background-color:rgb(229, 217, 150);
-	border-bottom: 5px solid rgb(162, 155, 105)
-}
-QPushButton:pressed {
-	background-color:rgb(255, 242, 165);
-	border-bottom: 5px solid rgb(162, 155, 105)
-}</string>
-   </property>
-   <property name="text">
-    <string>Cancelar</string>
-   </property>
-  </widget>
   <widget class="QLabel" name="label">
    <property name="geometry">
     <rect>

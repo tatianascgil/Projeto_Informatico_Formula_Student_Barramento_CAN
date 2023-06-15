@@ -25,7 +25,6 @@ class Ui_CriarModulo
 {
 public:
     QPushButton *btnCriarModulo;
-    QPushButton *btnCancelar;
     QLabel *label;
     QTextEdit *textEditNomeModulo;
     QTextEdit *textEditObsModulo;
@@ -54,25 +53,6 @@ public:
         btnCriarModulo->setFont(font);
         btnCriarModulo->setCursor(QCursor(Qt::PointingHandCursor));
         btnCriarModulo->setStyleSheet(QString::fromUtf8("QPushButton{\n"
-"	background-color:rgb(255, 245, 166);\n"
-"	border:none;\n"
-"	color:rgb(95, 91, 61);\n"
-"	border -bottom: 5px solid rgb(162, 155, 105)\n"
-"}\n"
-"QPushButton:hover{\n"
-"	background-color:rgb(229, 217, 150);\n"
-"	border-bottom: 5px solid rgb(162, 155, 105)\n"
-"}\n"
-"QPushButton:pressed {\n"
-"	background-color:rgb(255, 242, 165);\n"
-"	border-bottom: 5px solid rgb(162, 155, 105)\n"
-"}"));
-        btnCancelar = new QPushButton(CriarModulo);
-        btnCancelar->setObjectName("btnCancelar");
-        btnCancelar->setGeometry(QRect(140, 190, 121, 41));
-        btnCancelar->setFont(font);
-        btnCancelar->setCursor(QCursor(Qt::PointingHandCursor));
-        btnCancelar->setStyleSheet(QString::fromUtf8("QPushButton{\n"
 "	background-color:rgb(255, 245, 166);\n"
 "	border:none;\n"
 "	color:rgb(95, 91, 61);\n"
@@ -154,7 +134,6 @@ public:
     {
         CriarModulo->setWindowTitle(QCoreApplication::translate("CriarModulo", "Criar Modulo", nullptr));
         btnCriarModulo->setText(QCoreApplication::translate("CriarModulo", "Criar M\303\263dulo", nullptr));
-        btnCancelar->setText(QCoreApplication::translate("CriarModulo", "Cancelar", nullptr));
         label->setText(QCoreApplication::translate("CriarModulo", "Nome:", nullptr));
         commandButtonVoltar->setText(QString());
         label_3->setText(QCoreApplication::translate("CriarModulo", "Obs:", nullptr));

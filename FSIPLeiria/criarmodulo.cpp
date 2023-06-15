@@ -21,40 +21,19 @@ CriarModulo::~CriarModulo()
 
 
 void CriarModulo::setNome(const QString& nome){
-    ui->labelNomeCarro->setText(nome);
+    ui->labelNomeCarro->setText(nome.trimmed());
 }
 
-void CriarModulo::on_commandButtonVoltar_clicked()
-{
-    const int gerirCarroWidth = 800;
-    const int gerirCarroHeight = 500;
-
-    // Cria a janela GerirCarro
-    GerirCarro *gerirCarro = new GerirCarro();
-
-    QString nomeCarro = ui->labelNomeCarro->text().trimmed();
-
-
-    gerirCarro->setNome(nomeCarro);
-    gerirCarro->lerDadosCarro(nomeCarro);
-    gerirCarro->lerDadosModulo(nomeCarro);
-
-    // Define o tamanho mínimo e máximo da janela
-    gerirCarro->setMinimumSize(gerirCarroWidth, gerirCarroHeight);
-    gerirCarro->setMaximumSize(gerirCarroWidth, gerirCarroHeight);
-    gerirCarro->show();
-    this->close();
-}
 
 
 void CriarModulo::on_btnCriarModulo_clicked()
 {
 
-    QString nomeModulo = ui->textEditNomeModulo->toPlainText();
-    QString obsModulo = ui->textEditObsModulo->toPlainText();
-    QString nomeCarro = ui->labelNomeCarro->text().trimmed();
+    QString nomeModulo = ui->textEditNomeModulo->toPlainText().trimmed();
+    QString obsModulo = ui->textEditObsModulo->toPlainText().trimmed();
+    QString nomeCarro = ui->labelNomeCarro->text();
 
-    bool nomeModuloEmpty = nomeModulo.trimmed().isEmpty();
+    bool nomeModuloEmpty = nomeModulo.isEmpty();
 
     if (nomeModuloEmpty) {
         QMessageBox::critical(this, "Erro", "É obrigatório preencher o campo 'Nome'!");
@@ -65,6 +44,7 @@ void CriarModulo::on_btnCriarModulo_clicked()
         QMessageBox::critical(this, "Erro", "É proíbido utilizar semi-vírgulas ';'!");
         return;
     }
+
 
     QString folderName = nomeCarro;
     QString currentPath = QDir::currentPath();
@@ -84,11 +64,27 @@ void CriarModulo::on_btnCriarModulo_clicked()
 
     // Saving the car data in a TXT file
     QString filePath = folderPath + "/modulos.txt";
-    QFile file(filePath);
-    if (!file.open(QIODevice::WriteOnly | QIODevice::Append | QIODevice::Text)) {
-        QMessageBox::critical(this, "Erro", "Erro ao abrir o arquivo " + filePath + " para escrita!");
+
+    // Open the file for reading and check if nomeModulo already exists
+    QFile readFile(filePath);
+    if (!readFile.open(QIODevice::ReadOnly | QIODevice::Text)) {
+        QMessageBox::critical(this, "Erro", "Erro ao abrir o arquivo " + filePath + " para leitura!");
         return;
     }
+
+    QTextStream readStream(&readFile);
+
+    while (!readStream.atEnd()) {
+        QString line = readStream.readLine();
+        QStringList values = line.split(";");
+        if (!values.isEmpty() && values.first() == nomeModulo) {
+            QMessageBox::critical(this, "Erro", "O módulo " + nomeModulo + " já existe!");
+            readFile.close();
+            return;
+        }
+    }
+
+    readFile.close();
 
     QString endianess;
     if (ui->radioButton_Littleendian->isChecked()) {
@@ -97,23 +93,53 @@ void CriarModulo::on_btnCriarModulo_clicked()
         endianess = "Big Endian";
     }
 
-    QTextStream stream(&file);
-    stream << nomeModulo << ";" << endianess << ";" << obsModulo << ";\n";
+    // Ask the user for confirmation
+    QMessageBox::StandardButton confirmation = QMessageBox::question(this, "Guardar Dados", "Tem a certeza que pretende criar o módulo " + nomeModulo + "?", QMessageBox::Yes | QMessageBox::No);
+    if (confirmation == QMessageBox::No) {
+        // User canceled the operation
+        return;
+    }
 
-    file.close();
+    // Open the file for appending the new module information
+    QFile writeFile(filePath);
+    if (!writeFile.open(QIODevice::Append | QIODevice::Text)) {
+        QMessageBox::critical(this, "Erro", "Erro ao abrir o arquivo " + filePath + " para escrita!");
+        return;
+    }
+
+    QTextStream writeStream(&writeFile);
+    writeStream << nomeModulo << ";" << endianess << ";" << obsModulo << ";\n";
+
+    writeFile.close();
 
     QMessageBox::information(this, "Guardar Dados", "Dados salvados com sucesso!");
-    on_commandButtonVoltar_clicked();
 
+    previousWindow();
 }
 
-
-
-
-void CriarModulo::on_btnCancelar_clicked()
+void CriarModulo::on_commandButtonVoltar_clicked()
 {
 
-    //TODO - Verificar se os campos estão preenchidos
+    QString nomeModulo = ui->textEditNomeModulo->toPlainText().trimmed();
+    QString obsModulo = ui->textEditObsModulo->toPlainText().trimmed();
+
+    bool nomeModuloEmpty = nomeModulo.isEmpty();
+    bool obsModuloEmpty = obsModulo.isEmpty();
+
+    if(!nomeModuloEmpty || !obsModuloEmpty){
+        // Ask the user for confirmation
+        QMessageBox::StandardButton confirmation = QMessageBox::question(this, "Voltar atrás", "Tem a certeza que pretende voltar atrás? Todos os dados serão perdidos!", QMessageBox::Yes | QMessageBox::No);
+        if (confirmation == QMessageBox::No) {
+            // User canceled the operation
+            return;
+        }
+    }
+
+    previousWindow();
+}
+
+void CriarModulo::previousWindow(){
+
     const int gerirCarroWidth = 800;
     const int gerirCarroHeight = 500;
 
@@ -122,15 +148,14 @@ void CriarModulo::on_btnCancelar_clicked()
 
     QString nomeCarro = ui->labelNomeCarro->text().trimmed();
 
+
     gerirCarro->setNome(nomeCarro);
+    gerirCarro->lerDadosCarro(nomeCarro);
+    gerirCarro->lerDadosModulo(nomeCarro);
 
     // Define o tamanho mínimo e máximo da janela
     gerirCarro->setMinimumSize(gerirCarroWidth, gerirCarroHeight);
     gerirCarro->setMaximumSize(gerirCarroWidth, gerirCarroHeight);
-    gerirCarro->lerDadosCarro(nomeCarro);
-    gerirCarro->lerDadosModulo(nomeCarro);
-
     gerirCarro->show();
     this->close();
 }
-

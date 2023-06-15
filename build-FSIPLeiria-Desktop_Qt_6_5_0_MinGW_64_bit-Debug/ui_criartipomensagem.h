@@ -52,7 +52,7 @@ public:
         label_5->setFont(font);
         btnCriarTipoMensagem = new QPushButton(CriarTipoMensagem);
         btnCriarTipoMensagem->setObjectName("btnCriarTipoMensagem");
-        btnCriarTipoMensagem->setGeometry(QRect(30, 200, 171, 41));
+        btnCriarTipoMensagem->setGeometry(QRect(10, 200, 171, 41));
         QFont font1;
         font1.setPointSize(10);
         btnCriarTipoMensagem->setFont(font1);

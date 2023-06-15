@@ -26,7 +26,6 @@ class Ui_CriarCarro
 public:
     QPushButton *btnCriarCarro;
     QCommandLinkButton *commandButtonVoltar;
-    QPushButton *btnCancelar;
     QLabel *label_2;
     QLabel *label;
     QLabel *label_3;
@@ -45,7 +44,7 @@ public:
         CriarCarro->setStyleSheet(QString::fromUtf8("background:white"));
         btnCriarCarro = new QPushButton(CriarCarro);
         btnCriarCarro->setObjectName("btnCriarCarro");
-        btnCriarCarro->setGeometry(QRect(20, 140, 121, 41));
+        btnCriarCarro->setGeometry(QRect(10, 200, 121, 41));
         QFont font;
         font.setPointSize(10);
         btnCriarCarro->setFont(font);
@@ -71,25 +70,6 @@ public:
         QIcon icon1;
         icon1.addFile(QString::fromUtf8("../setavoltar.ico"), QSize(), QIcon::Normal, QIcon::Off);
         commandButtonVoltar->setIcon(icon1);
-        btnCancelar = new QPushButton(CriarCarro);
-        btnCancelar->setObjectName("btnCancelar");
-        btnCancelar->setGeometry(QRect(20, 190, 121, 41));
-        btnCancelar->setFont(font);
-        btnCancelar->setCursor(QCursor(Qt::PointingHandCursor));
-        btnCancelar->setStyleSheet(QString::fromUtf8("QPushButton{\n"
-"	background-color:rgb(255, 245, 166);\n"
-"	border:none;\n"
-"	color:rgb(95, 91, 61);\n"
-"	border -bottom: 5px solid rgb(162, 155, 105)\n"
-"}\n"
-"QPushButton:hover{\n"
-"	background-color:rgb(229, 217, 150);\n"
-"	border-bottom: 5px solid rgb(162, 155, 105)\n"
-"}\n"
-"QPushButton:pressed {\n"
-"	background-color:rgb(255, 242, 165);\n"
-"	border-bottom: 5px solid rgb(162, 155, 105)\n"
-"}"));
         label_2 = new QLabel(CriarCarro);
         label_2->setObjectName("label_2");
         label_2->setGeometry(QRect(60, 80, 71, 31));
@@ -141,7 +121,6 @@ public:
         CriarCarro->setWindowTitle(QCoreApplication::translate("CriarCarro", "Criar Carro", nullptr));
         btnCriarCarro->setText(QCoreApplication::translate("CriarCarro", "Criar Carro", nullptr));
         commandButtonVoltar->setText(QString());
-        btnCancelar->setText(QCoreApplication::translate("CriarCarro", "Cancelar", nullptr));
         label_2->setText(QCoreApplication::translate("CriarCarro", "Tipo:", nullptr));
         label->setText(QCoreApplication::translate("CriarCarro", "Nome:", nullptr));
         label_3->setText(QCoreApplication::translate("CriarCarro", "Obs:", nullptr));

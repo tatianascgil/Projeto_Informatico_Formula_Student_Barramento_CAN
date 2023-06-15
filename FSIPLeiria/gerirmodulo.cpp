@@ -238,12 +238,32 @@ void GerirModulo::lerDadosModulo(const QString& nomeModulo)
 
 void GerirModulo::on_btnGuardarModulo_clicked()
 {
+
     QAbstractItemModel* model = ui->tableViewModulosCarro->model();
     int selectedRow = ui->tableViewModulosCarro->currentIndex().row();
     int selectedColumn = ui->tableViewModulosCarro->currentIndex().column();
 
+    // Get the values from the tableViewModulosCarro
+    QString nomeModulo = ui->tableViewModulosCarro->model()->index(0, 0).data().toString();
+    QString endianess = ui->tableViewModulosCarro->model()->index(0, 1).data().toString();
+    QString obs = ui->tableViewModulosCarro->model()->index(0, 2).data().toString();
+
+    if (obs.contains(';'))
+    {
+        QMessageBox::critical(this, tr("Erro"), tr("É proíbido utilizar semi-vírgulas ';'!"));
+        return;
+    }
+
     // Make sure a valid cell is selected
     if (selectedRow >= 0 && selectedRow < model->rowCount() && selectedColumn >= 0 && selectedColumn < model->columnCount()) {
+
+        // Ask the user for confirmation
+        QMessageBox::StandardButton confirmation = QMessageBox::question(this, "Guardar Dados", "Tem a certeza que pretende guardar os dados?", QMessageBox::Yes | QMessageBox::No);
+        if (confirmation == QMessageBox::No) {
+            // User canceled the operation
+            return;
+        }
+
         QString folderName = ui->labelNomeCarro->text();
         QString currentPath = QDir::currentPath();
         QString targetDir = currentPath + "/../FSIPLeiria/settings";
@@ -252,52 +272,52 @@ void GerirModulo::on_btnGuardarModulo_clicked()
 
         QFile file(filePath);
 
-        if (file.open(QIODevice::ReadOnly | QIODevice::Text)) {
-            // Read the data from the file
-            QStringList fileData;
-            while (!file.atEnd()) {
-                QString line = file.readLine().trimmed();
-                fileData.append(line);
-            }
-
-            file.close();
-
-            // Update the selected cell's value in the fileData
-            if (selectedRow < fileData.size()) {
-                QStringList rowData = fileData[selectedRow].split(";");
-                if (selectedColumn < rowData.size()) {
-                    rowData.replace(selectedColumn, model->data(model->index(selectedRow, selectedColumn)).toString());
-                    fileData[selectedRow] = rowData.join(";");
-                } else {
-                    QMessageBox::critical(this, tr("Erro"), tr("A coluna selecionada não existe."));
-                    return;
-                }
-            } else {
-                QMessageBox::critical(this, tr("Erro"), tr("A linha selecionada não existe."));
-                return;
-            }
-
-            // Write the updated data to the file
-            if (file.open(QIODevice::WriteOnly | QIODevice::Text)) {
-                QTextStream out(&file);
-                for (const QString& line : fileData) {
-                    out << line << "\n";
-                }
-                file.close();
-
-                // Inform the user about successful saving
-                QMessageBox::information(this, tr("Sucesso"), tr("Dados salvos com sucesso!"));
-            } else {
-                QMessageBox::critical(this, tr("Erro"), tr("Não foi possível abrir o ficheiro para escrita."));
-            }
-        } else {
-            QMessageBox::critical(this, tr("Erro"), tr("Não foi possível abrir o ficheiro para leitura."));
+        if(!file.open(QIODevice::ReadWrite  | QIODevice::Text)){
+            QMessageBox::critical(this, tr("Erro"), tr("Não foi possível abrir o ficheiro."));
+            on_commandButtonVoltar_clicked();
+            return;
         }
+
+
+        // Read the file contents into a QStringList
+        QStringList lines;
+        QTextStream in(&file);
+        while (!in.atEnd())
+        {
+            QString line = in.readLine();
+            lines.append(line);
+        }
+
+        // Find and update the corresponding line
+        for (int i = 0; i < lines.size(); i++)
+        {
+            QStringList values = lines[i].split(';');
+            if (values.size() >= 1 && values[0] == nomeModulo)
+            {
+                // Update the line with the new values
+                values[1] = endianess;
+                values[2] = obs;
+                lines[i] = values.join(';');
+                break;
+            }
+        }
+
+        // Clear the file contents
+        file.resize(0);
+
+        // Write the updated contents back to the file
+        QTextStream out(&file);
+        for (const QString& line : lines)
+        {
+            out << line << "\n";
+        }
+
+        // Close the file
+        file.close();
+
     } else {
-        QMessageBox::critical(this, tr("Erro"), tr("Selecione uma célula válida para atualizar."));
+        QMessageBox::critical(this, tr("Erro"), tr("Não houve dados alterados!"));
     }
-
-
 }
 
 

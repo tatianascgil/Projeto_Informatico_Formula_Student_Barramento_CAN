@@ -23,13 +23,6 @@ CriarCarro::~CriarCarro()
     delete ui;
 }
 
-void CriarCarro::on_btnCancelar_clicked()
-{
-    MainWindow *mainWindow = new MainWindow();
-    mainWindow->show();
-    this->close();
-}
-
 void CriarCarro::loadTiposCarro(){
 
     QString currentPath = QDir::currentPath();
@@ -59,7 +52,6 @@ void CriarCarro::loadTiposCarro(){
 void CriarCarro::on_btnCriarCarro_clicked()
 {
 
-
     QString nomeCarro = ui->textEditNomeCarro->toPlainText().trimmed();
     QString tipoCarro = ui->btnTipoCarro->currentText();
     QString obsCarro = ui->textEditObsCarro->toPlainText().trimmed();
@@ -84,6 +76,13 @@ void CriarCarro::on_btnCriarCarro_clicked()
 
     if(nomeCarro.contains(";") || obsCarro.contains(";")){
         QMessageBox::critical(this, "Erro", "É proíbido utilizar semi-vírgulas ';'!");
+        return;
+    }
+
+    // Ask the user for confirmation
+    QMessageBox::StandardButton confirmation = QMessageBox::question(this, "Guardar Dados", "Tem a certeza que pretende criar o carro " + nomeCarro + "?", QMessageBox::Yes | QMessageBox::No);
+    if (confirmation == QMessageBox::No) {
+        // User canceled the operation
         return;
     }
 
@@ -117,6 +116,7 @@ void CriarCarro::on_btnCriarCarro_clicked()
         return;
     }
 
+
     QTextStream stream(&file);
 
     // Write the data
@@ -136,8 +136,27 @@ void CriarCarro::on_btnCriarCarro_clicked()
 
 void CriarCarro::on_commandButtonVoltar_clicked()
 {
+    QString nomeCarro = ui->textEditNomeCarro->toPlainText().trimmed();
+    QString tipoCarro = ui->btnTipoCarro->currentText();
+    QString obsCarro = ui->textEditObsCarro->toPlainText().trimmed();
+
+    bool nomeCarroEmpty = nomeCarro.isEmpty();
+    bool tipoCarroEmpty = tipoCarro.isEmpty();
+    bool obsCarroEmpty = obsCarro.isEmpty();
+
+    if(!nomeCarroEmpty || !tipoCarroEmpty || !obsCarroEmpty){
+        // Ask the user for confirmation
+        QMessageBox::StandardButton confirmation = QMessageBox::question(this, "Voltar atrás", "Tem a certeza que pretende voltar atrás? Todos os dados serão perdidos!", QMessageBox::Yes | QMessageBox::No);
+        if (confirmation == QMessageBox::No) {
+            // User canceled the operation
+            return;
+        }
+    }
+
     MainWindow *mainWindow = new MainWindow();
     mainWindow->show();
     this->close();
+
+
 }
 

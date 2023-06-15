@@ -31,31 +31,6 @@ void CriarTipoMensagem::setNomeModulo(const QString& nome){
     ui->labelNomeModulo->setText(nome);
 }
 
-
-void CriarTipoMensagem::on_commandButtonVoltar_clicked()
-{
-
-    const int gerirModuloWidth = 800;
-    const int gerirModuloHeight = 500;
-
-    // Cria a janela GerirCarro
-    GerirModulo *gerirModulo = new GerirModulo();
-
-    QString nomeCarro = ui->labelNomeCarro->text().trimmed();
-    QString nomeModulo = ui->labelNomeModulo->text().trimmed();
-
-    gerirModulo->setMinimumSize(gerirModuloWidth, gerirModuloHeight);
-    gerirModulo->setMaximumSize(gerirModuloWidth, gerirModuloHeight);
-    gerirModulo->setNome(nomeCarro);
-    gerirModulo->setNomeModulo(nomeModulo);
-    gerirModulo->lerDadosModulo(nomeModulo);
-    gerirModulo->lerDadosTiposMensagem(nomeModulo);
-
-    this->close();
-    gerirModulo->show();
-}
-
-
 void CriarTipoMensagem::on_btnCriarTipoMensagem_clicked()
 {
 
@@ -87,19 +62,19 @@ void CriarTipoMensagem::on_btnCriarTipoMensagem_clicked()
     }
 
     QString filePath = folderPath + "/tiposMensagem.txt";
-    QFile file(filePath);
+    QFile readFile(filePath);
 
-    if (!file.open(QIODevice::ReadWrite | QIODevice::Text)) {
+    if (!readFile.open(QIODevice::ReadOnly  | QIODevice::Text)) {
         QMessageBox::critical(this, "Erro", "Erro ao abrir o arquivo " + filePath + " para escrita!");
         return;
     }
 
-    QTextStream stream(&file);
+    QTextStream readStream(&readFile);
 
     // Check if codHex already exists
     bool codHexExists = false;
-    while (!stream.atEnd()) {
-        QString line = stream.readLine();
+    while (!readStream.atEnd()) {
+        QString line = readStream.readLine();
         QStringList fields = line.split(';');
         if (fields.size() >= 2) {
             QString existingCodHex = fields[1];
@@ -111,17 +86,84 @@ void CriarTipoMensagem::on_btnCriarTipoMensagem_clicked()
     }
 
     if (codHexExists) {
-        file.close();
+        readFile.close();
         QMessageBox::critical(this, "Erro", "O código Hexadecimal já existe!");
         return;
     }
 
-    stream << nomeModulo << ";" << codHex << ";" << obs << ";\n";
-    file.close();
+    readFile.close();
+
+
+    // Ask the user for confirmation
+    QMessageBox::StandardButton confirmation = QMessageBox::question(this, "Guardar Dados", "Tem a certeza que pretende criar o Tipo de Mensagem 0x" + codHex + "?", QMessageBox::Yes | QMessageBox::No);
+    if (confirmation == QMessageBox::No) {
+        // User canceled the operation
+        return;
+    }
+
+    QFile writeFile(filePath);
+    if (!writeFile.open(QIODevice::Append  | QIODevice::Text)) {
+        QMessageBox::critical(this, "Erro", "Erro ao abrir o arquivo " + filePath + " para escrita!");
+        return;
+    }
+
+    QTextStream writeStream(&writeFile);
+    writeStream << nomeModulo << ";" << codHex << ";" << obs << ";\n";
+
+    writeFile.close();
 
     QMessageBox::information(this, "Guardar Dados", "Dados salvados com sucesso!");
-    on_commandButtonVoltar_clicked();
+
+    previousWindow();
 }
+
+
+void CriarTipoMensagem::on_commandButtonVoltar_clicked()
+{
+
+    QString codHex = ui->plainTextEditCodHex->toPlainText().toUpper();
+    QString obs = ui->plainTextEditObs->toPlainText();
+
+    bool codHexEmpty = codHex.isEmpty();
+    bool obsEmpty = obs.isEmpty();
+
+    if(!codHexEmpty || !obsEmpty){
+        // Ask the user for confirmation
+        QMessageBox::StandardButton confirmation = QMessageBox::question(this, "Voltar atrás", "Tem a certeza que pretende voltar atrás? Todos os dados serão perdidos!", QMessageBox::Yes | QMessageBox::No);
+        if (confirmation == QMessageBox::No) {
+            // User canceled the operation
+            return;
+        }
+    }
+
+    previousWindow();
+
+}
+
+void CriarTipoMensagem::previousWindow()
+{
+
+    const int gerirModuloWidth = 800;
+    const int gerirModuloHeight = 500;
+
+    // Cria a janela GerirCarro
+    GerirModulo *gerirModulo = new GerirModulo();
+
+    QString nomeCarro = ui->labelNomeCarro->text().trimmed();
+    QString nomeModulo = ui->labelNomeModulo->text().trimmed();
+
+    gerirModulo->setMinimumSize(gerirModuloWidth, gerirModuloHeight);
+    gerirModulo->setMaximumSize(gerirModuloWidth, gerirModuloHeight);
+    gerirModulo->setNome(nomeCarro);
+    gerirModulo->setNomeModulo(nomeModulo);
+    gerirModulo->lerDadosModulo(nomeModulo);
+    gerirModulo->lerDadosTiposMensagem(nomeModulo);
+
+    this->close();
+    gerirModulo->show();
+}
+
+
 
 
 

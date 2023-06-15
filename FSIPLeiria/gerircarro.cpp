@@ -349,6 +349,14 @@ void GerirCarro::on_btnGuardarCarro_clicked()
     int rowCount = model->rowCount();
     int columnCount = model->columnCount();
 
+    QString obs = ui->tableViewCarro->model()->index(0, 2).data().toString();
+
+    if (obs.contains(';'))
+    {
+        QMessageBox::critical(this, tr("Erro"), tr("É proíbido utilizar semi-vírgulas ';'!"));
+        return;
+    }
+
     // Create a QVector to store the data from the QTableView
     QVector<QStringList> tableViewData;
     for (int row = 0; row < rowCount; ++row) {

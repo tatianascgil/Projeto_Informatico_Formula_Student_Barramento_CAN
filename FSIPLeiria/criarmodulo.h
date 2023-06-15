@@ -19,11 +19,12 @@ public slots:
     void setNome(const QString& nome);
 
 private slots:
-    void on_commandButtonVoltar_clicked();
-
     void on_btnCriarModulo_clicked();
 
-    void on_btnCancelar_clicked();
+    void on_commandButtonVoltar_clicked();
+
+    void previousWindow();
+
 
 
 private:

@@ -5,19 +5,31 @@ Window gerirCarro:
   -> Criar ficheiro tiposCarro.txt, ler os valores e carregá-los para a ComboBox. (Resolvido)
   -> Editar tipo de Carro através da ComboBox. (Resolvido)
   -> Campo "Nome" está editável. (Resolvido)
+  -> Campo "Observações" dá para escrever ";". (Resolvido)
 
 Window tabelaDados:
   -> Carregar os codHex correspondentes ao módulo selecionado.	(Resolvido)
   -> Carregar os campos correspondentes ao codHex selecionado.	(Resolvido)
 
 Window criarTipoMensagem:
-  -> Quando se cria um novo Tipo de mensagem está a dar append à última linha.
+  -> Quando se cria um novo Tipo de mensagem está a dar append à última linha inconsistentemente.
+  -> Não está a limitar apenas caracteres hexadecimais.
 
 Window gerirMódulo:
-  -> Botões "Apagar Módulo" e "Guardar" guardam os novos dados ao substituirem a 1ª linha.
+  -> Botão "Guardar" guardam os novos dados ao substituirem a 1ª linha. (Resolvido)
   -> Campo "Nome" está editável. (Resolvido)
   -> Campo "Endianess" deve ser editável a partir de um QInputDialog. (Resolvido)
+  -> Sempre que se clica no botão "Criar Tipo de Mensagem" pela 2ª vez, o programa crasha.
+  -> Campo "Observações" dá para escrever ";". (Resolvido)
+  -> Botão "Guardar" não está a verificar se os valores da tabela são iguais aos do ficheiro.
 
 Window gerirTipoMensagem:
   -> Criar botão "Apagar Tipo Mensagem".
   -> Pedir autorização ao utlizador para guardar os dados. (Resolvido)
+  -> Botão "Guardar" não está a verificar se os valores da tabela são iguais aos do ficheiro.
+
+Window criarModulo:
+  -> Não se está a verificar se o módulo já existe. (Resolvido)
+
+Todas as janelas:
+  -> Botão voltar não está a avisar o utilizador que vai perder os dados;

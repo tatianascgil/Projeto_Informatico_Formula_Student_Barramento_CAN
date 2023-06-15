@@ -20,9 +20,12 @@ public slots:
     void setNomeModulo(const QString& nome);
 
 private slots:
-    void on_commandButtonVoltar_clicked();
 
     void on_btnCriarTipoMensagem_clicked();
+
+    void on_commandButtonVoltar_clicked();
+
+    void previousWindow();
 
 private:
     Ui::CriarTipoMensagem *ui;

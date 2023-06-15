@@ -43,19 +43,21 @@ static constexpr auto qt_meta_stringdata_CLASSCriarTipoMensagemENDCLASS = QtMocH
     "",
     "nome",
     "setNomeModulo",
+    "on_btnCriarTipoMensagem_clicked",
     "on_commandButtonVoltar_clicked",
-    "on_btnCriarTipoMensagem_clicked"
+    "previousWindow"
 );
 #else  // !QT_MOC_HAS_STRING_DATA
 struct qt_meta_stringdata_CLASSCriarTipoMensagemENDCLASS_t {
-    uint offsetsAndSizes[14];
+    uint offsetsAndSizes[16];
     char stringdata0[18];
     char stringdata1[8];
     char stringdata2[1];
     char stringdata3[5];
     char stringdata4[14];
-    char stringdata5[31];
-    char stringdata6[32];
+    char stringdata5[32];
+    char stringdata6[31];
+    char stringdata7[15];
 };
 #define QT_MOC_LITERAL(ofs, len) \
     uint(sizeof(qt_meta_stringdata_CLASSCriarTipoMensagemENDCLASS_t::offsetsAndSizes) + ofs), len 
@@ -66,16 +68,18 @@ Q_CONSTINIT static const qt_meta_stringdata_CLASSCriarTipoMensagemENDCLASS_t qt_
         QT_MOC_LITERAL(26, 0),  // ""
         QT_MOC_LITERAL(27, 4),  // "nome"
         QT_MOC_LITERAL(32, 13),  // "setNomeModulo"
-        QT_MOC_LITERAL(46, 30),  // "on_commandButtonVoltar_clicked"
-        QT_MOC_LITERAL(77, 31)   // "on_btnCriarTipoMensagem_clicked"
+        QT_MOC_LITERAL(46, 31),  // "on_btnCriarTipoMensagem_clicked"
+        QT_MOC_LITERAL(78, 30),  // "on_commandButtonVoltar_clicked"
+        QT_MOC_LITERAL(109, 14)   // "previousWindow"
     },
     "CriarTipoMensagem",
     "setNome",
     "",
     "nome",
     "setNomeModulo",
+    "on_btnCriarTipoMensagem_clicked",
     "on_commandButtonVoltar_clicked",
-    "on_btnCriarTipoMensagem_clicked"
+    "previousWindow"
 };
 #undef QT_MOC_LITERAL
 #endif // !QT_MOC_HAS_STRING_DATA
@@ -87,7 +91,7 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSCriarTipoMensagemENDCLASS[] = {
       11,       // revision
        0,       // classname
        0,    0, // classinfo
-       4,   14, // methods
+       5,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -95,14 +99,16 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSCriarTipoMensagemENDCLASS[] = {
        0,       // signalCount
 
  // slots: name, argc, parameters, tag, flags, initial metatype offsets
-       1,    1,   38,    2, 0x0a,    1 /* Public */,
-       4,    1,   41,    2, 0x0a,    3 /* Public */,
-       5,    0,   44,    2, 0x08,    5 /* Private */,
-       6,    0,   45,    2, 0x08,    6 /* Private */,
+       1,    1,   44,    2, 0x0a,    1 /* Public */,
+       4,    1,   47,    2, 0x0a,    3 /* Public */,
+       5,    0,   50,    2, 0x08,    5 /* Private */,
+       6,    0,   51,    2, 0x08,    6 /* Private */,
+       7,    0,   52,    2, 0x08,    7 /* Private */,
 
  // slots: parameters
     QMetaType::Void, QMetaType::QString,    3,
     QMetaType::Void, QMetaType::QString,    3,
+    QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
 
@@ -124,9 +130,11 @@ Q_CONSTINIT const QMetaObject CriarTipoMensagem::staticMetaObject = { {
         // method 'setNomeModulo'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         QtPrivate::TypeAndForceComplete<const QString &, std::false_type>,
+        // method 'on_btnCriarTipoMensagem_clicked'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
         // method 'on_commandButtonVoltar_clicked'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
-        // method 'on_btnCriarTipoMensagem_clicked'
+        // method 'previousWindow'
         QtPrivate::TypeAndForceComplete<void, std::false_type>
     >,
     nullptr
@@ -140,8 +148,9 @@ void CriarTipoMensagem::qt_static_metacall(QObject *_o, QMetaObject::Call _c, in
         switch (_id) {
         case 0: _t->setNome((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;
         case 1: _t->setNomeModulo((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;
-        case 2: _t->on_commandButtonVoltar_clicked(); break;
-        case 3: _t->on_btnCriarTipoMensagem_clicked(); break;
+        case 2: _t->on_btnCriarTipoMensagem_clicked(); break;
+        case 3: _t->on_commandButtonVoltar_clicked(); break;
+        case 4: _t->previousWindow(); break;
         default: ;
         }
     }
@@ -166,13 +175,13 @@ int CriarTipoMensagem::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 4)
+        if (_id < 5)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 4;
+        _id -= 5;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 4)
+        if (_id < 5)
             *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
-        _id -= 4;
+        _id -= 5;
     }
     return _id;
 }
