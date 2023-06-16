@@ -302,7 +302,7 @@ QPushButton:pressed {
     </rect>
    </property>
    <property name="text">
-    <string>Nota: Fazer double-lick na linha respetiva ao tipo de mensagem que pretende visualizar.</string>
+    <string>Nota: Fazer double-click na linha respetiva ao tipo de mensagem que pretende visualizar.</string>
    </property>
   </widget>
  </widget>

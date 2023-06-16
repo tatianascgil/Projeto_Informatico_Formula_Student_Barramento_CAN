@@ -175,38 +175,74 @@ void TabelaDados::setOperador(){
     ui->comboBoxOperador->addItem(">");
 }
 
-void TabelaDados::loadMensagens(const QString& filePath){
-
+void TabelaDados::loadMensagens(const QString& filePath) {
     QFile file(filePath);
     if (file.open(QIODevice::ReadOnly | QIODevice::Text)) {
         QTextStream in(&file);
         QStandardItemModel* model = new QStandardItemModel(this);
 
-        // Read the file line by line
-        while (!in.atEnd()) {
-            QString line = in.readLine();
+        // Step 1: Read "tiposMensagem.txt" and store its contents
+        QMap<QString, QString> tiposMensagem;
 
-            // Split the line into columns
-            QStringList columns = line.split(';');
+        QString nomeCarro = ui->labelNomeCarro->text();
+        QString folderName = nomeCarro;
+        QString currentPath = QDir::currentPath();
+        QString targetDir = currentPath + "/../FSIPLeiria/settings";
+        QString folderPath = targetDir + "/" + folderName;
+        QString tiposMensagemPath = folderPath + "/tiposMensagem.txt";
+        QFile tiposFile(tiposMensagemPath);
+        if (tiposFile.open(QIODevice::ReadOnly | QIODevice::Text)) {
+            QTextStream tiposIn(&tiposFile);
 
-            // Create a list of items for the row
-            QList<QStandardItem*> rowItems;
-            for (const QString& column : columns) {
-                QStandardItem* item = new QStandardItem(column);
-                rowItems.append(item);
+            while (!tiposIn.atEnd()) {
+                QString tiposLine = tiposIn.readLine();
+                QStringList tiposColumns = tiposLine.split(';');
+
+                if (tiposColumns.length() > 3) {
+                    QString secondValue = tiposColumns[1];
+                    tiposMensagem[secondValue] = tiposLine;
+                }
             }
 
-            // Add the row to the model
+            tiposFile.close();
+        }
+
+        // Step 2: Read the file line by line and modify the data
+        while (!in.atEnd()) {
+            QString line = in.readLine();
+            QStringList columns = line.split(';');
+            QList<QStandardItem*> rowItems;
+
+            for (int i = 0; i < columns.length(); i++) {
+                QString column = columns[i];
+
+                if (i == 1 && tiposMensagem.contains(column)) {
+                    QString tiposLine = tiposMensagem[column];
+                    QStringList tiposColumns = tiposLine.split(';');
+
+                    // Calculate field length
+                    int fieldStartIndex = 5 + 6 * (tiposColumns[3].toInt() - 1);
+                    int fieldEndIndex = fieldStartIndex + tiposColumns[2].toInt() - 1;
+                    int fieldLength = fieldEndIndex - fieldStartIndex + 1;
+
+                    // Append modified field value
+                    QString fieldValue = column + line.mid(fieldStartIndex, fieldLength);
+                    rowItems.append(new QStandardItem(fieldValue));
+                } else {
+                    rowItems.append(new QStandardItem(column));
+                }
+            }
+
             model->appendRow(rowItems);
         }
 
-        // Close the file
         file.close();
 
-        // Set the model for the tableViewTabelaDados
+        // Step 3: Set the model for the tableViewTabelaDados
         ui->tableViewTabelaDados->setModel(model);
     }
 }
+
 
 void TabelaDados::on_btnFiltrar_clicked()
 {
