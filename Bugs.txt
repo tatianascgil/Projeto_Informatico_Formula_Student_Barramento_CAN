@@ -19,8 +19,8 @@ Window gerirMódulo:
   -> Botão "Guardar" guardam os novos dados ao substituirem a 1ª linha. (Resolvido)
   -> Campo "Nome" está editável. (Resolvido)
   -> Campo "Endianess" deve ser editável a partir de um QInputDialog. (Resolvido)
-  -> Sempre que se clica no botão "Criar Tipo de Mensagem" pela 2ª vez, o programa crasha.
   -> Campo "Observações" dá para escrever ";". (Resolvido)
+  -> Sempre que se clica no botão "Criar Tipo de Mensagem" pela 2ª vez, o programa crasha.
   -> Botão "Guardar" não está a verificar se os valores da tabela são iguais aos do ficheiro.
 
 Window gerirTipoMensagem:
@@ -32,4 +32,4 @@ Window criarModulo:
   -> Não se está a verificar se o módulo já existe. (Resolvido)
 
 Todas as janelas:
-  -> Botão voltar não está a avisar o utilizador que vai perder os dados;
+  -> Botão voltar não está a avisar o utilizador que vai perder os dados; (Resolvido)

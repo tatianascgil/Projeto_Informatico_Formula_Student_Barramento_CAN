@@ -22,3 +22,23 @@ Expecificação em OSI
 GOOGLE SCHOLAR
 
 TEmos O ID E TEMOS 8 BITES DISPONIVEIS PARA ESSE ID
+
+_________________________________________________________________________________
+
+Tópicos para o relatório:
+
+Justificação de escolhas no desenvolvimento:
+Armazenamento em ficheiros em vez de BD;
+Cronograma de tarefas;
+Arquitetura;
+Mostar o desenvolvimento do prototipo;
+Evolução do prototipo;
+Atualizar os requisitos;
+
+Requisitos para trabalho futuro:
+Limites minimo e maximo para cada campo na janelas GerirTipoMensagem
+
+Anexos:
+Manual de instruções de utilizador para cliente;
+Manual de instruções de utilizador para programador;
+Inquérito de utilizador;

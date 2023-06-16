@@ -24,9 +24,12 @@ public slots:
 
 private slots:
     void on_spinBox_valueChanged(int arg1);
-    void on_commandButtonVoltar_clicked();
 
     void on_btnGuardarCarro_clicked();
+
+    void previousWindow();
+
+    void on_commandButtonVoltar_clicked();
 
 private:
     Ui::GerirTipoMensagem *ui;

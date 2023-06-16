@@ -1,4 +1,4 @@
-Timestamp;Nome Modulo;ID; Byte 0 e 1;Byte 1 e 2;Byte 2 e 3;Byte 3 e 4;
+Timestamp;Nome Modulo;ID; Byte 0 e 1;Byte 1 e 2;Byte 2 e 3;Byte 3 e 4
 0.000; Dynamics module data; 0x11;0000;5701;0000;10801
 0.000; Dynamics module sensor errors; 0x12;0100;0000;0100;0000
 0.000; Thermal sensor module; 0x21;25201;21503;0802;21400

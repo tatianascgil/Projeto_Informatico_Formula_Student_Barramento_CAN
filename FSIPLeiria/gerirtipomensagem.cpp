@@ -287,12 +287,6 @@ void GerirTipoMensagem::on_btnGuardarCarro_clicked()
         return;
     }
 
-    // Ask the user for confirmation
-    QMessageBox::StandardButton confirmation = QMessageBox::question(this, "Guardar Dados", "Tem a certeza que pretende guardar os dados?", QMessageBox::Yes | QMessageBox::No);
-    if (confirmation == QMessageBox::No) {
-        // User canceled the operation
-        return;
-    }
 
     QTextStream out(&file);
 
@@ -346,7 +340,7 @@ void GerirTipoMensagem::on_btnGuardarCarro_clicked()
 
                 if (uniqueTextEditNome.contains(textEditNomeValue)) {
                     // Handle error: Duplicate textEditNome found
-                    QMessageBox::critical(this, "Erro", "O nome do campo" + index + " está duplicado.");
+                    QMessageBox::critical(this, "Erro", "O nome do campo " + index + " está duplicado.");
                     return;
                 }
 
@@ -404,6 +398,12 @@ void GerirTipoMensagem::on_btnGuardarCarro_clicked()
         updatedLines.append(currentLine);
     }
 
+    // Ask the user for confirmation
+    QMessageBox::StandardButton confirmation = QMessageBox::question(this, "Guardar Dados", "Tem a certeza que pretende guardar os dados?", QMessageBox::Yes | QMessageBox::No);
+    if (confirmation == QMessageBox::No) {
+        // User canceled the operation
+        return;
+    }
 
     // Write the updated lines back to the file
     // Clear the file content
@@ -414,20 +414,11 @@ void GerirTipoMensagem::on_btnGuardarCarro_clicked()
 
     QMessageBox::information(this, "Sucesso", "Dados salvos com sucesso!");
 
-    on_commandButtonVoltar_clicked();
+    previousWindow();
 }
 
 
-
-void GerirTipoMensagem::on_commandButtonVoltar_clicked()
-{
-
-    QMessageBox::StandardButton confirmation = QMessageBox::question(this, "Voltar atrás", "Tem a certeza que pretende voltar atrás? Todos os dados serão perdidos!", QMessageBox::Yes | QMessageBox::No);
-    if (confirmation == QMessageBox::No) {
-        // User canceled the operation
-        return;
-    }
-
+void GerirTipoMensagem::previousWindow(){
     const int gerirModuloWidth = 800;
     const int gerirModuloHeight = 500;
 
@@ -448,6 +439,19 @@ void GerirTipoMensagem::on_commandButtonVoltar_clicked()
 
     gerirModulo->show();
     this->close();
+}
+
+
+void GerirTipoMensagem::on_commandButtonVoltar_clicked()
+{
+
+    QMessageBox::StandardButton confirmation = QMessageBox::question(this, "Voltar atrás", "Tem a certeza que pretende voltar atrás? Todos os dados serão perdidos!", QMessageBox::Yes | QMessageBox::No);
+    if (confirmation == QMessageBox::No) {
+        // User canceled the operation
+        return;
+    }
+
+    previousWindow();
 
 }
 
