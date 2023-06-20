@@ -12,8 +12,7 @@ Window tabelaDados:
   -> Carregar os campos correspondentes ao codHex selecionado.	(Resolvido)
 
 Window criarTipoMensagem:
-  -> Quando se cria um novo Tipo de mensagem está a dar append à última linha inconsistentemente.
-  -> Não está a limitar apenas caracteres hexadecimais.
+  -> Não está a limitar apenas caracteres hexadecimais. (Resolvido)
 
 Window gerirMódulo:
   -> Botão "Guardar" guardam os novos dados ao substituirem a 1ª linha. (Resolvido)
@@ -33,3 +32,11 @@ Window criarModulo:
 
 Todas as janelas:
   -> Botão voltar não está a avisar o utilizador que vai perder os dados; (Resolvido)
+  -> Não estão responsivas;
+
+Tabela de Dados:
+  -> Não está a atualizar o número parcial/total de mensagens;
+  -> Não está a aplicar o offset e fator ao valor;
+  -> Não está a filtrar pelo campo;
+  -> Não está a verificar se o módulo é little endian ou big endian;
+  -> Não esão a apresentar os headers corretos dos campos; (Parcialmente Resolvido) - selectedCodHex não pode ser empty

@@ -39,6 +39,14 @@ void CriarTipoMensagem::on_btnCriarTipoMensagem_clicked()
     QString nomeCarro = ui->labelNomeCarro->text().trimmed();
     QString nomeModulo = ui->labelNomeModulo->text().trimmed();
 
+    // Iterate through each character in codHex
+    for (const QChar& ch : codHex){
+        // Check if the character is a valid hexadecimal digit
+        if (!ch.isDigit() && (ch < 'A' || ch > 'F')) {
+            QMessageBox::critical(this, "Erro", "O código Hexadecimal contém caracteres inválidos!");
+            return;
+        }
+    }
 
     if (obs.contains(";")) {
         QMessageBox::critical(this, "Erro", "É proibido utilizar semi-vírgulas ';'!");

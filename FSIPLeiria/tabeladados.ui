@@ -39,7 +39,7 @@
    <property name="geometry">
     <rect>
      <x>720</x>
-     <y>110</y>
+     <y>70</y>
      <width>251</width>
      <height>31</height>
     </rect>
@@ -163,15 +163,15 @@ QPushButton:pressed {
   <widget class="QLabel" name="label_6">
    <property name="geometry">
     <rect>
-     <x>730</x>
+     <x>710</x>
      <y>150</y>
-     <width>191</width>
+     <width>171</width>
      <height>31</height>
     </rect>
    </property>
    <property name="font">
     <font>
-     <pointsize>16</pointsize>
+     <pointsize>14</pointsize>
      <bold>true</bold>
     </font>
    </property>
@@ -190,7 +190,7 @@ QPushButton:pressed {
    </property>
    <property name="font">
     <font>
-     <pointsize>16</pointsize>
+     <pointsize>14</pointsize>
      <bold>true</bold>
     </font>
    </property>
@@ -201,15 +201,15 @@ QPushButton:pressed {
   <widget class="QLabel" name="labelNMensagens">
    <property name="geometry">
     <rect>
-     <x>920</x>
+     <x>880</x>
      <y>150</y>
-     <width>41</width>
+     <width>101</width>
      <height>31</height>
     </rect>
    </property>
    <property name="font">
     <font>
-     <pointsize>16</pointsize>
+     <pointsize>14</pointsize>
     </font>
    </property>
    <property name="text">

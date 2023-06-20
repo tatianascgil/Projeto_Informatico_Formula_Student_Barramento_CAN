@@ -15,8 +15,12 @@ TabelaDados::TabelaDados(QWidget *parent) :
 {
     ui->setupUi(this);
 
+
     connect(ui->comboBoxModulo, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &TabelaDados::setCodigosHex);
     connect(ui->comboBoxCodigoHEX, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &TabelaDados::setCampos);
+
+    connect(ui->comboBoxModulo, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &TabelaDados::filtrarComboBoxs);
+    connect(ui->comboBoxCodigoHEX, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &TabelaDados::filtrarComboBoxs);
 
 }
 
@@ -179,7 +183,7 @@ void TabelaDados::loadMensagens(const QString& filePath) {
     QFile file(filePath);
     if (file.open(QIODevice::ReadOnly | QIODevice::Text)) {
         QTextStream in(&file);
-        QStandardItemModel* model = new QStandardItemModel(this);
+        model = new QStandardItemModel(this);
 
         // Step 1: Read "tiposMensagem.txt" and store its contents
         QMap<QString, QString> tiposMensagem;
@@ -207,28 +211,54 @@ void TabelaDados::loadMensagens(const QString& filePath) {
             tiposFile.close();
         }
 
-        // Step 2: Read the file line by line and modify the data
+        // Set headers for the first 3 columns
+        model->setHorizontalHeaderItem(0, new QStandardItem("Timestamp"));
+        model->setHorizontalHeaderItem(1, new QStandardItem("Módulo"));
+        model->setHorizontalHeaderItem(2, new QStandardItem("Código Hexadecimal"));
+        int totalMensagens = 0;
         while (!in.atEnd()) {
             QString line = in.readLine();
             QStringList columns = line.split(';');
             QList<QStandardItem*> rowItems;
+            totalMensagens++;
+            ui->labelNMensagens->setText(QString::number(totalMensagens));
 
-            for (int i = 0; i < columns.length(); i++) {
-                QString column = columns[i];
+            if (columns.length() > 1 && tiposMensagem.contains(columns[1])) {
+                QString tiposLine = tiposMensagem[columns[1]];
+                QStringList tiposColumns = tiposLine.split(';');
 
-                if (i == 1 && tiposMensagem.contains(column)) {
-                    QString tiposLine = tiposMensagem[column];
-                    QStringList tiposColumns = tiposLine.split(';');
+                // Append modified fields into the table
+                QString timestamp = columns[0];
+                QString moduleName = tiposColumns[0];
+                QString hexCode = tiposColumns[1];
+                rowItems.append(new QStandardItem(timestamp));
+                rowItems.append(new QStandardItem(moduleName));
+                rowItems.append(new QStandardItem(hexCode));
 
-                    // Calculate field length
-                    int fieldStartIndex = 5 + 6 * (tiposColumns[3].toInt() - 1);
-                    int fieldEndIndex = fieldStartIndex + tiposColumns[2].toInt() - 1;
-                    int fieldLength = fieldEndIndex - fieldStartIndex + 1;
+                // Calculate byte length of each field
+                int fieldCount = tiposColumns[3].toInt();
+                int columnIndex = 2;
 
-                    // Append modified field value
-                    QString fieldValue = column + line.mid(fieldStartIndex, fieldLength);
-                    rowItems.append(new QStandardItem(fieldValue));
-                } else {
+                for (int j = 0; j < fieldCount; j++) {
+                    QString fieldName = tiposColumns[4 + (j * 6)] + ": ";
+                    QString metric = tiposColumns[9 + (j * 6)];
+                    int startByte = tiposColumns[5 + (j * 6)].toInt();
+                    int endByte = tiposColumns[6 + (j * 6)].toInt();
+                    int byteLength = endByte - startByte + 1;
+
+                    if (byteLength == 1) {
+                        fieldName += columns[columnIndex++];
+                    } else {
+                        for (int k = 0; k < byteLength; k++) {
+                            fieldName += columns[columnIndex++];
+                        }
+                    }
+
+                    fieldName += metric;
+                    rowItems.append(new QStandardItem(fieldName));
+                }
+            } else {
+                for (const QString& column : columns) {
                     rowItems.append(new QStandardItem(column));
                 }
             }
@@ -238,15 +268,104 @@ void TabelaDados::loadMensagens(const QString& filePath) {
 
         file.close();
 
+
         // Step 3: Set the model for the tableViewTabelaDados
         ui->tableViewTabelaDados->setModel(model);
     }
 }
 
 
-void TabelaDados::on_btnFiltrar_clicked()
+
+void TabelaDados::filtrarComboBoxs()
 {
 
+    QString selectedModulo = ui->comboBoxModulo->currentText();
+    QString selectedCodHex = ui->comboBoxCodigoHEX->currentText();
+    QString selectedCampo = ui->comboBoxCampo->currentText();
+
+    if(selectedModulo == ui->comboBoxModulo->placeholderText()){
+        ui->tableViewTabelaDados->setModel(model);
+        return;
+    }
+
+    QStandardItemModel* filteredModel = new QStandardItemModel(this);
+
+    for (int row = 0; row < model->rowCount(); row++) {
+        QStandardItem* moduloItem = model->item(row, 1);
+        QStandardItem* codHexItem = model->item(row, 2);
+
+        if (moduloItem && codHexItem) {
+            QString modulo = moduloItem->text();
+            QString codHex = codHexItem->text();
+
+            if (selectedModulo.isEmpty() || modulo == selectedModulo) {
+                if (selectedCodHex.isEmpty() || codHex == selectedCodHex) {
+                    if (selectedCampo.isEmpty() || rowHasMatchingCampo(row, selectedCampo)) {
+                        QList<QStandardItem*> rowItems;
+                        for (int col = 0; col < model->columnCount(); col++) {
+                            if(col > 2){
+                                QStandardItem* item = model->item(row, col);
+                                if (item) {
+                                    QString text = item->text();
+                                    QString fieldName;
+                                    QString fieldValue;
+
+                                    // Extract fieldName and fieldValue from text
+                                    bool isFieldName = true;
+                                    for (int i = 0; i < text.length(); i++) {
+                                        if (text[i] == ':') {
+                                            isFieldName = false;
+                                        } else {
+                                            if (isFieldName) {
+                                                fieldName += text[i];
+                                            } else {
+                                                fieldValue += text[i];
+                                            }
+                                        }
+                                    }
+
+                                    // Create QStandardItem for fieldValue only
+                                    QStandardItem* fieldItem = new QStandardItem(fieldValue);
+                                    rowItems.append(fieldItem);
+                                    // Set the header of the column with fieldName
+                                    filteredModel->setHorizontalHeaderItem(col, new QStandardItem(fieldName));
+                                }
+                            }else{
+                                QStandardItem* item = model->item(row, col);
+                                if (item)
+                                    rowItems.append(new QStandardItem(item->text()));
+                            }
+                        }
+                        filteredModel->appendRow(rowItems);
+                    }
+                }
+            }
+        }
+    }
+
+    filteredModel->setHorizontalHeaderItem(0, new QStandardItem("Timestamp"));
+    filteredModel->setHorizontalHeaderItem(1, new QStandardItem("Módulo"));
+    filteredModel->setHorizontalHeaderItem(2, new QStandardItem("Código Hexadecimal"));
+
+
+    ui->tableViewTabelaDados->setModel(filteredModel);
+
+    // Set the label with the partialMessages/totalMessages format
+    int partialMessages = filteredModel->rowCount();
+    int totalMessages = model->rowCount();
+    QString labelFormat = QString("%1/%2").arg(partialMessages).arg(totalMessages);
+    ui->labelNMensagens->setText(labelFormat);
+
+}
+
+bool TabelaDados::rowHasMatchingCampo(int row, const QString& selectedCampo) const
+{
+    QModelIndex index = model->index(row, 4);
+    if (index.isValid()) {
+        QString campo = index.data().toString();
+        return campo.contains(selectedCampo, Qt::CaseInsensitive);
+    }
+    return false;
 }
 
 
@@ -262,5 +381,11 @@ void TabelaDados::on_commandButtonVoltar_clicked()
     MainWindow *mainWindow = new MainWindow();
     mainWindow->show();
     this->close();
+}
+
+
+void TabelaDados::on_btnFiltrar_clicked()
+{
+
 }
 

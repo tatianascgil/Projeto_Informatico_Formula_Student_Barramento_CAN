@@ -2,6 +2,7 @@
 #define TABELADADOS_H
 
 #include <QDialog>
+#include <QStandardItemModel>
 
 namespace Ui {
 class TabelaDados;
@@ -24,12 +25,17 @@ public slots:
     void setOperador();
 
 private slots:
-    void on_btnFiltrar_clicked();
+    void filtrarComboBoxs();
+
+    bool rowHasMatchingCampo(int row, const QString& selectedCampo) const;
 
     void on_commandButtonVoltar_clicked();
 
+    void on_btnFiltrar_clicked();
+
 private:
     Ui::TabelaDados *ui;
+    QStandardItemModel* model;
 };
 
 #endif // TABELADADOS_H
