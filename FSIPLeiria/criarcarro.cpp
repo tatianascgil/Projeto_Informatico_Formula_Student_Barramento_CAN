@@ -133,14 +133,24 @@ void CriarCarro::on_btnCriarCarro_clicked()
 
 void CriarCarro::on_commandButtonVoltar_clicked()
 {
-    QMessageBox::StandardButton confirmation = QMessageBox::question(this, "Voltar atrás", "Tem a certeza que pretende voltar atrás? Todos os dados serão perdidos!", QMessageBox::Yes | QMessageBox::No);
-    if (confirmation == QMessageBox::No) {
+    // Display confirmation dialog
+    QMessageBox confirmation(this);
+    confirmation.setWindowTitle("Voltar atrás");
+    confirmation.setText("Tem a certeza que pretende voltar atrás? Todos os dados serão perdidos!");
+    confirmation.setIcon(QMessageBox::Question);
+
+    // Translate the buttons
+    confirmation.addButton("Sim", QMessageBox::YesRole);
+    QPushButton* noButton = confirmation.addButton("Não", QMessageBox::NoRole);
+
+    confirmation.exec();
+
+    if (confirmation.clickedButton() == noButton) {
         // User canceled the operation
         return;
     }
 
     previousWindow();
-
 }
 
 void CriarCarro::previousWindow()

@@ -404,10 +404,21 @@ bool TabelaDados::rowHasMatchingCampo(int row, const QString& selectedCampo) con
 void TabelaDados::on_commandButtonVoltar_clicked()
 {
 
-    QMessageBox::StandardButton confirmation = QMessageBox::question(this, "Voltar atrás", "Tem a certeza que pretende voltar atrás?", QMessageBox::Yes | QMessageBox::No);
-    if (confirmation == QMessageBox::No) {
-        // User canceled the operation
-        return;
+    // Display confirmation dialog
+    QMessageBox confirmation(this);
+    confirmation.setWindowTitle("Voltar atrás");
+    confirmation.setText("Tem a certeza que pretende voltar atrás?");
+    confirmation.setIcon(QMessageBox::Question);
+
+    // Translate the buttons
+    confirmation.addButton("Sim", QMessageBox::YesRole);
+    QPushButton* noButton = confirmation.addButton("Não", QMessageBox::NoRole);
+
+    confirmation.exec();
+
+    if (confirmation.clickedButton() == noButton) {
+     // User canceled the operation
+     return;
     }
 
     MainWindow *mainWindow = new MainWindow();

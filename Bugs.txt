@@ -22,7 +22,7 @@ Window gerirMódulo:
   -> Botão "Guardar" não está a verificar se os valores da tabela são iguais aos do ficheiro.
 
 Window gerirTipoMensagem:
-  -> Criar botão "Apagar Tipo Mensagem".
+  -> Criar botão "Apagar Tipo Mensagem". (Resolvido)
   -> Pedir autorização ao utlizador para guardar os dados. (Resolvido)
   -> Botão "Guardar" não está a verificar se os valores da tabela são iguais aos do ficheiro.
 
@@ -41,3 +41,4 @@ Tabela de Dados:
   -> Não está a verificar se o módulo é little endian ou big endian;
   -> Não esão a apresentar os headers corretos dos campos; (Resolvido)
   -> Não está a Guardar os dados em ficheiro;
+

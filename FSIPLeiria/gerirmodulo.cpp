@@ -325,11 +325,23 @@ void GerirModulo::on_btnGuardarModulo_clicked()
 void GerirModulo::on_commandButtonVoltar_clicked()
 {
 
-    QMessageBox::StandardButton confirmation = QMessageBox::question(this, "Voltar atrás", "Tem a certeza que pretende voltar atrás? Todos os dados serão perdidos!", QMessageBox::Yes | QMessageBox::No);
-    if (confirmation == QMessageBox::No) {
-        // User canceled the operation
-        return;
+    // Display confirmation dialog
+    QMessageBox confirmation(this);
+    confirmation.setWindowTitle("Voltar atrás");
+    confirmation.setText("Tem a certeza que pretende voltar atrás? Todos os dados serão perdidos!");
+    confirmation.setIcon(QMessageBox::Question);
+
+    // Translate the buttons
+    confirmation.addButton("Sim", QMessageBox::YesRole);
+    QPushButton* noButton = confirmation.addButton("Não", QMessageBox::NoRole);
+
+    confirmation.exec();
+
+    if (confirmation.clickedButton() == noButton) {
+     // User canceled the operation
+     return;
     }
+
 
     // Cria a janela GerirCarro
     GerirCarro *gerirCarro = new GerirCarro();
@@ -461,8 +473,19 @@ void GerirModulo::on_btnCriarTipoMensagem_clicked()
 
 void GerirModulo::on_commandButtonMenuPrincipal_clicked()
 {
-    QMessageBox::StandardButton confirmation = QMessageBox::question(this, "Voltar atrás", "Tem a certeza que pretende voltar para o Menu Principal?", QMessageBox::Yes | QMessageBox::No);
-        if (confirmation == QMessageBox::No) {
+    // Display confirmation dialog
+    QMessageBox confirmation(this);
+    confirmation.setWindowTitle("Voltar ao Menu Principal");
+    confirmation.setText("Tem a certeza que pretende voltar para o Menu Principal? Todos os dados serão perdidos!");
+    confirmation.setIcon(QMessageBox::Question);
+
+    // Translate the buttons
+    confirmation.addButton("Sim", QMessageBox::YesRole);
+    QPushButton* noButton = confirmation.addButton("Não", QMessageBox::NoRole);
+
+    confirmation.exec();
+
+    if (confirmation.clickedButton() == noButton) {
         // User canceled the operation
         return;
     }

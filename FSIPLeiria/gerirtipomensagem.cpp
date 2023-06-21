@@ -447,15 +447,125 @@ void GerirTipoMensagem::previousWindow(){
 void GerirTipoMensagem::on_commandButtonVoltar_clicked()
 {
 
-    QMessageBox::StandardButton confirmation = QMessageBox::question(this, "Voltar atrás", "Tem a certeza que pretende voltar atrás? Todos os dados serão perdidos!", QMessageBox::Yes | QMessageBox::No);
-    if (confirmation == QMessageBox::No) {
-        // User canceled the operation
-        return;
+    // Display confirmation dialog
+    QMessageBox confirmation(this);
+    confirmation.setWindowTitle("Voltar atrás");
+    confirmation.setText("Tem a certeza que pretende voltar atrás? Todos os dados serão perdidos!");
+    confirmation.setIcon(QMessageBox::Question);
+
+    // Translate the buttons
+    confirmation.addButton("Sim", QMessageBox::YesRole);
+    QPushButton* noButton = confirmation.addButton("Não", QMessageBox::NoRole);
+
+    confirmation.exec();
+
+    if (confirmation.clickedButton() == noButton) {
+     // User canceled the operation
+     return;
     }
 
     previousWindow();
 
 }
+
+void GerirTipoMensagem::on_commandButtonMenuPrincipal_clicked()
+{
+    // Display confirmation dialog
+    QMessageBox confirmation(this);
+    confirmation.setWindowTitle("Voltar ao Menu Principal");
+    confirmation.setText("Tem a certeza que pretende voltar para o Menu Principal? Todos os dados serão perdidos!");
+    confirmation.setIcon(QMessageBox::Question);
+
+    // Translate the buttons
+    confirmation.addButton("Sim", QMessageBox::YesRole);
+    QPushButton* noButton = confirmation.addButton("Não", QMessageBox::NoRole);
+
+    confirmation.exec();
+
+    if (confirmation.clickedButton() == noButton) {
+        // User canceled the operation
+        return;
+    }
+
+    MainWindow *mainWindow = new MainWindow();
+    mainWindow->show();
+    this->close();
+}
+
+void GerirTipoMensagem::on_btnApagar_clicked()
+{
+    QString nomeCarro = ui->labelNomeCarro->text();
+    QString folderName = nomeCarro.trimmed();
+    QString currentPath = QDir::currentPath();
+    QString targetDir = currentPath + "/../FSIPLeiria/settings";
+    QString folderPath = targetDir + "/" + folderName;
+
+    QDir folderDir(folderPath);
+    if (!folderDir.exists()) {
+        QMessageBox::information(this, "Erro", "Erro. A pasta " + folderPath + " não existe!");
+        return;
+    }
+
+    QString filePath = folderPath + "/tiposMensagem.txt";
+    QFile file(filePath);
+
+    if (!file.open(QIODevice::ReadWrite | QIODevice::Text)) {
+        QMessageBox::critical(this, "Erro", "Erro ao abrir o arquivo " + filePath + " para escrita!");
+        return;
+    }
+
+    QString codHex = ui->labelCodHex->text();
+
+    // Display confirmation dialog
+    QMessageBox confirmation(this);
+    confirmation.setWindowTitle("Apagar Tipo de Mensagem");
+    confirmation.setText("Tem certeza que deseja apagar o Tipo de Mensagem 0x" + codHex + "? Todos os dados serão excluídos!");
+    confirmation.setIcon(QMessageBox::Question);
+
+    // Translate the buttons
+    QPushButton* yesButton = confirmation.addButton("Sim", QMessageBox::YesRole);
+    confirmation.addButton("Não", QMessageBox::NoRole);
+
+    confirmation.exec();
+
+    if (confirmation.clickedButton() == yesButton) {
+        // Open the tiposMensagem.txt file
+        QFile file(filePath);
+
+        if (file.open(QIODevice::ReadWrite | QIODevice::Text)) {
+            QTextStream stream(&file);
+
+            // Read all the lines and create a new list excluding the line to be deleted
+            QStringList newTiposMensagemData;
+            while (!stream.atEnd()) {
+                QString line = stream.readLine();
+                QStringList values = line.split(";");
+                if (values.count() >= 2 && values[1] != codHex) {
+                    newTiposMensagemData.append(line);
+                }
+            }
+
+            file.resize(0); // Clear the file content
+
+            // Write the updated data to the tiposMensagem.txt file
+            for (const QString& line : newTiposMensagemData) {
+                stream << line << "\n";
+            }
+
+            file.close();
+
+            // Line deleted successfully
+            QMessageBox::information(this, "Tipo de Mensagem Removido", "O Tipo de Mensagem 0x" + codHex + " foi removido com sucesso!");
+
+            this->close();
+            previousWindow();
+        }
+    }
+}
+
+
+
+
 
 
 
@@ -1205,19 +1315,5 @@ void GerirTipoMensagem::on_spinBox_valueChanged(int arg1)
         ui->textEdit_Unidade8->show();
         break;
     }
-}
-
-
-void GerirTipoMensagem::on_commandButtonMenuPrincipal_clicked()
-{
-    QMessageBox::StandardButton confirmation = QMessageBox::question(this, "Voltar atrás", "Tem a certeza que pretende voltar para o Menu Principal?", QMessageBox::Yes | QMessageBox::No);
-    if (confirmation == QMessageBox::No) {
-      // User canceled the operation
-      return;
-    }
-
-    MainWindow *mainWindow = new MainWindow();
-    mainWindow->show();
-    this->close();
 }
 

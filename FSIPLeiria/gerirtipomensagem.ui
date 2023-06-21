@@ -1380,9 +1380,9 @@
    <property name="geometry">
     <rect>
      <x>660</x>
-     <y>540</y>
+     <y>550</y>
      <width>131</width>
-     <height>51</height>
+     <height>41</height>
     </rect>
    </property>
    <property name="font">
@@ -1484,6 +1484,43 @@ QCommandLinkButton:hover
    <property name="icon">
     <iconset>
      <normaloff>../icon.ico</normaloff>../icon.ico</iconset>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="btnApagar">
+   <property name="geometry">
+    <rect>
+     <x>660</x>
+     <y>490</y>
+     <width>131</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>10</pointsize>
+    </font>
+   </property>
+   <property name="cursor">
+    <cursorShape>PointingHandCursor</cursorShape>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton{
+	background-color:rgb(255, 245, 166);
+	border:none;
+	color:rgb(95, 91, 61);
+	border -bottom: 5px solid rgb(162, 155, 105)
+}
+QPushButton:hover{
+	background-color:rgb(229, 217, 150);
+	border-bottom: 5px solid rgb(162, 155, 105)
+}
+QPushButton:pressed {
+	background-color:rgb(255, 242, 165);
+	border-bottom: 5px solid rgb(162, 155, 105)
+}</string>
+   </property>
+   <property name="text">
+    <string>Apagar</string>
    </property>
   </widget>
  </widget>

@@ -103,6 +103,7 @@ public:
     QPlainTextEdit *plainTextEditObs;
     QSpinBox *spinBox_Inicial2;
     QCommandLinkButton *commandButtonMenuPrincipal;
+    QPushButton *btnApagar;
 
     void setupUi(QDialog *GerirTipoMensagem)
     {
@@ -524,7 +525,7 @@ public:
         labelCodHex->setCursor(QCursor(Qt::ForbiddenCursor));
         btnGuardarCarro = new QPushButton(GerirTipoMensagem);
         btnGuardarCarro->setObjectName("btnGuardarCarro");
-        btnGuardarCarro->setGeometry(QRect(660, 540, 131, 51));
+        btnGuardarCarro->setGeometry(QRect(660, 550, 131, 41));
         QFont font2;
         font2.setPointSize(10);
         btnGuardarCarro->setFont(font2);
@@ -569,6 +570,25 @@ public:
 "  color: black;\n"
 "}"));
         commandButtonMenuPrincipal->setIcon(icon);
+        btnApagar = new QPushButton(GerirTipoMensagem);
+        btnApagar->setObjectName("btnApagar");
+        btnApagar->setGeometry(QRect(660, 490, 131, 41));
+        btnApagar->setFont(font2);
+        btnApagar->setCursor(QCursor(Qt::PointingHandCursor));
+        btnApagar->setStyleSheet(QString::fromUtf8("QPushButton{\n"
+"	background-color:rgb(255, 245, 166);\n"
+"	border:none;\n"
+"	color:rgb(95, 91, 61);\n"
+"	border -bottom: 5px solid rgb(162, 155, 105)\n"
+"}\n"
+"QPushButton:hover{\n"
+"	background-color:rgb(229, 217, 150);\n"
+"	border-bottom: 5px solid rgb(162, 155, 105)\n"
+"}\n"
+"QPushButton:pressed {\n"
+"	background-color:rgb(255, 242, 165);\n"
+"	border-bottom: 5px solid rgb(162, 155, 105)\n"
+"}"));
 
         retranslateUi(GerirTipoMensagem);
 
@@ -603,6 +623,7 @@ public:
         labelCodHex->setText(QCoreApplication::translate("GerirTipoMensagem", "INDEFINIDO", nullptr));
         btnGuardarCarro->setText(QCoreApplication::translate("GerirTipoMensagem", "Guardar", nullptr));
         commandButtonMenuPrincipal->setText(QCoreApplication::translate("GerirTipoMensagem", "Menu Principal", nullptr));
+        btnApagar->setText(QCoreApplication::translate("GerirTipoMensagem", "Apagar", nullptr));
     } // retranslateUi
 
 };

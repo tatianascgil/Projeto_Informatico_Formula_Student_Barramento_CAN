@@ -33,6 +33,8 @@ private slots:
 
     void on_commandButtonMenuPrincipal_clicked();
 
+    void on_btnApagar_clicked();
+
 private:
     Ui::GerirTipoMensagem *ui;
 };
