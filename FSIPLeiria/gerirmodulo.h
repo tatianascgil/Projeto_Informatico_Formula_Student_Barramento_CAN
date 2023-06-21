@@ -32,6 +32,8 @@ private slots:
 
     void handleDoubleClick(const QModelIndex& index);
 
+    void on_commandButtonMenuPrincipal_clicked();
+
 private:
     Ui::GerirModulo *ui;
 };

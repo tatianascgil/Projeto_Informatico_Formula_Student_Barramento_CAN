@@ -305,6 +305,36 @@ QPushButton:pressed {
     <string>Nota: Fazer double-click na linha respetiva ao tipo de mensagem que pretende visualizar.</string>
    </property>
   </widget>
+  <widget class="QCommandLinkButton" name="commandButtonMenuPrincipal">
+   <property name="geometry">
+    <rect>
+     <x>640</x>
+     <y>10</y>
+     <width>141</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="cursor">
+    <cursorShape>PointingHandCursor</cursorShape>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QCommandLinkButton{
+color:black;
+}
+QCommandLinkButton:hover
+{
+  border: none;
+  color: black;
+}</string>
+   </property>
+   <property name="text">
+    <string>Menu Principal</string>
+   </property>
+   <property name="icon">
+    <iconset>
+     <normaloff>../icon.ico</normaloff>../icon.ico</iconset>
+   </property>
+  </widget>
  </widget>
  <resources/>
  <connections/>

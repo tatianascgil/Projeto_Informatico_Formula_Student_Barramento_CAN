@@ -38,6 +38,7 @@ public:
     QLabel *labelNomeCarro;
     QLabel *label_3;
     QLabel *label_4;
+    QCommandLinkButton *commandButtonMenuPrincipal;
 
     void setupUi(QDialog *GerirModulo)
     {
@@ -160,6 +161,19 @@ public:
         label_4 = new QLabel(GerirModulo);
         label_4->setObjectName("label_4");
         label_4->setGeometry(QRect(20, 470, 501, 20));
+        commandButtonMenuPrincipal = new QCommandLinkButton(GerirModulo);
+        commandButtonMenuPrincipal->setObjectName("commandButtonMenuPrincipal");
+        commandButtonMenuPrincipal->setGeometry(QRect(640, 10, 141, 31));
+        commandButtonMenuPrincipal->setCursor(QCursor(Qt::PointingHandCursor));
+        commandButtonMenuPrincipal->setStyleSheet(QString::fromUtf8("QCommandLinkButton{\n"
+"color:black;\n"
+"}\n"
+"QCommandLinkButton:hover\n"
+"{\n"
+"  border: none;\n"
+"  color: black;\n"
+"}"));
+        commandButtonMenuPrincipal->setIcon(icon);
 
         retranslateUi(GerirModulo);
 
@@ -178,7 +192,8 @@ public:
         btnCriarTipoMensagem->setText(QCoreApplication::translate("GerirModulo", "Criar Tipo de Mensagem", nullptr));
         labelNomeCarro->setText(QCoreApplication::translate("GerirModulo", "Carro", nullptr));
         label_3->setText(QCoreApplication::translate("GerirModulo", "Carro", nullptr));
-        label_4->setText(QCoreApplication::translate("GerirModulo", "Nota: Fazer double-lick na linha respetiva ao tipo de mensagem que pretende visualizar.", nullptr));
+        label_4->setText(QCoreApplication::translate("GerirModulo", "Nota: Fazer double-click na linha respetiva ao tipo de mensagem que pretende visualizar.", nullptr));
+        commandButtonMenuPrincipal->setText(QCoreApplication::translate("GerirModulo", "Menu Principal", nullptr));
     } // retranslateUi
 
 };

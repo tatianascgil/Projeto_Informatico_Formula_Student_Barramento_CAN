@@ -458,3 +458,17 @@ void GerirModulo::on_btnCriarTipoMensagem_clicked()
     this->close();
 }
 
+
+void GerirModulo::on_commandButtonMenuPrincipal_clicked()
+{
+    QMessageBox::StandardButton confirmation = QMessageBox::question(this, "Voltar atrás", "Tem a certeza que pretende voltar para o Menu Principal?", QMessageBox::Yes | QMessageBox::No);
+        if (confirmation == QMessageBox::No) {
+        // User canceled the operation
+        return;
+    }
+
+    MainWindow *mainWindow = new MainWindow();
+    mainWindow->show();
+    this->close();
+}
+

@@ -33,6 +33,8 @@ private slots:
     void handleTableViewDoubleClick(const QModelIndex& index);
 
 
+    void on_commandButtonMenuPrincipal_clicked();
+
 private:
     Ui::GerirCarro *ui;
 };

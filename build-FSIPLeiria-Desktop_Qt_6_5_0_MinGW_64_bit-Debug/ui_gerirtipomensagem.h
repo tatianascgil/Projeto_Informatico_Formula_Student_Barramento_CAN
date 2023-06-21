@@ -102,6 +102,7 @@ public:
     QPushButton *btnGuardarCarro;
     QPlainTextEdit *plainTextEditObs;
     QSpinBox *spinBox_Inicial2;
+    QCommandLinkButton *commandButtonMenuPrincipal;
 
     void setupUi(QDialog *GerirTipoMensagem)
     {
@@ -508,7 +509,7 @@ public:
         label->setCursor(QCursor(Qt::ForbiddenCursor));
         label_4 = new QLabel(GerirTipoMensagem);
         label_4->setObjectName("label_4");
-        label_4->setGeometry(QRect(480, 30, 141, 31));
+        label_4->setGeometry(QRect(470, 50, 141, 31));
         label_4->setFont(font1);
         label_4->setCursor(QCursor(Qt::ForbiddenCursor));
         label_8 = new QLabel(GerirTipoMensagem);
@@ -518,7 +519,7 @@ public:
         label_8->setCursor(QCursor(Qt::ForbiddenCursor));
         labelCodHex = new QLabel(GerirTipoMensagem);
         labelCodHex->setObjectName("labelCodHex");
-        labelCodHex->setGeometry(QRect(630, 30, 111, 31));
+        labelCodHex->setGeometry(QRect(620, 50, 111, 31));
         labelCodHex->setFont(font);
         labelCodHex->setCursor(QCursor(Qt::ForbiddenCursor));
         btnGuardarCarro = new QPushButton(GerirTipoMensagem);
@@ -555,6 +556,19 @@ public:
         spinBox_Inicial2->setMinimum(0);
         spinBox_Inicial2->setMaximum(7);
         spinBox_Inicial2->setValue(0);
+        commandButtonMenuPrincipal = new QCommandLinkButton(GerirTipoMensagem);
+        commandButtonMenuPrincipal->setObjectName("commandButtonMenuPrincipal");
+        commandButtonMenuPrincipal->setGeometry(QRect(640, 10, 141, 31));
+        commandButtonMenuPrincipal->setCursor(QCursor(Qt::PointingHandCursor));
+        commandButtonMenuPrincipal->setStyleSheet(QString::fromUtf8("QCommandLinkButton{\n"
+"color:black;\n"
+"}\n"
+"QCommandLinkButton:hover\n"
+"{\n"
+"  border: none;\n"
+"  color: black;\n"
+"}"));
+        commandButtonMenuPrincipal->setIcon(icon);
 
         retranslateUi(GerirTipoMensagem);
 
@@ -588,6 +602,7 @@ public:
         label_8->setText(QCoreApplication::translate("GerirTipoMensagem", "Carro", nullptr));
         labelCodHex->setText(QCoreApplication::translate("GerirTipoMensagem", "INDEFINIDO", nullptr));
         btnGuardarCarro->setText(QCoreApplication::translate("GerirTipoMensagem", "Guardar", nullptr));
+        commandButtonMenuPrincipal->setText(QCoreApplication::translate("GerirTipoMensagem", "Menu Principal", nullptr));
     } // retranslateUi
 
 };

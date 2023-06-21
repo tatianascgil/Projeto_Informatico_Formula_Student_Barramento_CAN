@@ -31,6 +31,8 @@ private slots:
 
     void on_commandButtonVoltar_clicked();
 
+    void on_commandButtonMenuPrincipal_clicked();
+
 private:
     Ui::GerirTipoMensagem *ui;
 };

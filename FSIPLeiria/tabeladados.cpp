@@ -283,12 +283,35 @@ void TabelaDados::filtrarComboBoxs()
     QString selectedCodHex = ui->comboBoxCodigoHEX->currentText();
     QString selectedCampo = ui->comboBoxCampo->currentText();
 
+
     if(selectedModulo == ui->comboBoxModulo->placeholderText()){
         ui->tableViewTabelaDados->setModel(model);
+        int totalMessages = model->rowCount();
+        ui->labelNMensagens->setText(QString::number(totalMessages));
         return;
     }
 
     QStandardItemModel* filteredModel = new QStandardItemModel(this);
+
+    if(selectedCodHex == ui->comboBoxCodigoHEX->placeholderText()){
+        for (int row = 0; row < model->rowCount(); row++) {
+            QStandardItem* moduloItem = model->item(row, 1);
+            if (moduloItem) {
+                QString modulo = moduloItem->text();
+                if (modulo == selectedModulo) {
+                    QList<QStandardItem*> rowItems;
+                    for (int col = 0; col < model->columnCount(); col++) {
+                        QStandardItem* item = model->item(row, col);
+                        if (item)
+                            rowItems.append(new QStandardItem(item->text()));
+                    }
+                    filteredModel->appendRow(rowItems);
+                }
+            }
+        }
+    }
+
+
 
     for (int row = 0; row < model->rowCount(); row++) {
         QStandardItem* moduloItem = model->item(row, 1);
@@ -299,7 +322,7 @@ void TabelaDados::filtrarComboBoxs()
             QString codHex = codHexItem->text();
 
             if (selectedModulo.isEmpty() || modulo == selectedModulo) {
-                if (selectedCodHex.isEmpty() || codHex == selectedCodHex) {
+                if (codHex == selectedCodHex) {
                     if (selectedCampo.isEmpty() || rowHasMatchingCampo(row, selectedCampo)) {
                         QList<QStandardItem*> rowItems;
                         for (int col = 0; col < model->columnCount(); col++) {
@@ -338,6 +361,15 @@ void TabelaDados::filtrarComboBoxs()
                         }
                         filteredModel->appendRow(rowItems);
                     }
+                }else if(selectedCodHex.isEmpty()){
+                    QList<QStandardItem*> rowItems;
+                    for (int col = 0; col < model->columnCount(); col++) {
+                        QStandardItem* item = model->item(row, col);
+                        if (item)
+                            rowItems.append(new QStandardItem(item->text()));
+                    }
+                    filteredModel->appendRow(rowItems);
+
                 }
             }
         }

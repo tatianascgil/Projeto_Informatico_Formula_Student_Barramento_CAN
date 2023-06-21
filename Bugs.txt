@@ -19,7 +19,6 @@ Window gerirMódulo:
   -> Campo "Nome" está editável. (Resolvido)
   -> Campo "Endianess" deve ser editável a partir de um QInputDialog. (Resolvido)
   -> Campo "Observações" dá para escrever ";". (Resolvido)
-  -> Sempre que se clica no botão "Criar Tipo de Mensagem" pela 2ª vez, o programa crasha.
   -> Botão "Guardar" não está a verificar se os valores da tabela são iguais aos do ficheiro.
 
 Window gerirTipoMensagem:
@@ -33,10 +32,12 @@ Window criarModulo:
 Todas as janelas:
   -> Botão voltar não está a avisar o utilizador que vai perder os dados; (Resolvido)
   -> Não estão responsivas;
+  -> Criar Botão Menu Principal; (Resolvido)
 
 Tabela de Dados:
-  -> Não está a atualizar o número parcial/total de mensagens;
+  -> Não está a atualizar o número parcial/total de mensagens; (Resolvido)
   -> Não está a aplicar o offset e fator ao valor;
   -> Não está a filtrar pelo campo;
   -> Não está a verificar se o módulo é little endian ou big endian;
-  -> Não esão a apresentar os headers corretos dos campos; (Parcialmente Resolvido) - selectedCodHex não pode ser empty
+  -> Não esão a apresentar os headers corretos dos campos; (Resolvido)
+  -> Não está a Guardar os dados em ficheiro;

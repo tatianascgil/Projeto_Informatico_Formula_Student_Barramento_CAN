@@ -29,7 +29,6 @@ public:
     QTableView *tableViewTabelaDados;
     QPushButton *btnFiltrar;
     QComboBox *comboBoxModulo;
-    QPlainTextEdit *plainTextEditPesquisa;
     QComboBox *comboBoxOperador;
     QLabel *label_4;
     QLabel *label_6;
@@ -43,6 +42,7 @@ public:
     QLabel *label_3;
     QCommandLinkButton *commandButtonVoltar;
     QPlainTextEdit *plainTextEditValor;
+    QPushButton *btnGuardar;
 
     void setupUi(QDialog *TabelaDados)
     {
@@ -83,11 +83,6 @@ public:
         comboBoxModulo->setGeometry(QRect(120, 70, 151, 31));
         comboBoxModulo->setFont(font);
         comboBoxModulo->setStyleSheet(QString::fromUtf8("background:rgb(234, 234, 234)"));
-        plainTextEditPesquisa = new QPlainTextEdit(TabelaDados);
-        plainTextEditPesquisa->setObjectName("plainTextEditPesquisa");
-        plainTextEditPesquisa->setGeometry(QRect(720, 20, 251, 31));
-        plainTextEditPesquisa->setFont(font);
-        plainTextEditPesquisa->setStyleSheet(QString::fromUtf8("background:rgb(234, 234, 234)"));
         comboBoxOperador = new QComboBox(TabelaDados);
         comboBoxOperador->setObjectName("comboBoxOperador");
         comboBoxOperador->setGeometry(QRect(300, 150, 71, 31));
@@ -154,6 +149,25 @@ public:
         plainTextEditValor->setGeometry(QRect(460, 150, 91, 31));
         plainTextEditValor->setFont(font);
         plainTextEditValor->setStyleSheet(QString::fromUtf8("background:rgb(234, 234, 234)"));
+        btnGuardar = new QPushButton(TabelaDados);
+        btnGuardar->setObjectName("btnGuardar");
+        btnGuardar->setGeometry(QRect(720, 120, 251, 31));
+        btnGuardar->setFont(font);
+        btnGuardar->setCursor(QCursor(Qt::PointingHandCursor));
+        btnGuardar->setStyleSheet(QString::fromUtf8("QPushButton{\n"
+"	background-color:rgb(255, 245, 166);\n"
+"	border:none;\n"
+"	color:rgb(95, 91, 61);\n"
+"	border -bottom: 5px solid rgb(162, 155, 105)\n"
+"}\n"
+"QPushButton:hover{\n"
+"	background-color:rgb(229, 217, 150);\n"
+"	border-bottom: 5px solid rgb(162, 155, 105)\n"
+"}\n"
+"QPushButton:pressed {\n"
+"	background-color:rgb(255, 242, 165);\n"
+"	border-bottom: 5px solid rgb(162, 155, 105)\n"
+"}"));
 
         retranslateUi(TabelaDados);
 
@@ -168,8 +182,6 @@ public:
         TabelaDados->setWindowTitle(QCoreApplication::translate("TabelaDados", "Tabela de Dados", nullptr));
         btnFiltrar->setText(QCoreApplication::translate("TabelaDados", "Filtrar", nullptr));
         comboBoxModulo->setPlaceholderText(QCoreApplication::translate("TabelaDados", "<Selecionar M\303\263dulo>", nullptr));
-        plainTextEditPesquisa->setPlainText(QString());
-        plainTextEditPesquisa->setPlaceholderText(QCoreApplication::translate("TabelaDados", "Pesquisar", nullptr));
         comboBoxOperador->setPlaceholderText(QString());
         label_4->setText(QCoreApplication::translate("TabelaDados", "Campo:", nullptr));
         label_6->setText(QCoreApplication::translate("TabelaDados", "N\302\272 de Mensagens:", nullptr));
@@ -182,6 +194,7 @@ public:
         label->setText(QCoreApplication::translate("TabelaDados", "M\303\263dulo :", nullptr));
         label_3->setText(QCoreApplication::translate("TabelaDados", "Carro", nullptr));
         commandButtonVoltar->setText(QString());
+        btnGuardar->setText(QCoreApplication::translate("TabelaDados", "Guardar Ficheiro", nullptr));
     } // retranslateUi
 
 };
