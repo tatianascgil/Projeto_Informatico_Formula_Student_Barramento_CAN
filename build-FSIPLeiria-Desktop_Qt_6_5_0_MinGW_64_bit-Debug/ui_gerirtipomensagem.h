@@ -119,6 +119,15 @@ public:
         commandButtonVoltar->setObjectName("commandButtonVoltar");
         commandButtonVoltar->setGeometry(QRect(0, -10, 31, 31));
         commandButtonVoltar->setCursor(QCursor(Qt::PointingHandCursor));
+        commandButtonVoltar->setStyleSheet(QString::fromUtf8("QCommandLinkButton\n"
+"{\n"
+"	border: none;\n"
+"}\n"
+"\n"
+"QCommandLinkButton:hover\n"
+"{\n"
+"	border: none;\n"
+"}"));
         QIcon icon1;
         icon1.addFile(QString::fromUtf8("../setavoltar.ico"), QSize(), QIcon::Normal, QIcon::Off);
         commandButtonVoltar->setIcon(icon1);
@@ -489,7 +498,7 @@ public:
         textEdit_Nome5->setStyleSheet(QString::fromUtf8("background: rgb(220,220,220)"));
         labelNomeModulo = new QLabel(GerirTipoMensagem);
         labelNomeModulo->setObjectName("labelNomeModulo");
-        labelNomeModulo->setGeometry(QRect(130, 60, 321, 31));
+        labelNomeModulo->setGeometry(QRect(130, 50, 321, 31));
         QFont font;
         font.setPointSize(12);
         font.setBold(true);
@@ -502,7 +511,7 @@ public:
         labelNomeCarro->setCursor(QCursor(Qt::ForbiddenCursor));
         label = new QLabel(GerirTipoMensagem);
         label->setObjectName("label");
-        label->setGeometry(QRect(40, 60, 71, 31));
+        label->setGeometry(QRect(40, 50, 71, 31));
         QFont font1;
         font1.setPointSize(14);
         font1.setBold(true);
@@ -559,7 +568,7 @@ public:
         spinBox_Inicial2->setValue(0);
         commandButtonMenuPrincipal = new QCommandLinkButton(GerirTipoMensagem);
         commandButtonMenuPrincipal->setObjectName("commandButtonMenuPrincipal");
-        commandButtonMenuPrincipal->setGeometry(QRect(640, 10, 141, 31));
+        commandButtonMenuPrincipal->setGeometry(QRect(640, -10, 141, 31));
         commandButtonMenuPrincipal->setCursor(QCursor(Qt::PointingHandCursor));
         commandButtonMenuPrincipal->setStyleSheet(QString::fromUtf8("QCommandLinkButton{\n"
 "color:black;\n"

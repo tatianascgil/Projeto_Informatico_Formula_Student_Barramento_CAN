@@ -41,4 +41,5 @@ Tabela de Dados:
   -> Não está a verificar se o módulo é little endian ou big endian;
   -> Não esão a apresentar os headers corretos dos campos; (Resolvido)
   -> Não está a Guardar os dados em ficheiro;
+  -> Não está a converter o código em Hexadecimal (Resolvido)
 

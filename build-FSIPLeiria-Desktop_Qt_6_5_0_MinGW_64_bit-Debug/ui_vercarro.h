@@ -126,6 +126,15 @@ public:
         commandButtonVoltar->setObjectName("commandButtonVoltar");
         commandButtonVoltar->setGeometry(QRect(10, 10, 31, 41));
         commandButtonVoltar->setCursor(QCursor(Qt::PointingHandCursor));
+        commandButtonVoltar->setStyleSheet(QString::fromUtf8("QCommandLinkButton\n"
+"{\n"
+"	border: none;\n"
+"}\n"
+"\n"
+"QCommandLinkButton:hover\n"
+"{\n"
+"	border: none;\n"
+"}"));
         QIcon icon1;
         icon1.addFile(QString::fromUtf8("../setavoltar.ico"), QSize(), QIcon::Normal, QIcon::Off);
         commandButtonVoltar->setIcon(icon1);

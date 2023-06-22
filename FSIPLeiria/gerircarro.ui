@@ -32,6 +32,17 @@
    <property name="cursor">
     <cursorShape>PointingHandCursor</cursorShape>
    </property>
+   <property name="styleSheet">
+    <string notr="true">QCommandLinkButton
+{
+	border: none;
+}
+
+QCommandLinkButton:hover
+{
+	border: none;
+}</string>
+   </property>
    <property name="text">
     <string/>
    </property>

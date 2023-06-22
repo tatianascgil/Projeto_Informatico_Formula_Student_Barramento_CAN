@@ -33,6 +33,17 @@
    <property name="cursor">
     <cursorShape>PointingHandCursor</cursorShape>
    </property>
+   <property name="styleSheet">
+    <string notr="true">QCommandLinkButton
+{
+	border: none;
+}
+
+QCommandLinkButton:hover
+{
+	border: none;
+}</string>
+   </property>
    <property name="text">
     <string>Criar Módulo</string>
    </property>
@@ -1248,7 +1259,7 @@
    <property name="geometry">
     <rect>
      <x>130</x>
-     <y>60</y>
+     <y>50</y>
      <width>321</width>
      <height>31</height>
     </rect>
@@ -1292,7 +1303,7 @@
    <property name="geometry">
     <rect>
      <x>40</x>
-     <y>60</y>
+     <y>50</y>
      <width>71</width>
      <height>31</height>
     </rect>
@@ -1460,7 +1471,7 @@ QPushButton:pressed {
    <property name="geometry">
     <rect>
      <x>640</x>
-     <y>10</y>
+     <y>-10</y>
      <width>141</width>
      <height>31</height>
     </rect>

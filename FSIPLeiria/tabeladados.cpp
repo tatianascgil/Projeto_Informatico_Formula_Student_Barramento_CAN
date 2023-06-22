@@ -180,6 +180,11 @@ void TabelaDados::setOperador(){
 }
 
 void TabelaDados::loadMensagens(const QString& filePath) {
+    QString nomeCarro = ui->labelNomeCarro->text();
+    QString folderName = nomeCarro;
+    QString currentPath = QDir::currentPath();
+    QString targetDir = currentPath + "/../FSIPLeiria/settings";
+    QString folderPath = targetDir + "/" + folderName;
     QFile file(filePath);
     if (file.open(QIODevice::ReadOnly | QIODevice::Text)) {
         QTextStream in(&file);
@@ -188,11 +193,6 @@ void TabelaDados::loadMensagens(const QString& filePath) {
         // Step 1: Read "tiposMensagem.txt" and store its contents
         QMap<QString, QString> tiposMensagem;
 
-        QString nomeCarro = ui->labelNomeCarro->text();
-        QString folderName = nomeCarro;
-        QString currentPath = QDir::currentPath();
-        QString targetDir = currentPath + "/../FSIPLeiria/settings";
-        QString folderPath = targetDir + "/" + folderName;
         QString tiposMensagemPath = folderPath + "/tiposMensagem.txt";
         QFile tiposFile(tiposMensagemPath);
         if (tiposFile.open(QIODevice::ReadOnly | QIODevice::Text)) {
@@ -211,6 +211,7 @@ void TabelaDados::loadMensagens(const QString& filePath) {
             tiposFile.close();
         }
 
+
         // Set headers for the first 3 columns
         model->setHorizontalHeaderItem(0, new QStandardItem("Timestamp"));
         model->setHorizontalHeaderItem(1, new QStandardItem("Módulo"));
@@ -219,43 +220,73 @@ void TabelaDados::loadMensagens(const QString& filePath) {
         while (!in.atEnd()) {
             QString line = in.readLine();
             QStringList columns = line.split(';');
+            QString hexadecimalCode = QString::number(columns[1].toInt(), 16);
+
             QList<QStandardItem*> rowItems;
             totalMensagens++;
             ui->labelNMensagens->setText(QString::number(totalMensagens));
 
-            if (columns.length() > 1 && tiposMensagem.contains(columns[1])) {
-                QString tiposLine = tiposMensagem[columns[1]];
+            if (columns.length() > 1 && tiposMensagem.contains(hexadecimalCode)) {
+                QString tiposLine = tiposMensagem[hexadecimalCode];
                 QStringList tiposColumns = tiposLine.split(';');
 
                 // Append modified fields into the table
                 QString timestamp = columns[0];
                 QString moduleName = tiposColumns[0];
                 QString hexCode = tiposColumns[1];
+
                 rowItems.append(new QStandardItem(timestamp));
                 rowItems.append(new QStandardItem(moduleName));
                 rowItems.append(new QStandardItem(hexCode));
 
-                // Calculate byte length of each field
-                int fieldCount = tiposColumns[3].toInt();
-                int columnIndex = 2;
+                // Check if the first value of tiposMensagem matches the first value of modulos.txt
+                bool moduleNameMatch = false;
+                QString endianessValue;
 
-                for (int j = 0; j < fieldCount; j++) {
-                    QString fieldName = tiposColumns[4 + (j * 6)] + ": ";
-                    QString metric = tiposColumns[9 + (j * 6)];
-                    int startByte = tiposColumns[5 + (j * 6)].toInt();
-                    int endByte = tiposColumns[6 + (j * 6)].toInt();
-                    int byteLength = endByte - startByte + 1;
+                QString modulosPath = folderPath + "/modulos.txt";
+                QFile modulosFile(modulosPath);
 
-                    if (byteLength == 1) {
-                        fieldName += columns[columnIndex++];
-                    } else {
-                        for (int k = 0; k < byteLength; k++) {
-                            fieldName += columns[columnIndex++];
+                if (modulosFile.open(QIODevice::ReadOnly | QIODevice::Text)) {
+                    QTextStream modulosIn(&modulosFile);
+
+                    while (!modulosIn.atEnd()) {
+                        QString modulosLine = modulosIn.readLine();
+                        QStringList modulosColumns = modulosLine.split(';');
+
+                        if (modulosColumns.length() > 0 && modulosColumns[0] == moduleName) {
+                            moduleNameMatch = true;
+                            endianessValue = modulosColumns[1];
+                            break;
                         }
                     }
 
-                    fieldName += metric;
-                    rowItems.append(new QStandardItem(fieldName));
+                    modulosFile.close();
+                }
+
+                if (moduleNameMatch) {
+                    qDebug() << "Endianess:" << endianessValue;
+                    // Calculate byte length of each field
+                    int fieldCount = tiposColumns[3].toInt();
+                    int columnIndex = 2;
+
+                    for (int j = 0; j < fieldCount; j++) {
+                        QString fieldName = tiposColumns[4 + (j * 6)] + ": ";
+                        QString metric = tiposColumns[9 + (j * 6)];
+                        int startByte = tiposColumns[5 + (j * 6)].toInt();
+                        int endByte = tiposColumns[6 + (j * 6)].toInt();
+                        int byteLength = endByte - startByte + 1;
+
+                        if (byteLength == 1) {
+                            fieldName += columns[columnIndex++];
+                        } else {
+                            for (int k = 0; k < byteLength; k++) {
+                                fieldName += columns[columnIndex++];
+                            }
+                        }
+
+                        fieldName += metric;
+                        rowItems.append(new QStandardItem(fieldName));
+                    }
                 }
             } else {
                 for (const QString& column : columns) {
