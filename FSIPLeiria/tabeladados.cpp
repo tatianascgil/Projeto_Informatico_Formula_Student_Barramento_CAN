@@ -179,6 +179,46 @@ void TabelaDados::setOperador(){
     ui->comboBoxOperador->addItem(">");
 }
 
+long TabelaDados::littleEndianConversion(const QStringList& fieldValues)
+{
+    QStringList binaryValues;
+    QString line;
+
+    for (int i = 0; i < fieldValues.length(); i++)
+    {
+        QString binary = QString::number(fieldValues[i].toInt(), 2).rightJustified(8, '0');
+        qDebug() << "Binary:" << binary;
+        binaryValues.append(binary);
+        line += binary;
+        qDebug() << "Line:" << line;
+    }
+
+    long decimalValue = line.toInt(nullptr, 2);
+
+    return decimalValue;
+}
+
+long TabelaDados::bigEndianConversion(const QStringList& fieldValues)
+{
+    QStringList binaryValues;
+    QString line;
+
+    for (int i = fieldValues.length() - 1; i >= 0; i--)
+    {
+        QString binary = QString::number(fieldValues[i].toInt(), 2).rightJustified(8, '0');
+        qDebug() << "Binary:" << binary;
+        binaryValues.append(binary);
+        line += binary;
+        qDebug() << "Line:" << line;
+    }
+
+    long decimalValue = line.toInt(nullptr, 2);
+
+    return decimalValue;
+}
+
+
+
 void TabelaDados::loadMensagens(const QString& filePath) {
     QString nomeCarro = ui->labelNomeCarro->text();
     QString folderName = nomeCarro;
@@ -276,17 +316,37 @@ void TabelaDados::loadMensagens(const QString& filePath) {
                         int endByte = tiposColumns[6 + (j * 6)].toInt();
                         int byteLength = endByte - startByte + 1;
 
+                        QString fieldValue;
+                        QString decimalValue;
+                        long fieldConversionResult;
                         if (byteLength == 1) {
-                            fieldName += columns[columnIndex++];
+                            fieldValue = columns[columnIndex++];
+                            fieldName += fieldValue + metric;
                         } else {
+                            QStringList fieldValues;
                             for (int k = 0; k < byteLength; k++) {
-                                fieldName += columns[columnIndex++];
+                                fieldValues.prepend(columns[columnIndex++]);
                             }
+                            qDebug() << "Field Values:" << fieldValues;
+                            fieldValue = fieldValues.join("");
+                            if (endianessValue == "Little Endian") {
+                                qDebug() << "Before Little Endian Conversion - fieldValue:" << fieldValue;
+                                fieldConversionResult = littleEndianConversion(fieldValues);
+                                qDebug() << "After Little Endian Conversion - fieldConversionResult:" << fieldConversionResult;
+                            } else {
+                                qDebug() << "Before Big Endian Conversion - fieldValue:" << fieldValue;
+                                fieldConversionResult = bigEndianConversion(fieldValues);
+                                qDebug() << "After Big Endian Conversion - fieldConversionResult:" << fieldConversionResult;
+                            }
+                            // Append the decimal value to fieldName before appending the metric
+                            fieldName += QString::number(fieldConversionResult);
+                            fieldName += metric;
                         }
 
-                        fieldName += metric;
+
                         rowItems.append(new QStandardItem(fieldName));
                     }
+
                 }
             } else {
                 for (const QString& column : columns) {

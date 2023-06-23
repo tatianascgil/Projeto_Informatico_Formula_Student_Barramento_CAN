@@ -49,6 +49,9 @@ static constexpr auto qt_meta_stringdata_CLASSTabelaDadosENDCLASS = QtMocHelpers
     "index",
     "setCampos",
     "setOperador",
+    "bigEndianConversion",
+    "fieldValues",
+    "littleEndianConversion",
     "filtrarComboBoxs",
     "rowHasMatchingCampo",
     "row",
@@ -58,7 +61,7 @@ static constexpr auto qt_meta_stringdata_CLASSTabelaDadosENDCLASS = QtMocHelpers
 );
 #else  // !QT_MOC_HAS_STRING_DATA
 struct qt_meta_stringdata_CLASSTabelaDadosENDCLASS_t {
-    uint offsetsAndSizes[34];
+    uint offsetsAndSizes[40];
     char stringdata0[12];
     char stringdata1[14];
     char stringdata2[1];
@@ -70,12 +73,15 @@ struct qt_meta_stringdata_CLASSTabelaDadosENDCLASS_t {
     char stringdata8[6];
     char stringdata9[10];
     char stringdata10[12];
-    char stringdata11[17];
-    char stringdata12[20];
-    char stringdata13[4];
-    char stringdata14[14];
-    char stringdata15[31];
-    char stringdata16[22];
+    char stringdata11[20];
+    char stringdata12[12];
+    char stringdata13[23];
+    char stringdata14[17];
+    char stringdata15[20];
+    char stringdata16[4];
+    char stringdata17[14];
+    char stringdata18[31];
+    char stringdata19[22];
 };
 #define QT_MOC_LITERAL(ofs, len) \
     uint(sizeof(qt_meta_stringdata_CLASSTabelaDadosENDCLASS_t::offsetsAndSizes) + ofs), len 
@@ -92,12 +98,15 @@ Q_CONSTINIT static const qt_meta_stringdata_CLASSTabelaDadosENDCLASS_t qt_meta_s
         QT_MOC_LITERAL(74, 5),  // "index"
         QT_MOC_LITERAL(80, 9),  // "setCampos"
         QT_MOC_LITERAL(90, 11),  // "setOperador"
-        QT_MOC_LITERAL(102, 16),  // "filtrarComboBoxs"
-        QT_MOC_LITERAL(119, 19),  // "rowHasMatchingCampo"
-        QT_MOC_LITERAL(139, 3),  // "row"
-        QT_MOC_LITERAL(143, 13),  // "selectedCampo"
-        QT_MOC_LITERAL(157, 30),  // "on_commandButtonVoltar_clicked"
-        QT_MOC_LITERAL(188, 21)   // "on_btnFiltrar_clicked"
+        QT_MOC_LITERAL(102, 19),  // "bigEndianConversion"
+        QT_MOC_LITERAL(122, 11),  // "fieldValues"
+        QT_MOC_LITERAL(134, 22),  // "littleEndianConversion"
+        QT_MOC_LITERAL(157, 16),  // "filtrarComboBoxs"
+        QT_MOC_LITERAL(174, 19),  // "rowHasMatchingCampo"
+        QT_MOC_LITERAL(194, 3),  // "row"
+        QT_MOC_LITERAL(198, 13),  // "selectedCampo"
+        QT_MOC_LITERAL(212, 30),  // "on_commandButtonVoltar_clicked"
+        QT_MOC_LITERAL(243, 21)   // "on_btnFiltrar_clicked"
     },
     "TabelaDados",
     "loadMensagens",
@@ -110,6 +119,9 @@ Q_CONSTINIT static const qt_meta_stringdata_CLASSTabelaDadosENDCLASS_t qt_meta_s
     "index",
     "setCampos",
     "setOperador",
+    "bigEndianConversion",
+    "fieldValues",
+    "littleEndianConversion",
     "filtrarComboBoxs",
     "rowHasMatchingCampo",
     "row",
@@ -127,7 +139,7 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSTabelaDadosENDCLASS[] = {
       11,       // revision
        0,       // classname
        0,    0, // classinfo
-      10,   14, // methods
+      12,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -135,16 +147,18 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSTabelaDadosENDCLASS[] = {
        0,       // signalCount
 
  // slots: name, argc, parameters, tag, flags, initial metatype offsets
-       1,    1,   74,    2, 0x0a,    1 /* Public */,
-       4,    1,   77,    2, 0x0a,    3 /* Public */,
-       6,    1,   80,    2, 0x0a,    5 /* Public */,
-       7,    1,   83,    2, 0x0a,    7 /* Public */,
-       9,    1,   86,    2, 0x0a,    9 /* Public */,
-      10,    0,   89,    2, 0x0a,   11 /* Public */,
-      11,    0,   90,    2, 0x08,   12 /* Private */,
-      12,    2,   91,    2, 0x108,   13 /* Private | MethodIsConst  */,
-      15,    0,   96,    2, 0x08,   16 /* Private */,
-      16,    0,   97,    2, 0x08,   17 /* Private */,
+       1,    1,   86,    2, 0x0a,    1 /* Public */,
+       4,    1,   89,    2, 0x0a,    3 /* Public */,
+       6,    1,   92,    2, 0x0a,    5 /* Public */,
+       7,    1,   95,    2, 0x0a,    7 /* Public */,
+       9,    1,   98,    2, 0x0a,    9 /* Public */,
+      10,    0,  101,    2, 0x0a,   11 /* Public */,
+      11,    1,  102,    2, 0x08,   12 /* Private */,
+      13,    1,  105,    2, 0x08,   14 /* Private */,
+      14,    0,  108,    2, 0x08,   16 /* Private */,
+      15,    2,  109,    2, 0x108,   17 /* Private | MethodIsConst  */,
+      18,    0,  114,    2, 0x08,   20 /* Private */,
+      19,    0,  115,    2, 0x08,   21 /* Private */,
 
  // slots: parameters
     QMetaType::Void, QMetaType::QString,    3,
@@ -153,8 +167,10 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSTabelaDadosENDCLASS[] = {
     QMetaType::Void, QMetaType::Int,    8,
     QMetaType::Void, QMetaType::Int,    8,
     QMetaType::Void,
+    QMetaType::Long, QMetaType::QStringList,   12,
+    QMetaType::Long, QMetaType::QStringList,   12,
     QMetaType::Void,
-    QMetaType::Bool, QMetaType::Int, QMetaType::QString,   13,   14,
+    QMetaType::Bool, QMetaType::Int, QMetaType::QString,   16,   17,
     QMetaType::Void,
     QMetaType::Void,
 
@@ -187,6 +203,12 @@ Q_CONSTINIT const QMetaObject TabelaDados::staticMetaObject = { {
         QtPrivate::TypeAndForceComplete<int, std::false_type>,
         // method 'setOperador'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'bigEndianConversion'
+        QtPrivate::TypeAndForceComplete<long, std::false_type>,
+        QtPrivate::TypeAndForceComplete<const QStringList &, std::false_type>,
+        // method 'littleEndianConversion'
+        QtPrivate::TypeAndForceComplete<long, std::false_type>,
+        QtPrivate::TypeAndForceComplete<const QStringList &, std::false_type>,
         // method 'filtrarComboBoxs'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         // method 'rowHasMatchingCampo'
@@ -213,11 +235,15 @@ void TabelaDados::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id,
         case 3: _t->setCodigosHex((*reinterpret_cast< std::add_pointer_t<int>>(_a[1]))); break;
         case 4: _t->setCampos((*reinterpret_cast< std::add_pointer_t<int>>(_a[1]))); break;
         case 5: _t->setOperador(); break;
-        case 6: _t->filtrarComboBoxs(); break;
-        case 7: { bool _r = _t->rowHasMatchingCampo((*reinterpret_cast< std::add_pointer_t<int>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[2])));
+        case 6: { long _r = _t->bigEndianConversion((*reinterpret_cast< std::add_pointer_t<QStringList>>(_a[1])));
+            if (_a[0]) *reinterpret_cast< long*>(_a[0]) = std::move(_r); }  break;
+        case 7: { long _r = _t->littleEndianConversion((*reinterpret_cast< std::add_pointer_t<QStringList>>(_a[1])));
+            if (_a[0]) *reinterpret_cast< long*>(_a[0]) = std::move(_r); }  break;
+        case 8: _t->filtrarComboBoxs(); break;
+        case 9: { bool _r = _t->rowHasMatchingCampo((*reinterpret_cast< std::add_pointer_t<int>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[2])));
             if (_a[0]) *reinterpret_cast< bool*>(_a[0]) = std::move(_r); }  break;
-        case 8: _t->on_commandButtonVoltar_clicked(); break;
-        case 9: _t->on_btnFiltrar_clicked(); break;
+        case 10: _t->on_commandButtonVoltar_clicked(); break;
+        case 11: _t->on_btnFiltrar_clicked(); break;
         default: ;
         }
     }
@@ -242,13 +268,13 @@ int TabelaDados::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 10)
+        if (_id < 12)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 10;
+        _id -= 12;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 10)
+        if (_id < 12)
             *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
-        _id -= 10;
+        _id -= 12;
     }
     return _id;
 }

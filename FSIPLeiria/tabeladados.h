@@ -25,6 +25,10 @@ public slots:
     void setOperador();
 
 private slots:
+    long bigEndianConversion(const QStringList& fieldValues);
+
+    long littleEndianConversion(const QStringList& fieldValues);
+
     void filtrarComboBoxs();
 
     bool rowHasMatchingCampo(int row, const QString& selectedCampo) const;
