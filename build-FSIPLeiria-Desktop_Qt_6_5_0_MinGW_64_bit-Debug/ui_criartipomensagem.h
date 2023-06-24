@@ -89,23 +89,23 @@ public:
         commandButtonVoltar->setIcon(icon1);
         labelNomeCarro = new QLabel(CriarTipoMensagem);
         labelNomeCarro->setObjectName("labelNomeCarro");
-        labelNomeCarro->setGeometry(QRect(100, 50, 131, 31));
+        labelNomeCarro->setGeometry(QRect(80, 50, 371, 31));
         labelNomeCarro->setFont(font);
         label_2 = new QLabel(CriarTipoMensagem);
         label_2->setObjectName("label_2");
-        label_2->setGeometry(QRect(250, 50, 141, 31));
+        label_2->setGeometry(QRect(450, 50, 141, 31));
         label_2->setFont(font);
         label_3 = new QLabel(CriarTipoMensagem);
         label_3->setObjectName("label_3");
-        label_3->setGeometry(QRect(250, 130, 51, 21));
+        label_3->setGeometry(QRect(180, 130, 121, 21));
         label_3->setFont(font);
         label = new QLabel(CriarTipoMensagem);
         label->setObjectName("label");
-        label->setGeometry(QRect(20, 100, 71, 31));
+        label->setGeometry(QRect(20, 100, 81, 31));
         label->setFont(font);
         labelNomeModulo = new QLabel(CriarTipoMensagem);
         labelNomeModulo->setObjectName("labelNomeModulo");
-        labelNomeModulo->setGeometry(QRect(110, 100, 211, 31));
+        labelNomeModulo->setGeometry(QRect(100, 100, 261, 31));
         labelNomeModulo->setFont(font);
         plainTextEditObs = new QPlainTextEdit(CriarTipoMensagem);
         plainTextEditObs->setObjectName("plainTextEditObs");
@@ -114,8 +114,9 @@ public:
         plainTextEditObs->setStyleSheet(QString::fromUtf8("background: rgb(220, 220, 220)"));
         plainTextEditCodHex = new QPlainTextEdit(CriarTipoMensagem);
         plainTextEditCodHex->setObjectName("plainTextEditCodHex");
-        plainTextEditCodHex->setGeometry(QRect(400, 50, 71, 31));
+        plainTextEditCodHex->setGeometry(QRect(600, 50, 71, 31));
         plainTextEditCodHex->setFont(font1);
+        plainTextEditCodHex->setStyleSheet(QString::fromUtf8("background: rgb(220, 220, 220)"));
 
         retranslateUi(CriarTipoMensagem);
 
@@ -130,8 +131,8 @@ public:
         commandButtonVoltar->setText(QString());
         labelNomeCarro->setText(QCoreApplication::translate("CriarTipoMensagem", "INDEFINIDO", nullptr));
         label_2->setText(QCoreApplication::translate("CriarTipoMensagem", "C\303\263digo Hex: 0x", nullptr));
-        label_3->setText(QCoreApplication::translate("CriarTipoMensagem", "Obs:", nullptr));
-        label->setText(QCoreApplication::translate("CriarTipoMensagem", "M\303\263dulo:", nullptr));
+        label_3->setText(QCoreApplication::translate("CriarTipoMensagem", "Observa\303\247\303\265es:", nullptr));
+        label->setText(QCoreApplication::translate("CriarTipoMensagem", "M\303\263dulo", nullptr));
         labelNomeModulo->setText(QCoreApplication::translate("CriarTipoMensagem", "INDEFINIDO", nullptr));
     } // retranslateUi
 

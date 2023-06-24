@@ -104,6 +104,7 @@ public:
     QSpinBox *spinBox_Inicial2;
     QCommandLinkButton *commandButtonMenuPrincipal;
     QPushButton *btnApagar;
+    QLabel *label_5;
 
     void setupUi(QDialog *GerirTipoMensagem)
     {
@@ -458,7 +459,7 @@ public:
         textEdit_Unidade6->setStyleSheet(QString::fromUtf8("background: rgb(220,220,220)"));
         label_17 = new QLabel(GerirTipoMensagem);
         label_17->setObjectName("label_17");
-        label_17->setGeometry(QRect(50, 490, 51, 21));
+        label_17->setGeometry(QRect(10, 480, 91, 31));
         spinBox_Inicial1 = new QSpinBox(GerirTipoMensagem);
         spinBox_Inicial1->setObjectName("spinBox_Inicial1");
         spinBox_Inicial1->setGeometry(QRect(320, 160, 51, 31));
@@ -534,7 +535,7 @@ public:
         labelCodHex->setCursor(QCursor(Qt::ForbiddenCursor));
         btnGuardarCarro = new QPushButton(GerirTipoMensagem);
         btnGuardarCarro->setObjectName("btnGuardarCarro");
-        btnGuardarCarro->setGeometry(QRect(660, 550, 131, 41));
+        btnGuardarCarro->setGeometry(QRect(660, 480, 131, 41));
         QFont font2;
         font2.setPointSize(10);
         btnGuardarCarro->setFont(font2);
@@ -555,7 +556,7 @@ public:
 "}"));
         plainTextEditObs = new QPlainTextEdit(GerirTipoMensagem);
         plainTextEditObs->setObjectName("plainTextEditObs");
-        plainTextEditObs->setGeometry(QRect(110, 490, 491, 101));
+        plainTextEditObs->setGeometry(QRect(110, 480, 521, 91));
         plainTextEditObs->setFont(font2);
         plainTextEditObs->setStyleSheet(QString::fromUtf8("background: rgb(220,220,220)"));
         spinBox_Inicial2 = new QSpinBox(GerirTipoMensagem);
@@ -581,7 +582,7 @@ public:
         commandButtonMenuPrincipal->setIcon(icon);
         btnApagar = new QPushButton(GerirTipoMensagem);
         btnApagar->setObjectName("btnApagar");
-        btnApagar->setGeometry(QRect(660, 490, 131, 41));
+        btnApagar->setGeometry(QRect(660, 530, 131, 41));
         btnApagar->setFont(font2);
         btnApagar->setCursor(QCursor(Qt::PointingHandCursor));
         btnApagar->setStyleSheet(QString::fromUtf8("QPushButton{\n"
@@ -598,6 +599,9 @@ public:
 "	background-color:rgb(255, 242, 165);\n"
 "	border-bottom: 5px solid rgb(162, 155, 105)\n"
 "}"));
+        label_5 = new QLabel(GerirTipoMensagem);
+        label_5->setObjectName("label_5");
+        label_5->setGeometry(QRect(10, 580, 611, 16));
 
         retranslateUi(GerirTipoMensagem);
 
@@ -622,7 +626,7 @@ public:
         labelFinal->setText(QCoreApplication::translate("GerirTipoMensagem", "Byte Final:*", nullptr));
         labelInicial->setText(QCoreApplication::translate("GerirTipoMensagem", "Byte Inicial:*", nullptr));
         label3->setText(QCoreApplication::translate("GerirTipoMensagem", "Nome:*", nullptr));
-        label_17->setText(QCoreApplication::translate("GerirTipoMensagem", "Obs:", nullptr));
+        label_17->setText(QCoreApplication::translate("GerirTipoMensagem", "Observa\303\247\303\265es:", nullptr));
         label4->setText(QCoreApplication::translate("GerirTipoMensagem", "Nome:*", nullptr));
         labelNomeModulo->setText(QCoreApplication::translate("GerirTipoMensagem", "INDEFINIDO", nullptr));
         labelNomeCarro->setText(QCoreApplication::translate("GerirTipoMensagem", "INDEFINIDO", nullptr));
@@ -633,6 +637,7 @@ public:
         btnGuardarCarro->setText(QCoreApplication::translate("GerirTipoMensagem", "Guardar", nullptr));
         commandButtonMenuPrincipal->setText(QCoreApplication::translate("GerirTipoMensagem", "Menu Principal", nullptr));
         btnApagar->setText(QCoreApplication::translate("GerirTipoMensagem", "Apagar", nullptr));
+        label_5->setText(QCoreApplication::translate("GerirTipoMensagem", "Nota: Os campos assinalados com \"*\" s\303\243o de preenchimento obrigat\303\263rio.", nullptr));
     } // retranslateUi
 
 };

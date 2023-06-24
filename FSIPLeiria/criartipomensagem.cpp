@@ -47,6 +47,15 @@ void CriarTipoMensagem::on_btnCriarTipoMensagem_clicked()
             return;
         }
     }
+    if(codHex.length() > 3){
+        QMessageBox::critical(this, "Erro", "O código Hexadecimal só pode ter até 3 caractéres!");
+        return;
+    }
+
+    if(codHex.isEmpty()){
+        QMessageBox::critical(this, "Erro", "O campo Código Hexadecimal não pode estar vazio!");
+        return;
+    }
 
     if (obs.contains(";")) {
         QMessageBox::critical(this, "Erro", "É proibido utilizar semi-vírgulas ';'!");
@@ -73,8 +82,13 @@ void CriarTipoMensagem::on_btnCriarTipoMensagem_clicked()
     QFile readFile(filePath);
 
     if (!readFile.open(QIODevice::ReadOnly  | QIODevice::Text)) {
-        QMessageBox::critical(this, "Erro", "Erro ao abrir o arquivo " + filePath + " para escrita!");
-        return;
+        if (readFile.open(QIODevice::WriteOnly  | QIODevice::Text)) {
+            readFile.close();
+        }else {
+            // Failed to create the file
+            QMessageBox::critical(this, "Erro", "Erro ao criar o arquivo " + filePath + "!");
+            return;
+        }
     }
 
     QTextStream readStream(&readFile);

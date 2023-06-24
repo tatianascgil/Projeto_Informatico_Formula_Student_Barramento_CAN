@@ -36,7 +36,6 @@ public:
     QPushButton *btnCriarModulo;
     QLabel *labelNomeCarro;
     QLabel *label_3;
-    QCommandLinkButton *commandButtonMenuPrincipal;
 
     void setupUi(QWidget *GerirCarro)
     {
@@ -83,7 +82,7 @@ public:
         tableViewModulosCarro->setStyleSheet(QString::fromUtf8(""));
         label_2 = new QLabel(GerirCarro);
         label_2->setObjectName("label_2");
-        label_2->setGeometry(QRect(10, 210, 311, 31));
+        label_2->setGeometry(QRect(20, 210, 311, 31));
         label_2->setFont(font);
         line = new QFrame(GerirCarro);
         line->setObjectName("line");
@@ -156,19 +155,6 @@ public:
         label_3 = new QLabel(GerirCarro);
         label_3->setObjectName("label_3");
         label_3->setGeometry(QRect(20, 470, 551, 20));
-        commandButtonMenuPrincipal = new QCommandLinkButton(GerirCarro);
-        commandButtonMenuPrincipal->setObjectName("commandButtonMenuPrincipal");
-        commandButtonMenuPrincipal->setGeometry(QRect(640, 10, 141, 31));
-        commandButtonMenuPrincipal->setCursor(QCursor(Qt::PointingHandCursor));
-        commandButtonMenuPrincipal->setStyleSheet(QString::fromUtf8("QCommandLinkButton{\n"
-"color:black;\n"
-"}\n"
-"QCommandLinkButton:hover\n"
-"{\n"
-"  border: none;\n"
-"  color: black;\n"
-"}"));
-        commandButtonMenuPrincipal->setIcon(icon);
 
         retranslateUi(GerirCarro);
 
@@ -186,7 +172,6 @@ public:
         btnCriarModulo->setText(QCoreApplication::translate("GerirCarro", "Criar M\303\263dulo", nullptr));
         labelNomeCarro->setText(QCoreApplication::translate("GerirCarro", "TextLabel", nullptr));
         label_3->setText(QCoreApplication::translate("GerirCarro", "Nota: Fazer double-click na linha respetiva ao m\303\263dulo que pretende visualizar.", nullptr));
-        commandButtonMenuPrincipal->setText(QCoreApplication::translate("GerirCarro", "Menu Principal", nullptr));
     } // retranslateUi
 
 };

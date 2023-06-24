@@ -81,40 +81,37 @@ public:
         commandButtonVoltar->setIcon(icon1);
         label_2 = new QLabel(CriarCarro);
         label_2->setObjectName("label_2");
-        label_2->setGeometry(QRect(60, 80, 71, 31));
+        label_2->setGeometry(QRect(90, 80, 81, 31));
         QFont font1;
         font1.setPointSize(14);
         font1.setBold(true);
         label_2->setFont(font1);
         label = new QLabel(CriarCarro);
         label->setObjectName("label");
-        label->setGeometry(QRect(60, 20, 91, 31));
+        label->setGeometry(QRect(90, 20, 91, 31));
         label->setFont(font1);
         label_3 = new QLabel(CriarCarro);
         label_3->setObjectName("label_3");
-        label_3->setGeometry(QRect(180, 130, 51, 21));
-        QFont font2;
-        font2.setPointSize(16);
-        font2.setBold(true);
-        label_3->setFont(font2);
+        label_3->setGeometry(QRect(90, 130, 141, 31));
+        label_3->setFont(font1);
         textEditNomeCarro = new QTextEdit(CriarCarro);
         textEditNomeCarro->setObjectName("textEditNomeCarro");
         textEditNomeCarro->setGeometry(QRect(160, 20, 361, 41));
-        QFont font3;
-        font3.setPointSize(12);
-        textEditNomeCarro->setFont(font3);
+        QFont font2;
+        font2.setPointSize(12);
+        textEditNomeCarro->setFont(font2);
         textEditNomeCarro->viewport()->setProperty("cursor", QVariant(QCursor(Qt::IBeamCursor)));
         textEditNomeCarro->setStyleSheet(QString::fromUtf8("background:rgb(234, 234, 234)"));
         textEditObsCarro = new QTextEdit(CriarCarro);
         textEditObsCarro->setObjectName("textEditObsCarro");
         textEditObsCarro->setGeometry(QRect(240, 130, 281, 111));
-        textEditObsCarro->setFont(font3);
+        textEditObsCarro->setFont(font2);
         textEditObsCarro->viewport()->setProperty("cursor", QVariant(QCursor(Qt::IBeamCursor)));
         textEditObsCarro->setStyleSheet(QString::fromUtf8("background:rgb(234, 234, 234)"));
         btnTipoCarro = new QComboBox(CriarCarro);
         btnTipoCarro->setObjectName("btnTipoCarro");
         btnTipoCarro->setGeometry(QRect(160, 80, 361, 41));
-        btnTipoCarro->setFont(font3);
+        btnTipoCarro->setFont(font2);
         btnTipoCarro->setStyleSheet(QString::fromUtf8("background: rgb(220,220,220)"));
 
         retranslateUi(CriarCarro);
@@ -132,7 +129,7 @@ public:
         commandButtonVoltar->setText(QString());
         label_2->setText(QCoreApplication::translate("CriarCarro", "Tipo:", nullptr));
         label->setText(QCoreApplication::translate("CriarCarro", "Nome:", nullptr));
-        label_3->setText(QCoreApplication::translate("CriarCarro", "Obs:", nullptr));
+        label_3->setText(QCoreApplication::translate("CriarCarro", "Observa\303\247\303\265es:", nullptr));
         btnTipoCarro->setPlaceholderText(QCoreApplication::translate("CriarCarro", "<Selecionar Tipo de Carro>", nullptr));
     } // retranslateUi
 

@@ -17,8 +17,8 @@
 
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-#include "vercarro.h"
-#include "ui_vercarro.h"
+#include "gerircarro.h"
+#include "ui_gerircarro.h"
 #include "criarcarro.h"
 #include "ui_criarcarro.h"
 #include "estatisticas.h"
@@ -78,43 +78,26 @@ void MainWindow::on_btnVerCarro_clicked()
 {
 
     // Construct the path to the car's folder
-    QString folderName = ui->comboBoxCarro->currentText();
+    QString nomeCarro = ui->comboBoxCarro->currentText();
 
-    QString currentPath = QDir::currentPath();
-    QString targetDir = currentPath + "/../FSIPLeiria/settings";
-    QString folderPath = targetDir + "/" + folderName;
+    const int gerirCarroWidth = 800;
+    const int gerirCarroHeight = 500;
 
-    // Open the "caracteristicas.txt" file within the car's folder
-    QString filePath = folderPath + "/caracteristicas.txt";
-    QFile file(filePath);
-    if (file.open(QIODevice::ReadOnly | QIODevice::Text)) {
-        QTextStream stream(&file);
+    // Cria a janela VerCarro
+    GerirCarro *gerirCarro = new GerirCarro();
 
-        // Read the data
-        QString line = stream.readLine();
-        QStringList values = line.split(";");
-
-        file.close();
-
-        const int verCarroWidth = 700;
-        const int verCarroHeight = 350;
-
-        // Cria a janela VerCarro
-        VerCarro *verCarro = new VerCarro();
-
-        // Define o tamanho mínimo e máximo da janela
-        verCarro->setMinimumSize(verCarroWidth, verCarroHeight);
-        verCarro->setMaximumSize(verCarroWidth, verCarroHeight);
+    // Define o tamanho mínimo e máximo da janela
+    gerirCarro->setMinimumSize(gerirCarroWidth, gerirCarroHeight);
+    gerirCarro->setMaximumSize(gerirCarroWidth, gerirCarroHeight);
 
 
-        // Set the data in the "vercarro" window's QLabel widgets
-        verCarro->setNome(values[0]);
-        verCarro->setTipo(values[1]);
-        verCarro->setObservacoes(values[2]);
+    // Set the data in the "vercarro" window's QLabel widgets
+    gerirCarro->setNome(nomeCarro);
+    gerirCarro->lerDadosCarro(nomeCarro);
+    gerirCarro->lerDadosModulo(nomeCarro);
 
-        verCarro->show();
-        this->close();
-    }
+    gerirCarro->show();
+    this->close();
 
 }
 

@@ -13,6 +13,7 @@ Window tabelaDados:
 
 Window criarTipoMensagem:
   -> Não está a limitar apenas caracteres hexadecimais. (Resolvido)
+  -> Limitar a 3 digitos; (Resolvido)
 
 Window gerirMódulo:
   -> Botão "Guardar" guardam os novos dados ao substituirem a 1ª linha. (Resolvido)
@@ -36,9 +37,9 @@ Todas as janelas:
 
 Tabela de Dados:
   -> Não está a atualizar o número parcial/total de mensagens; (Resolvido)
-  -> Não está a aplicar o offset e fator ao valor;
+  -> Não está a aplicar o offset e fator ao valor; (Resolvido)
   -> Não está a filtrar pelo campo;
-  -> Não está a verificar se o módulo é little endian ou big endian;
+  -> Não está a verificar se o módulo é little endian ou big endian; (Resolvido)
   -> Não esão a apresentar os headers corretos dos campos; (Resolvido)
   -> Não está a Guardar os dados em ficheiro;
   -> Não está a converter o código em Hexadecimal (Resolvido)

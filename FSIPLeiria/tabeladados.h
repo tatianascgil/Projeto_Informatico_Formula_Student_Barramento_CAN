@@ -33,6 +33,10 @@ private slots:
 
     bool rowHasMatchingCampo(int row, const QString& selectedCampo) const;
 
+    QString getValueFromText(const QString& fieldValue);
+
+    bool compareValues(const QString& fieldValue, const QString& operatorValue, const QString& plainTextEditValue);
+
     void on_commandButtonVoltar_clicked();
 
     void on_btnFiltrar_clicked();

@@ -68,8 +68,13 @@ void CriarModulo::on_btnCriarModulo_clicked()
     // Open the file for reading and check if nomeModulo already exists
     QFile readFile(filePath);
     if (!readFile.open(QIODevice::ReadOnly | QIODevice::Text)) {
-        QMessageBox::critical(this, "Erro", "Erro ao abrir o arquivo " + filePath + " para leitura!");
-        return;
+        if (readFile.open(QIODevice::WriteOnly | QIODevice::Text)) {
+            readFile.close();
+        }else {
+            // Failed to create the file
+            QMessageBox::critical(this, "Erro", "Erro ao criar o arquivo " + filePath + "!");
+            return;
+        }
     }
 
     QTextStream readStream(&readFile);

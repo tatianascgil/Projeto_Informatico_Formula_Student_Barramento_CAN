@@ -106,7 +106,7 @@ QCommandLinkButton:hover
   <widget class="QLabel" name="label_2">
    <property name="geometry">
     <rect>
-     <x>10</x>
+     <x>20</x>
      <y>210</y>
      <width>311</width>
      <height>31</height>
@@ -275,36 +275,6 @@ QPushButton:pressed {
    </property>
    <property name="text">
     <string>Nota: Fazer double-click na linha respetiva ao módulo que pretende visualizar.</string>
-   </property>
-  </widget>
-  <widget class="QCommandLinkButton" name="commandButtonMenuPrincipal">
-   <property name="geometry">
-    <rect>
-     <x>640</x>
-     <y>10</y>
-     <width>141</width>
-     <height>31</height>
-    </rect>
-   </property>
-   <property name="cursor">
-    <cursorShape>PointingHandCursor</cursorShape>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">QCommandLinkButton{
-color:black;
-}
-QCommandLinkButton:hover
-{
-  border: none;
-  color: black;
-}</string>
-   </property>
-   <property name="text">
-    <string>Menu Principal</string>
-   </property>
-   <property name="icon">
-    <iconset>
-     <normaloff>../icon.ico</normaloff>../icon.ico</iconset>
    </property>
   </widget>
  </widget>

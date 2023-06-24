@@ -315,6 +315,8 @@ void GerirModulo::on_btnGuardarModulo_clicked()
         // Close the file
         file.close();
 
+        QMessageBox::information(this, tr("Sucesso"), tr("Dados guardados com sucesso!"));
+
     } else {
         QMessageBox::critical(this, tr("Erro"), tr("Não houve dados alterados!"));
     }

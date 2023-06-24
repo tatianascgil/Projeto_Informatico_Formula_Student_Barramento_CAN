@@ -99,7 +99,7 @@ public:
         line->setFrameShadow(QFrame::Sunken);
         label = new QLabel(GerirModulo);
         label->setObjectName("label");
-        label->setGeometry(QRect(20, 30, 81, 31));
+        label->setGeometry(QRect(40, 30, 81, 31));
         QFont font1;
         font1.setPointSize(16);
         font1.setBold(true);
@@ -129,7 +129,7 @@ public:
 "}"));
         labelNomeModulo = new QLabel(GerirModulo);
         labelNomeModulo->setObjectName("labelNomeModulo");
-        labelNomeModulo->setGeometry(QRect(110, 30, 251, 31));
+        labelNomeModulo->setGeometry(QRect(130, 30, 251, 31));
         QFont font2;
         font2.setPointSize(16);
         labelNomeModulo->setFont(font2);

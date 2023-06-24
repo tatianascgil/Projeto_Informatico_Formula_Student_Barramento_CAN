@@ -123,7 +123,7 @@ QPushButton:pressed {
   <widget class="QLabel" name="label">
    <property name="geometry">
     <rect>
-     <x>20</x>
+     <x>40</x>
      <y>30</y>
      <width>81</width>
      <height>31</height>
@@ -194,7 +194,7 @@ QPushButton:pressed {
   <widget class="QLabel" name="labelNomeModulo">
    <property name="geometry">
     <rect>
-     <x>110</x>
+     <x>130</x>
      <y>30</y>
      <width>251</width>
      <height>31</height>

@@ -320,23 +320,33 @@ void GerirTipoMensagem::on_btnGuardarCarro_clicked()
                 QTextEdit *textEditFator = findChild<QTextEdit*>("textEdit_Fator" + index);
                 QTextEdit *textEditUnidade = findChild<QTextEdit*>("textEdit_Unidade" + index);
 
-                bool textEditNomeIsEmpty = textEditNome->toPlainText().isEmpty();
-                bool spinBoxInicialIsEmpty = spinBoxInicial->text().isEmpty();
-                bool spinBoxFinalIsEmpty = spinBoxFinal->text().isEmpty();
-                bool textEditOffsetIsEmpty = textEditOffset->toPlainText().isEmpty();
-                bool textEditFatorIsEmpty = textEditFator->toPlainText().isEmpty();
-                bool textEditUnidadeIsEmpty = textEditUnidade->toPlainText().isEmpty();
-
-                if (textEditNomeIsEmpty || spinBoxInicialIsEmpty || spinBoxFinalIsEmpty || textEditOffsetIsEmpty || textEditFatorIsEmpty || textEditUnidadeIsEmpty) {
-                    QMessageBox::critical(this, "Erro", "Não podem existir campos vazios!");
-                        return;
-                }
 
                 if (!textEditNome) {
                     // Handle error: Widget not found
                     QMessageBox::critical(this, "Erro", "Não foi possível encontrar o widget textEdit_Nome" + index);
                     return;
                 }
+
+                bool textEditNomeIsEmpty = textEditNome->toPlainText().isEmpty();
+                bool spinBoxInicialIsEmpty = spinBoxInicial->text().isEmpty();
+                bool spinBoxFinalIsEmpty = spinBoxFinal->text().isEmpty();
+
+
+                if (textEditNomeIsEmpty) {
+                    QMessageBox::critical(this, "Erro", "O campo Nome não pode estar vazio!");
+                        return;
+                }
+
+                if (spinBoxInicialIsEmpty) {
+                    QMessageBox::critical(this, "Erro", "O campo Byte Inicial não pode estar vazio!");
+                        return;
+                }
+
+                if (spinBoxFinalIsEmpty) {
+                    QMessageBox::critical(this, "Erro", "O campo Byte Final não pode estar vazio!");
+                        return;
+                }
+
 
                 QString textEditNomeValue = textEditNome->toPlainText();
 

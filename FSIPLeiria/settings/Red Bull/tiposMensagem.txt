@@ -1,3 +1,3 @@
-Engine;21;Detalhes do motor.;2;Temperatura;0;0;1;3;ºC;Pressão;1;2;32;1;PSI;
-Aerodynamics;41;Detalhes da aerodinâmica.;3;Floor;0;1;25;40;Km/h;Front Wing;3;3;2;1;PSI;Rear Wing;4;6;3;1.5;s;Aerodynamics;356;;
+Engine;21;Detalhes do motor.;2;Temperatura;0;1;1;3;ºC;Pressão;2;4;32;1;PSI;
+Aerodynamics;41;Detalhes da aerodinâmica.;3;Floor;0;1;25;40;Km/h;Front Wing;2;3;2;1;PSI;Rear Wing;4;6;3;1.5;s;
 Aerodynamics;61;Pneus.;8;Hyper Soft;0;0;10;80;Km/h;Super Soft;1;1;20;70;Km/h;Soft;2;2;30;60;Km/h;Medium;3;3;40;50;Km/h;Hard;4;4;50;40;Km/h;Super Hard;5;5;60;30;Km/h;Intermidiate;6;6;70;20;Km/h;Wet;7;7;80;10;Km/h;

@@ -24,8 +24,7 @@ SOURCES += \
     gerirtipomensagem.cpp \
     main.cpp \
     mainwindow.cpp \
-    tabeladados.cpp \
-    vercarro.cpp
+    tabeladados.cpp
 
 HEADERS += \
     criarcarro.h \
@@ -36,8 +35,7 @@ HEADERS += \
     gerirmodulo.h \
     gerirtipomensagem.h \
     mainwindow.h \
-    tabeladados.h \
-    vercarro.h
+    tabeladados.h
 
 FORMS += \
     criarcarro.ui \
@@ -48,8 +46,7 @@ FORMS += \
     gerirmodulo.ui \
     gerirtipomensagem.ui \
     mainwindow.ui \
-    tabeladados.ui \
-    vercarro.ui
+    tabeladados.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

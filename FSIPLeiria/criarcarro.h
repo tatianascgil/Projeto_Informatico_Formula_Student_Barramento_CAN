@@ -24,7 +24,6 @@ private slots:
 
     void on_commandButtonVoltar_clicked();
 
-    void previousWindow();
 private:
     Ui::CriarCarro *ui;
 };

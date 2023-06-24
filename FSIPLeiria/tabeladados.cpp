@@ -15,6 +15,10 @@ TabelaDados::TabelaDados(QWidget *parent) :
 {
     ui->setupUi(this);
 
+//    ui->comboBoxOperador->setVisible(false);
+//    ui->plainTextEditValor->setVisible(false);
+//    ui->label_5->setVisible(false);
+
 
     connect(ui->comboBoxModulo, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &TabelaDados::setCodigosHex);
     connect(ui->comboBoxCodigoHEX, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &TabelaDados::setCampos);
@@ -187,10 +191,8 @@ long TabelaDados::littleEndianConversion(const QStringList& fieldValues)
     for (int i = 0; i < fieldValues.length(); i++)
     {
         QString binary = QString::number(fieldValues[i].toInt(), 2).rightJustified(8, '0');
-        qDebug() << "Binary:" << binary;
         binaryValues.append(binary);
         line += binary;
-        qDebug() << "Line:" << line;
     }
 
     long decimalValue = line.toInt(nullptr, 2);
@@ -206,10 +208,8 @@ long TabelaDados::bigEndianConversion(const QStringList& fieldValues)
     for (int i = fieldValues.length() - 1; i >= 0; i--)
     {
         QString binary = QString::number(fieldValues[i].toInt(), 2).rightJustified(8, '0');
-        qDebug() << "Binary:" << binary;
         binaryValues.append(binary);
         line += binary;
-        qDebug() << "Line:" << line;
     }
 
     long decimalValue = line.toInt(nullptr, 2);
@@ -315,9 +315,12 @@ void TabelaDados::loadMensagens(const QString& filePath) {
                         int startByte = tiposColumns[5 + (j * 6)].toInt();
                         int endByte = tiposColumns[6 + (j * 6)].toInt();
                         int byteLength = endByte - startByte + 1;
+                        QString offset = tiposColumns[7 + (j * 6)];
+                        offset.replace(",",".");
+                        QString factor = tiposColumns[8 + (j * 6)];
+                        factor.replace(",",".");
 
                         QString fieldValue;
-                        QString decimalValue;
                         long fieldConversionResult;
                         if (byteLength == 1) {
                             fieldValue = columns[columnIndex++];
@@ -330,23 +333,41 @@ void TabelaDados::loadMensagens(const QString& filePath) {
                             qDebug() << "Field Values:" << fieldValues;
                             fieldValue = fieldValues.join("");
                             if (endianessValue == "Little Endian") {
-                                qDebug() << "Before Little Endian Conversion - fieldValue:" << fieldValue;
                                 fieldConversionResult = littleEndianConversion(fieldValues);
-                                qDebug() << "After Little Endian Conversion - fieldConversionResult:" << fieldConversionResult;
+                                qDebug() << "FieldConversionResult:" << fieldConversionResult;
                             } else {
-                                qDebug() << "Before Big Endian Conversion - fieldValue:" << fieldValue;
                                 fieldConversionResult = bigEndianConversion(fieldValues);
-                                qDebug() << "After Big Endian Conversion - fieldConversionResult:" << fieldConversionResult;
+                                qDebug() << "FieldConversionResult:" << fieldConversionResult;
                             }
-                            // Append the decimal value to fieldName before appending the metric
-                            fieldName += QString::number(fieldConversionResult);
-                            fieldName += metric;
+
+                            if(offset.isEmpty() && factor.isEmpty()){
+                                 fieldName += QString::number(fieldConversionResult);
+                            }
+                            else if(!offset.isEmpty() && !factor.isEmpty()){
+                                 fieldConversionResult *= factor.toFloat();
+                                 fieldConversionResult += offset.toFloat();
+                                 fieldName += QString::number(fieldConversionResult);
+                                 qDebug() << "Converted FieldConversionResult:" << fieldConversionResult;
+                                 qDebug() << "Offset:" << offset.toFloat() << " Factor:" << factor.toFloat() << "\n";
+                            }
+                            else if(!offset.isEmpty()){
+                                 fieldConversionResult += offset.toFloat();
+                                 fieldName += QString::number(fieldConversionResult);
+                                 qDebug() << "Converted FieldConversionResult:" << fieldConversionResult;
+                                 qDebug() << "Offset:" << offset.toFloat() << "\n";
+                            }
+                            else if(!factor.isEmpty()){
+                                 fieldConversionResult *= factor.toFloat();
+                                 fieldName += QString::number(fieldConversionResult);
+                                 qDebug() << "Converted FieldConversionResult:" << fieldConversionResult;
+                                 qDebug() << "Factor:" << factor.toFloat() << "\n";
+                            }
+                            if(!metric.isEmpty()){
+                                 fieldName += metric;
+                            }
                         }
-
-
                         rowItems.append(new QStandardItem(fieldName));
                     }
-
                 }
             } else {
                 for (const QString& column : columns) {
@@ -412,42 +433,42 @@ void TabelaDados::filtrarComboBoxs()
             QString modulo = moduloItem->text();
             QString codHex = codHexItem->text();
 
-            if (selectedModulo.isEmpty() || modulo == selectedModulo) {
+            if (modulo == selectedModulo) {
                 if (codHex == selectedCodHex) {
                     if (selectedCampo.isEmpty() || rowHasMatchingCampo(row, selectedCampo)) {
                         QList<QStandardItem*> rowItems;
                         for (int col = 0; col < model->columnCount(); col++) {
                             if(col > 2){
-                                QStandardItem* item = model->item(row, col);
-                                if (item) {
-                                    QString text = item->text();
-                                    QString fieldName;
-                                    QString fieldValue;
+                                 QStandardItem* item = model->item(row, col);
+                                 if (item) {
+                                     QString text = item->text();
+                                     QString fieldName;
+                                     QString fieldValue;
 
-                                    // Extract fieldName and fieldValue from text
-                                    bool isFieldName = true;
-                                    for (int i = 0; i < text.length(); i++) {
-                                        if (text[i] == ':') {
-                                            isFieldName = false;
-                                        } else {
-                                            if (isFieldName) {
-                                                fieldName += text[i];
-                                            } else {
-                                                fieldValue += text[i];
-                                            }
-                                        }
-                                    }
+                                     // Extract fieldName and fieldValue from text
+                                     bool isFieldName = true;
+                                     for (int i = 0; i < text.length(); i++) {
+                                         if (text[i] == ':') {
+                                             isFieldName = false;
+                                         } else {
+                                             if (isFieldName) {
+                                                 fieldName += text[i];
+                                             } else {
+                                                 fieldValue += text[i];
+                                             }
+                                         }
+                                     }
 
-                                    // Create QStandardItem for fieldValue only
-                                    QStandardItem* fieldItem = new QStandardItem(fieldValue);
-                                    rowItems.append(fieldItem);
-                                    // Set the header of the column with fieldName
-                                    filteredModel->setHorizontalHeaderItem(col, new QStandardItem(fieldName));
-                                }
+                                     // Create QStandardItem for fieldValue only
+                                     QStandardItem* fieldItem = new QStandardItem(fieldValue);
+                                     rowItems.append(fieldItem);
+                                     // Set the header of the column with fieldName
+                                     filteredModel->setHorizontalHeaderItem(col, new QStandardItem(fieldName));
+                                 }
                             }else{
-                                QStandardItem* item = model->item(row, col);
-                                if (item)
-                                    rowItems.append(new QStandardItem(item->text()));
+                                 QStandardItem* item = model->item(row, col);
+                                 if (item)
+                                     rowItems.append(new QStandardItem(item->text()));
                             }
                         }
                         filteredModel->appendRow(rowItems);
@@ -468,7 +489,7 @@ void TabelaDados::filtrarComboBoxs()
 
     filteredModel->setHorizontalHeaderItem(0, new QStandardItem("Timestamp"));
     filteredModel->setHorizontalHeaderItem(1, new QStandardItem("Módulo"));
-    filteredModel->setHorizontalHeaderItem(2, new QStandardItem("Código Hexadecimal"));
+        filteredModel->setHorizontalHeaderItem(2, new QStandardItem("Código Hexadecimal"));
 
 
     ui->tableViewTabelaDados->setModel(filteredModel);
@@ -479,6 +500,40 @@ void TabelaDados::filtrarComboBoxs()
     QString labelFormat = QString("%1/%2").arg(partialMessages).arg(totalMessages);
     ui->labelNMensagens->setText(labelFormat);
 
+}
+
+bool TabelaDados::compareValues(const QString& fieldValue, const QString& operatorValue, const QString& plainTextEditValue) {
+    bool result = false;
+    int fieldValueInt = fieldValue.toInt();
+    int plainTextEditValueInt = plainTextEditValue.toInt();
+
+    if (operatorValue == "<") {
+        result = (fieldValueInt < plainTextEditValueInt);
+    } else if (operatorValue == "<=") {
+        result = (fieldValueInt <= plainTextEditValueInt);
+    } else if (operatorValue == ">") {
+        result = (fieldValueInt > plainTextEditValueInt);
+    } else if (operatorValue == ">=") {
+        result = (fieldValueInt >= plainTextEditValueInt);
+    } else if (operatorValue == "==") {
+        result = (fieldValueInt == plainTextEditValueInt);
+    } else if (operatorValue == "!=") {
+        result = (fieldValueInt != plainTextEditValueInt);
+    }
+
+    return result;
+}
+
+QString TabelaDados::getValueFromText(const QString& fieldValue) {
+    QString result;
+    for (QChar ch : fieldValue) {
+        if (ch.isDigit()) {
+            result.append(ch);
+        } else {
+            break;
+        }
+    }
+    return result;
 }
 
 bool TabelaDados::rowHasMatchingCampo(int row, const QString& selectedCampo) const

@@ -17,8 +17,8 @@
 #include <QtWidgets/QDialog>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
-#include <QtWidgets/QPlainTextEdit>
 #include <QtWidgets/QPushButton>
+#include <QtWidgets/QSpinBox>
 #include <QtWidgets/QTableView>
 
 QT_BEGIN_NAMESPACE
@@ -41,8 +41,9 @@ public:
     QLabel *label;
     QLabel *label_3;
     QCommandLinkButton *commandButtonVoltar;
-    QPlainTextEdit *plainTextEditValor;
     QPushButton *btnGuardar;
+    QSpinBox *spinBox;
+    QLabel *label_7;
 
     void setupUi(QDialog *TabelaDados)
     {
@@ -85,12 +86,12 @@ public:
         comboBoxModulo->setStyleSheet(QString::fromUtf8("background:rgb(234, 234, 234)"));
         comboBoxOperador = new QComboBox(TabelaDados);
         comboBoxOperador->setObjectName("comboBoxOperador");
-        comboBoxOperador->setGeometry(QRect(300, 150, 71, 31));
+        comboBoxOperador->setGeometry(QRect(400, 150, 71, 31));
         comboBoxOperador->setFont(font);
         comboBoxOperador->setStyleSheet(QString::fromUtf8("background:rgb(234, 234, 234)"));
         label_4 = new QLabel(TabelaDados);
         label_4->setObjectName("label_4");
-        label_4->setGeometry(QRect(30, 150, 81, 31));
+        label_4->setGeometry(QRect(30, 150, 71, 31));
         QFont font1;
         font1.setPointSize(14);
         font1.setBold(true);
@@ -101,7 +102,7 @@ public:
         label_6->setFont(font1);
         label_5 = new QLabel(TabelaDados);
         label_5->setObjectName("label_5");
-        label_5->setGeometry(QRect(390, 150, 81, 31));
+        label_5->setGeometry(QRect(500, 150, 81, 31));
         label_5->setFont(font1);
         labelNMensagens = new QLabel(TabelaDados);
         labelNMensagens->setObjectName("labelNMensagens");
@@ -111,35 +112,35 @@ public:
         labelNMensagens->setFont(font2);
         label_2 = new QLabel(TabelaDados);
         label_2->setObjectName("label_2");
-        label_2->setGeometry(QRect(30, 110, 131, 31));
+        label_2->setGeometry(QRect(30, 110, 191, 31));
         label_2->setFont(font1);
         comboBoxCampo = new QComboBox(TabelaDados);
         comboBoxCampo->setObjectName("comboBoxCampo");
-        comboBoxCampo->setGeometry(QRect(120, 150, 161, 31));
+        comboBoxCampo->setGeometry(QRect(110, 150, 161, 31));
         comboBoxCampo->setFont(font);
         comboBoxCampo->setStyleSheet(QString::fromUtf8("background:rgb(234, 234, 234)"));
         labelNomeCarro = new QLabel(TabelaDados);
         labelNomeCarro->setObjectName("labelNomeCarro");
-        labelNomeCarro->setGeometry(QRect(100, 40, 91, 31));
+        labelNomeCarro->setGeometry(QRect(90, 30, 461, 31));
         QFont font3;
         font3.setPointSize(12);
         labelNomeCarro->setFont(font3);
         comboBoxCodigoHEX = new QComboBox(TabelaDados);
         comboBoxCodigoHEX->setObjectName("comboBoxCodigoHEX");
-        comboBoxCodigoHEX->setGeometry(QRect(160, 110, 171, 31));
+        comboBoxCodigoHEX->setGeometry(QRect(230, 110, 181, 31));
         comboBoxCodigoHEX->setFont(font);
         comboBoxCodigoHEX->setStyleSheet(QString::fromUtf8("background:rgb(234, 234, 234)"));
         label = new QLabel(TabelaDados);
         label->setObjectName("label");
-        label->setGeometry(QRect(30, 70, 91, 31));
+        label->setGeometry(QRect(30, 70, 81, 31));
         label->setFont(font1);
         label_3 = new QLabel(TabelaDados);
         label_3->setObjectName("label_3");
-        label_3->setGeometry(QRect(30, 40, 71, 31));
+        label_3->setGeometry(QRect(30, 30, 51, 31));
         label_3->setFont(font1);
         commandButtonVoltar = new QCommandLinkButton(TabelaDados);
         commandButtonVoltar->setObjectName("commandButtonVoltar");
-        commandButtonVoltar->setGeometry(QRect(10, 10, 31, 31));
+        commandButtonVoltar->setGeometry(QRect(0, 0, 31, 31));
         commandButtonVoltar->setCursor(QCursor(Qt::PointingHandCursor));
         commandButtonVoltar->setStyleSheet(QString::fromUtf8("QCommandLinkButton\n"
 "{\n"
@@ -153,11 +154,6 @@ public:
         QIcon icon1;
         icon1.addFile(QString::fromUtf8("../setavoltar.ico"), QSize(), QIcon::Normal, QIcon::Off);
         commandButtonVoltar->setIcon(icon1);
-        plainTextEditValor = new QPlainTextEdit(TabelaDados);
-        plainTextEditValor->setObjectName("plainTextEditValor");
-        plainTextEditValor->setGeometry(QRect(460, 150, 91, 31));
-        plainTextEditValor->setFont(font);
-        plainTextEditValor->setStyleSheet(QString::fromUtf8("background:rgb(234, 234, 234)"));
         btnGuardar = new QPushButton(TabelaDados);
         btnGuardar->setObjectName("btnGuardar");
         btnGuardar->setGeometry(QRect(720, 120, 251, 31));
@@ -177,6 +173,16 @@ public:
 "	background-color:rgb(255, 242, 165);\n"
 "	border-bottom: 5px solid rgb(162, 155, 105)\n"
 "}"));
+        spinBox = new QSpinBox(TabelaDados);
+        spinBox->setObjectName("spinBox");
+        spinBox->setGeometry(QRect(560, 150, 101, 31));
+        spinBox->setMinimum(-999999999);
+        spinBox->setMaximum(999999999);
+        spinBox->setDisplayIntegerBase(10);
+        label_7 = new QLabel(TabelaDados);
+        label_7->setObjectName("label_7");
+        label_7->setGeometry(QRect(300, 150, 91, 31));
+        label_7->setFont(font1);
 
         retranslateUi(TabelaDados);
 
@@ -196,14 +202,15 @@ public:
         label_6->setText(QCoreApplication::translate("TabelaDados", "N\302\272 de Mensagens:", nullptr));
         label_5->setText(QCoreApplication::translate("TabelaDados", "Valor:", nullptr));
         labelNMensagens->setText(QCoreApplication::translate("TabelaDados", "000", nullptr));
-        label_2->setText(QCoreApplication::translate("TabelaDados", "C\303\263digo HEX:", nullptr));
+        label_2->setText(QCoreApplication::translate("TabelaDados", "C\303\263digo Hexadecimal:", nullptr));
         comboBoxCampo->setPlaceholderText(QCoreApplication::translate("TabelaDados", "<Selecionar Campo>", nullptr));
         labelNomeCarro->setText(QCoreApplication::translate("TabelaDados", "Carro", nullptr));
         comboBoxCodigoHEX->setPlaceholderText(QCoreApplication::translate("TabelaDados", "<Selecionar C\303\263digo Hex>", nullptr));
-        label->setText(QCoreApplication::translate("TabelaDados", "M\303\263dulo :", nullptr));
+        label->setText(QCoreApplication::translate("TabelaDados", "M\303\263dulo:", nullptr));
         label_3->setText(QCoreApplication::translate("TabelaDados", "Carro", nullptr));
         commandButtonVoltar->setText(QString());
         btnGuardar->setText(QCoreApplication::translate("TabelaDados", "Guardar Ficheiro", nullptr));
+        label_7->setText(QCoreApplication::translate("TabelaDados", "Operador:", nullptr));
     } // retranslateUi
 
 };

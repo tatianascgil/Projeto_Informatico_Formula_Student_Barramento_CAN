@@ -126,7 +126,10 @@ void CriarCarro::on_btnCriarCarro_clicked()
 
     QMessageBox::information(this, "Guardar Dados", "Dados salvados com sucesso!");
 
-    previousWindow();
+    MainWindow *mainWindow = new MainWindow();
+    mainWindow->populateComboBox(nomeCarro);
+    mainWindow->show();
+    this->close();
 
 }
 
@@ -150,15 +153,9 @@ void CriarCarro::on_commandButtonVoltar_clicked()
         return;
     }
 
-    previousWindow();
-}
-
-void CriarCarro::previousWindow()
-{
-
     MainWindow *mainWindow = new MainWindow();
     mainWindow->show();
     this->close();
-
 }
+
 

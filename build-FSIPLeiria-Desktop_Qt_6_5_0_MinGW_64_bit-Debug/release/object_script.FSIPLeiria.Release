@@ -41,7 +41,6 @@ release/gerirtipomensagem.o
 release/main.o
 release/mainwindow.o
 release/tabeladados.o
-release/vercarro.o
 release/moc_xlsxdocument.o
 release/moc_criarcarro.o
 release/moc_criarmodulo.o
@@ -52,4 +51,3 @@ release/moc_gerirmodulo.o
 release/moc_gerirtipomensagem.o
 release/moc_mainwindow.o
 release/moc_tabeladados.o
-release/moc_vercarro.o

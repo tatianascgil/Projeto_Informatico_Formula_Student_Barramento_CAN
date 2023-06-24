@@ -47,7 +47,7 @@ public:
         CriarModulo->setStyleSheet(QString::fromUtf8("background:white"));
         btnCriarModulo = new QPushButton(CriarModulo);
         btnCriarModulo->setObjectName("btnCriarModulo");
-        btnCriarModulo->setGeometry(QRect(10, 190, 121, 41));
+        btnCriarModulo->setGeometry(QRect(10, 200, 121, 41));
         QFont font;
         font.setPointSize(10);
         btnCriarModulo->setFont(font);
@@ -83,7 +83,7 @@ public:
         textEditNomeModulo->setStyleSheet(QString::fromUtf8("background:rgb(234, 234, 234)"));
         textEditObsModulo = new QTextEdit(CriarModulo);
         textEditObsModulo->setObjectName("textEditObsModulo");
-        textEditObsModulo->setGeometry(QRect(320, 30, 261, 201));
+        textEditObsModulo->setGeometry(QRect(320, 40, 261, 201));
         textEditObsModulo->setFont(font2);
         textEditObsModulo->viewport()->setProperty("cursor", QVariant(QCursor(Qt::IBeamCursor)));
         textEditObsModulo->setStyleSheet(QString::fromUtf8("background:rgb(234, 234, 234)"));
@@ -105,7 +105,7 @@ public:
         commandButtonVoltar->setIcon(icon1);
         label_3 = new QLabel(CriarModulo);
         label_3->setObjectName("label_3");
-        label_3->setGeometry(QRect(320, 0, 51, 21));
+        label_3->setGeometry(QRect(320, 0, 131, 31));
         label_3->setFont(font1);
         label_4 = new QLabel(CriarModulo);
         label_4->setObjectName("label_4");
@@ -128,7 +128,7 @@ public:
         radioButton_Bigendian->setStyleSheet(QString::fromUtf8("font: 10pt \"Segoe UI\";"));
         labelNomeCarro = new QLabel(CriarModulo);
         labelNomeCarro->setObjectName("labelNomeCarro");
-        labelNomeCarro->setGeometry(QRect(90, 40, 211, 31));
+        labelNomeCarro->setGeometry(QRect(90, 40, 221, 31));
         QFont font3;
         font3.setPointSize(12);
         font3.setBold(true);
@@ -145,7 +145,7 @@ public:
         btnCriarModulo->setText(QCoreApplication::translate("CriarModulo", "Criar M\303\263dulo", nullptr));
         label->setText(QCoreApplication::translate("CriarModulo", "Nome:", nullptr));
         commandButtonVoltar->setText(QString());
-        label_3->setText(QCoreApplication::translate("CriarModulo", "Obs:", nullptr));
+        label_3->setText(QCoreApplication::translate("CriarModulo", "Observa\303\247\303\265es:", nullptr));
         label_4->setText(QCoreApplication::translate("CriarModulo", "Tipo:", nullptr));
         label_5->setText(QCoreApplication::translate("CriarModulo", "Carro", nullptr));
         radioButton_Littleendian->setText(QCoreApplication::translate("CriarModulo", "Litlle-endian", nullptr));

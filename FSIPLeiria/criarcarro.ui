@@ -91,9 +91,9 @@ QCommandLinkButton:hover
   <widget class="QLabel" name="label_2">
    <property name="geometry">
     <rect>
-     <x>60</x>
+     <x>90</x>
      <y>80</y>
-     <width>71</width>
+     <width>81</width>
      <height>31</height>
     </rect>
    </property>
@@ -110,7 +110,7 @@ QCommandLinkButton:hover
   <widget class="QLabel" name="label">
    <property name="geometry">
     <rect>
-     <x>60</x>
+     <x>90</x>
      <y>20</y>
      <width>91</width>
      <height>31</height>
@@ -129,20 +129,20 @@ QCommandLinkButton:hover
   <widget class="QLabel" name="label_3">
    <property name="geometry">
     <rect>
-     <x>180</x>
+     <x>90</x>
      <y>130</y>
-     <width>51</width>
-     <height>21</height>
+     <width>141</width>
+     <height>31</height>
     </rect>
    </property>
    <property name="font">
     <font>
-     <pointsize>16</pointsize>
+     <pointsize>14</pointsize>
      <bold>true</bold>
     </font>
    </property>
    <property name="text">
-    <string>Obs:</string>
+    <string>Observações:</string>
    </property>
   </widget>
   <widget class="QTextEdit" name="textEditNomeCarro">

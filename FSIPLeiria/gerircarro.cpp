@@ -1,7 +1,5 @@
 #include "gerircarro.h"
 #include "ui_gerircarro.h"
-#include "vercarro.h"
-#include "ui_vercarro.h"
 #include "criarmodulo.h"
 #include "ui_criarmodulo.h"
 #include "mainwindow.h"
@@ -216,48 +214,8 @@ void GerirCarro::on_commandButtonVoltar_clicked()
         return;
     }
 
-    // Construct the path to the car's folder
-    QString folderName = ui->labelNomeCarro->text();
-    QString currentPath = QDir::currentPath();
-    QString targetDir = currentPath + "/../FSIPLeiria/settings";
-    QString folderPath = targetDir + "/" + folderName;
-
-    // Check if folderPath exists
-    QDir folderDir(folderPath);
-    if (!folderDir.exists()) {
-        QMessageBox::critical(this, tr("Erro"), tr("A pasta" + folderName.toUtf8() + " não existe!"));
-            return;
-    }
-
-    // Open the "caracteristicas.txt" file within the car's folder
-    QString filePath = folderPath + "/caracteristicas.txt";
-    QFile file(filePath);
-    if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
-        QMessageBox::critical(this, "Erro", "Erro ao abrir o ficheiro para leitura!");
-        return;
-    }
-
-    QTextStream stream(&file);
-
-    // Read the data
-    QString line = stream.readLine();
-    QStringList values = line.split(";");
-
-    file.close();
-
-    const int verCarroWidth = 700;
-    const int verCarroHeight = 350;
-
-    // Create the VerCarro window and set its properties
-    VerCarro* verCarro = new VerCarro();
-    verCarro->setFixedSize(verCarroWidth, verCarroHeight);
-
-    // Set the data in the VerCarro window's QLabel widgets
-    verCarro->setNome(values.value(0));
-    verCarro->setTipo(values.value(1));
-    verCarro->setObservacoes(values.value(2));
-
-    verCarro->show();
+    MainWindow *mainWindow = new MainWindow();
+    mainWindow->show();
     this->close();
 }
 
@@ -294,7 +252,7 @@ void GerirCarro::on_btnApagarCarro_clicked()
     QMessageBox confirmation(this);
 
     confirmation.setWindowTitle("Apagar Pasta");
-    confirmation.setText("Tem certeza que deseja apagar a pasta " + folderName + "? Todos os dados serão excluídos!");
+    confirmation.setText("Tem certeza que deseja apagar o carro " + folderName + "? Todos os dados serão excluídos!");
     confirmation.setIcon(QMessageBox::Question);
 
     // Translate the buttons
@@ -313,7 +271,7 @@ void GerirCarro::on_btnApagarCarro_clicked()
         }
 
         // Folder deleted successfully
-        QMessageBox::information(this, "Pasta Removida", "A pasta \"" + folderName + "\" foi removida com sucesso!");
+        QMessageBox::information(this, "Carro Removido", "O carro " + folderName + " foi removido com sucesso!");
         this->close();
         MainWindow* mainWindow = new MainWindow();
         mainWindow->show();
@@ -455,7 +413,7 @@ void GerirCarro::on_btnGuardarCarro_clicked()
                 file.close();
 
                 // Inform the user about successful saving
-                QMessageBox::information(this, tr("Sucesso"), tr("Dados salvos com sucesso!"));
+                QMessageBox::information(this, tr("Sucesso"), tr("Dados guardados com sucesso!"));
             } else {
                 QMessageBox::critical(this, tr("Erro"), tr("Não foi possível abrir o ficheiro para escrita."));
             }
@@ -464,30 +422,5 @@ void GerirCarro::on_btnGuardarCarro_clicked()
     } else {
         QMessageBox::critical(this, tr("Erro"), tr("Não foi possível abrir o ficheiro para leitura."));
     }
-}
-
-void GerirCarro::on_commandButtonMenuPrincipal_clicked()
-{
-
-    // Display confirmation dialog
-    QMessageBox confirmation(this);
-    confirmation.setWindowTitle("Voltar ao Menu Principal");
-    confirmation.setText("Tem a certeza que pretende voltar para o Menu Principal? Todos os dados serão perdidos!");
-    confirmation.setIcon(QMessageBox::Question);
-
-    // Translate the buttons
-    confirmation.addButton("Sim", QMessageBox::YesRole);
-    QPushButton* noButton = confirmation.addButton("Não", QMessageBox::NoRole);
-
-    confirmation.exec();
-
-    if (confirmation.clickedButton() == noButton) {
-        // User canceled the operation
-        return;
-    }
-
-    MainWindow *mainWindow = new MainWindow();
-    mainWindow->show();
-    this->close();
 }
 
