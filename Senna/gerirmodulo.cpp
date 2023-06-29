@@ -93,7 +93,7 @@ void GerirModulo::lerDadosTiposMensagem(const QString& nomeModulo)
     QString folderName = ui->labelNomeCarro->text();
 
     QString currentPath = QDir::currentPath();
-    QString targetDir = currentPath + "/../FSIPLeiria/settings";
+    QString targetDir = currentPath + "/../Senna/settings";
     QString folderPath = targetDir + "/" + folderName;
 
     QString modulosPath = folderPath + "/tiposMensagem.txt";
@@ -171,7 +171,7 @@ void GerirModulo::lerDadosModulo(const QString& nomeModulo)
     QString folderName = ui->labelNomeCarro->text();
 
     QString currentPath = QDir::currentPath();
-    QString targetDir = currentPath + "/../FSIPLeiria/settings";
+    QString targetDir = currentPath + "/../Senna/settings";
     QString folderPath = targetDir + "/" + folderName;
 
     QString modulosPath = folderPath + "/modulos.txt";
@@ -266,7 +266,7 @@ void GerirModulo::on_btnGuardarModulo_clicked()
 
         QString folderName = ui->labelNomeCarro->text();
         QString currentPath = QDir::currentPath();
-        QString targetDir = currentPath + "/../FSIPLeiria/settings";
+        QString targetDir = currentPath + "/../Senna/settings";
         QString folderPath = targetDir + "/" + folderName;
         QString filePath = folderPath + "/modulos.txt";
 
@@ -372,7 +372,7 @@ void GerirModulo::on_btnApagarModulo_clicked()
     QString moduloName = ui->labelNomeModulo->text().trimmed();
 
     QString currentPath = QDir::currentPath();
-    QString targetDir = currentPath + "/../FSIPLeiria/settings";
+    QString targetDir = currentPath + "/../Senna/settings";
     QString folderPath = targetDir + "/" + folderName;
 
     QString modulosPath = folderPath + "/modulos.txt";
@@ -443,9 +443,6 @@ void GerirModulo::on_btnApagarModulo_clicked()
             qDebug() << "Failed to open modulos.txt file for editing: " << modulosPath;
             QMessageBox::critical(this, tr("Erro"), tr("Não foi possível abrir o arquivo modulos.txt para edição!"));
         }
-    } else {
-        // User canceled the deletion
-        qDebug() << "Module deletion canceled by user.";
     }
 }
 

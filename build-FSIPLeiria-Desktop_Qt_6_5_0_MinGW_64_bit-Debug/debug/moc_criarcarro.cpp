@@ -92,7 +92,7 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSCriarCarroENDCLASS[] = {
        4,    0,   34,    2, 0x08,    3 /* Private */,
 
  // slots: parameters
-    QMetaType::Void,
+    QMetaType::Bool,
     QMetaType::Void,
     QMetaType::Void,
 
@@ -109,7 +109,7 @@ Q_CONSTINIT const QMetaObject CriarCarro::staticMetaObject = { {
         // Q_OBJECT / Q_GADGET
         QtPrivate::TypeAndForceComplete<CriarCarro, std::true_type>,
         // method 'loadTiposCarro'
-        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<bool, std::false_type>,
         // method 'on_btnCriarCarro_clicked'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         // method 'on_commandButtonVoltar_clicked'
@@ -124,13 +124,13 @@ void CriarCarro::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         auto *_t = static_cast<CriarCarro *>(_o);
         (void)_t;
         switch (_id) {
-        case 0: _t->loadTiposCarro(); break;
+        case 0: { bool _r = _t->loadTiposCarro();
+            if (_a[0]) *reinterpret_cast< bool*>(_a[0]) = std::move(_r); }  break;
         case 1: _t->on_btnCriarCarro_clicked(); break;
         case 2: _t->on_commandButtonVoltar_clicked(); break;
         default: ;
         }
     }
-    (void)_a;
 }
 
 const QMetaObject *CriarCarro::metaObject() const

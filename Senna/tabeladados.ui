@@ -35,43 +35,6 @@
     </font>
    </property>
   </widget>
-  <widget class="QPushButton" name="btnFiltrar">
-   <property name="geometry">
-    <rect>
-     <x>720</x>
-     <y>70</y>
-     <width>251</width>
-     <height>31</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <pointsize>10</pointsize>
-    </font>
-   </property>
-   <property name="cursor">
-    <cursorShape>PointingHandCursor</cursorShape>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">QPushButton{
-	background-color:rgb(255, 245, 166);
-	border:none;
-	color:rgb(95, 91, 61);
-	border -bottom: 5px solid rgb(162, 155, 105)
-}
-QPushButton:hover{
-	background-color:rgb(229, 217, 150);
-	border-bottom: 5px solid rgb(162, 155, 105)
-}
-QPushButton:pressed {
-	background-color:rgb(255, 242, 165);
-	border-bottom: 5px solid rgb(162, 155, 105)
-}</string>
-   </property>
-   <property name="text">
-    <string>Filtrar</string>
-   </property>
-  </widget>
   <widget class="QComboBox" name="comboBoxModulo">
    <property name="geometry">
     <rect>
@@ -91,30 +54,6 @@ QPushButton:pressed {
    </property>
    <property name="placeholderText">
     <string>&lt;Selecionar Módulo&gt;</string>
-   </property>
-  </widget>
-  <widget class="QComboBox" name="comboBoxOperador">
-   <property name="geometry">
-    <rect>
-     <x>400</x>
-     <y>150</y>
-     <width>71</width>
-     <height>31</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <pointsize>10</pointsize>
-    </font>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">background:rgb(234, 234, 234)</string>
-   </property>
-   <property name="currentIndex">
-    <number>-1</number>
-   </property>
-   <property name="placeholderText">
-    <string/>
    </property>
   </widget>
   <widget class="QLabel" name="label_4">
@@ -153,25 +92,6 @@ QPushButton:pressed {
    </property>
    <property name="text">
     <string>Nº de Mensagens:</string>
-   </property>
-  </widget>
-  <widget class="QLabel" name="label_5">
-   <property name="geometry">
-    <rect>
-     <x>500</x>
-     <y>150</y>
-     <width>81</width>
-     <height>31</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <pointsize>14</pointsize>
-     <bold>true</bold>
-    </font>
-   </property>
-   <property name="text">
-    <string>Valor:</string>
    </property>
   </widget>
   <widget class="QLabel" name="labelNMensagens">
@@ -375,44 +295,6 @@ QPushButton:pressed {
    </property>
    <property name="text">
     <string>Guardar Ficheiro</string>
-   </property>
-  </widget>
-  <widget class="QSpinBox" name="spinBox">
-   <property name="geometry">
-    <rect>
-     <x>560</x>
-     <y>150</y>
-     <width>101</width>
-     <height>31</height>
-    </rect>
-   </property>
-   <property name="minimum">
-    <number>-999999999</number>
-   </property>
-   <property name="maximum">
-    <number>999999999</number>
-   </property>
-   <property name="displayIntegerBase">
-    <number>10</number>
-   </property>
-  </widget>
-  <widget class="QLabel" name="label_7">
-   <property name="geometry">
-    <rect>
-     <x>300</x>
-     <y>150</y>
-     <width>91</width>
-     <height>31</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <pointsize>14</pointsize>
-     <bold>true</bold>
-    </font>
-   </property>
-   <property name="text">
-    <string>Operador:</string>
    </property>
   </widget>
  </widget>

@@ -8,6 +8,9 @@
 #include <QStandardItem>
 #include <QStandardItemModel>
 #include <QMessageBox>
+#include <QTextStream>
+#include <QFile>
+#include "xlsxdocument.h"
 
 TabelaDados::TabelaDados(QWidget *parent) :
     QDialog(parent),
@@ -15,16 +18,13 @@ TabelaDados::TabelaDados(QWidget *parent) :
 {
     ui->setupUi(this);
 
-//    ui->comboBoxOperador->setVisible(false);
-//    ui->plainTextEditValor->setVisible(false);
-//    ui->label_5->setVisible(false);
-
-
     connect(ui->comboBoxModulo, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &TabelaDados::setCodigosHex);
     connect(ui->comboBoxCodigoHEX, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &TabelaDados::setCampos);
 
     connect(ui->comboBoxModulo, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &TabelaDados::filtrarComboBoxs);
     connect(ui->comboBoxCodigoHEX, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &TabelaDados::filtrarComboBoxs);
+    connect(ui->comboBoxCampo, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &TabelaDados::filtrarComboBoxs);
+
 
 }
 
@@ -42,7 +42,7 @@ void TabelaDados::setModulos(const QString& nome){
     // Construct the path to the car's folder
     QString folderName = nome;
     QString currentPath = QDir::currentPath();
-    QString targetDir = currentPath + "/../FSIPLeiria/settings";
+    QString targetDir = currentPath + "/../Senna/settings";
     QString folderPath = targetDir + "/" + folderName;
 
     QString filePath = folderPath + "/modulos.txt";
@@ -83,7 +83,7 @@ void TabelaDados::setCodigosHex(int index){
     // Construct the path to the car's folder
     QString folderName = ui->labelNomeCarro->text();
     QString currentPath = QDir::currentPath();
-    QString targetDir = currentPath + "/../FSIPLeiria/settings";
+    QString targetDir = currentPath + "/../Senna/settings";
     QString folderPath = targetDir + "/" + folderName;
 
     QString filePath = folderPath + "/tiposMensagem.txt";
@@ -122,7 +122,7 @@ void TabelaDados::setCampos(int index){
     // Construct the path to the car's folder
     QString folderName = ui->labelNomeCarro->text();
     QString currentPath = QDir::currentPath();
-    QString targetDir = currentPath + "/../FSIPLeiria/settings";
+    QString targetDir = currentPath + "/../Senna/settings";
     QString folderPath = targetDir + "/" + folderName;
 
     QString filePath = folderPath + "/tiposMensagem.txt";
@@ -171,17 +171,7 @@ void TabelaDados::setCampos(int index){
 }
 
 
-void TabelaDados::setOperador(){
-    ui->comboBoxOperador->setPlaceholderText(" ");
-    QString placeholderText = ui->comboBoxOperador->placeholderText();
 
-    ui->comboBoxOperador->addItem(placeholderText);
-    ui->comboBoxOperador->addItem("=");
-    ui->comboBoxOperador->addItem("<=");
-    ui->comboBoxOperador->addItem(">=");
-    ui->comboBoxOperador->addItem("<");
-    ui->comboBoxOperador->addItem(">");
-}
 
 long TabelaDados::littleEndianConversion(const QStringList& fieldValues)
 {
@@ -223,7 +213,7 @@ void TabelaDados::loadMensagens(const QString& filePath) {
     QString nomeCarro = ui->labelNomeCarro->text();
     QString folderName = nomeCarro;
     QString currentPath = QDir::currentPath();
-    QString targetDir = currentPath + "/../FSIPLeiria/settings";
+    QString targetDir = currentPath + "/../Senna/settings";
     QString folderPath = targetDir + "/" + folderName;
     QFile file(filePath);
     if (file.open(QIODevice::ReadOnly | QIODevice::Text)) {
@@ -396,34 +386,60 @@ void TabelaDados::filtrarComboBoxs()
     QString selectedCampo = ui->comboBoxCampo->currentText();
 
 
-    if(selectedModulo == ui->comboBoxModulo->placeholderText()){
+
+    QString moduloPlaceholder = ui->comboBoxModulo->placeholderText();
+    QString codHexPlaceholder = ui->comboBoxCodigoHEX->placeholderText();
+    QString campoPlaceholder = ui->comboBoxCampo->placeholderText();
+
+
+    if(selectedModulo == moduloPlaceholder){
         ui->tableViewTabelaDados->setModel(model);
         int totalMessages = model->rowCount();
         ui->labelNMensagens->setText(QString::number(totalMessages));
+
         return;
     }
 
-    QStandardItemModel* filteredModel = new QStandardItemModel(this);
-
-    if(selectedCodHex == ui->comboBoxCodigoHEX->placeholderText()){
+    filteredModel = new QStandardItemModel(this);
+    QSet<QString> uniqueRows;
+    if(selectedCodHex == codHexPlaceholder || selectedCodHex.isEmpty()){
         for (int row = 0; row < model->rowCount(); row++) {
             QStandardItem* moduloItem = model->item(row, 1);
             if (moduloItem) {
                 QString modulo = moduloItem->text();
                 if (modulo == selectedModulo) {
-                    QList<QStandardItem*> rowItems;
-                    for (int col = 0; col < model->columnCount(); col++) {
-                        QStandardItem* item = model->item(row, col);
-                        if (item)
-                            rowItems.append(new QStandardItem(item->text()));
+                    // Generate a unique identifier for the row
+                    QString rowIdentifier = QString("%1").arg(row);
+
+                    // Check if the row has already been added to the filteredModel
+                    if (!uniqueRows.contains(rowIdentifier)) {
+                        uniqueRows.insert(rowIdentifier);
+
+                        QList<QStandardItem*> rowItems;
+                        for (int col = 0; col < model->columnCount(); col++) {
+                            QStandardItem* item = model->item(row, col);
+                            if (item)
+                                 rowItems.append(new QStandardItem(item->text()));
+                        }
+                        filteredModel->appendRow(rowItems);
                     }
-                    filteredModel->appendRow(rowItems);
+
+                    filteredModel->setHorizontalHeaderItem(0, new QStandardItem("Timestamp"));
+                    filteredModel->setHorizontalHeaderItem(1, new QStandardItem("Módulo"));
+                    filteredModel->setHorizontalHeaderItem(2, new QStandardItem("Código Hexadecimal"));
+
+
+                    ui->tableViewTabelaDados->setModel(filteredModel);
+
+                    // Set the label with the partialMessages/totalMessages format
+                    int partialMessages = filteredModel->rowCount();
+                    int totalMessages = model->rowCount();
+                    QString labelFormat = QString("%1/%2").arg(partialMessages).arg(totalMessages);
+                    ui->labelNMensagens->setText(labelFormat);
                 }
             }
         }
     }
-
-
 
     for (int row = 0; row < model->rowCount(); row++) {
         QStandardItem* moduloItem = model->item(row, 1);
@@ -432,10 +448,50 @@ void TabelaDados::filtrarComboBoxs()
         if (moduloItem && codHexItem) {
             QString modulo = moduloItem->text();
             QString codHex = codHexItem->text();
-
             if (modulo == selectedModulo) {
                 if (codHex == selectedCodHex) {
-                    if (selectedCampo.isEmpty() || rowHasMatchingCampo(row, selectedCampo)) {
+                    if (selectedCampo != campoPlaceholder && !selectedCampo.isEmpty()) {
+                        QList<QStandardItem*> rowItems;
+                        for (int col = 0; col < model->columnCount(); col++) {
+                            if (col > 2) {
+                                 QStandardItem* item = model->item(row, col);
+                                 if (item) {
+                                     QString text = item->text();
+                                     QString fieldName;
+                                     QString fieldValue;
+
+                                     // Extract fieldName and fieldValue from text
+                                     bool isFieldName = true;
+                                     for (int i = 0; i < text.length(); i++) {
+                                         if (text[i] == ':') {
+                                             isFieldName = false;
+                                         } else {
+                                             if (isFieldName) {
+                                                 fieldName += text[i];
+                                             } else {
+                                                 fieldValue += text[i];
+                                             }
+                                         }
+                                     }
+
+                                     if (fieldName == selectedCampo) {
+                                         // Create QStandardItem for fieldValue only
+                                         QStandardItem* fieldItem = new QStandardItem(fieldValue);
+                                         rowItems.append(fieldItem);
+                                         // Set the header of the column with fieldName
+                                         filteredModel->setHorizontalHeaderItem(rowItems.size() - 1, new QStandardItem(fieldName));
+                                     }
+                                 }
+                            } else {
+                                 QStandardItem* item = model->item(row, col);
+                                 if (item)
+                                     rowItems.append(new QStandardItem(item->text()));
+                            }
+                        }
+                        if (!rowItems.isEmpty()) {
+                            filteredModel->appendRow(rowItems);
+                        }
+                    }else {
                         QList<QStandardItem*> rowItems;
                         for (int col = 0; col < model->columnCount(); col++) {
                             if(col > 2){
@@ -473,24 +529,29 @@ void TabelaDados::filtrarComboBoxs()
                         }
                         filteredModel->appendRow(rowItems);
                     }
-                }else if(selectedCodHex.isEmpty()){
-                    QList<QStandardItem*> rowItems;
-                    for (int col = 0; col < model->columnCount(); col++) {
-                        QStandardItem* item = model->item(row, col);
-                        if (item)
-                            rowItems.append(new QStandardItem(item->text()));
-                    }
-                    filteredModel->appendRow(rowItems);
+                }else if(selectedCodHex.isEmpty() || selectedCodHex == codHexPlaceholder){
+                    // Generate a unique identifier for the row
+                    QString rowIdentifier = QString("%1").arg(row);
 
+                    // Check if the row has already been added to the filteredModel
+                    if (!uniqueRows.contains(rowIdentifier)) {
+                        uniqueRows.insert(rowIdentifier);
+
+                        QList<QStandardItem*> rowItems;
+                        for (int col = 0; col < model->columnCount(); col++) {
+                            QStandardItem* item = model->item(row, col);
+                            if (item)
+                                 rowItems.append(new QStandardItem(item->text()));
+                        }
+                        filteredModel->appendRow(rowItems);
+                    }
                 }
             }
         }
     }
-
     filteredModel->setHorizontalHeaderItem(0, new QStandardItem("Timestamp"));
     filteredModel->setHorizontalHeaderItem(1, new QStandardItem("Módulo"));
-        filteredModel->setHorizontalHeaderItem(2, new QStandardItem("Código Hexadecimal"));
-
+    filteredModel->setHorizontalHeaderItem(2, new QStandardItem("Código Hexadecimal"));
 
     ui->tableViewTabelaDados->setModel(filteredModel);
 
@@ -499,52 +560,8 @@ void TabelaDados::filtrarComboBoxs()
     int totalMessages = model->rowCount();
     QString labelFormat = QString("%1/%2").arg(partialMessages).arg(totalMessages);
     ui->labelNMensagens->setText(labelFormat);
-
 }
 
-bool TabelaDados::compareValues(const QString& fieldValue, const QString& operatorValue, const QString& plainTextEditValue) {
-    bool result = false;
-    int fieldValueInt = fieldValue.toInt();
-    int plainTextEditValueInt = plainTextEditValue.toInt();
-
-    if (operatorValue == "<") {
-        result = (fieldValueInt < plainTextEditValueInt);
-    } else if (operatorValue == "<=") {
-        result = (fieldValueInt <= plainTextEditValueInt);
-    } else if (operatorValue == ">") {
-        result = (fieldValueInt > plainTextEditValueInt);
-    } else if (operatorValue == ">=") {
-        result = (fieldValueInt >= plainTextEditValueInt);
-    } else if (operatorValue == "==") {
-        result = (fieldValueInt == plainTextEditValueInt);
-    } else if (operatorValue == "!=") {
-        result = (fieldValueInt != plainTextEditValueInt);
-    }
-
-    return result;
-}
-
-QString TabelaDados::getValueFromText(const QString& fieldValue) {
-    QString result;
-    for (QChar ch : fieldValue) {
-        if (ch.isDigit()) {
-            result.append(ch);
-        } else {
-            break;
-        }
-    }
-    return result;
-}
-
-bool TabelaDados::rowHasMatchingCampo(int row, const QString& selectedCampo) const
-{
-    QModelIndex index = model->index(row, 4);
-    if (index.isValid()) {
-        QString campo = index.data().toString();
-        return campo.contains(selectedCampo, Qt::CaseInsensitive);
-    }
-    return false;
-}
 
 
 void TabelaDados::on_commandButtonVoltar_clicked()
@@ -573,8 +590,76 @@ void TabelaDados::on_commandButtonVoltar_clicked()
 }
 
 
-void TabelaDados::on_btnFiltrar_clicked()
+void TabelaDados::on_btnGuardar_clicked()
 {
+    QString filePath = QFileDialog::getSaveFileName(this, "Save File", QDir::homePath(), "XLSX Files (*.xlsx);;Text Files (*.txt)");
 
+    if (!filePath.isEmpty()) {
+        // Get the table model
+        QAbstractItemModel* tableModel = ui->tableViewTabelaDados->model();
+
+        // Get the header information
+        QStringList headers;
+        for (int column = 0; column < tableModel->columnCount(); ++column) {
+            QVariant headerData = tableModel->headerData(column, Qt::Horizontal);
+            headers.append(headerData.toString());
+        }
+
+        // Save as XLSX
+        if (filePath.endsWith(".xlsx")) {
+            // Create a new Excel file
+            QXlsx::Document xlsx;
+
+            // Write the headers to the first row
+            for (int column = 0; column < headers.size(); ++column) {
+                xlsx.write(1, column + 1, headers.at(column));
+            }
+
+            // Get the number of rows and columns
+            int rowCount = tableModel->rowCount();
+            int columnCount = tableModel->columnCount();
+
+            // Iterate over the table and save the data to the Excel file
+            for (int row = 0; row < rowCount; ++row) {
+                for (int column = 0; column < columnCount; ++column) {
+                    QModelIndex index = tableModel->index(row, column);
+                    QVariant data = tableModel->data(index);
+                    xlsx.write(row + 2, column + 1, data); // Offset row by 1 due to headers
+                }
+            }
+
+            // Save the Excel file
+            xlsx.saveAs(filePath);
+        }
+        // Save as TXT
+        else if (filePath.endsWith(".txt")) {
+            QFile file(filePath);
+            if (file.open(QIODevice::WriteOnly | QIODevice::Text)) {
+                QTextStream out(&file);
+
+                // Write the headers to the text file
+                for (int column = 0; column < headers.size(); ++column) {
+                    out << headers.at(column) << ";";
+                }
+                out << "\n";
+
+                // Get the number of rows and columns
+                int rowCount = tableModel->rowCount();
+                int columnCount = tableModel->columnCount();
+
+                // Iterate over the table and save the data to the text file
+                for (int row = 0; row < rowCount; ++row) {
+                    for (int column = 0; column < columnCount; ++column) {
+                        QModelIndex index = tableModel->index(row, column);
+                        QVariant data = tableModel->data(index);
+                        out << data.toString() << ";"; // Separate values with a tab
+                    }
+                    out << "\n"; // New line after each row
+                }
+
+                file.close();
+            }
+        }
+    }
 }
 

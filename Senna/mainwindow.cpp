@@ -115,10 +115,13 @@ void MainWindow::on_btnCriarCarro_clicked()
         // Define o tamanho mínimo e máximo da janela
         criarCarro->setMinimumSize(criarCarroWidth, criarCarroHeight);
         criarCarro->setMaximumSize(criarCarroWidth, criarCarroHeight);
-        criarCarro->loadTiposCarro();
 
-        criarCarro->show();
-        this->close();
+        if(criarCarro->loadTiposCarro()){
+            criarCarro->show();
+            this->close();
+        }
+
+
 }
 
 
@@ -154,7 +157,7 @@ void MainWindow::populateComboBox(QString option)
 {
         QComboBox* comboBox = ui->comboBoxCarro;
 
-        QString settingsDir = QDir::currentPath() + "/../FSIPLeiria/settings";
+        QString settingsDir = QDir::currentPath() + "/../Senna/settings";
         QDir directory(settingsDir);
         QStringList folders = directory.entryList(QDir::Dirs | QDir::NoDotAndDotDot);
 
@@ -187,7 +190,7 @@ void MainWindow::on_btnDuplicarCarro_clicked()
     QString folderName = nomeCarro.trimmed();
 
     QString currentPath = QDir::currentPath();
-    QString targetDir = currentPath + "/../FSIPLeiria/settings";
+    QString targetDir = currentPath + "/../Senna/settings";
     QString sourceFolderPath = targetDir + "/" + folderName;
 
     // Ask the user for the new folder name
@@ -281,7 +284,6 @@ void MainWindow::on_btnTabelaDados_clicked()
         QString nomeCarro = ui->comboBoxCarro->currentText().trimmed();
         tabelaDados->setNome(nomeCarro);
         tabelaDados->setModulos(nomeCarro);
-        tabelaDados->setOperador();
         tabelaDados->loadMensagens(filePath);
         tabelaDados->show();
         this->close();

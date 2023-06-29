@@ -16,7 +16,7 @@ public:
     ~CriarCarro();
 
 public slots:
-    void loadTiposCarro();
+    bool loadTiposCarro();
 
 private slots:
 

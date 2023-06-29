@@ -64,7 +64,7 @@ void CriarTipoMensagem::on_btnCriarTipoMensagem_clicked()
 
     QString folderName = nomeCarro;
     QString currentPath = QDir::currentPath();
-    QString targetDir = currentPath + "/../FSIPLeiria/settings";
+    QString targetDir = currentPath + "/../Senna/settings";
     QString folderPath = targetDir + "/" + folderName;
 
     QDir folderDir(folderPath);

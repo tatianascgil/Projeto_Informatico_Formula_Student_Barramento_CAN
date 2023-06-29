@@ -79,7 +79,7 @@ void GerirCarro::lerDadosCarro(const QString& nome) {
     // Construct the path to the car's folder
     QString folderName = nome;
     QString currentPath = QDir::currentPath();
-    QString targetDir = currentPath + "/../FSIPLeiria/settings";
+    QString targetDir = currentPath + "/../Senna/settings";
     QString folderPath = targetDir + "/" + folderName;
 
     // Open the "caracteristicas.txt" file within the car's folder
@@ -142,7 +142,7 @@ void GerirCarro::lerDadosModulo(const QString& nome) {
     // Construct the path to the car's folder
     QString folderName = nome;
     QString currentPath = QDir::currentPath();
-    QString targetDir = currentPath + "/../FSIPLeiria/settings";
+    QString targetDir = currentPath + "/../Senna/settings";
     QString folderPath = targetDir + "/" + folderName;
 
     // Open the "modulos.txt" file within the car's folder
@@ -245,7 +245,7 @@ void GerirCarro::on_btnApagarCarro_clicked()
     QString folderName = ui->labelNomeCarro->text();
 
     QString currentPath = QDir::currentPath();
-    QString targetDir = currentPath + "/../FSIPLeiria/settings";
+    QString targetDir = currentPath + "/../Senna/settings";
     QString folderPath = targetDir + "/" + folderName;
 
     // Display confirmation dialog
@@ -282,7 +282,7 @@ void GerirCarro::handleTableViewDoubleClick(const QModelIndex& index)
 {
     if (index.isValid() && index.column() == 1) {
         QString currentPath = QDir::currentPath();
-        QString targetFile = currentPath + "/../FSIPLeiria/tiposCarro.txt";
+        QString targetFile = currentPath + "/../Senna/tiposCarro.txt";
 
         QFile tiposCarroFile(targetFile);
         if (tiposCarroFile.open(QIODevice::ReadOnly | QIODevice::Text)) {
@@ -346,7 +346,7 @@ void GerirCarro::on_btnGuardarCarro_clicked()
 
     QString folderName = ui->labelNomeCarro->text();
     QString currentPath = QDir::currentPath();
-    QString targetDir = currentPath + "/../FSIPLeiria/settings";
+    QString targetDir = currentPath + "/../Senna/settings";
     QString folderPath = targetDir + "/" + folderName;
     QString filePath = folderPath + "/caracteristicas.txt";
 

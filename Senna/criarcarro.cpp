@@ -23,10 +23,10 @@ CriarCarro::~CriarCarro()
     delete ui;
 }
 
-void CriarCarro::loadTiposCarro(){
+bool CriarCarro::loadTiposCarro(){
 
     QString currentPath = QDir::currentPath();
-    QString targetFile = currentPath + "/../FSIPLeiria/tiposCarro.txt";
+    QString targetFile = currentPath + "/../Senna/tiposCarro.txt";
 
     QFile file(targetFile);
     if (file.open(QIODevice::ReadOnly | QIODevice::Text)) {
@@ -44,8 +44,11 @@ void CriarCarro::loadTiposCarro(){
         }
 
         file.close();
+        return true;
+
     } else {
         QMessageBox::critical(this, "Erro", "Não foi possível abrir o ficheiro " + targetFile);
+        return false;
     }
 }
 
@@ -88,7 +91,7 @@ void CriarCarro::on_btnCriarCarro_clicked()
 
     QString folderName = nomeCarro;
     QString currentPath = QDir::currentPath();
-    QString targetDir = currentPath + "/../FSIPLeiria/settings";
+    QString targetDir = currentPath + "/../Senna/settings";
     QString folderPath = targetDir + "/" + folderName;
 
     QDir dir(targetDir);

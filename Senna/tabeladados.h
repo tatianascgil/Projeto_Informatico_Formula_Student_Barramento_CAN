@@ -22,7 +22,6 @@ public slots:
     void setModulos(const QString& nome);
     void setCodigosHex(int index);
     void setCampos(int index);
-    void setOperador();
 
 private slots:
     long bigEndianConversion(const QStringList& fieldValues);
@@ -31,19 +30,14 @@ private slots:
 
     void filtrarComboBoxs();
 
-    bool rowHasMatchingCampo(int row, const QString& selectedCampo) const;
-
-    QString getValueFromText(const QString& fieldValue);
-
-    bool compareValues(const QString& fieldValue, const QString& operatorValue, const QString& plainTextEditValue);
-
     void on_commandButtonVoltar_clicked();
 
-    void on_btnFiltrar_clicked();
+    void on_btnGuardar_clicked();
 
 private:
     Ui::TabelaDados *ui;
     QStandardItemModel* model;
+    QStandardItemModel* filteredModel;
 };
 
 #endif // TABELADADOS_H

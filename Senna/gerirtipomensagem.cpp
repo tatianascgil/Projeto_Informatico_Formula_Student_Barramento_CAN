@@ -157,7 +157,7 @@ void GerirTipoMensagem::lerDadosTipoMensagem(){
     QString folderName = nomeCarro;
 
     QString currentPath = QDir::currentPath();
-    QString targetDir = currentPath + "/../FSIPLeiria/settings";
+    QString targetDir = currentPath + "/../Senna/settings";
     QString folderPath = targetDir + "/" + folderName;
 
     QDir folderDir(folderPath);
@@ -272,7 +272,7 @@ void GerirTipoMensagem::on_btnGuardarCarro_clicked()
     QString folderName = nomeCarro.trimmed();
 
     QString currentPath = QDir::currentPath();
-    QString targetDir = currentPath + "/../FSIPLeiria/settings";
+    QString targetDir = currentPath + "/../Senna/settings";
     QString folderPath = targetDir + "/" + folderName;
 
     QDir folderDir(folderPath);
@@ -507,7 +507,7 @@ void GerirTipoMensagem::on_btnApagar_clicked()
     QString nomeCarro = ui->labelNomeCarro->text();
     QString folderName = nomeCarro.trimmed();
     QString currentPath = QDir::currentPath();
-    QString targetDir = currentPath + "/../FSIPLeiria/settings";
+    QString targetDir = currentPath + "/../Senna/settings";
     QString folderPath = targetDir + "/" + folderName;
 
     QDir folderDir(folderPath);
@@ -572,9 +572,6 @@ void GerirTipoMensagem::on_btnApagar_clicked()
         }
     }
 }
-
-
-
 
 
 

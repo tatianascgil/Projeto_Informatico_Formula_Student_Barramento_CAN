@@ -38,9 +38,9 @@ Todas as janelas:
 Tabela de Dados:
   -> Não está a atualizar o número parcial/total de mensagens; (Resolvido)
   -> Não está a aplicar o offset e fator ao valor; (Resolvido)
-  -> Não está a filtrar pelo campo;
+  -> Não está a filtrar pelo campo; (Resolvido)
   -> Não está a verificar se o módulo é little endian ou big endian; (Resolvido)
   -> Não esão a apresentar os headers corretos dos campos; (Resolvido)
-  -> Não está a Guardar os dados em ficheiro;
+  -> Não está a Guardar os dados em ficheiro; (Resolvido)
   -> Não está a converter o código em Hexadecimal (Resolvido)
 
