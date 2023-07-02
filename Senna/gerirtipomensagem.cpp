@@ -410,9 +410,19 @@ void GerirTipoMensagem::on_btnGuardarCarro_clicked()
         updatedLines.append(currentLine);
     }
 
-    // Ask the user for confirmation
-    QMessageBox::StandardButton confirmation = QMessageBox::question(this, "Guardar Dados", "Tem a certeza que pretende guardar os dados?", QMessageBox::Yes | QMessageBox::No);
-    if (confirmation == QMessageBox::No) {
+    // Display confirmation dialog
+    QMessageBox confirmation(this);
+    confirmation.setWindowTitle("Guardar Dados");
+    confirmation.setText("Tem a certeza que pretende guardar os dados?");
+    confirmation.setIcon(QMessageBox::Question);
+
+    // Translate the buttons
+    confirmation.addButton("Sim", QMessageBox::YesRole);
+    QPushButton* noButton = confirmation.addButton("Não", QMessageBox::NoRole);
+
+                            confirmation.exec();
+
+    if (confirmation.clickedButton() == noButton) {
         // User canceled the operation
         return;
     }

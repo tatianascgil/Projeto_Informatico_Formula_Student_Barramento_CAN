@@ -81,13 +81,23 @@ void CriarCarro::on_btnCriarCarro_clicked()
         QMessageBox::critical(this, "Erro", "É proíbido utilizar semi-vírgulas ';'!");
         return;
     }
+    // Display confirmation dialog
+    QMessageBox confirmation(this);
+    confirmation.setWindowTitle("Guardar Dados");
+    confirmation.setText("Tem a certeza que pretende criar o carro " + nomeCarro + "?");
+    confirmation.setIcon(QMessageBox::Question);
 
-    // Ask the user for confirmation
-    QMessageBox::StandardButton confirmation = QMessageBox::question(this, "Guardar Dados", "Tem a certeza que pretende criar o carro " + nomeCarro + "?", QMessageBox::Yes | QMessageBox::No);
-    if (confirmation == QMessageBox::No) {
-        // User canceled the operation
-        return;
+    // Translate the buttons
+    confirmation.addButton("Sim", QMessageBox::YesRole);
+    QPushButton* noButton = confirmation.addButton("Não", QMessageBox::NoRole);
+
+                         confirmation.exec();
+
+    if (confirmation.clickedButton() == noButton) {
+     // User canceled the operation
+     return;
     }
+
 
     QString folderName = nomeCarro;
     QString currentPath = QDir::currentPath();

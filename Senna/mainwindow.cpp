@@ -39,6 +39,9 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    ui->btnTabelaDados->setVisible(false);
+    ui->btnTempoReal->setVisible(false);
+    ui->btnEstatisticas->setVisible(false);
 
 
     // Connect the currentIndexChanged signal of the comboBoxCarro to a custom slot
@@ -172,11 +175,12 @@ void MainWindow::populateComboBox(QString option)
 
 void MainWindow::handleComboBoxIndexChanged(int index)
 {
-    if (ui->btnVerCarro && ui->btnDuplicarCarro) {
+        if (ui->btnVerCarro && ui->btnDuplicarCarro && ui->btnTabelaDados) {
         // If index is -1, no option is selected
         bool isButtonVisible = (index != -1);
         ui->btnVerCarro->setVisible(isButtonVisible);
         ui->btnDuplicarCarro->setVisible(isButtonVisible);
+        ui->btnTabelaDados->setVisible(isButtonVisible);
     }
 }
 

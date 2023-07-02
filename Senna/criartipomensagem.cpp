@@ -116,9 +116,19 @@ void CriarTipoMensagem::on_btnCriarTipoMensagem_clicked()
     readFile.close();
 
 
-    // Ask the user for confirmation
-    QMessageBox::StandardButton confirmation = QMessageBox::question(this, "Guardar Dados", "Tem a certeza que pretende criar o Tipo de Mensagem 0x" + codHex + "?", QMessageBox::Yes | QMessageBox::No);
-    if (confirmation == QMessageBox::No) {
+    // Display confirmation dialog
+    QMessageBox confirmation(this);
+    confirmation.setWindowTitle("Guardar Dados");
+    confirmation.setText("Tem a certeza que pretende criar o Tipo de Mensagem 0x" + codHex + "?");
+    confirmation.setIcon(QMessageBox::Question);
+
+    // Translate the buttons
+    confirmation.addButton("Sim", QMessageBox::YesRole);
+    QPushButton* noButton = confirmation.addButton("Não", QMessageBox::NoRole);
+
+    confirmation.exec();
+
+    if (confirmation.clickedButton() == noButton) {
         // User canceled the operation
         return;
     }
