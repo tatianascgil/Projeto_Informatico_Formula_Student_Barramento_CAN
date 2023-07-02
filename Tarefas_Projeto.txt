@@ -1,65 +1,78 @@
-Tarefas 24-4/08-5
-EM codeblocks
--ler ficheiro bin
--ler ficheiro csv, xls, xlsx
------
--Instalar Qt
--Criação de Projeto
--criação de Janela
--Elaborações de botões
--instalação de biblioteca QXls
--Ler ficheiro bin
--ler ficheiro bin
--ler ficheiro csv
--ler em que é da mesma maneira xls e xlsx
--mostrar na Aplicação
--desencriptar a mensagem de binario para Hex de Bin 				(não conseguimos)
--desencriptar a mensagem de binario para Hex de csv
--desencriptar a mensagem de binario para Hex de xls e xlsx
--Elaboração de uma mockup para seguirmos inicialmente
--Mostrar as mensagem na janela principal em vez de pop up bin, csv e xls/xlsx
--Tranformar o formato de texto em um tabela (alteração visual / testar tableView/tablewidgetView)
--Ler ficheiro e mostrar em tabela(linha/coluna) csv
--Ler ficheiro e mostrar em tabela(linha/coluna)  xls e xlsx 
--Ler ficheiro e mostrar em tabela(linha/coluna)  bin				 (não mexemos porque ainda não conseguimos desencriptar)
--Alterar da dados na tabela e depois:
--Guardar Ficheiro da tabela csv e não ficar encriptado
--Guardar Ficheiro da tabela xls e xlsx e não ficar encriptado
--Guardar Ficheiro da tabela bin não ficar encriptado 			       (não foi feito)
--Voltar a ler os ficheiros guardados e alterados no programa xls e xlsx
+Tarefas 06-03/03-04
+- Pesquesisas do protocolo CAN
+- Reuniões com o cliente
+- Definição dos Requesitos
 
+Tarefas 10-04/24-4
+- Relátorio (implementar)
+- Pesquesisas da estrutura/ protocolo CAN
+- Implementação em codeblocks do codigo para fazer a estrutura das mensagem serem mostradas com valores aleatorios 
+
+
+Tarefas 24-4/08-5
+
+EM codeblocks
+- Ler ficheiro bin
+- Ler ficheiro csv, xls, xlsx
+-----
+- Instalar Qt
+- Criação de Projeto
+- Criação de Janela
+- Elaborações de botões
+- Instalação de biblioteca QXls
+- Ler ficheiro bin
+- Ler ficheiro bin
+- Ler ficheiro csv
+- Ler em que é da mesma maneira xls e xlsx
+- Mostrar na Aplicação
+- Desencriptar a mensagem de binario para Hex de csv
+- Desencriptar a mensagem de binario para Hex de xls e xlsx
+- Elaboração de uma mockup para seguirmos inicialmente
+- Mostrar as mensagem na janela principal em vez de pop up bin, csv e xls/xlsx
+- Tranformar o formato de texto em um tabela (alteração visual / testar tableView/tablewidgetView)
+- Ler ficheiro e mostrar em tabela(linha/coluna) csv
+- Ler ficheiro e mostrar em tabela(linha/coluna)  xls e xlsx 
+- Alterar da dados na tabela e depois:
+- Guardar Ficheiro da tabela csv e não ficar encriptado
+- Guardar Ficheiro da tabela xls e xlsx e não ficar encriptado
+- Voltar a ler os ficheiros guardados e alterados no programa xls e xlsx
+
+---dificuldades em implementar---
+- Desencriptar a mensagem de binario para Hex de Bin 				
+- Ler ficheiro e mostrar em tabela(linha/coluna)  bin				 
+- Guardar Ficheiro da tabela bin não ficar encriptado 			       
 
 Tarefas 08-05/15-05
--Fazer 3 ficheiros modelo(csv,xls,xlsx) para termos sempre para teste ---feito---
--desencriptar a mensagem de binario para Hex de bin                   ---deixou de ser prioridade---
--Ler ficheiro e mostrar em tabela(linha/coluna)  csv                  ---feito---
--Ler ficheiro e mostrar em tabela(linha/coluna)  bin                  ---deixou de ser prioridade---		
--Voltar a ler os ficheiros guardados e alterados no programa csv      ---feito---
--Voltar a ler os ficheiros guardados e alterados no programa bin      ---deixou de ser prioridade---
--Planear soluções para o cliente parte da mensagem                    ---feito---
--Mockup Pagina Principal                                              ---feito---
--Mockup Criar Modulo\Mensagem                                         ---feito---
--Mockup Página dos Modulos                                            ---feito---
--Mostrar e Defenir com o Cliente                                      ---feito---
--Por as janelas Responsiva Modulo\Mensagem                            ---feito---
--Fazer Janela visual Modulo\Mensagem no QT                            ---feito---         
--Fazer um botão para limpar a tabela principal sempre que pretender   ---deixou de ser prioridade---
--Visual dos Botoes todos                                              ---feito---  
--Ler ficheiro um TXT                                                  ---feito---
--Ler ficheiro um TXT mas separado por ';'                             ---feito---
--O Campo 'Nº de campos' fazer a incrementação\desincrementação        ---feito---
-da visualizao de campos
--Os Campos 'Byte Inicial'\'Byte Final' comecarem 0                    ---feito--- 
--Os Campos 'Byte Inicial'\'Byte Final':
-  -spinBox_Inicial1 para atualizar o valor mín da spinBox_Final1      ---feito---
-  -spinBox_Final1 para atualizar o valor mín da spinBox_Inicial2 +1   ---feito---
--Pesquisa de qtserialport                                             ---feito---
--Requesitaçao de arduinos Uno                                         ---feito---
+---feito---
+- Fazer 3 ficheiros modelo(csv,xls,xlsx) para termos sempre para teste 
+- Ler ficheiro e mostrar em tabela(linha/coluna)  csv                  
+- Voltar a ler os ficheiros guardados e alterados no programa csv      
+- Planear soluções para o cliente parte da mensagem                   
+- Mockup Pagina Principal                                              
+- Mockup Criar Modulo\Mensagem                                       
+- Mockup Página dos Modulos                                            
+- Mostrar e Defenir com o Cliente                                      
+- Por as janelas Responsiva Modulo\Mensagem                            
+- Fazer Janela visual Modulo\Mensagem no QT                                    
+- Visual dos Botoes todos                                              
+- Ler ficheiro um TXT                                                 
+- Ler ficheiro um TXT mas separado por ';'                            
+- O Campo 'Nº de campos' fazer a incrementação\desincrementação da visualizao de campos
+- Os Campos 'Byte Inicial'\'Byte Final' comecarem 0                   
+- Os Campos 'Byte Inicial'\'Byte Final':
+    -spinBox_Inicial1 para atualizar o valor mín da spinBox_Final1      
+    -spinBox_Final1 para atualizar o valor mín da spinBox_Inicial2 +1 
+- Pesquisa de qtserialport                                             
+- Requesitaçao de arduinos Uno                                         
 
+---não implementamos e deixou de ser prioridade---
+- Ler ficheiro e mostrar em tabela(linha/coluna)  bin                  
+- Voltar a ler os ficheiros guardados e alterados no programa bin      
+- Fazer um botão para limpar a tabela principal sempre que pretender   
+- Desencriptar a mensagem de binario para Hex de bin                   
 
 Tarefas 15-05/29-05
-
-
+ ---feito--- 
 - Criar as mockups Pagina Inicial,Gerir Módulo,Gerir Tipo de Mensagem,Campo
 - Criar DER;
 - Criar Entity-Relationship UML;
@@ -67,18 +80,16 @@ Tarefas 15-05/29-05
 - Alteração dos campos mencionados consoante sugestões
 - Criação de todas as janelas propostas na mokcup geral da aplicação;
 - Abrir a aplicação com o último carro selecionado.
-- 
 - Gerir carro:
 	-> Criar carro, com todas as verificações feitas (incluindo a exclusão de ";")
 	-> Ver dados
 	-> Editar
 	-> Apagar
-
 - Gerir carro, completo
 
 
 Tarefas 29-05/05-06
-
+ ---feito--- 
 - Gerir módulo:
 	-> Criar módulo;
 	-> Ver dados do módulo; (double-click)
@@ -87,16 +98,29 @@ Tarefas 29-05/05-06
 	-> Ver dados do tipo de mensagem; (double-click)
 
 - Duplicar Carro;
-
 - Correções:
 	-> Carro acabado de criar / duplicado é selecionado automaticamente.
                                           
 Tarefas 29-05/05-06
-
+ ---feito--- 
 - Gerir o tipo de mensagem;
 - Ler o ficheiro TXT;
 - Criar Tabela de dados;
 - Intrudir as settings existentes na Tabela de Dados;
+- Testes ao programa
+- Relátorio (implementar)
+-Fomrulário para o utilizador
+
+Tarefas 05-06/03-06
+---feito--- 
+- Toda a leitura de dois ficheiros para a Tabela de dados;
+- Filtragem
+- Testes e correções ao programa
+- Poster A3
+- Manual para o utilizador
+- Manual de programador
+- Relátorio (implementar)
+
 
 
 
