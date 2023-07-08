@@ -11,6 +11,7 @@
 #include <QSettings>
 #include <QDebug>
 
+
 #include <QTextStream>
 #include <QStandardItemModel>
 #include <QStandardItem>
@@ -38,6 +39,7 @@ MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
+
     ui->setupUi(this);
     ui->btnTabelaDados->setVisible(false);
     ui->btnTempoReal->setVisible(false);
@@ -198,28 +200,28 @@ void MainWindow::on_btnDuplicarCarro_clicked()
     QString sourceFolderPath = targetDir + "/" + folderName;
 
     // Ask the user for the new folder name
-    QString newFolderName = QInputDialog::getText(this, tr("Nome da Pasta"), tr("Digite o nome da nova pasta:"));
+    QString newFolderName = QInputDialog::getText(this, tr("Nome do carro"), tr("Digite o nome da novo carro:"));
 
     while (!newFolderName.isEmpty() && QDir(targetDir + "/" + newFolderName).exists()) {
-        QMessageBox::critical(this, tr("Erro"), tr("A pasta com o nome especificado já existe!"));
+        QMessageBox::critical(this, tr("Erro"), tr("Já existe um carro com o nome %1!").arg(nomeCarro));
 
-        newFolderName = QInputDialog::getText(this, tr("Nome da Pasta"), tr("Digite outro nome para a nova pasta:"));
+        newFolderName = QInputDialog::getText(this, tr("Nome do carro"), tr("Digite outro nome para a novo carro:"));
     }
 
     if (!newFolderName.isEmpty()) {
 
         // Check if the new folder name contains the invalid character ";"
         if (newFolderName.contains(';')) {
-            QMessageBox::critical(this, tr("Erro"), tr("O nome da pasta não pode conter o caracter ';'."));
+            QMessageBox::critical(this, tr("Erro"), tr("O nome do carro não pode conter o caracter ';'."));
 
-            newFolderName = QInputDialog::getText(this, tr("Nome da Pasta"), tr("Digite outro nome para a nova pasta:"));
+            newFolderName = QInputDialog::getText(this, tr("Nome do carro"), tr("Digite outro nome para a novo carro:"));
         }
 
         QString newFolderPath = targetDir + "/" + newFolderName;
 
         // Create the new folder
         if (!QDir().mkdir(newFolderPath)) {
-            QMessageBox::critical(this, tr("Erro"), tr("Não foi possível criar a nova pasta!"));
+            QMessageBox::critical(this, tr("Erro"), tr("Não foi possível criar a novo carro %1!").arg(nomeCarro));
             return;
         }
 
@@ -252,13 +254,13 @@ void MainWindow::on_btnDuplicarCarro_clicked()
                 file.write(newContent.toUtf8());
                 file.close();
             } else {
-                QMessageBox::critical(this, tr("Erro"), tr("Não foi possível abrir o arquivo: ") + txtFile);
+                QMessageBox::critical(this, tr("Erro"), tr("Não foi possível abrir o ficheiro: ") + txtFile);
             }
         }
 
 
         // Inform the user that the folder has been duplicated
-        QMessageBox::information(this, tr("Pasta Duplicada"), tr("A pasta foi duplicada com sucesso!"));
+        QMessageBox::information(this, tr("Carro Duplicado"), tr("O carro foi duplicado com sucesso!"));
 
         populateComboBox(newFolderName);
     }

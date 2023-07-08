@@ -13,6 +13,9 @@
 #include <QDebug>
 #include <QMessageBox>
 #include <QInputDialog>
+#include <QVBoxLayout>
+#include <QPlainTextEdit>
+#include <QDialogButtonBox>
 
 
 GerirCarro::GerirCarro(QWidget *parent) :
@@ -95,7 +98,7 @@ void GerirCarro::lerDadosCarro(const QString& nome) {
         while (!stream.atEnd()) {
             QString line = stream.readLine();
             QStringList values = line.split(";");
-            if (values.size() > 2) {
+            if (values.size() >= 3) {
                 data.append(values.mid(0, 3));
             }
         }
@@ -114,10 +117,7 @@ void GerirCarro::lerDadosCarro(const QString& nome) {
                 for (int col = 0; col < data[row].count(); ++col) {
                     QStandardItem* item = new QStandardItem(data[row][col]);
 
-                    // Set the first two cells as non-editable
-                    if (col < 2) {
-                        item->setEditable(false);
-                    }
+                    item->setEditable(false);
 
                     model->setItem(row, col, item);
                 }
@@ -161,37 +161,35 @@ void GerirCarro::lerDadosModulo(const QString& nome) {
             QStringList values = line.split(";");
             data.append(values.mid(0, 3));
         }
-
         file.close();
 
-        // Create the model and set the data
-        QStandardItemModel* model = new QStandardItemModel(data.count(), data[0].count(), this);
-        model->setHorizontalHeaderLabels({"Nome", "Endianess", "Observações"});
+        if (!data.isEmpty()) {
+            // Create the model and set the data
+            QStandardItemModel* model = new QStandardItemModel(data.count(), data[0].count(), this);
+            model->setHorizontalHeaderLabels({"Nome", "Endianess", "Observações"});
 
-        if (data.isEmpty()) {
-            // If data is empty, set an empty model with headers to the QTableView
-            ui->tableViewCarro->setModel(model);
-            return;
-        }
-
-        for (int row = 0; row < data.count(); ++row) {
-            for (int col = 0; col < data[row].count(); ++col) {
-                QStandardItem* item = new QStandardItem(data[row][col]);
-                // Set the item as read-only
-                item->setEditable(false);
-                model->setItem(row, col, item);
+            for (int row = 0; row < data.count(); ++row) {
+                for (int col = 0; col < data[row].count(); ++col) {
+                    QStandardItem* item = new QStandardItem(data[row][col]);
+                    // Set the item as read-only
+                    item->setEditable(false);
+                    model->setItem(row, col, item);
+                }
             }
+
+            // Set the mode of resizing for other columns
+            QHeaderView* horizontalHeader = ui->tableViewModulosCarro->horizontalHeader();
+            horizontalHeader->setSectionResizeMode(QHeaderView::Stretch);
+            horizontalHeader->setStretchLastSection(false);
+
+            // Set the model to the QTableView
+            ui->tableViewModulosCarro->setModel(model);
+        } else {
+            // Handle the case when the file is empty
+            qDebug() << "The file is empty.";
         }
-
-        // Set the mode of resizing for other columns
-        QHeaderView* horizontalHeader = ui->tableViewModulosCarro->horizontalHeader();
-        horizontalHeader->setSectionResizeMode(QHeaderView::Stretch);
-        horizontalHeader->setStretchLastSection(false);
-
-        // Set the model to the QTableView
-        ui->tableViewModulosCarro->setModel(model);
-
     }
+
 }
 
 void GerirCarro::on_commandButtonVoltar_clicked()
@@ -280,37 +278,85 @@ void GerirCarro::on_btnApagarCarro_clicked()
 
 void GerirCarro::handleTableViewDoubleClick(const QModelIndex& index)
 {
-    if (index.isValid() && index.column() == 1) {
-        QString currentPath = QDir::currentPath();
-        QString targetFile = currentPath + "/../Senna/tiposCarro.txt";
+    if (index.isValid()) {
+        int column = index.column();
 
-        QFile tiposCarroFile(targetFile);
-        if (tiposCarroFile.open(QIODevice::ReadOnly | QIODevice::Text)) {
-            QTextStream tiposCarroIn(&tiposCarroFile);
-            QString line = tiposCarroIn.readLine();
-            QStringList tiposCarroData;
-            QStringList values = line.split(';');
-            for (const QString& value : values) {
-                if (!value.isEmpty()) {
-                    tiposCarroData.append(value);
+        if(column == 1){
+            QString currentPath = QDir::currentPath();
+            QString targetFile = currentPath + "/../Senna/tiposCarro.txt";
+
+            QFile tiposCarroFile(targetFile);
+            if (tiposCarroFile.open(QIODevice::ReadOnly | QIODevice::Text)) {
+                QTextStream tiposCarroIn(&tiposCarroFile);
+                QString line = tiposCarroIn.readLine();
+                QStringList tiposCarroData;
+                QStringList values = line.split(';');
+                for (const QString& value : values) {
+                    if (!value.isEmpty()) {
+                        tiposCarroData.append(value);
+                    }
                 }
-            }
-            tiposCarroFile.close();
+                tiposCarroFile.close();
 
+                // Get the current value of the double-clicked cell
+                QAbstractItemModel* model = ui->tableViewCarro->model();
+                QVariant currentValue = model->data(index);
+
+                // Display a dialog to let the user choose from the available options
+                bool ok;
+                QString selectedTipoCarro = QInputDialog::getItem(this, tr("Selecionar Tipo de Carro"), tr("Tipo de Carro:"), tiposCarroData, tiposCarroData.indexOf(currentValue.toString()), false, &ok);
+                if (ok) {
+                    // Update the selected value in the QTableView
+                    model->setData(index, selectedTipoCarro);
+                }
+            } else {
+                QMessageBox::critical(this, tr("Erro"), tr("Não foi possível abrir o ficheiro tiposCarro.txt."));
+                return;
+            }
+        } else if (column == 2) {
             // Get the current value of the double-clicked cell
             QAbstractItemModel* model = ui->tableViewCarro->model();
             QVariant currentValue = model->data(index);
 
-            // Display a dialog to let the user choose from the available options
-            bool ok;
-            QString selectedTipoCarro = QInputDialog::getItem(this, tr("Selecionar Tipo de Carro"), tr("Tipo de Carro:"), tiposCarroData, tiposCarroData.indexOf(currentValue.toString()), false, &ok);
-            if (ok) {
-                // Update the selected value in the QTableView
-                model->setData(index, selectedTipoCarro);
+            // Create a custom dialog
+            QDialog dialog(this);
+            dialog.setWindowTitle(tr("Observações"));
+
+            // Create a layout for the dialog
+            QVBoxLayout* layout = new QVBoxLayout(&dialog);
+
+            // Create a QTextEdit for entering the new value
+            QPlainTextEdit* textEdit = new QPlainTextEdit(&dialog);
+            textEdit->setPlainText(currentValue.toString());
+            textEdit->setMinimumSize(300, 200);
+
+            // Add the QTextEdit to the layout
+            layout->addWidget(textEdit);
+
+            // Add buttons to the dialog
+            QDialogButtonBox* buttonBox = new QDialogButtonBox(QDialogButtonBox::Ok | QDialogButtonBox::Cancel, &dialog);
+            layout->addWidget(buttonBox);
+
+            // Translate the Cancel button to "Cancelar"
+            QPushButton* cancelButton = buttonBox->button(QDialogButtonBox::Cancel);
+            cancelButton->setText(tr("Cancelar"));
+
+            // Connect the button signals to appropriate slots
+            connect(buttonBox, &QDialogButtonBox::accepted, &dialog, &QDialog::accept);
+            connect(buttonBox, &QDialogButtonBox::rejected, &dialog, &QDialog::reject);
+
+            if (dialog.exec() == QDialog::Accepted) {
+                // Check for new lines in the entered text
+                QString updatedValue = textEdit->toPlainText().trimmed();
+                if (updatedValue.contains('\n')) {
+                    // Display an error message if a new line is found
+                    QMessageBox::critical(this, tr("Erro"), tr("Não é permitido criar novas linhas."));
+                }else{
+                    // Update the value in the QTableView
+                    model->setData(index, updatedValue);
+                }
+
             }
-        } else {
-            QMessageBox::critical(this, tr("Erro"), tr("Não foi possível abrir o ficheiro tiposCarro.txt."));
-            return;
         }
     }
 }
@@ -393,13 +439,13 @@ void GerirCarro::on_btnGuardarCarro_clicked()
 
         // Display confirmation dialog
         QMessageBox confirmation(this);
-        confirmation.setWindowTitle("Confirmar Atualização");
-        confirmation.setText("Algumas informações foram alteradas. Tem certeza de que deseja atualizar os dados?");
+        confirmation.setWindowTitle(tr("Confirmar Atualização"));
+        confirmation.setText(tr("Algumas informações foram alteradas. Tem certeza de que deseja atualizar os dados?"));
         confirmation.setIcon(QMessageBox::Question);
 
         // Translate the buttons
-        QPushButton* yesButton = confirmation.addButton("Sim", QMessageBox::YesRole);
-        confirmation.addButton("Não", QMessageBox::NoRole);
+        QPushButton* yesButton = confirmation.addButton(tr("Sim"), QMessageBox::YesRole);
+        confirmation.addButton(tr("Não"), QMessageBox::NoRole);
 
         confirmation.exec();
 
@@ -408,7 +454,13 @@ void GerirCarro::on_btnGuardarCarro_clicked()
             if (file.open(QIODevice::WriteOnly | QIODevice::Text)) {
                 QTextStream out(&file);
                 for (const QStringList& rowData : tableViewData) {
-                    out << rowData.join(";") << "\n";
+                    for (int i = 0; i < rowData.size(); ++i) {
+                        out << rowData.at(i);
+                        if (i < rowData.size()) {
+                            out << ";";  // Append semicolon for all but the last value
+                        }
+                    }
+                    out << "\n";
                 }
                 file.close();
 

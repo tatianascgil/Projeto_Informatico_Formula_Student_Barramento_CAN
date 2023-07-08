@@ -9,12 +9,14 @@
 #include "gerirtipomensagem.h"
 #include "ui_gerirtipomensagem.h"
 
-#include <QElapsedTimer>
 #include <QDir>
 #include <QStandardItemModel>
 #include <QDebug>
 #include <QMessageBox>
 #include <QInputDialog>
+#include <QVBoxLayout>
+#include <QPlainTextEdit>
+#include <QDialogButtonBox>
 
 
 GerirModulo::GerirModulo(QWidget *parent) :
@@ -122,13 +124,17 @@ void GerirModulo::lerDadosTiposMensagem(const QString& nomeModulo)
 
 
             // Set the headers
-            model->setHorizontalHeaderLabels({"Código Hex", "Observações"});
+            model->setHorizontalHeaderLabels({"Código Hexadecimal", "Observações"});
 
             // Populate the model with filtered data
             for (int row = 0; row < filteredData.count(); ++row) {
                 for (int col = 0; col < filteredData[row].count(); ++col) {
                     QStandardItem* item = new QStandardItem(filteredData[row][col]);
                     item->setEditable(false); // Set the item as read-only
+                    if(col == 0){
+                        QString value = "0x" + filteredData[row][col];
+                        item->setData(value, Qt::DisplayRole);
+                    }
                     model->setItem(row, col, item);
                 }
             }
@@ -148,18 +154,65 @@ void GerirModulo::lerDadosTiposMensagem(const QString& nomeModulo)
 void GerirModulo::handleDoubleClick(const QModelIndex& index)
 {
     // Check if the double-clicked cell is in the second column
-    if (index.isValid() && index.column() == 1) {
-        // Get the current value of the double-clicked cell
-        QAbstractItemModel* model = ui->tableViewModulosCarro->model();
-        QVariant currentValue = model->data(index);
+    if (index.isValid()) {
+        int column = index.column();
+        if(column == 1){
+            // Get the current value of the double-clicked cell
+            QAbstractItemModel* model = ui->tableViewModulosCarro->model();
+            QVariant currentValue = model->data(index);
 
-        // Display a dialog to let the user choose from the available options
-        bool ok;
-        QStringList endianOptions = {"Little Endian", "Big Endian"};
-        QString selectedEndian = QInputDialog::getItem(this, tr("Select Endianess"), tr("Choose the Endianess:"), endianOptions, endianOptions.indexOf(currentValue), false, &ok);
-        if (ok) {
-            // Update the selected value in the QTableView
-            model->setData(index, selectedEndian);
+            // Display a dialog to let the user choose from the available options
+            bool ok;
+            QStringList endianOptions = {"Little Endian", "Big Endian"};
+            QString selectedEndian = QInputDialog::getItem(this, tr("Select Endianess"), tr("Choose the Endianess:"), endianOptions, endianOptions.indexOf(currentValue), false, &ok);
+            if (ok) {
+                // Update the selected value in the QTableView
+                model->setData(index, selectedEndian);
+            }
+        } else if (column == 2) {
+            // Get the current value of the double-clicked cell
+            QAbstractItemModel* model = ui->tableViewModulosCarro->model();
+            QVariant currentValue = model->data(index);
+
+            // Create a custom dialog
+            QDialog dialog(this);
+            dialog.setWindowTitle(tr("Observações"));
+
+            // Create a layout for the dialog
+            QVBoxLayout* layout = new QVBoxLayout(&dialog);
+
+            // Create a QTextEdit for entering the new value
+            QPlainTextEdit* textEdit = new QPlainTextEdit(&dialog);
+            textEdit->setPlainText(currentValue.toString());
+            textEdit->setMinimumSize(300, 200);
+
+            // Add the QTextEdit to the layout
+            layout->addWidget(textEdit);
+
+            // Add buttons to the dialog
+            QDialogButtonBox* buttonBox = new QDialogButtonBox(QDialogButtonBox::Ok | QDialogButtonBox::Cancel, &dialog);
+            layout->addWidget(buttonBox);
+
+            // Translate the Cancel button to "Cancelar"
+            QPushButton* cancelButton = buttonBox->button(QDialogButtonBox::Cancel);
+            cancelButton->setText(tr("Cancelar"));
+
+            // Connect the button signals to appropriate slots
+            connect(buttonBox, &QDialogButtonBox::accepted, &dialog, &QDialog::accept);
+            connect(buttonBox, &QDialogButtonBox::rejected, &dialog, &QDialog::reject);
+
+            if (dialog.exec() == QDialog::Accepted) {
+                // Check for new lines in the entered text
+                QString updatedValue = textEdit->toPlainText().trimmed();
+                if (updatedValue.contains('\n')) {
+                    // Display an error message if a new line is found
+                    QMessageBox::critical(this, tr("Erro"), tr("Não é permitido criar novas linhas."));
+                    return;
+                }
+
+                // Update the value in the QTableView
+                model->setData(index, updatedValue);
+            }
         }
     }
 }
@@ -186,7 +239,7 @@ void GerirModulo::lerDadosModulo(const QString& nomeModulo)
         while (!stream.atEnd()) {
             QString line = stream.readLine();
             QStringList values = line.split(";");
-            if (values.size() > 0 && values.at(0) == nomeModulo) {
+            if (values.size() >= 3 && values.at(0) == nomeModulo) {
                 filteredData.append(values.mid(0,3));
             }
         }
@@ -204,12 +257,7 @@ void GerirModulo::lerDadosModulo(const QString& nomeModulo)
             for (int row = 0; row < filteredData.count(); ++row) {
                 for (int col = 0; col < filteredData[row].count(); ++col) {
                     QStandardItem* item = new QStandardItem(filteredData[row][col]);
-
-                    // Set the first two cells as non-editable
-                    if (col < 2) {
-                        item->setEditable(false);
-                    }
-
+                    item->setEditable(false);
                     model->setItem(row, col, item);
                 }
             }
@@ -221,14 +269,6 @@ void GerirModulo::lerDadosModulo(const QString& nomeModulo)
 
             // Set the model to the QTableView
             ui->tableViewModulosCarro->setModel(model);
-        } else {
-            // Handle the case when there is no filtered data
-            // For example, you can display an empty model or show a message to the user
-            QStandardItemModel* emptyModel = new QStandardItemModel(0, 4, this);
-            // Set the headers
-            emptyModel->setHorizontalHeaderLabels({"Nome", "Modulo", "Endianess", "Observações"});
-            // Set the empty model to the QTableView
-            ui->tableViewModulosCarro->setModel(emptyModel);
         }
     }
 }
@@ -257,9 +297,19 @@ void GerirModulo::on_btnGuardarModulo_clicked()
     // Make sure a valid cell is selected
     if (selectedRow >= 0 && selectedRow < model->rowCount() && selectedColumn >= 0 && selectedColumn < model->columnCount()) {
 
-        // Ask the user for confirmation
-        QMessageBox::StandardButton confirmation = QMessageBox::question(this, "Guardar Dados", "Tem a certeza que pretende guardar os dados?", QMessageBox::Yes | QMessageBox::No);
-        if (confirmation == QMessageBox::No) {
+        // Display confirmation dialog
+        QMessageBox confirmation(this);
+        confirmation.setWindowTitle(tr("Confirmar Atualização"));
+        confirmation.setText(tr("Algumas informações foram alteradas. Tem certeza de que deseja atualizar os dados?"));
+        confirmation.setIcon(QMessageBox::Question);
+
+        // Translate the buttons
+        QPushButton* noButton = confirmation.addButton(tr("Não"), QMessageBox::NoRole);
+        confirmation.addButton(tr("Sim"), QMessageBox::YesRole);
+
+        confirmation.exec();
+
+        if (confirmation.clickedButton() == noButton) {
             // User canceled the operation
             return;
         }
@@ -292,7 +342,7 @@ void GerirModulo::on_btnGuardarModulo_clicked()
         for (int i = 0; i < lines.size(); i++)
         {
             QStringList values = lines[i].split(';');
-            if (values.size() >= 1 && values[0] == nomeModulo)
+            if (values.size() >= 1 && values[0  ] == nomeModulo)
             {
                 // Update the line with the new values
                 values[1] = endianess;
@@ -379,7 +429,7 @@ void GerirModulo::on_btnApagarModulo_clicked()
 
     // Check if the modulos.txt file exists
     if (!QFile::exists(modulosPath)) {
-        QMessageBox::critical(this, tr("Erro"), tr("O arquivo modulos.txt não existe!"));
+        QMessageBox::critical(this, tr("Erro"), tr("O ficheiro modulos.txt não existe!"));
         return;
     }
 
@@ -408,7 +458,7 @@ void GerirModulo::on_btnApagarModulo_clicked()
             while (!stream.atEnd()) {
                 QString line = stream.readLine();
                 QStringList values = line.split(";");
-                if (values[0] != moduloName) {  // Change index to match the column of the module name
+                if (values.length() >=3 && values[0] != moduloName) {  // Check if the list is not empty
                     newModulosData.append(values);
                 }
             }
@@ -426,22 +476,27 @@ void GerirModulo::on_btnApagarModulo_clicked()
             // Folder deleted successfully
             QMessageBox::information(this, "Módulo Removido", "O módulo \"" + moduloName + "\" foi removido com sucesso!");
 
-            this->close();
 
             // Cria a janela GerirCarro
             GerirCarro *gerirCarro = new GerirCarro();
 
+            const int gerirCarroWidth = 800;
+            const int gerirCarroHeight = 500;
+
             QString nomeCarro = ui->labelNomeCarro->text().trimmed();
+
+            gerirCarro->setMinimumSize(gerirCarroWidth, gerirCarroHeight);
+            gerirCarro->setMaximumSize(gerirCarroWidth, gerirCarroHeight);
 
             gerirCarro->setNome(nomeCarro);
             gerirCarro->lerDadosCarro(nomeCarro);
             gerirCarro->lerDadosModulo(nomeCarro);
             gerirCarro->show();
+            this->close();
 
         } else {
             // Failed to open modulos.txt file for editing
-            qDebug() << "Failed to open modulos.txt file for editing: " << modulosPath;
-            QMessageBox::critical(this, tr("Erro"), tr("Não foi possível abrir o arquivo modulos.txt para edição!"));
+            QMessageBox::critical(this, tr("Erro"), tr("Não foi possível abrir o ficheiro modulos.txt para edição!"));
         }
     }
 }

@@ -264,8 +264,13 @@ void TabelaDados::loadMensagens(const QString& filePath) {
                 QString timestamp = columns[0];
                 QString moduleName = tiposColumns[0];
                 QString hexCode = tiposColumns[1];
+                QString formattedTimestamp;
+                for(int i = 0; i < timestamp.length() - 1; i+=2){
+                    formattedTimestamp += timestamp.mid(i,2) + ":";
+                }
+                formattedTimestamp.chop(1);
 
-                rowItems.append(new QStandardItem(timestamp));
+                rowItems.append(new QStandardItem(formattedTimestamp));
                 rowItems.append(new QStandardItem(moduleName));
                 rowItems.append(new QStandardItem(hexCode));
 
@@ -334,8 +339,8 @@ void TabelaDados::loadMensagens(const QString& filePath) {
                                  fieldName += QString::number(fieldConversionResult);
                             }
                             else if(!offset.isEmpty() && !factor.isEmpty()){
-                                 fieldConversionResult *= factor.toFloat();
                                  fieldConversionResult += offset.toFloat();
+                                 fieldConversionResult *= factor.toFloat();
                                  fieldName += QString::number(fieldConversionResult);
                                  qDebug() << "Converted FieldConversionResult:" << fieldConversionResult;
                                  qDebug() << "Offset:" << offset.toFloat() << " Factor:" << factor.toFloat() << "\n";
@@ -366,6 +371,7 @@ void TabelaDados::loadMensagens(const QString& filePath) {
             }
 
             model->appendRow(rowItems);
+            ui->tableViewTabelaDados->setEditTriggers(QAbstractItemView::NoEditTriggers);
         }
 
         file.close();
@@ -592,7 +598,7 @@ void TabelaDados::on_commandButtonVoltar_clicked()
 
 void TabelaDados::on_btnGuardar_clicked()
 {
-    QString filePath = QFileDialog::getSaveFileName(this, "Save File", QDir::homePath(), "XLSX Files (*.xlsx);;Text Files (*.txt)");
+    QString filePath = QFileDialog::getSaveFileName(this, "Save File", QDir::homePath(), "XLSX Files (*.xlsx);;CSV Files (*.csv)");
 
     if (!filePath.isEmpty()) {
         // Get the table model
@@ -631,15 +637,18 @@ void TabelaDados::on_btnGuardar_clicked()
             // Save the Excel file
             xlsx.saveAs(filePath);
         }
-        // Save as TXT
-        else if (filePath.endsWith(".txt")) {
+        // Save as CSV
+        else if (filePath.endsWith(".csv")) {
             QFile file(filePath);
             if (file.open(QIODevice::WriteOnly | QIODevice::Text)) {
                 QTextStream out(&file);
 
-                // Write the headers to the text file
+                // Write the headers to the CSV file
                 for (int column = 0; column < headers.size(); ++column) {
-                    out << headers.at(column) << ";";
+                    out << headers.at(column);
+                    if (column < headers.size() - 1) {
+                        out << ",";
+                    }
                 }
                 out << "\n";
 
@@ -647,14 +656,17 @@ void TabelaDados::on_btnGuardar_clicked()
                 int rowCount = tableModel->rowCount();
                 int columnCount = tableModel->columnCount();
 
-                // Iterate over the table and save the data to the text file
+                // Iterate over the table and save the data to the CSV file
                 for (int row = 0; row < rowCount; ++row) {
                     for (int column = 0; column < columnCount; ++column) {
                         QModelIndex index = tableModel->index(row, column);
                         QVariant data = tableModel->data(index);
-                        out << data.toString() << ";"; // Separate values with a tab
+                        out << data.toString();
+                        if (column < columnCount - 1) {
+                            out << ",";
+                        }
                     }
-                    out << "\n"; // New line after each row
+                    out << "\n";
                 }
 
                 file.close();

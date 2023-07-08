@@ -44,3 +44,10 @@ Tabela de Dados:
   -> Não está a Guardar os dados em ficheiro; (Resolvido)
   -> Não está a converter o código em Hexadecimal (Resolvido)
 
+______________________________________________________________________________________
+
+: acrescentados à timestamp;
+Duplicar carro em vez de duplicar pasta
+Conversões na tabela de dados, aplicavam primeiro o fator multiplicativo, em vez do offset
+0x na tabela de tipos de mensagem
+Editar observações com qDialog maior. Impedir ENTER

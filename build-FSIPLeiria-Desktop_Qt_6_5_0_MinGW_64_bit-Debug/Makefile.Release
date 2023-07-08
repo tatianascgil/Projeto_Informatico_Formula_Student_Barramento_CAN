@@ -7760,7 +7760,23 @@ release/gerircarro.o: ../Senna/gerircarro.cpp ../Senna/gerircarro.h \
 		C:/Qt/6.5.0/mingw_64/include/QtGui/qtextdocument.h \
 		C:/Qt/6.5.0/mingw_64/include/QtGui/qtextformat.h \
 		C:/Qt/6.5.0/mingw_64/include/QtGui/qpen.h \
-		C:/Qt/6.5.0/mingw_64/include/QtGui/qtextoption.h
+		C:/Qt/6.5.0/mingw_64/include/QtGui/qtextoption.h \
+		C:/Qt/6.5.0/mingw_64/include/QtWidgets/QVBoxLayout \
+		C:/Qt/6.5.0/mingw_64/include/QtWidgets/qboxlayout.h \
+		C:/Qt/6.5.0/mingw_64/include/QtWidgets/qlayout.h \
+		C:/Qt/6.5.0/mingw_64/include/QtWidgets/qlayoutitem.h \
+		C:/Qt/6.5.0/mingw_64/include/QtWidgets/qgridlayout.h \
+		C:/Qt/6.5.0/mingw_64/include/QtWidgets/QPlainTextEdit \
+		C:/Qt/6.5.0/mingw_64/include/QtWidgets/qplaintextedit.h \
+		C:/Qt/6.5.0/mingw_64/include/QtWidgets/qtextedit.h \
+		C:/Qt/6.5.0/mingw_64/include/QtWidgets/qabstractscrollarea.h \
+		C:/Qt/6.5.0/mingw_64/include/QtGui/qabstracttextdocumentlayout.h \
+		C:/Qt/6.5.0/mingw_64/include/QtGui/qtextlayout.h \
+		C:/Qt/6.5.0/mingw_64/include/QtGui/qglyphrun.h \
+		C:/Qt/6.5.0/mingw_64/include/QtGui/qrawfont.h \
+		C:/Qt/6.5.0/mingw_64/include/QtGui/qfontdatabase.h \
+		C:/Qt/6.5.0/mingw_64/include/QtWidgets/QDialogButtonBox \
+		C:/Qt/6.5.0/mingw_64/include/QtWidgets/qdialogbuttonbox.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\gerircarro.o ..\Senna\gerircarro.cpp
 
 release/gerirmodulo.o: ../Senna/gerirmodulo.cpp ../Senna/gerirmodulo.h \
@@ -7938,8 +7954,6 @@ release/gerirmodulo.o: ../Senna/gerirmodulo.cpp ../Senna/gerirmodulo.h \
 		ui_criartipomensagem.h \
 		../Senna/gerirtipomensagem.h \
 		ui_gerirtipomensagem.h \
-		C:/Qt/6.5.0/mingw_64/include/QtCore/QElapsedTimer \
-		C:/Qt/6.5.0/mingw_64/include/QtCore/qelapsedtimer.h \
 		C:/Qt/6.5.0/mingw_64/include/QtCore/QDir \
 		C:/Qt/6.5.0/mingw_64/include/QtCore/qdir.h \
 		C:/Qt/6.5.0/mingw_64/include/QtCore/qfile.h \
@@ -7959,7 +7973,23 @@ release/gerirmodulo.o: ../Senna/gerirmodulo.cpp ../Senna/gerirmodulo.h \
 		C:/Qt/6.5.0/mingw_64/include/QtGui/qtextdocument.h \
 		C:/Qt/6.5.0/mingw_64/include/QtGui/qtextformat.h \
 		C:/Qt/6.5.0/mingw_64/include/QtGui/qpen.h \
-		C:/Qt/6.5.0/mingw_64/include/QtGui/qtextoption.h
+		C:/Qt/6.5.0/mingw_64/include/QtGui/qtextoption.h \
+		C:/Qt/6.5.0/mingw_64/include/QtWidgets/QVBoxLayout \
+		C:/Qt/6.5.0/mingw_64/include/QtWidgets/qboxlayout.h \
+		C:/Qt/6.5.0/mingw_64/include/QtWidgets/qlayout.h \
+		C:/Qt/6.5.0/mingw_64/include/QtWidgets/qlayoutitem.h \
+		C:/Qt/6.5.0/mingw_64/include/QtWidgets/qgridlayout.h \
+		C:/Qt/6.5.0/mingw_64/include/QtWidgets/QPlainTextEdit \
+		C:/Qt/6.5.0/mingw_64/include/QtWidgets/qplaintextedit.h \
+		C:/Qt/6.5.0/mingw_64/include/QtWidgets/qtextedit.h \
+		C:/Qt/6.5.0/mingw_64/include/QtWidgets/qabstractscrollarea.h \
+		C:/Qt/6.5.0/mingw_64/include/QtGui/qabstracttextdocumentlayout.h \
+		C:/Qt/6.5.0/mingw_64/include/QtGui/qtextlayout.h \
+		C:/Qt/6.5.0/mingw_64/include/QtGui/qglyphrun.h \
+		C:/Qt/6.5.0/mingw_64/include/QtGui/qrawfont.h \
+		C:/Qt/6.5.0/mingw_64/include/QtGui/qfontdatabase.h \
+		C:/Qt/6.5.0/mingw_64/include/QtWidgets/QDialogButtonBox \
+		C:/Qt/6.5.0/mingw_64/include/QtWidgets/qdialogbuttonbox.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\gerirmodulo.o ..\Senna\gerirmodulo.cpp
 
 release/gerirtipomensagem.o: ../Senna/gerirtipomensagem.cpp ../Senna/gerirtipomensagem.h \

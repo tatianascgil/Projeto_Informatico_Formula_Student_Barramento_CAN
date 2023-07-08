@@ -133,7 +133,9 @@ void CriarCarro::on_btnCriarCarro_clicked()
     QTextStream stream(&file);
 
     // Write the data
-    stream << nomeCarro << ";" << tipoCarro << ";" << obsCarro << ";\n";
+    stream << nomeCarro << ";" << tipoCarro << ";" << obsCarro << ";";
+    stream << "\n";
+
 
     file.close();
 

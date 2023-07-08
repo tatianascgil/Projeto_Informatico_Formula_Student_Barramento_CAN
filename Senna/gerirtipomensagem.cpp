@@ -142,8 +142,9 @@ void GerirTipoMensagem::setNomeModulo(const QString& nome){
     ui->labelNomeModulo->setText(nome.trimmed());
 }
 
-void GerirTipoMensagem::setCodigoHexadecimal(const QString& codHex){
-    ui->labelCodHex->setText(codHex.trimmed());
+void GerirTipoMensagem::setCodigoHexadecimal(const QString& codHex) {
+    QString finalValue = codHex.mid(2); // Remove the first two characters (0x)
+    ui->labelCodHex->setText(finalValue.trimmed());
 }
 
 void GerirTipoMensagem::setObservacoes(const QString& obs){
