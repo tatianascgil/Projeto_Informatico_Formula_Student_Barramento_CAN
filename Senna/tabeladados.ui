@@ -263,10 +263,10 @@ QCommandLinkButton:hover
   <widget class="QPushButton" name="btnGuardar">
    <property name="geometry">
     <rect>
-     <x>720</x>
-     <y>120</y>
-     <width>251</width>
-     <height>31</height>
+     <x>670</x>
+     <y>50</y>
+     <width>291</width>
+     <height>61</height>
     </rect>
    </property>
    <property name="font">

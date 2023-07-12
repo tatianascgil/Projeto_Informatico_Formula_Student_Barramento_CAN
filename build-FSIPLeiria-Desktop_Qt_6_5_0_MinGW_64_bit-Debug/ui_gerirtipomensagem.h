@@ -499,46 +499,43 @@ public:
         textEdit_Nome5->setStyleSheet(QString::fromUtf8("background: rgb(220,220,220)"));
         labelNomeModulo = new QLabel(GerirTipoMensagem);
         labelNomeModulo->setObjectName("labelNomeModulo");
-        labelNomeModulo->setGeometry(QRect(130, 50, 321, 31));
+        labelNomeModulo->setGeometry(QRect(120, 50, 371, 31));
         QFont font;
-        font.setPointSize(12);
+        font.setPointSize(14);
         font.setBold(true);
         labelNomeModulo->setFont(font);
         labelNomeModulo->setCursor(QCursor(Qt::ForbiddenCursor));
         labelNomeCarro = new QLabel(GerirTipoMensagem);
         labelNomeCarro->setObjectName("labelNomeCarro");
-        labelNomeCarro->setGeometry(QRect(120, 10, 181, 31));
+        labelNomeCarro->setGeometry(QRect(100, 10, 501, 31));
         labelNomeCarro->setFont(font);
         labelNomeCarro->setCursor(QCursor(Qt::ForbiddenCursor));
         label = new QLabel(GerirTipoMensagem);
         label->setObjectName("label");
         label->setGeometry(QRect(40, 50, 71, 31));
-        QFont font1;
-        font1.setPointSize(14);
-        font1.setBold(true);
-        label->setFont(font1);
+        label->setFont(font);
         label->setCursor(QCursor(Qt::ForbiddenCursor));
         label_4 = new QLabel(GerirTipoMensagem);
         label_4->setObjectName("label_4");
-        label_4->setGeometry(QRect(470, 50, 141, 31));
-        label_4->setFont(font1);
+        label_4->setGeometry(QRect(510, 50, 101, 31));
+        label_4->setFont(font);
         label_4->setCursor(QCursor(Qt::ForbiddenCursor));
         label_8 = new QLabel(GerirTipoMensagem);
         label_8->setObjectName("label_8");
-        label_8->setGeometry(QRect(40, 10, 71, 31));
-        label_8->setFont(font1);
+        label_8->setGeometry(QRect(40, 10, 51, 31));
+        label_8->setFont(font);
         label_8->setCursor(QCursor(Qt::ForbiddenCursor));
         labelCodHex = new QLabel(GerirTipoMensagem);
         labelCodHex->setObjectName("labelCodHex");
-        labelCodHex->setGeometry(QRect(620, 50, 111, 31));
+        labelCodHex->setGeometry(QRect(610, 50, 121, 31));
         labelCodHex->setFont(font);
         labelCodHex->setCursor(QCursor(Qt::ForbiddenCursor));
         btnGuardarCarro = new QPushButton(GerirTipoMensagem);
         btnGuardarCarro->setObjectName("btnGuardarCarro");
-        btnGuardarCarro->setGeometry(QRect(660, 480, 131, 41));
-        QFont font2;
-        font2.setPointSize(10);
-        btnGuardarCarro->setFont(font2);
+        btnGuardarCarro->setGeometry(QRect(650, 480, 131, 41));
+        QFont font1;
+        font1.setPointSize(10);
+        btnGuardarCarro->setFont(font1);
         btnGuardarCarro->setCursor(QCursor(Qt::PointingHandCursor));
         btnGuardarCarro->setStyleSheet(QString::fromUtf8("QPushButton{\n"
 "	background-color:rgb(255, 245, 166);\n"
@@ -557,7 +554,7 @@ public:
         plainTextEditObs = new QPlainTextEdit(GerirTipoMensagem);
         plainTextEditObs->setObjectName("plainTextEditObs");
         plainTextEditObs->setGeometry(QRect(110, 480, 521, 91));
-        plainTextEditObs->setFont(font2);
+        plainTextEditObs->setFont(font1);
         plainTextEditObs->setStyleSheet(QString::fromUtf8("background: rgb(220,220,220)"));
         spinBox_Inicial2 = new QSpinBox(GerirTipoMensagem);
         spinBox_Inicial2->setObjectName("spinBox_Inicial2");
@@ -582,8 +579,8 @@ public:
         commandButtonMenuPrincipal->setIcon(icon);
         btnApagar = new QPushButton(GerirTipoMensagem);
         btnApagar->setObjectName("btnApagar");
-        btnApagar->setGeometry(QRect(660, 530, 131, 41));
-        btnApagar->setFont(font2);
+        btnApagar->setGeometry(QRect(650, 530, 131, 41));
+        btnApagar->setFont(font1);
         btnApagar->setCursor(QCursor(Qt::PointingHandCursor));
         btnApagar->setStyleSheet(QString::fromUtf8("QPushButton{\n"
 "	background-color:rgb(255, 245, 166);\n"
@@ -631,7 +628,7 @@ public:
         labelNomeModulo->setText(QCoreApplication::translate("GerirTipoMensagem", "INDEFINIDO", nullptr));
         labelNomeCarro->setText(QCoreApplication::translate("GerirTipoMensagem", "INDEFINIDO", nullptr));
         label->setText(QCoreApplication::translate("GerirTipoMensagem", "M\303\263dulo:", nullptr));
-        label_4->setText(QCoreApplication::translate("GerirTipoMensagem", "C\303\263digo Hex: 0x", nullptr));
+        label_4->setText(QCoreApplication::translate("GerirTipoMensagem", "C\303\263digo: 0x", nullptr));
         label_8->setText(QCoreApplication::translate("GerirTipoMensagem", "Carro", nullptr));
         labelCodHex->setText(QCoreApplication::translate("GerirTipoMensagem", "INDEFINIDO", nullptr));
         btnGuardarCarro->setText(QCoreApplication::translate("GerirTipoMensagem", "Guardar", nullptr));

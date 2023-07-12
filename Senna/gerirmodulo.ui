@@ -334,7 +334,6 @@ color:black;
 }
 QCommandLinkButton:hover
 {
-  border: none;
   color: black;
 }</string>
    </property>

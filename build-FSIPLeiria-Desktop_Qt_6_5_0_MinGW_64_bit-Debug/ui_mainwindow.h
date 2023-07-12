@@ -27,8 +27,6 @@ class Ui_MainWindow
 {
 public:
     QWidget *centralwidget;
-    QPushButton *btnEstatisticas;
-    QPushButton *btnTempoReal;
     QPushButton *btnTabelaDados;
     QComboBox *comboBoxCarro;
     QPushButton *btnCriarCarro;
@@ -55,49 +53,11 @@ public:
         MainWindow->setStyleSheet(QString::fromUtf8("background:white"));
         centralwidget = new QWidget(MainWindow);
         centralwidget->setObjectName("centralwidget");
-        btnEstatisticas = new QPushButton(centralwidget);
-        btnEstatisticas->setObjectName("btnEstatisticas");
-        btnEstatisticas->setGeometry(QRect(560, 280, 211, 61));
-        QFont font;
-        font.setPointSize(10);
-        btnEstatisticas->setFont(font);
-        btnEstatisticas->setCursor(QCursor(Qt::PointingHandCursor));
-        btnEstatisticas->setStyleSheet(QString::fromUtf8("QPushButton{\n"
-"	background-color:rgb(255, 245, 166);\n"
-"	border:none;\n"
-"	color:rgb(95, 91, 61);\n"
-"	border -bottom: 5px solid rgb(162, 155, 105)\n"
-"}\n"
-"QPushButton:hover{\n"
-"	background-color:rgb(229, 217, 150);\n"
-"	border-bottom: 5px solid rgb(162, 155, 105)\n"
-"}\n"
-"QPushButton:pressed {\n"
-"	background-color:rgb(255, 242, 165);\n"
-"	border-bottom: 5px solid rgb(162, 155, 105)\n"
-"}"));
-        btnTempoReal = new QPushButton(centralwidget);
-        btnTempoReal->setObjectName("btnTempoReal");
-        btnTempoReal->setGeometry(QRect(560, 190, 211, 61));
-        btnTempoReal->setFont(font);
-        btnTempoReal->setCursor(QCursor(Qt::PointingHandCursor));
-        btnTempoReal->setStyleSheet(QString::fromUtf8("QPushButton{\n"
-"	background-color:rgb(255, 245, 166);\n"
-"	border:none;\n"
-"	color:rgb(95, 91, 61);\n"
-"	border -bottom: 5px solid rgb(162, 155, 105)\n"
-"}\n"
-"QPushButton:hover{\n"
-"	background-color:rgb(229, 217, 150);\n"
-"	border-bottom: 5px solid rgb(162, 155, 105)\n"
-"}\n"
-"QPushButton:pressed {\n"
-"	background-color:rgb(255, 242, 165);\n"
-"	border-bottom: 5px solid rgb(162, 155, 105)\n"
-"}"));
         btnTabelaDados = new QPushButton(centralwidget);
         btnTabelaDados->setObjectName("btnTabelaDados");
-        btnTabelaDados->setGeometry(QRect(560, 100, 211, 61));
+        btnTabelaDados->setGeometry(QRect(540, 280, 161, 61));
+        QFont font;
+        font.setPointSize(10);
         btnTabelaDados->setFont(font);
         btnTabelaDados->setCursor(QCursor(Qt::PointingHandCursor));
         btnTabelaDados->setStyleSheet(QString::fromUtf8("QPushButton{\n"
@@ -116,7 +76,7 @@ public:
 "}"));
         comboBoxCarro = new QComboBox(centralwidget);
         comboBoxCarro->setObjectName("comboBoxCarro");
-        comboBoxCarro->setGeometry(QRect(150, 200, 211, 31));
+        comboBoxCarro->setGeometry(QRect(310, 200, 211, 31));
         comboBoxCarro->setFont(font);
         comboBoxCarro->setCursor(QCursor(Qt::PointingHandCursor));
         comboBoxCarro->setStyleSheet(QString::fromUtf8("background:rgb(234, 234, 234)"));
@@ -142,7 +102,7 @@ public:
         btnVerCarro = new QPushButton(centralwidget);
         btnVerCarro->setObjectName("btnVerCarro");
         btnVerCarro->setEnabled(true);
-        btnVerCarro->setGeometry(QRect(290, 280, 161, 61));
+        btnVerCarro->setGeometry(QRect(330, 280, 161, 61));
         btnVerCarro->setFont(font);
         btnVerCarro->setCursor(QCursor(Qt::PointingHandCursor));
         btnVerCarro->setStyleSheet(QString::fromUtf8("QPushButton{\n"
@@ -162,7 +122,7 @@ public:
         btnVerCarro->setCheckable(false);
         btnDuplicarCarro = new QPushButton(centralwidget);
         btnDuplicarCarro->setObjectName("btnDuplicarCarro");
-        btnDuplicarCarro->setGeometry(QRect(80, 280, 161, 61));
+        btnDuplicarCarro->setGeometry(QRect(120, 280, 161, 61));
         btnDuplicarCarro->setFont(font);
         btnDuplicarCarro->setCursor(QCursor(Qt::PointingHandCursor));
         btnDuplicarCarro->setStyleSheet(QString::fromUtf8("QPushButton{\n"
@@ -181,7 +141,7 @@ public:
 "}"));
         label = new QLabel(centralwidget);
         label->setObjectName("label");
-        label->setGeometry(QRect(150, 150, 251, 41));
+        label->setGeometry(QRect(350, 150, 151, 41));
         QFont font1;
         font1.setPointSize(14);
         font1.setBold(true);
@@ -227,8 +187,6 @@ public:
     void retranslateUi(QMainWindow *MainWindow)
     {
         MainWindow->setWindowTitle(QCoreApplication::translate("MainWindow", "Menu Principal", nullptr));
-        btnEstatisticas->setText(QCoreApplication::translate("MainWindow", "Estat\303\255sticas", nullptr));
-        btnTempoReal->setText(QCoreApplication::translate("MainWindow", "Tempo Real", nullptr));
         btnTabelaDados->setText(QCoreApplication::translate("MainWindow", "Tabela de Dados", nullptr));
         comboBoxCarro->setPlaceholderText(QCoreApplication::translate("MainWindow", "<Selecionar Carro>", nullptr));
         btnCriarCarro->setText(QCoreApplication::translate("MainWindow", "Criar", nullptr));

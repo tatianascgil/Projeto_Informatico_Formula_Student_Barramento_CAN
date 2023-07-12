@@ -249,7 +249,7 @@ void GerirCarro::on_btnApagarCarro_clicked()
     // Display confirmation dialog
     QMessageBox confirmation(this);
 
-    confirmation.setWindowTitle("Apagar Pasta");
+    confirmation.setWindowTitle("Apagar Carro");
     confirmation.setText("Tem certeza que deseja apagar o carro " + folderName + "? Todos os dados serão excluídos!");
     confirmation.setIcon(QMessageBox::Question);
 

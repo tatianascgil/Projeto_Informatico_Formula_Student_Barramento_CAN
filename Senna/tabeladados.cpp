@@ -57,6 +57,7 @@ void TabelaDados::setModulos(const QString& nome){
 
     QString placeholderText = ui->comboBoxModulo->placeholderText();
     ui->comboBoxModulo->addItem(placeholderText);
+    ui->comboBoxModulo->addItem("Desconhecido");
 
     while (!in.atEnd()) {
         QString line = in.readLine();
@@ -256,6 +257,8 @@ void TabelaDados::loadMensagens(const QString& filePath) {
             totalMensagens++;
             ui->labelNMensagens->setText(QString::number(totalMensagens));
 
+
+
             if (columns.length() > 1 && tiposMensagem.contains(hexadecimalCode)) {
                 QString tiposLine = tiposMensagem[hexadecimalCode];
                 QStringList tiposColumns = tiposLine.split(';');
@@ -368,6 +371,21 @@ void TabelaDados::loadMensagens(const QString& filePath) {
                 for (const QString& column : columns) {
                     rowItems.append(new QStandardItem(column));
                 }
+
+                // Append modified fields into the table
+//                QString timestamp = columns[0];
+//                QString moduleName = "Desconhecido";
+//                QString formattedTimestamp;
+//                for(int i = 0; i < timestamp.length() - 1; i+=2){
+//                    formattedTimestamp += timestamp.mid(i,2) + ":";
+//                }
+//                formattedTimestamp.chop(1);
+
+//                rowItems.append(new QStandardItem(formattedTimestamp));
+//                rowItems.append(new QStandardItem(moduleName));
+//                rowItems.append(new QStandardItem(hexadecimalCode));
+//                    rowItems.append(new QStandardItem(column));
+
             }
 
             model->appendRow(rowItems);

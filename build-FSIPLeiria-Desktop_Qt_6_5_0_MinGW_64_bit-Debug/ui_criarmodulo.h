@@ -141,7 +141,7 @@ public:
 
     void retranslateUi(QWidget *CriarModulo)
     {
-        CriarModulo->setWindowTitle(QCoreApplication::translate("CriarModulo", "Criar Modulo", nullptr));
+        CriarModulo->setWindowTitle(QCoreApplication::translate("CriarModulo", "Criar M\303\263dulo", nullptr));
         btnCriarModulo->setText(QCoreApplication::translate("CriarModulo", "Criar M\303\263dulo", nullptr));
         label->setText(QCoreApplication::translate("CriarModulo", "Nome:", nullptr));
         commandButtonVoltar->setText(QString());

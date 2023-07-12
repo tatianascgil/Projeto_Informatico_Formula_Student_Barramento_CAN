@@ -24,86 +24,12 @@
    <string notr="true">background:white</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QPushButton" name="btnEstatisticas">
-    <property name="geometry">
-     <rect>
-      <x>560</x>
-      <y>280</y>
-      <width>211</width>
-      <height>61</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>10</pointsize>
-     </font>
-    </property>
-    <property name="cursor">
-     <cursorShape>PointingHandCursor</cursorShape>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">QPushButton{
-	background-color:rgb(255, 245, 166);
-	border:none;
-	color:rgb(95, 91, 61);
-	border -bottom: 5px solid rgb(162, 155, 105)
-}
-QPushButton:hover{
-	background-color:rgb(229, 217, 150);
-	border-bottom: 5px solid rgb(162, 155, 105)
-}
-QPushButton:pressed {
-	background-color:rgb(255, 242, 165);
-	border-bottom: 5px solid rgb(162, 155, 105)
-}</string>
-    </property>
-    <property name="text">
-     <string>Estatísticas</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="btnTempoReal">
-    <property name="geometry">
-     <rect>
-      <x>560</x>
-      <y>190</y>
-      <width>211</width>
-      <height>61</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>10</pointsize>
-     </font>
-    </property>
-    <property name="cursor">
-     <cursorShape>PointingHandCursor</cursorShape>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">QPushButton{
-	background-color:rgb(255, 245, 166);
-	border:none;
-	color:rgb(95, 91, 61);
-	border -bottom: 5px solid rgb(162, 155, 105)
-}
-QPushButton:hover{
-	background-color:rgb(229, 217, 150);
-	border-bottom: 5px solid rgb(162, 155, 105)
-}
-QPushButton:pressed {
-	background-color:rgb(255, 242, 165);
-	border-bottom: 5px solid rgb(162, 155, 105)
-}</string>
-    </property>
-    <property name="text">
-     <string>Tempo Real</string>
-    </property>
-   </widget>
    <widget class="QPushButton" name="btnTabelaDados">
     <property name="geometry">
      <rect>
-      <x>560</x>
-      <y>100</y>
-      <width>211</width>
+      <x>540</x>
+      <y>280</y>
+      <width>161</width>
       <height>61</height>
      </rect>
     </property>
@@ -138,7 +64,7 @@ QPushButton:pressed {
    <widget class="QComboBox" name="comboBoxCarro">
     <property name="geometry">
      <rect>
-      <x>150</x>
+      <x>310</x>
       <y>200</y>
       <width>211</width>
       <height>31</height>
@@ -202,7 +128,7 @@ QPushButton:pressed {
     </property>
     <property name="geometry">
      <rect>
-      <x>290</x>
+      <x>330</x>
       <y>280</y>
       <width>161</width>
       <height>61</height>
@@ -242,7 +168,7 @@ QPushButton:pressed {
    <widget class="QPushButton" name="btnDuplicarCarro">
     <property name="geometry">
      <rect>
-      <x>80</x>
+      <x>120</x>
       <y>280</y>
       <width>161</width>
       <height>61</height>
@@ -279,9 +205,9 @@ QPushButton:pressed {
    <widget class="QLabel" name="label">
     <property name="geometry">
      <rect>
-      <x>150</x>
+      <x>350</x>
       <y>150</y>
-      <width>251</width>
+      <width>151</width>
       <height>41</height>
      </rect>
     </property>

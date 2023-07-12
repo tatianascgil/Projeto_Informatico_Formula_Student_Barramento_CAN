@@ -179,7 +179,6 @@ public:
 "}\n"
 "QCommandLinkButton:hover\n"
 "{\n"
-"  border: none;\n"
 "  color: black;\n"
 "}"));
         commandButtonMenuPrincipal->setIcon(icon);

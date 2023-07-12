@@ -42,8 +42,7 @@ MainWindow::MainWindow(QWidget *parent)
 
     ui->setupUi(this);
     ui->btnTabelaDados->setVisible(false);
-    ui->btnTempoReal->setVisible(false);
-    ui->btnEstatisticas->setVisible(false);
+
 
 
     // Connect the currentIndexChanged signal of the comboBoxCarro to a custom slot
@@ -200,12 +199,12 @@ void MainWindow::on_btnDuplicarCarro_clicked()
     QString sourceFolderPath = targetDir + "/" + folderName;
 
     // Ask the user for the new folder name
-    QString newFolderName = QInputDialog::getText(this, tr("Nome do carro"), tr("Digite o nome da novo carro:"));
+    QString newFolderName = QInputDialog::getText(this, tr("Duplicar Carro"), tr("Digite o nome do novo carro:"));
 
     while (!newFolderName.isEmpty() && QDir(targetDir + "/" + newFolderName).exists()) {
         QMessageBox::critical(this, tr("Erro"), tr("Já existe um carro com o nome %1!").arg(nomeCarro));
 
-        newFolderName = QInputDialog::getText(this, tr("Nome do carro"), tr("Digite outro nome para a novo carro:"));
+        newFolderName = QInputDialog::getText(this, tr("Duplicar Carro"), tr("Digite o nome do novo carro:"));
     }
 
     if (!newFolderName.isEmpty()) {
@@ -214,14 +213,14 @@ void MainWindow::on_btnDuplicarCarro_clicked()
         if (newFolderName.contains(';')) {
             QMessageBox::critical(this, tr("Erro"), tr("O nome do carro não pode conter o caracter ';'."));
 
-            newFolderName = QInputDialog::getText(this, tr("Nome do carro"), tr("Digite outro nome para a novo carro:"));
+            newFolderName = QInputDialog::getText(this, tr("Duplicar Carro"), tr("Digite o nome do novo carro:"));
         }
 
         QString newFolderPath = targetDir + "/" + newFolderName;
 
         // Create the new folder
         if (!QDir().mkdir(newFolderPath)) {
-            QMessageBox::critical(this, tr("Erro"), tr("Não foi possível criar a novo carro %1!").arg(nomeCarro));
+            QMessageBox::critical(this, tr("Duplicar Carro"), tr("Não foi possível criar o novo carro %1!").arg(nomeCarro));
             return;
         }
 

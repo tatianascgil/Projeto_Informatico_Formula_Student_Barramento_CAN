@@ -1258,15 +1258,15 @@ QCommandLinkButton:hover
   <widget class="QLabel" name="labelNomeModulo">
    <property name="geometry">
     <rect>
-     <x>130</x>
+     <x>120</x>
      <y>50</y>
-     <width>321</width>
+     <width>371</width>
      <height>31</height>
     </rect>
    </property>
    <property name="font">
     <font>
-     <pointsize>12</pointsize>
+     <pointsize>14</pointsize>
      <bold>true</bold>
     </font>
    </property>
@@ -1280,15 +1280,15 @@ QCommandLinkButton:hover
   <widget class="QLabel" name="labelNomeCarro">
    <property name="geometry">
     <rect>
-     <x>120</x>
+     <x>100</x>
      <y>10</y>
-     <width>181</width>
+     <width>501</width>
      <height>31</height>
     </rect>
    </property>
    <property name="font">
     <font>
-     <pointsize>12</pointsize>
+     <pointsize>14</pointsize>
      <bold>true</bold>
     </font>
    </property>
@@ -1324,9 +1324,9 @@ QCommandLinkButton:hover
   <widget class="QLabel" name="label_4">
    <property name="geometry">
     <rect>
-     <x>470</x>
+     <x>510</x>
      <y>50</y>
-     <width>141</width>
+     <width>101</width>
      <height>31</height>
     </rect>
    </property>
@@ -1340,7 +1340,7 @@ QCommandLinkButton:hover
     <cursorShape>ForbiddenCursor</cursorShape>
    </property>
    <property name="text">
-    <string>Código Hex: 0x</string>
+    <string>Código: 0x</string>
    </property>
   </widget>
   <widget class="QLabel" name="label_8">
@@ -1348,7 +1348,7 @@ QCommandLinkButton:hover
     <rect>
      <x>40</x>
      <y>10</y>
-     <width>71</width>
+     <width>51</width>
      <height>31</height>
     </rect>
    </property>
@@ -1368,15 +1368,15 @@ QCommandLinkButton:hover
   <widget class="QLabel" name="labelCodHex">
    <property name="geometry">
     <rect>
-     <x>620</x>
+     <x>610</x>
      <y>50</y>
-     <width>111</width>
+     <width>121</width>
      <height>31</height>
     </rect>
    </property>
    <property name="font">
     <font>
-     <pointsize>12</pointsize>
+     <pointsize>14</pointsize>
      <bold>true</bold>
     </font>
    </property>
@@ -1390,7 +1390,7 @@ QCommandLinkButton:hover
   <widget class="QPushButton" name="btnGuardarCarro">
    <property name="geometry">
     <rect>
-     <x>660</x>
+     <x>650</x>
      <y>480</y>
      <width>131</width>
      <height>41</height>
@@ -1500,7 +1500,7 @@ QCommandLinkButton:hover
   <widget class="QPushButton" name="btnApagar">
    <property name="geometry">
     <rect>
-     <x>660</x>
+     <x>650</x>
      <y>530</y>
      <width>131</width>
      <height>41</height>

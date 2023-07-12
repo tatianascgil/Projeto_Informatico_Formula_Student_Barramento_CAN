@@ -270,6 +270,12 @@ void GerirTipoMensagem::on_btnGuardarCarro_clicked()
         return;
     }
 
+    if(obs.contains("\n")){
+        QMessageBox::critical(this, "Erro", "Não é permitido criar novas linhas no campo 'Observações'!");
+        return;
+    }
+
+
     QString folderName = nomeCarro.trimmed();
 
     QString currentPath = QDir::currentPath();
@@ -337,6 +343,17 @@ void GerirTipoMensagem::on_btnGuardarCarro_clicked()
                     QMessageBox::critical(this, "Erro", "O campo Nome não pode estar vazio!");
                         return;
                 }
+
+                if(textEditNome->toPlainText().contains("\n")){
+                    QMessageBox::critical(this, "Erro", "Não é permitido criar novas linhas no campo 'Nome'!");
+                    return;
+                }
+
+                if(textEditUnidade->toPlainText().contains("\n")){
+                    QMessageBox::critical(this, "Erro", "Não é permitido criar novas linhas no campo 'Unidade'!");
+                    return;
+                }
+
 
                 if (spinBoxInicialIsEmpty) {
                     QMessageBox::critical(this, "Erro", "O campo Byte Inicial não pode estar vazio!");
@@ -421,7 +438,7 @@ void GerirTipoMensagem::on_btnGuardarCarro_clicked()
     confirmation.addButton("Sim", QMessageBox::YesRole);
     QPushButton* noButton = confirmation.addButton("Não", QMessageBox::NoRole);
 
-                            confirmation.exec();
+    confirmation.exec();
 
     if (confirmation.clickedButton() == noButton) {
         // User canceled the operation
@@ -437,7 +454,6 @@ void GerirTipoMensagem::on_btnGuardarCarro_clicked()
 
     QMessageBox::information(this, "Sucesso", "Dados salvos com sucesso!");
 
-    previousWindow();
 }
 
 

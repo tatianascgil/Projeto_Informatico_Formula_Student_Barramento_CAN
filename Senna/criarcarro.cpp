@@ -81,6 +81,12 @@ void CriarCarro::on_btnCriarCarro_clicked()
         QMessageBox::critical(this, "Erro", "É proíbido utilizar semi-vírgulas ';'!");
         return;
     }
+
+    if(obsCarro.contains("\n")){
+        QMessageBox::critical(this, "Erro", "Não é permitido criar novas linhas!");
+        return;
+    }
+
     // Display confirmation dialog
     QMessageBox confirmation(this);
     confirmation.setWindowTitle("Guardar Dados");

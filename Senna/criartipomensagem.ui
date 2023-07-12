@@ -112,7 +112,7 @@ QCommandLinkButton:hover
     <rect>
      <x>80</x>
      <y>50</y>
-     <width>371</width>
+     <width>591</width>
      <height>31</height>
     </rect>
    </property>
@@ -129,9 +129,9 @@ QCommandLinkButton:hover
   <widget class="QLabel" name="label_2">
    <property name="geometry">
     <rect>
-     <x>450</x>
-     <y>50</y>
-     <width>141</width>
+     <x>490</x>
+     <y>90</y>
+     <width>101</width>
      <height>31</height>
     </rect>
    </property>
@@ -142,7 +142,7 @@ QCommandLinkButton:hover
     </font>
    </property>
    <property name="text">
-    <string>Código Hex: 0x</string>
+    <string>Código: 0x</string>
    </property>
   </widget>
   <widget class="QLabel" name="label_3">
@@ -150,8 +150,8 @@ QCommandLinkButton:hover
     <rect>
      <x>180</x>
      <y>130</y>
-     <width>121</width>
-     <height>21</height>
+     <width>131</width>
+     <height>31</height>
     </rect>
    </property>
    <property name="font">
@@ -224,7 +224,7 @@ QCommandLinkButton:hover
    <property name="geometry">
     <rect>
      <x>600</x>
-     <y>50</y>
+     <y>90</y>
      <width>71</width>
      <height>31</height>
     </rect>

@@ -122,7 +122,7 @@ public:
         commandButtonVoltar->setIcon(icon1);
         btnGuardar = new QPushButton(TabelaDados);
         btnGuardar->setObjectName("btnGuardar");
-        btnGuardar->setGeometry(QRect(720, 120, 251, 31));
+        btnGuardar->setGeometry(QRect(670, 50, 291, 61));
         btnGuardar->setFont(font);
         btnGuardar->setCursor(QCursor(Qt::PointingHandCursor));
         btnGuardar->setStyleSheet(QString::fromUtf8("QPushButton{\n"

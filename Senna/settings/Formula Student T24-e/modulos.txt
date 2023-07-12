@@ -1,4 +1,5 @@
-VCU;Little Endian;Módulo 1.;
-PDM;Little Endian;Módulo 2.;
-Cooling Board;Little Endian;Módulo 3.;
-BMS;Little Endian;Módulo 4.;
+VCU;Little Endian;Módulo detalhado sobre "Vehicle Control Unit" - Unidade de Controlo do Veículo.;
+PDM;Little Endian;Módulo detalhado sobre "Power Distribution Module." - Módulo de distribuição de potência.;
+Cooling Board;Big Endian;Módulo detalhado sobre "Cooling Board" - Placa de Refrigeração.;
+BMS;Little Endian;Módulo detalhado sobre "Battery Management System" - Sistema de Gerenciamento de Bateria.;
+DAQ;Little Endian;Módulo detalhado sobre "Data Acquisiton System".;

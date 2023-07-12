@@ -9,3 +9,4 @@ Cooling Board;61;Tipo de Mensagem 1.;4;2nd Segment Temperature;0;1;40;100;ºC;3t
 Cooling Board;62;Tipo de Mensagem 2.;6;6th Segment Temperature;0;1;40;100;ºC;OverTemperature (each bit means a different board);2;2;;;;Fans Error (each bit means a different set of fans);3;3;;;;Power % to radiator Fan;4;4;;;%;Power % to Water Pump;5;5;;;%;Liquid Temperature;6;7;40;100;ºC;
 BMS;80;Tipo de Mensagem 0.;6;PACK SOC;0;0;;;%;Pack Voltage;1;2;;;V;Pack Health;3;3;;;%;Max Pack Voltage;4;4;;;V;Min Pack Voltage;5;5;;;V;Pack Capacity;6;7;;100;Ah;
 Cooling Board;63;Tipo de Mensagem 3.;2;OUT pins state (each bit means a different pin);0;2;;;;IN pins state (each bit means a different pin);3;4;;;;
+PDM;43;Tipo de Mensagem 3.;
