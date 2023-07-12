@@ -247,6 +247,13 @@ void TabelaDados::loadMensagens(const QString& filePath) {
         model->setHorizontalHeaderItem(0, new QStandardItem("Timestamp"));
         model->setHorizontalHeaderItem(1, new QStandardItem("Módulo"));
         model->setHorizontalHeaderItem(2, new QStandardItem("Código Hexadecimal"));
+
+        // Add headers "Campo 1" to "Campo 8"
+        for (int i = 3; i < 11; ++i) {
+            QString headerText = QString("Campo %1").arg(i - 2);
+            model->setHorizontalHeaderItem(i, new QStandardItem(headerText));
+        }
+
         int totalMensagens = 0;
         while (!in.atEnd()) {
             QString line = in.readLine();
@@ -368,26 +375,22 @@ void TabelaDados::loadMensagens(const QString& filePath) {
                     }
                 }
             } else {
-                for (const QString& column : columns) {
-                    rowItems.append(new QStandardItem(column));
+                QString timestamp = columns[0];
+                QString formattedTimestamp;
+                for (int i = 0; i < timestamp.length() - 1; i += 2) {
+                    formattedTimestamp += timestamp.mid(i, 2) + ":";
                 }
+                formattedTimestamp.chop(1);
 
-                // Append modified fields into the table
-//                QString timestamp = columns[0];
-//                QString moduleName = "Desconhecido";
-//                QString formattedTimestamp;
-//                for(int i = 0; i < timestamp.length() - 1; i+=2){
-//                    formattedTimestamp += timestamp.mid(i,2) + ":";
-//                }
-//                formattedTimestamp.chop(1);
+                rowItems.append(new QStandardItem(formattedTimestamp));
+                rowItems.append(new QStandardItem("Desconhecido"));
 
-//                rowItems.append(new QStandardItem(formattedTimestamp));
-//                rowItems.append(new QStandardItem(moduleName));
-//                rowItems.append(new QStandardItem(hexadecimalCode));
-//                    rowItems.append(new QStandardItem(column));
-
+                for (int i = 1; i < columns.size(); ++i) {
+                    bool ok;
+                    QString hexValue = QString::number(columns[i].toInt(), 16).toUpper();
+                    rowItems.append(new QStandardItem(hexValue));
+                }
             }
-
             model->appendRow(rowItems);
             ui->tableViewTabelaDados->setEditTriggers(QAbstractItemView::NoEditTriggers);
         }
@@ -410,10 +413,11 @@ void TabelaDados::filtrarComboBoxs()
     QString selectedCampo = ui->comboBoxCampo->currentText();
 
 
-
     QString moduloPlaceholder = ui->comboBoxModulo->placeholderText();
     QString codHexPlaceholder = ui->comboBoxCodigoHEX->placeholderText();
     QString campoPlaceholder = ui->comboBoxCampo->placeholderText();
+
+
 
 
     if(selectedModulo == moduloPlaceholder){
@@ -425,6 +429,18 @@ void TabelaDados::filtrarComboBoxs()
     }
 
     filteredModel = new QStandardItemModel(this);
+
+    bool addHeaders = false;
+
+    if ((selectedModulo.isEmpty() || selectedModulo == moduloPlaceholder) &&
+        (selectedCodHex.isEmpty() || selectedCodHex == codHexPlaceholder) &&
+        (selectedCampo.isEmpty() || selectedCampo == campoPlaceholder))
+    {
+        addHeaders = true;
+    }
+
+
+
     QSet<QString> uniqueRows;
     if(selectedCodHex == codHexPlaceholder || selectedCodHex.isEmpty()){
         for (int row = 0; row < model->rowCount(); row++) {
@@ -473,7 +489,9 @@ void TabelaDados::filtrarComboBoxs()
             QString modulo = moduloItem->text();
             QString codHex = codHexItem->text();
             if (modulo == selectedModulo) {
+                addHeaders = true;
                 if (codHex == selectedCodHex) {
+                    addHeaders = false;
                     if (selectedCampo != campoPlaceholder && !selectedCampo.isEmpty()) {
                         QList<QStandardItem*> rowItems;
                         for (int col = 0; col < model->columnCount(); col++) {
@@ -569,6 +587,16 @@ void TabelaDados::filtrarComboBoxs()
                         }
                         filteredModel->appendRow(rowItems);
                     }
+                }
+            }
+
+            if (addHeaders) {
+                // Add headers "Campo 1" to "Campo 8"
+                int columnCount = filteredModel->columnCount();
+                qDebug() << "Column Count:" << columnCount;
+                for (int i = 3; i < columnCount; ++i) {
+                    QString headerText = QString("Campo %1").arg(i - 2);
+                    filteredModel->setHorizontalHeaderItem(i, new QStandardItem(headerText));
                 }
             }
         }

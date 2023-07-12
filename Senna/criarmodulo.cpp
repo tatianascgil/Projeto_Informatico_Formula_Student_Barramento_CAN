@@ -45,6 +45,16 @@ void CriarModulo::on_btnCriarModulo_clicked()
         return;
     }
 
+    if(nomeModulo.contains("\n")){
+        QMessageBox::critical(this, "Erro", "Não é permitido criar novas linhas no campo 'Nome'!");
+        return;
+    }
+
+    if(obsModulo.contains("\n")){
+        QMessageBox::critical(this, "Erro", "Não é permitido criar novas linhas no campo 'Observações'!");
+        return;
+    }
+
 
     QString folderName = nomeCarro;
     QString currentPath = QDir::currentPath();

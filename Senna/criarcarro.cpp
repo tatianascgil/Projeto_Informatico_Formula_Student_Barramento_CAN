@@ -82,8 +82,13 @@ void CriarCarro::on_btnCriarCarro_clicked()
         return;
     }
 
+    if(nomeCarro.contains("\n")){
+        QMessageBox::critical(this, "Erro", "Não é permitido criar novas linhas no campo 'Nome'!");
+        return;
+    }
+
     if(obsCarro.contains("\n")){
-        QMessageBox::critical(this, "Erro", "Não é permitido criar novas linhas!");
+        QMessageBox::critical(this, "Erro", "Não é permitido criar novas linhas no campo 'Observações'!");
         return;
     }
 

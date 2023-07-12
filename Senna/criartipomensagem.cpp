@@ -47,6 +47,20 @@ void CriarTipoMensagem::on_btnCriarTipoMensagem_clicked()
             return;
         }
     }
+
+    bool ok;
+    int codHexValue = codHex.toInt(&ok, 16); // Convert hexadecimal string to integer
+
+    if (!ok) {
+        QMessageBox::critical(this, "Erro", "O código Hexadecimal contém caracteres inválidos!");
+        return;
+    }
+
+    if (codHexValue > 0x7FF) {
+        QMessageBox::critical(this, "Erro", "O valor hexadecimal não pode ser maior que 7FF!");
+            return;
+    }
+
     if(codHex.length() > 3){
         QMessageBox::critical(this, "Erro", "O código Hexadecimal só pode ter até 3 caractéres!");
         return;
@@ -59,6 +73,16 @@ void CriarTipoMensagem::on_btnCriarTipoMensagem_clicked()
 
     if (obs.contains(";")) {
         QMessageBox::critical(this, "Erro", "É proibido utilizar semi-vírgulas ';'!");
+        return;
+    }
+
+    if(codHex.contains("\n")){
+        QMessageBox::critical(this, "Erro", "Não é permitido criar novas linhas no campo 'Código'!");
+        return;
+    }
+
+    if(obs.contains("\n")){
+        QMessageBox::critical(this, "Erro", "Não é permitido criar novas linhas no campo 'Observações'!");
         return;
     }
 

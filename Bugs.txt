@@ -46,6 +46,9 @@ Tabela de Dados:
 
 ______________________________________________________________________________________
 
+Limitar ate 7FF
+
+
 : acrescentados à timestamp;
 Duplicar carro em vez de duplicar pasta
 Conversões na tabela de dados, aplicavam primeiro o fator multiplicativo, em vez do offset
