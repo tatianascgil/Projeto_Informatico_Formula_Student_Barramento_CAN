@@ -66,64 +66,64 @@ GerirTipoMensagem::GerirTipoMensagem(QWidget *parent) :
     ui->textEdit_Nome1->hide();
     ui->spinBox_Inicial1->hide();
     ui->spinBox_Final1->hide();
-    ui->textEdit_Offset1->hide();
-    ui->textEdit_Fator1->hide();
+    ui->doubleSpinBox_Offset1->hide();
+    ui->doubleSpinBox_Fator1->hide();
     ui->textEdit_Unidade1->hide();
     //Campo 2
     ui->label2->hide();
     ui->textEdit_Nome2->hide();
     ui->spinBox_Inicial2->hide();
     ui->spinBox_Final2->hide();
-    ui->textEdit_Offset2->hide();
-    ui->textEdit_Fator2->hide();
+    ui->doubleSpinBox_Offset2->hide();
+    ui->doubleSpinBox_Fator2->hide();
     ui->textEdit_Unidade2->hide();
     //Campo 3
     ui->label3->hide();
     ui->textEdit_Nome3->hide();
     ui->spinBox_Inicial3->hide();
     ui->spinBox_Final3->hide();
-    ui->textEdit_Offset3->hide();
-    ui->textEdit_Fator3->hide();
+    ui->doubleSpinBox_Offset3->hide();
+    ui->doubleSpinBox_Fator3->hide();
     ui->textEdit_Unidade3->hide();
     //Campo 4
     ui->label4->hide();
     ui->textEdit_Nome4->hide();
     ui->spinBox_Inicial4->hide();
     ui->spinBox_Final4->hide();
-    ui->textEdit_Offset4->hide();
-    ui->textEdit_Fator4->hide();
+    ui->doubleSpinBox_Offset4->hide();
+    ui->doubleSpinBox_Fator4->hide();
     ui->textEdit_Unidade4->hide();
     //Campo 5
     ui->label5->hide();
     ui->textEdit_Nome5->hide();
     ui->spinBox_Inicial5->hide();
     ui->spinBox_Final5->hide();
-    ui->textEdit_Offset5->hide();
-    ui->textEdit_Fator5->hide();
+    ui->doubleSpinBox_Offset5->hide();
+    ui->doubleSpinBox_Fator5->hide();
     ui->textEdit_Unidade5->hide();
     //Campo 6
     ui->label6->hide();
     ui->textEdit_Nome6->hide();
     ui->spinBox_Inicial6->hide();
     ui->spinBox_Final6->hide();
-    ui->textEdit_Offset6->hide();
-    ui->textEdit_Fator6->hide();
+    ui->doubleSpinBox_Offset6->hide();
+    ui->doubleSpinBox_Fator6->hide();
     ui->textEdit_Unidade6->hide();
     //Campo 7
     ui->label7->hide();
     ui->textEdit_Nome7->hide();
     ui->spinBox_Inicial7->hide();
     ui->spinBox_Final7->hide();
-    ui->textEdit_Offset7->hide();
-    ui->textEdit_Fator7->hide();
+    ui->doubleSpinBox_Offset7->hide();
+    ui->doubleSpinBox_Fator7->hide();
     ui->textEdit_Unidade7->hide();
     //Campo 8
     ui->label8->hide();
     ui->textEdit_Nome8->hide();
     ui->spinBox_Inicial8->hide();
     ui->spinBox_Final8->hide();
-    ui->textEdit_Offset8->hide();
-    ui->textEdit_Fator8->hide();
+    ui->doubleSpinBox_Offset8->hide();
+    ui->doubleSpinBox_Fator8->hide();
     ui->textEdit_Unidade8->hide();
 
 }
@@ -219,21 +219,21 @@ void GerirTipoMensagem::lerDadosTipoMensagem(){
                 }
                 spinBoxFinal->setValue(valueFinal.toInt());
 
-                QTextEdit *textEditOffset = findChild<QTextEdit*>("textEdit_Offset" + QString::number(index));
-                if (!textEditOffset) {
+                QDoubleSpinBox *doubleSpinBoxOffset = findChild<QDoubleSpinBox*>("doubleSpinBox_Offset" + QString::number(index));
+                if (!doubleSpinBoxOffset) {
                     // Handle error: Widget not found
-                    QMessageBox::critical(this, "Erro", "Não foi possível encontrar o widget textEdit_Offset" + QString::number(index));
+                    QMessageBox::critical(this, "Erro", "Não foi possível encontrar o widget doubleSpinBox_Offset" + QString::number(index));
                     return;
                 }
-                textEditOffset->setPlainText(valueOffset);
+                doubleSpinBoxOffset->setValue(valueOffset.toInt());
 
-                QTextEdit *textEditFator = findChild<QTextEdit*>("textEdit_Fator" + QString::number(index));
-                if (!textEditFator) {
+                QDoubleSpinBox *doubleSpinBoxFator = findChild<QDoubleSpinBox*>("doubleSpinBox_Fator" + QString::number(index));
+                if (!doubleSpinBoxFator) {
                     // Handle error: Widget not found
-                    QMessageBox::critical(this, "Erro", "Não foi possível encontrar o widget textEdit_Fator" + QString::number(index));
+                    QMessageBox::critical(this, "Erro", "Não foi possível encontrar o widget doubleSpinBox_Fator" + QString::number(index));
                     return;
                 }
-                textEditFator->setPlainText(valueFator);
+                doubleSpinBoxFator->setValue(valueFator.toInt());
 
                 QTextEdit *textEditUnidade = findChild<QTextEdit*>("textEdit_Unidade" + QString::number(index));
                 if (!textEditUnidade) {
@@ -323,8 +323,8 @@ void GerirTipoMensagem::on_btnGuardarCarro_clicked()
                 QTextEdit *textEditNome = findChild<QTextEdit*>("textEdit_Nome" + index);
                 QSpinBox *spinBoxInicial = findChild<QSpinBox*>("spinBox_Inicial" + index);
                 QSpinBox *spinBoxFinal = findChild<QSpinBox*>("spinBox_Final" + index);
-                QTextEdit *textEditOffset = findChild<QTextEdit*>("textEdit_Offset" + index);
-                QTextEdit *textEditFator = findChild<QTextEdit*>("textEdit_Fator" + index);
+                QDoubleSpinBox *doubleSpinBoxOffset = findChild<QDoubleSpinBox*>("doubleSpinBox_Offset" + index);
+                QDoubleSpinBox *doubleSpinBoxFator = findChild<QDoubleSpinBox*>("doubleSpinBox_Fator" + index);
                 QTextEdit *textEditUnidade = findChild<QTextEdit*>("textEdit_Unidade" + index);
 
 
@@ -398,22 +398,22 @@ void GerirTipoMensagem::on_btnGuardarCarro_clicked()
 
                 line += spinBoxFinal->text() + ";";
 
-                if (!textEditOffset) {
+                if (!doubleSpinBoxOffset) {
                     // Handle error: Widget not found
-                    QMessageBox::critical(this, "Erro", "Não foi possível encontrar o widget textEdit_Offset" + index);
+                    QMessageBox::critical(this, "Erro", "Não foi possível encontrar o widget doubleSpinBox_Offset" + index);
                     return;
                 }
 
-                line += textEditOffset->toPlainText() + ";";
+                line += doubleSpinBoxOffset->text() + ";";
 
 
-                if (!textEditFator) {
+                if (!doubleSpinBoxFator) {
                     // Handle error: Widget not found
-                    QMessageBox::critical(this, "Erro", "Não foi possível encontrar o widget textEdit_Fator" + index);
+                    QMessageBox::critical(this, "Erro", "Não foi possível encontrar o widget doubleSpinBox_Fator" + index);
                     return;
                 }
 
-                line += textEditFator->toPlainText() + ";";
+                line += doubleSpinBoxFator->text() + ";";
 
 
                 if (!textEditUnidade) {
@@ -622,64 +622,64 @@ void GerirTipoMensagem::on_spinBox_valueChanged(int arg1)
         ui->textEdit_Nome1->hide();
         ui->spinBox_Inicial1->hide();
         ui->spinBox_Final1->hide();
-        ui->textEdit_Offset1->hide();
-        ui->textEdit_Fator1->hide();
+        ui->doubleSpinBox_Offset1->hide();
+        ui->doubleSpinBox_Fator1->hide();
         ui->textEdit_Unidade1->hide();
         //Campo 2
         ui->label2->hide();
         ui->textEdit_Nome2->hide();
         ui->spinBox_Inicial2->hide();
         ui->spinBox_Final2->hide();
-        ui->textEdit_Offset2->hide();
-        ui->textEdit_Fator2->hide();
+        ui->doubleSpinBox_Offset2->hide();
+        ui->doubleSpinBox_Fator2->hide();
         ui->textEdit_Unidade2->hide();
         //Campo 3
         ui->label3->hide();
         ui->textEdit_Nome3->hide();
         ui->spinBox_Inicial3->hide();
         ui->spinBox_Final3->hide();
-        ui->textEdit_Offset3->hide();
-        ui->textEdit_Fator3->hide();
+        ui->doubleSpinBox_Offset3->hide();
+        ui->doubleSpinBox_Fator3->hide();
         ui->textEdit_Unidade3->hide();
         //Campo 4
         ui->label4->hide();
         ui->textEdit_Nome4->hide();
         ui->spinBox_Inicial4->hide();
         ui->spinBox_Final4->hide();
-        ui->textEdit_Offset4->hide();
-        ui->textEdit_Fator4->hide();
+        ui->doubleSpinBox_Offset4->hide();
+        ui->doubleSpinBox_Fator4->hide();
         ui->textEdit_Unidade4->hide();
         //Campo 5
         ui->label5->hide();
         ui->textEdit_Nome5->hide();
         ui->spinBox_Inicial5->hide();
         ui->spinBox_Final5->hide();
-        ui->textEdit_Offset5->hide();
-        ui->textEdit_Fator5->hide();
+        ui->doubleSpinBox_Offset5->hide();
+        ui->doubleSpinBox_Fator5->hide();
         ui->textEdit_Unidade5->hide();
         //Campo 6
         ui->label6->hide();
         ui->textEdit_Nome6->hide();
         ui->spinBox_Inicial6->hide();
         ui->spinBox_Final6->hide();
-        ui->textEdit_Offset6->hide();
-        ui->textEdit_Fator6->hide();
+        ui->doubleSpinBox_Offset6->hide();
+        ui->doubleSpinBox_Fator6->hide();
         ui->textEdit_Unidade6->hide();
         //Campo 7
         ui->label7->hide();
         ui->textEdit_Nome7->hide();
         ui->spinBox_Inicial7->hide();
         ui->spinBox_Final7->hide();
-        ui->textEdit_Offset7->hide();
-        ui->textEdit_Fator7->hide();
+        ui->doubleSpinBox_Offset7->hide();
+        ui->doubleSpinBox_Fator7->hide();
         ui->textEdit_Unidade7->hide();
         //Campo 8
         ui->label8->hide();
         ui->textEdit_Nome8->hide();
         ui->spinBox_Inicial8->hide();
         ui->spinBox_Final8->hide();
-        ui->textEdit_Offset8->hide();
-        ui->textEdit_Fator8->hide();
+        ui->doubleSpinBox_Offset8->hide();
+        ui->doubleSpinBox_Fator8->hide();
         ui->textEdit_Unidade8->hide();
         break;
     case 1:
@@ -698,64 +698,64 @@ void GerirTipoMensagem::on_spinBox_valueChanged(int arg1)
         ui->textEdit_Nome1->show();
         ui->spinBox_Inicial1->show();
         ui->spinBox_Final1->show();
-        ui->textEdit_Offset1->show();
-        ui->textEdit_Fator1->show();
+        ui->doubleSpinBox_Offset1->show();
+        ui->doubleSpinBox_Fator1->show();
         ui->textEdit_Unidade1->show();
         //Campo 2
         ui->label2->hide();
         ui->textEdit_Nome2->hide();
         ui->spinBox_Inicial2->hide();
         ui->spinBox_Final2->hide();
-        ui->textEdit_Offset2->hide();
-        ui->textEdit_Fator2->hide();
+        ui->doubleSpinBox_Offset2->hide();
+        ui->doubleSpinBox_Fator2->hide();
         ui->textEdit_Unidade2->hide();
         //Campo 3
         ui->label3->hide();
         ui->textEdit_Nome3->hide();
         ui->spinBox_Inicial3->hide();
         ui->spinBox_Final3->hide();
-        ui->textEdit_Offset3->hide();
-        ui->textEdit_Fator3->hide();
+        ui->doubleSpinBox_Offset3->hide();
+        ui->doubleSpinBox_Fator3->hide();
         ui->textEdit_Unidade3->hide();
         //Campo 4
         ui->label4->hide();
         ui->textEdit_Nome4->hide();
         ui->spinBox_Inicial4->hide();
         ui->spinBox_Final4->hide();
-        ui->textEdit_Offset4->hide();
-        ui->textEdit_Fator4->hide();
+        ui->doubleSpinBox_Offset4->hide();
+        ui->doubleSpinBox_Fator4->hide();
         ui->textEdit_Unidade4->hide();
         //Campo 5
         ui->label5->hide();
         ui->textEdit_Nome5->hide();
         ui->spinBox_Inicial5->hide();
         ui->spinBox_Final5->hide();
-        ui->textEdit_Offset5->hide();
-        ui->textEdit_Fator5->hide();
+        ui->doubleSpinBox_Offset5->hide();
+        ui->doubleSpinBox_Fator5->hide();
         ui->textEdit_Unidade5->hide();
         //Campo 6
         ui->label6->hide();
         ui->textEdit_Nome6->hide();
         ui->spinBox_Inicial6->hide();
         ui->spinBox_Final6->hide();
-        ui->textEdit_Offset6->hide();
-        ui->textEdit_Fator6->hide();
+        ui->doubleSpinBox_Offset6->hide();
+        ui->doubleSpinBox_Fator6->hide();
         ui->textEdit_Unidade6->hide();
         //Campo 7
         ui->label7->hide();
         ui->textEdit_Nome7->hide();
         ui->spinBox_Inicial7->hide();
         ui->spinBox_Final7->hide();
-        ui->textEdit_Offset7->hide();
-        ui->textEdit_Fator7->hide();
+        ui->doubleSpinBox_Offset7->hide();
+        ui->doubleSpinBox_Fator7->hide();
         ui->textEdit_Unidade7->hide();
         //Campo 8
         ui->label8->hide();
         ui->textEdit_Nome8->hide();
         ui->spinBox_Inicial8->hide();
         ui->spinBox_Final8->hide();
-        ui->textEdit_Offset8->hide();
-        ui->textEdit_Fator8->hide();
+        ui->doubleSpinBox_Offset8->hide();
+        ui->doubleSpinBox_Fator8->hide();
         ui->textEdit_Unidade8->hide();
         break;
     case 2:
@@ -776,64 +776,64 @@ void GerirTipoMensagem::on_spinBox_valueChanged(int arg1)
         ui->textEdit_Nome1->show();
         ui->spinBox_Inicial1->show();
         ui->spinBox_Final1->show();
-        ui->textEdit_Offset1->show();
-        ui->textEdit_Fator1->show();
+        ui->doubleSpinBox_Offset1->show();
+        ui->doubleSpinBox_Fator1->show();
         ui->textEdit_Unidade1->show();
         //Campo 2
         ui->label2->show();
         ui->textEdit_Nome2->show();
         ui->spinBox_Inicial2->show();
         ui->spinBox_Final2->show();
-        ui->textEdit_Offset2->show();
-        ui->textEdit_Fator2->show();
+        ui->doubleSpinBox_Offset2->show();
+        ui->doubleSpinBox_Fator2->show();
         ui->textEdit_Unidade2->show();
         //Campo 3
         ui->label3->hide();
         ui->textEdit_Nome3->hide();
         ui->spinBox_Inicial3->hide();
         ui->spinBox_Final3->hide();
-        ui->textEdit_Offset3->hide();
-        ui->textEdit_Fator3->hide();
+        ui->doubleSpinBox_Offset3->hide();
+        ui->doubleSpinBox_Fator3->hide();
         ui->textEdit_Unidade3->hide();
         //Campo 4
         ui->label4->hide();
         ui->textEdit_Nome4->hide();
         ui->spinBox_Inicial4->hide();
         ui->spinBox_Final4->hide();
-        ui->textEdit_Offset4->hide();
-        ui->textEdit_Fator4->hide();
+        ui->doubleSpinBox_Offset4->hide();
+        ui->doubleSpinBox_Fator4->hide();
         ui->textEdit_Unidade4->hide();
         //Campo 5
         ui->label5->hide();
         ui->textEdit_Nome5->hide();
         ui->spinBox_Inicial5->hide();
         ui->spinBox_Final5->hide();
-        ui->textEdit_Offset5->hide();
-        ui->textEdit_Fator5->hide();
+        ui->doubleSpinBox_Offset5->hide();
+        ui->doubleSpinBox_Fator5->hide();
         ui->textEdit_Unidade5->hide();
         //Campo 6
         ui->label6->hide();
         ui->textEdit_Nome6->hide();
         ui->spinBox_Inicial6->hide();
         ui->spinBox_Final6->hide();
-        ui->textEdit_Offset6->hide();
-        ui->textEdit_Fator6->hide();
+        ui->doubleSpinBox_Offset6->hide();
+        ui->doubleSpinBox_Fator6->hide();
         ui->textEdit_Unidade6->hide();
         //Campo 7
         ui->label7->hide();
         ui->textEdit_Nome7->hide();
         ui->spinBox_Inicial7->hide();
         ui->spinBox_Final7->hide();
-        ui->textEdit_Offset7->hide();
-        ui->textEdit_Fator7->hide();
+        ui->doubleSpinBox_Offset7->hide();
+        ui->doubleSpinBox_Fator7->hide();
         ui->textEdit_Unidade7->hide();
         //Campo 8
         ui->label8->hide();
         ui->textEdit_Nome8->hide();
         ui->spinBox_Inicial8->hide();
         ui->spinBox_Final8->hide();
-        ui->textEdit_Offset8->hide();
-        ui->textEdit_Fator8->hide();
+        ui->doubleSpinBox_Offset8->hide();
+        ui->doubleSpinBox_Fator8->hide();
         ui->textEdit_Unidade8->hide();
         break;
 
@@ -857,64 +857,64 @@ void GerirTipoMensagem::on_spinBox_valueChanged(int arg1)
         ui->textEdit_Nome1->show();
         ui->spinBox_Inicial1->show();
         ui->spinBox_Final1->show();
-        ui->textEdit_Offset1->show();
-        ui->textEdit_Fator1->show();
+        ui->doubleSpinBox_Offset1->show();
+        ui->doubleSpinBox_Fator1->show();
         ui->textEdit_Unidade1->show();
         //Campo 2
         ui->label2->show();
         ui->textEdit_Nome2->show();
         ui->spinBox_Inicial2->show();
         ui->spinBox_Final2->show();
-        ui->textEdit_Offset2->show();
-        ui->textEdit_Fator2->show();
+        ui->doubleSpinBox_Offset2->show();
+        ui->doubleSpinBox_Fator2->show();
         ui->textEdit_Unidade2->show();
         //Campo 3
         ui->label3->show();
         ui->textEdit_Nome3->show();
         ui->spinBox_Inicial3->show();
         ui->spinBox_Final3->show();
-        ui->textEdit_Offset3->show();
-        ui->textEdit_Fator3->show();
+        ui->doubleSpinBox_Offset3->show();
+        ui->doubleSpinBox_Fator3->show();
         ui->textEdit_Unidade3->show();
         //Campo 4
         ui->label4->hide();
         ui->textEdit_Nome4->hide();
         ui->spinBox_Inicial4->hide();
         ui->spinBox_Final4->hide();
-        ui->textEdit_Offset4->hide();
-        ui->textEdit_Fator4->hide();
+        ui->doubleSpinBox_Offset4->hide();
+        ui->doubleSpinBox_Fator4->hide();
         ui->textEdit_Unidade4->hide();
         //Campo 5
         ui->label5->hide();
         ui->textEdit_Nome5->hide();
         ui->spinBox_Inicial5->hide();
         ui->spinBox_Final5->hide();
-        ui->textEdit_Offset5->hide();
-        ui->textEdit_Fator5->hide();
+        ui->doubleSpinBox_Offset5->hide();
+        ui->doubleSpinBox_Fator5->hide();
         ui->textEdit_Unidade5->hide();
         //Campo 6
         ui->label6->hide();
         ui->textEdit_Nome6->hide();
         ui->spinBox_Inicial6->hide();
         ui->spinBox_Final6->hide();
-        ui->textEdit_Offset6->hide();
-        ui->textEdit_Fator6->hide();
+        ui->doubleSpinBox_Offset6->hide();
+        ui->doubleSpinBox_Fator6->hide();
         ui->textEdit_Unidade6->hide();
         //Campo 7
         ui->label7->hide();
         ui->textEdit_Nome7->hide();
         ui->spinBox_Inicial7->hide();
         ui->spinBox_Final7->hide();
-        ui->textEdit_Offset7->hide();
-        ui->textEdit_Fator7->hide();
+        ui->doubleSpinBox_Offset7->hide();
+        ui->doubleSpinBox_Fator7->hide();
         ui->textEdit_Unidade7->hide();
         //Campo 8
         ui->label8->hide();
         ui->textEdit_Nome8->hide();
         ui->spinBox_Inicial8->hide();
         ui->spinBox_Final8->hide();
-        ui->textEdit_Offset8->hide();
-        ui->textEdit_Fator8->hide();
+        ui->doubleSpinBox_Offset8->hide();
+        ui->doubleSpinBox_Fator8->hide();
         ui->textEdit_Unidade8->hide();
         break;
     case 4:
@@ -939,64 +939,64 @@ void GerirTipoMensagem::on_spinBox_valueChanged(int arg1)
         ui->textEdit_Nome1->show();
         ui->spinBox_Inicial1->show();
         ui->spinBox_Final1->show();
-        ui->textEdit_Offset1->show();
-        ui->textEdit_Fator1->show();
+        ui->doubleSpinBox_Offset1->show();
+        ui->doubleSpinBox_Fator1->show();
         ui->textEdit_Unidade1->show();
         //Campo 2
         ui->label2->show();
         ui->textEdit_Nome2->show();
         ui->spinBox_Inicial2->show();
         ui->spinBox_Final2->show();
-        ui->textEdit_Offset2->show();
-        ui->textEdit_Fator2->show();
+        ui->doubleSpinBox_Offset2->show();
+        ui->doubleSpinBox_Fator2->show();
         ui->textEdit_Unidade2->show();
         //Campo 3
         ui->label3->show();
         ui->textEdit_Nome3->show();
         ui->spinBox_Inicial3->show();
         ui->spinBox_Final3->show();
-        ui->textEdit_Offset3->show();
-        ui->textEdit_Fator3->show();
+        ui->doubleSpinBox_Offset3->show();
+        ui->doubleSpinBox_Fator3->show();
         ui->textEdit_Unidade3->show();
         //Campo 4
         ui->label4->show();
         ui->textEdit_Nome4->show();
         ui->spinBox_Inicial4->show();
         ui->spinBox_Final4->show();
-        ui->textEdit_Offset4->show();
-        ui->textEdit_Fator4->show();
+        ui->doubleSpinBox_Offset4->show();
+        ui->doubleSpinBox_Fator4->show();
         ui->textEdit_Unidade4->show();
         //Campo 5
         ui->label5->hide();
         ui->textEdit_Nome5->hide();
         ui->spinBox_Inicial5->hide();
         ui->spinBox_Final5->hide();
-        ui->textEdit_Offset5->hide();
-        ui->textEdit_Fator5->hide();
+        ui->doubleSpinBox_Offset5->hide();
+        ui->doubleSpinBox_Fator5->hide();
         ui->textEdit_Unidade5->hide();
         //Campo 6
         ui->label6->hide();
         ui->textEdit_Nome6->hide();
         ui->spinBox_Inicial6->hide();
         ui->spinBox_Final6->hide();
-        ui->textEdit_Offset6->hide();
-        ui->textEdit_Fator6->hide();
+        ui->doubleSpinBox_Offset6->hide();
+        ui->doubleSpinBox_Fator6->hide();
         ui->textEdit_Unidade6->hide();
         //Campo 7
         ui->label7->hide();
         ui->textEdit_Nome7->hide();
         ui->spinBox_Inicial7->hide();
         ui->spinBox_Final7->hide();
-        ui->textEdit_Offset7->hide();
-        ui->textEdit_Fator7->hide();
+        ui->doubleSpinBox_Offset7->hide();
+        ui->doubleSpinBox_Fator7->hide();
         ui->textEdit_Unidade7->hide();
         //Campo 8
         ui->label8->hide();
         ui->textEdit_Nome8->hide();
         ui->spinBox_Inicial8->hide();
         ui->spinBox_Final8->hide();
-        ui->textEdit_Offset8->hide();
-        ui->textEdit_Fator8->hide();
+        ui->doubleSpinBox_Offset8->hide();
+        ui->doubleSpinBox_Fator8->hide();
         ui->textEdit_Unidade8->hide();
         break;
     case 5:
@@ -1023,64 +1023,64 @@ void GerirTipoMensagem::on_spinBox_valueChanged(int arg1)
         ui->textEdit_Nome1->show();
         ui->spinBox_Inicial1->show();
         ui->spinBox_Final1->show();
-        ui->textEdit_Offset1->show();
-        ui->textEdit_Fator1->show();
+        ui->doubleSpinBox_Offset1->show();
+        ui->doubleSpinBox_Fator1->show();
         ui->textEdit_Unidade1->show();
         //Campo 2
         ui->label2->show();
         ui->textEdit_Nome2->show();
         ui->spinBox_Inicial2->show();
         ui->spinBox_Final2->show();
-        ui->textEdit_Offset2->show();
-        ui->textEdit_Fator2->show();
+        ui->doubleSpinBox_Offset2->show();
+        ui->doubleSpinBox_Fator2->show();
         ui->textEdit_Unidade2->show();
         //Campo 3
         ui->label3->show();
         ui->textEdit_Nome3->show();
         ui->spinBox_Inicial3->show();
         ui->spinBox_Final3->show();
-        ui->textEdit_Offset3->show();
-        ui->textEdit_Fator3->show();
+        ui->doubleSpinBox_Offset3->show();
+        ui->doubleSpinBox_Fator3->show();
         ui->textEdit_Unidade3->show();
         //Campo 4
         ui->label4->show();
         ui->textEdit_Nome4->show();
         ui->spinBox_Inicial4->show();
         ui->spinBox_Final4->show();
-        ui->textEdit_Offset4->show();
-        ui->textEdit_Fator4->show();
+        ui->doubleSpinBox_Offset4->show();
+        ui->doubleSpinBox_Fator4->show();
         ui->textEdit_Unidade4->show();
         //Campo 5
         ui->label5->show();
         ui->textEdit_Nome5->show();
         ui->spinBox_Inicial5->show();
         ui->spinBox_Final5->show();
-        ui->textEdit_Offset5->show();
-        ui->textEdit_Fator5->show();
+        ui->doubleSpinBox_Offset5->show();
+        ui->doubleSpinBox_Fator5->show();
         ui->textEdit_Unidade5->show();
         //Campo 6
         ui->label6->hide();
         ui->textEdit_Nome6->hide();
         ui->spinBox_Inicial6->hide();
         ui->spinBox_Final6->hide();
-        ui->textEdit_Offset6->hide();
-        ui->textEdit_Fator6->hide();
+        ui->doubleSpinBox_Offset6->hide();
+        ui->doubleSpinBox_Fator6->hide();
         ui->textEdit_Unidade6->hide();
         //Campo 7
         ui->label7->hide();
         ui->textEdit_Nome7->hide();
         ui->spinBox_Inicial7->hide();
         ui->spinBox_Final7->hide();
-        ui->textEdit_Offset7->hide();
-        ui->textEdit_Fator7->hide();
+        ui->doubleSpinBox_Offset7->hide();
+        ui->doubleSpinBox_Fator7->hide();
         ui->textEdit_Unidade7->hide();
         //Campo 8
         ui->label8->hide();
         ui->textEdit_Nome8->hide();
         ui->spinBox_Inicial8->hide();
         ui->spinBox_Final8->hide();
-        ui->textEdit_Offset8->hide();
-        ui->textEdit_Fator8->hide();
+        ui->doubleSpinBox_Offset8->hide();
+        ui->doubleSpinBox_Fator8->hide();
         ui->textEdit_Unidade8->hide();
         break;
     case 6:
@@ -1109,64 +1109,64 @@ void GerirTipoMensagem::on_spinBox_valueChanged(int arg1)
         ui->textEdit_Nome1->show();
         ui->spinBox_Inicial1->show();
         ui->spinBox_Final1->show();
-        ui->textEdit_Offset1->show();
-        ui->textEdit_Fator1->show();
+        ui->doubleSpinBox_Offset1->show();
+        ui->doubleSpinBox_Fator1->show();
         ui->textEdit_Unidade1->show();
         //Campo 2
         ui->label2->show();
         ui->textEdit_Nome2->show();
         ui->spinBox_Inicial2->show();
         ui->spinBox_Final2->show();
-        ui->textEdit_Offset2->show();
-        ui->textEdit_Fator2->show();
+        ui->doubleSpinBox_Offset2->show();
+        ui->doubleSpinBox_Fator2->show();
         ui->textEdit_Unidade2->show();
         //Campo 3
         ui->label3->show();
         ui->textEdit_Nome3->show();
         ui->spinBox_Inicial3->show();
         ui->spinBox_Final3->show();
-        ui->textEdit_Offset3->show();
-        ui->textEdit_Fator3->show();
+        ui->doubleSpinBox_Offset3->show();
+        ui->doubleSpinBox_Fator3->show();
         ui->textEdit_Unidade3->show();
         //Campo 4
         ui->label4->show();
         ui->textEdit_Nome4->show();
         ui->spinBox_Inicial4->show();
         ui->spinBox_Final4->show();
-        ui->textEdit_Offset4->show();
-        ui->textEdit_Fator4->show();
+        ui->doubleSpinBox_Offset4->show();
+        ui->doubleSpinBox_Fator4->show();
         ui->textEdit_Unidade4->show();
         //Campo 5
         ui->label5->show();
         ui->textEdit_Nome5->show();
         ui->spinBox_Inicial5->show();
         ui->spinBox_Final5->show();
-        ui->textEdit_Offset5->show();
-        ui->textEdit_Fator5->show();
+        ui->doubleSpinBox_Offset5->show();
+        ui->doubleSpinBox_Fator5->show();
         ui->textEdit_Unidade5->show();
         //Campo 6
         ui->label6->show();
         ui->textEdit_Nome6->show();
         ui->spinBox_Inicial6->show();
         ui->spinBox_Final6->show();
-        ui->textEdit_Offset6->show();
-        ui->textEdit_Fator6->show();
+        ui->doubleSpinBox_Offset6->show();
+        ui->doubleSpinBox_Fator6->show();
         ui->textEdit_Unidade6->show();
         //Campo 7
         ui->label7->hide();
         ui->textEdit_Nome7->hide();
         ui->spinBox_Inicial7->hide();
         ui->spinBox_Final7->hide();
-        ui->textEdit_Offset7->hide();
-        ui->textEdit_Fator7->hide();
+        ui->doubleSpinBox_Offset7->hide();
+        ui->doubleSpinBox_Fator7->hide();
         ui->textEdit_Unidade7->hide();
         //Campo 8
         ui->label8->hide();
         ui->textEdit_Nome8->hide();
         ui->spinBox_Inicial8->hide();
         ui->spinBox_Final8->hide();
-        ui->textEdit_Offset8->hide();
-        ui->textEdit_Fator8->hide();
+        ui->doubleSpinBox_Offset8->hide();
+        ui->doubleSpinBox_Fator8->hide();
         ui->textEdit_Unidade8->hide();
         break;
     case 7:
@@ -1197,64 +1197,64 @@ void GerirTipoMensagem::on_spinBox_valueChanged(int arg1)
         ui->textEdit_Nome1->show();
         ui->spinBox_Inicial1->show();
         ui->spinBox_Final1->show();
-        ui->textEdit_Offset1->show();
-        ui->textEdit_Fator1->show();
+        ui->doubleSpinBox_Offset1->show();
+        ui->doubleSpinBox_Fator1->show();
         ui->textEdit_Unidade1->show();
         //Campo 2
         ui->label2->show();
         ui->textEdit_Nome2->show();
         ui->spinBox_Inicial2->show();
         ui->spinBox_Final2->show();
-        ui->textEdit_Offset2->show();
-        ui->textEdit_Fator2->show();
+        ui->doubleSpinBox_Offset2->show();
+        ui->doubleSpinBox_Fator2->show();
         ui->textEdit_Unidade2->show();
         //Campo 3
         ui->label3->show();
         ui->textEdit_Nome3->show();
         ui->spinBox_Inicial3->show();
         ui->spinBox_Final3->show();
-        ui->textEdit_Offset3->show();
-        ui->textEdit_Fator3->show();
+        ui->doubleSpinBox_Offset3->show();
+        ui->doubleSpinBox_Fator3->show();
         ui->textEdit_Unidade3->show();
         //Campo 4
         ui->label4->show();
         ui->textEdit_Nome4->show();
         ui->spinBox_Inicial4->show();
         ui->spinBox_Final4->show();
-        ui->textEdit_Offset4->show();
-        ui->textEdit_Fator4->show();
+        ui->doubleSpinBox_Offset4->show();
+        ui->doubleSpinBox_Fator4->show();
         ui->textEdit_Unidade4->show();
         //Campo 5
         ui->label5->show();
         ui->textEdit_Nome5->show();
         ui->spinBox_Inicial5->show();
         ui->spinBox_Final5->show();
-        ui->textEdit_Offset5->show();
-        ui->textEdit_Fator5->show();
+        ui->doubleSpinBox_Offset5->show();
+        ui->doubleSpinBox_Fator5->show();
         ui->textEdit_Unidade5->show();
         //Campo 6
         ui->label6->show();
         ui->textEdit_Nome6->show();
         ui->spinBox_Inicial6->show();
         ui->spinBox_Final6->show();
-        ui->textEdit_Offset6->show();
-        ui->textEdit_Fator6->show();
+        ui->doubleSpinBox_Offset6->show();
+        ui->doubleSpinBox_Fator6->show();
         ui->textEdit_Unidade6->show();
         //Campo 7
         ui->label7->show();
         ui->textEdit_Nome7->show();
         ui->spinBox_Inicial7->show();
         ui->spinBox_Final7->show();
-        ui->textEdit_Offset7->show();
-        ui->textEdit_Fator7->show();
+        ui->doubleSpinBox_Offset7->show();
+        ui->doubleSpinBox_Fator7->show();
         ui->textEdit_Unidade7->show();
         //Campo 8
         ui->label8->hide();
         ui->textEdit_Nome8->hide();
         ui->spinBox_Inicial8->hide();
         ui->spinBox_Final8->hide();
-        ui->textEdit_Offset8->hide();
-        ui->textEdit_Fator8->hide();
+        ui->doubleSpinBox_Offset8->hide();
+        ui->doubleSpinBox_Fator8->hide();
         ui->textEdit_Unidade8->hide();
         break;
 
@@ -1288,64 +1288,64 @@ void GerirTipoMensagem::on_spinBox_valueChanged(int arg1)
         ui->textEdit_Nome1->show();
         ui->spinBox_Inicial1->show();
         ui->spinBox_Final1->show();
-        ui->textEdit_Offset1->show();
-        ui->textEdit_Fator1->show();
+        ui->doubleSpinBox_Offset1->show();
+        ui->doubleSpinBox_Fator1->show();
         ui->textEdit_Unidade1->show();
         //Campo 2
         ui->label2->show();
         ui->textEdit_Nome2->show();
         ui->spinBox_Inicial2->show();
         ui->spinBox_Final2->show();
-        ui->textEdit_Offset2->show();
-        ui->textEdit_Fator2->show();
+        ui->doubleSpinBox_Offset2->show();
+        ui->doubleSpinBox_Fator2->show();
         ui->textEdit_Unidade2->show();
         //Campo 3
         ui->label3->show();
         ui->textEdit_Nome3->show();
         ui->spinBox_Inicial3->show();
         ui->spinBox_Final3->show();
-        ui->textEdit_Offset3->show();
-        ui->textEdit_Fator3->show();
+        ui->doubleSpinBox_Offset3->show();
+        ui->doubleSpinBox_Fator3->show();
         ui->textEdit_Unidade3->show();
         //Campo 4
         ui->label4->show();
         ui->textEdit_Nome4->show();
         ui->spinBox_Inicial4->show();
         ui->spinBox_Final4->show();
-        ui->textEdit_Offset4->show();
-        ui->textEdit_Fator4->show();
+        ui->doubleSpinBox_Offset4->show();
+        ui->doubleSpinBox_Fator4->show();
         ui->textEdit_Unidade4->show();
         //Campo 5
         ui->label5->show();
         ui->textEdit_Nome5->show();
         ui->spinBox_Inicial5->show();
         ui->spinBox_Final5->show();
-        ui->textEdit_Offset5->show();
-        ui->textEdit_Fator5->show();
+        ui->doubleSpinBox_Offset5->show();
+        ui->doubleSpinBox_Fator5->show();
         ui->textEdit_Unidade5->show();
         //Campo 6
         ui->label6->show();
         ui->textEdit_Nome6->show();
         ui->spinBox_Inicial6->show();
         ui->spinBox_Final6->show();
-        ui->textEdit_Offset6->show();
-        ui->textEdit_Fator6->show();
+        ui->doubleSpinBox_Offset6->show();
+        ui->doubleSpinBox_Fator6->show();
         ui->textEdit_Unidade6->show();
         //Campo 7
         ui->label7->show();
         ui->textEdit_Nome7->show();
         ui->spinBox_Inicial7->show();
         ui->spinBox_Final7->show();
-        ui->textEdit_Offset7->show();
-        ui->textEdit_Fator7->show();
+        ui->doubleSpinBox_Offset7->show();
+        ui->doubleSpinBox_Fator7->show();
         ui->textEdit_Unidade7->show();
         //Campo 8
         ui->label8->show();
         ui->textEdit_Nome8->show();
         ui->spinBox_Inicial8->show();
         ui->spinBox_Final8->show();
-        ui->textEdit_Offset8->show();
-        ui->textEdit_Fator8->show();
+        ui->doubleSpinBox_Offset8->show();
+        ui->doubleSpinBox_Fator8->show();
         ui->textEdit_Unidade8->show();
         break;
     }

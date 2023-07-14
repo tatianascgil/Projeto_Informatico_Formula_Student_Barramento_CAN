@@ -156,7 +156,7 @@ void GerirModulo::handleDoubleClick(const QModelIndex& index)
     // Check if the double-clicked cell is in the second column
     if (index.isValid()) {
         int column = index.column();
-        if(column == 1){
+        if (column == 1) {
             // Get the current value of the double-clicked cell
             QAbstractItemModel* model = ui->tableViewModulosCarro->model();
             QVariant currentValue = model->data(index);
@@ -164,7 +164,7 @@ void GerirModulo::handleDoubleClick(const QModelIndex& index)
             // Display a dialog to let the user choose from the available options
             bool ok;
             QStringList endianOptions = {"Little Endian", "Big Endian"};
-            QString selectedEndian = QInputDialog::getItem(this, tr("Select Endianess"), tr("Choose the Endianess:"), endianOptions, endianOptions.indexOf(currentValue), false, &ok);
+            QString selectedEndian = QInputDialog::getItem(this, tr("Selecionar Endianess"), tr("Escolha a Endianess:"), endianOptions, endianOptions.indexOf(currentValue), false, &ok, Qt::WindowFlags(), Qt::ImhNone);
             if (ok) {
                 // Update the selected value in the QTableView
                 model->setData(index, selectedEndian);

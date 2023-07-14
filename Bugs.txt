@@ -45,12 +45,21 @@ Tabela de Dados:
   -> Não está a converter o código em Hexadecimal (Resolvido)
 
 ______________________________________________________________________________________
-
-Limitar ate 7FF
-
+Falta:
+5.	Tornar padrão a localização do primeiro ficheiro raw carregado;
+6.	Remover a opção de criar um espaçamento grande (tab) em todos os campos de texto da aplicação;
+Ao duplicar carro, esta a escrever partes da sobservações
+Mudar endianess está em ingles, gerir modullo
+Ver as janelas que estão hidden
+mudar offset e fator para spinBox
+se a primeira linha nbao tiver o formato, enviar erro
+guardar a uultima localizacao carregada do ficheiro
 
 : acrescentados à timestamp;
+adicionar os headers relacionados com os campos
 Duplicar carro em vez de duplicar pasta
 Conversões na tabela de dados, aplicavam primeiro o fator multiplicativo, em vez do offset
 0x na tabela de tipos de mensagem
 Editar observações com qDialog maior. Impedir ENTER
+Filtragem por modulos desconhecidos
+Limitar ate 7FF, uma vez que o id só tem 11 bits.

@@ -24,9 +24,9 @@ public slots:
     void setCampos(int index);
 
 private slots:
-    long bigEndianConversion(const QStringList& fieldValues);
+    double bigEndianConversion(const QStringList& fieldValues);
 
-    long littleEndianConversion(const QStringList& fieldValues);
+    double littleEndianConversion(const QStringList& fieldValues);
 
     void filtrarComboBoxs();
 

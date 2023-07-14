@@ -47,6 +47,7 @@ private:
     QString loadLastSelectedOption();
     void saveLastSelectedOption(const QString& selectedOption);
     void handleComboBoxIndexChanged(int index);
+    QString lastOpenedDirectory;
 };
 
 #endif // MAINWINDOW_H

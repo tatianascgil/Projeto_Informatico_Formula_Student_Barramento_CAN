@@ -62,6 +62,10 @@ MainWindow::MainWindow(QWidget *parent)
         saveLastSelectedOption(selectedOption);
     });
 
+    // Initialize lastOpenedDirectory from the application settings
+    QSettings settings("FSIPLeiria", "FSIPLeiria");
+    lastOpenedDirectory = settings.value("lastOpenedDirectory", QDir::homePath()).toString();
+        qDebug() << "Initial lastOpenedDirectory:" << lastOpenedDirectory;
 
 }
 
@@ -271,18 +275,24 @@ void MainWindow::on_btnDuplicarCarro_clicked()
 
 void MainWindow::on_btnTabelaDados_clicked()
 {
+    QString initialDirectory = lastOpenedDirectory.isEmpty() ? QDir::homePath() : lastOpenedDirectory;
 
-    QString filePath = QFileDialog::getOpenFileName(this, "Selecione um ficheiro", QDir::homePath(), "Text Files (*.txt)");
+    QString filePath = QFileDialog::getOpenFileName(this, "Selecione um ficheiro", initialDirectory, "Text Files (*.txt)");
 
     QFile file(filePath);
     if (file.open(QIODevice::ReadOnly | QIODevice::Text)) {
         const int tabelaDadosWidth = 1000;
         const int tabelaDadosHeight = 700;
 
-        // Cria a janela principal
-        TabelaDados *tabelaDados = new TabelaDados();
+        // Update the lastOpenedDirectory with the selected file's directory
+        lastOpenedDirectory = QFileInfo(filePath).absolutePath();
+        qDebug() << "lastOpenedDirectory:" << lastOpenedDirectory;
 
-        // Define o tamanho mínimo e máximo da janela
+        // Save lastOpenedDirectory in the application settings
+        QSettings settings("FSIPLeiria", "FSIPLeiria");
+        settings.setValue("lastOpenedDirectory", lastOpenedDirectory);
+
+        TabelaDados *tabelaDados = new TabelaDados();
         tabelaDados->setMinimumSize(tabelaDadosWidth, tabelaDadosHeight);
         tabelaDados->setMaximumSize(tabelaDadosWidth, tabelaDadosHeight);
 
@@ -293,5 +303,4 @@ void MainWindow::on_btnTabelaDados_clicked()
         tabelaDados->show();
         this->close();
     }
-
 }

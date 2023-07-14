@@ -174,36 +174,48 @@ void TabelaDados::setCampos(int index){
 
 
 
-long TabelaDados::littleEndianConversion(const QStringList& fieldValues)
+double TabelaDados::littleEndianConversion(const QStringList& fieldValues)
 {
     QStringList binaryValues;
     QString line;
+    qDebug() << "fieldValues" << fieldValues;
 
     for (int i = 0; i < fieldValues.length(); i++)
     {
         QString binary = QString::number(fieldValues[i].toInt(), 2).rightJustified(8, '0');
+        qDebug() << "binary" << binary;
         binaryValues.append(binary);
+        qDebug() << "binaryValues" << binaryValues;
         line += binary;
+
     }
 
-    long decimalValue = line.toInt(nullptr, 2);
+
+    double decimalValue = line.toInt(nullptr, 2);
+    qDebug() << "decimalValue" << decimalValue;
 
     return decimalValue;
 }
 
-long TabelaDados::bigEndianConversion(const QStringList& fieldValues)
+double TabelaDados::bigEndianConversion(const QStringList& fieldValues)
 {
     QStringList binaryValues;
     QString line;
+    qDebug() << "fieldValues" << fieldValues;
 
     for (int i = fieldValues.length() - 1; i >= 0; i--)
     {
         QString binary = QString::number(fieldValues[i].toInt(), 2).rightJustified(8, '0');
+        qDebug() << "binary" << binary;
         binaryValues.append(binary);
+        qDebug() << "binaryValues" << binaryValues;
         line += binary;
+        qDebug() << "line" << line;
     }
 
-    long decimalValue = line.toInt(nullptr, 2);
+//    float decimalValue = QString::number(line.toFloat(), 'f', 2).toFloat();
+    double decimalValue = line.toInt(nullptr, 2);
+    qDebug() << "decimalValue" << decimalValue;
 
     return decimalValue;
 }
@@ -218,6 +230,7 @@ void TabelaDados::loadMensagens(const QString& filePath) {
     QString folderPath = targetDir + "/" + folderName;
     QFile file(filePath);
     if (file.open(QIODevice::ReadOnly | QIODevice::Text)) {
+
         QTextStream in(&file);
         model = new QStandardItemModel(this);
 
@@ -309,7 +322,7 @@ void TabelaDados::loadMensagens(const QString& filePath) {
                 }
 
                 if (moduleNameMatch) {
-                    qDebug() << "Endianess:" << endianessValue;
+//                    qDebug() << "Endianess:" << endianessValue;
                     // Calculate byte length of each field
                     int fieldCount = tiposColumns[3].toInt();
                     int columnIndex = 2;
@@ -325,48 +338,124 @@ void TabelaDados::loadMensagens(const QString& filePath) {
                         QString factor = tiposColumns[8 + (j * 6)];
                         factor.replace(",",".");
 
+                        float offsetValue = QString(offset).toFloat();
+                        float factorValue = QString(factor).toFloat();
+                        qDebug() << "\noffsetValue:" << offsetValue;
+                        qDebug() << "factorValue:" << factorValue;
+
                         QString fieldValue;
-                        long fieldConversionResult;
+                        double fieldConversionResult;
+                        long finalResult;
                         if (byteLength == 1) {
+                            qDebug() << "\nbyteLength:" << byteLength;
                             fieldValue = columns[columnIndex++];
-                            fieldName += fieldValue + metric;
+                            fieldConversionResult = fieldValue.toFloat();
+                            qDebug() << "\nfieldConversionResult Before:" << fieldConversionResult;
+                            fieldConversionResult += offset.toFloat();
+                            fieldConversionResult *= factor.toFloat();
+                            qDebug() << "fieldConversionResult After:" << fieldConversionResult;
+
+                            QString formattedValue = QString::number(fieldConversionResult, 'f', 2);
+                            qDebug() << "formattedValue:" << formattedValue;
+                            if (formattedValue.endsWith("00")) {
+                                finalResult = static_cast<long>(fieldConversionResult);
+                                fieldName += QString::number(finalResult);
+                            } else {
+                                fieldName += formattedValue;
+                            }
+                            fieldName += metric;
+
                         } else {
                             QStringList fieldValues;
                             for (int k = 0; k < byteLength; k++) {
                                 fieldValues.prepend(columns[columnIndex++]);
                             }
-                            qDebug() << "Field Values:" << fieldValues;
+                            //                            qDebug() << "Field Values:" << fieldValues;
                             fieldValue = fieldValues.join("");
                             if (endianessValue == "Little Endian") {
+                                qDebug() << "endianessValue:" << endianessValue;
                                 fieldConversionResult = littleEndianConversion(fieldValues);
-                                qDebug() << "FieldConversionResult:" << fieldConversionResult;
                             } else {
+                                qDebug() << "\nendianessValue:" << endianessValue;
                                 fieldConversionResult = bigEndianConversion(fieldValues);
-                                qDebug() << "FieldConversionResult:" << fieldConversionResult;
                             }
 
-                            if(offset.isEmpty() && factor.isEmpty()){
-                                 fieldName += QString::number(fieldConversionResult);
+
+
+                            if (offsetValue == 0 && factorValue == 1) {
+                                fieldName += QString::number(fieldConversionResult, 'f', 2);
+                                qDebug() << "fieldValue:" << fieldConversionResult;
+                            } else if (offsetValue != 0 && factorValue != 1) {
+                                qDebug() << "\nfieldConversionResult Before:" << fieldConversionResult;
+                                fieldConversionResult += offsetValue;
+                                fieldConversionResult *= factorValue;
+                                qDebug() << "fieldConversionResult After:" << fieldConversionResult;
+
+                                QString formattedValue = QString::number(fieldConversionResult, 'f', 2);
+                                qDebug() << "formattedValue:" << formattedValue;
+                                if (formattedValue.endsWith("00")) {
+                                    finalResult = static_cast<long>(fieldConversionResult);
+                                    fieldName += QString::number(finalResult);
+                                } else {
+                                    fieldName += formattedValue;
+                                }
+
+//                                fieldName += QString::number(fieldConversionResult, 'f', 2);
+                            } else if (offsetValue != 0) {
+                                qDebug() << "\nfieldConversionResult Before:" << fieldConversionResult;
+                                fieldConversionResult += offsetValue;
+                                qDebug() << "fieldConversionResult After:" << fieldConversionResult;
+
+                                QString formattedValue = QString::number(fieldConversionResult, 'f', 2);
+                                qDebug() << "formattedValue:" << formattedValue;
+                                if (formattedValue.endsWith("00")) {
+                                    finalResult = static_cast<long>(fieldConversionResult);
+                                    fieldName += QString::number(finalResult);
+                                } else {
+                                    fieldName += formattedValue;
+                                }
+
+//                                fieldName += QString::number(fieldConversionResult, 'f', 2);
+                            } else if (factorValue != 1) {
+                                qDebug() << "\nfieldConversionResult Before:" << fieldConversionResult;
+                                fieldConversionResult *= factorValue;
+                                qDebug() << "fieldConversionResult After:" << fieldConversionResult;
+
+                                QString formattedValue = QString::number(fieldConversionResult, 'f', 2);
+                                qDebug() << "formattedValue:" << formattedValue;
+                                if (formattedValue.endsWith("00")) {
+                                    finalResult = static_cast<long>(fieldConversionResult);
+                                    fieldName += QString::number(finalResult);
+                                } else {
+                                    fieldName += formattedValue;
+                                }
+
+//                                fieldName += QString::number(fieldConversionResult, 'f', 2);
                             }
-                            else if(!offset.isEmpty() && !factor.isEmpty()){
-                                 fieldConversionResult += offset.toFloat();
-                                 fieldConversionResult *= factor.toFloat();
-                                 fieldName += QString::number(fieldConversionResult);
-                                 qDebug() << "Converted FieldConversionResult:" << fieldConversionResult;
-                                 qDebug() << "Offset:" << offset.toFloat() << " Factor:" << factor.toFloat() << "\n";
-                            }
-                            else if(!offset.isEmpty()){
-                                 fieldConversionResult += offset.toFloat();
-                                 fieldName += QString::number(fieldConversionResult);
-                                 qDebug() << "Converted FieldConversionResult:" << fieldConversionResult;
-                                 qDebug() << "Offset:" << offset.toFloat() << "\n";
-                            }
-                            else if(!factor.isEmpty()){
-                                 fieldConversionResult *= factor.toFloat();
-                                 fieldName += QString::number(fieldConversionResult);
-                                 qDebug() << "Converted FieldConversionResult:" << fieldConversionResult;
-                                 qDebug() << "Factor:" << factor.toFloat() << "\n";
-                            }
+
+
+//                            if(offset.isEmpty() && factor.isEmpty()){
+//                                fieldName += QString::number(fieldConversionResult, 'f', 2);
+//                            }
+//                            else if(!offset.isEmpty() && !factor.isEmpty()){
+//                                 fieldConversionResult += offset.toFloat();
+//                                 fieldConversionResult *= factor.toFloat();
+//                                 fieldName += QString::number(fieldConversionResult, 'f', 2);
+////                                 qDebug() << "Converted FieldConversionResult:" << fieldConversionResult;
+////                                 qDebug() << "Offset:" << offset.toFloat() << " Factor:" << factor.toFloat() << "\n";
+//                           }
+//                            else if(!offset.isEmpty()){
+//                                 fieldConversionResult += offset.toFloat();
+//                                 fieldName += QString::number(fieldConversionResult, 'f', 2);
+////                                 qDebug() << "Converted FieldConversionResult:" << fieldConversionResult;
+////                                 qDebug() << "Offset:" << offset.toFloat() << "\n";
+//                            }
+//                            else if(!factor.isEmpty()){
+//                                 fieldConversionResult *= factor.toFloat();
+//                                 fieldName += QString::number(fieldConversionResult, 'f', 2);
+////                                 qDebug() << "Converted FieldConversionResult:" << fieldConversionResult;
+////                                 qDebug() << "Factor:" << factor.toFloat() << "\n";
+//                            }
                             if(!metric.isEmpty()){
                                  fieldName += metric;
                             }
@@ -536,7 +625,7 @@ void TabelaDados::filtrarComboBoxs()
                     }else {
                         QList<QStandardItem*> rowItems;
                         for (int col = 0; col < model->columnCount(); col++) {
-                            if(col > 2){
+                            if (col > 2) {
                                  QStandardItem* item = model->item(row, col);
                                  if (item) {
                                      QString text = item->text();
@@ -560,8 +649,6 @@ void TabelaDados::filtrarComboBoxs()
                                      // Create QStandardItem for fieldValue only
                                      QStandardItem* fieldItem = new QStandardItem(fieldValue);
                                      rowItems.append(fieldItem);
-                                     // Set the header of the column with fieldName
-                                     filteredModel->setHorizontalHeaderItem(col, new QStandardItem(fieldName));
                                  }
                             }else{
                                  QStandardItem* item = model->item(row, col);
@@ -589,15 +676,15 @@ void TabelaDados::filtrarComboBoxs()
                     }
                 }
             }
-
-            if (addHeaders) {
-                // Add headers "Campo 1" to "Campo 8"
-                int columnCount = filteredModel->columnCount();
-                qDebug() << "Column Count:" << columnCount;
-                for (int i = 3; i < columnCount; ++i) {
-                    QString headerText = QString("Campo %1").arg(i - 2);
-                    filteredModel->setHorizontalHeaderItem(i, new QStandardItem(headerText));
-                }
+        }
+        if (addHeaders) {
+            // Add headers "Campo 1" to "Campo 8"
+            int columnCount = filteredModel->columnCount();
+            qDebug() << "Column Count:" << columnCount;
+            for (int i = 3; i < columnCount; ++i) {
+                QString headerText = QString("Campo %1").arg(i - 2);
+                qDebug() << "headerText:" << headerText;
+                filteredModel->setHorizontalHeaderItem(i, new QStandardItem(headerText));
             }
         }
     }

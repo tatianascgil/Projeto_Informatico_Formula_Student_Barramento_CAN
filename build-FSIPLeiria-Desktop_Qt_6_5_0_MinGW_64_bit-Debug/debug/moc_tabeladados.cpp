@@ -148,8 +148,8 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSTabelaDadosENDCLASS[] = {
     QMetaType::Void, QMetaType::QString,    5,
     QMetaType::Void, QMetaType::Int,    8,
     QMetaType::Void, QMetaType::Int,    8,
-    QMetaType::Long, QMetaType::QStringList,   11,
-    QMetaType::Long, QMetaType::QStringList,   11,
+    QMetaType::Double, QMetaType::QStringList,   11,
+    QMetaType::Double, QMetaType::QStringList,   11,
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
@@ -182,10 +182,10 @@ Q_CONSTINIT const QMetaObject TabelaDados::staticMetaObject = { {
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         QtPrivate::TypeAndForceComplete<int, std::false_type>,
         // method 'bigEndianConversion'
-        QtPrivate::TypeAndForceComplete<long, std::false_type>,
+        QtPrivate::TypeAndForceComplete<double, std::false_type>,
         QtPrivate::TypeAndForceComplete<const QStringList &, std::false_type>,
         // method 'littleEndianConversion'
-        QtPrivate::TypeAndForceComplete<long, std::false_type>,
+        QtPrivate::TypeAndForceComplete<double, std::false_type>,
         QtPrivate::TypeAndForceComplete<const QStringList &, std::false_type>,
         // method 'filtrarComboBoxs'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
@@ -208,10 +208,10 @@ void TabelaDados::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id,
         case 2: _t->setModulos((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;
         case 3: _t->setCodigosHex((*reinterpret_cast< std::add_pointer_t<int>>(_a[1]))); break;
         case 4: _t->setCampos((*reinterpret_cast< std::add_pointer_t<int>>(_a[1]))); break;
-        case 5: { long _r = _t->bigEndianConversion((*reinterpret_cast< std::add_pointer_t<QStringList>>(_a[1])));
-            if (_a[0]) *reinterpret_cast< long*>(_a[0]) = std::move(_r); }  break;
-        case 6: { long _r = _t->littleEndianConversion((*reinterpret_cast< std::add_pointer_t<QStringList>>(_a[1])));
-            if (_a[0]) *reinterpret_cast< long*>(_a[0]) = std::move(_r); }  break;
+        case 5: { double _r = _t->bigEndianConversion((*reinterpret_cast< std::add_pointer_t<QStringList>>(_a[1])));
+            if (_a[0]) *reinterpret_cast< double*>(_a[0]) = std::move(_r); }  break;
+        case 6: { double _r = _t->littleEndianConversion((*reinterpret_cast< std::add_pointer_t<QStringList>>(_a[1])));
+            if (_a[0]) *reinterpret_cast< double*>(_a[0]) = std::move(_r); }  break;
         case 7: _t->filtrarComboBoxs(); break;
         case 8: _t->on_commandButtonVoltar_clicked(); break;
         case 9: _t->on_btnGuardar_clicked(); break;
