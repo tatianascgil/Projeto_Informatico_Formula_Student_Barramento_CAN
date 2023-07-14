@@ -46,8 +46,6 @@ public:
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName("MainWindow");
         MainWindow->resize(850, 686);
-        MainWindow->setMinimumSize(QSize(850, 686));
-        MainWindow->setMaximumSize(QSize(850, 686));
         MainWindow->setCursor(QCursor(Qt::ArrowCursor));
         QIcon icon;
         icon.addFile(QString::fromUtf8("../icon.ico"), QSize(), QIcon::Normal, QIcon::Off);

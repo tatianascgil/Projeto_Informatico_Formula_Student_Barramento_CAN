@@ -9,12 +9,11 @@
 #include <QDebug>
 
 
-CriarTipoMensagem::CriarTipoMensagem(GerirModulo* gerirModulo, QWidget *parent) :
+CriarTipoMensagem::CriarTipoMensagem(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::CriarTipoMensagem)
 {
     ui->setupUi(this);
-    this->gerirModulo = gerirModulo;
 
 }
 
@@ -195,9 +194,6 @@ void CriarTipoMensagem::on_commandButtonVoltar_clicked()
         return;
     }
 
-    // Close the confirmation dialog
-    confirmation.close();
-
     previousWindow();
 
 }
@@ -205,17 +201,24 @@ void CriarTipoMensagem::on_commandButtonVoltar_clicked()
 void CriarTipoMensagem::previousWindow()
 {
 
+    const int gerirModuloWidth = 800;
+    const int gerirModuloHeight = 500;
+
+    // Cria a janela GerirCarro
+    GerirModulo *gerirModulo = new GerirModulo();
 
     QString nomeCarro = ui->labelNomeCarro->text().trimmed();
     QString nomeModulo = ui->labelNomeModulo->text().trimmed();
 
+    gerirModulo->setMinimumSize(gerirModuloWidth, gerirModuloHeight);
+    gerirModulo->setMaximumSize(gerirModuloWidth, gerirModuloHeight);
     gerirModulo->setNome(nomeCarro);
     gerirModulo->setNomeModulo(nomeModulo);
     gerirModulo->lerDadosModulo(nomeModulo);
     gerirModulo->lerDadosTiposMensagem(nomeModulo);
+
     this->close();
-
-
+    gerirModulo->show();
 }
 
 

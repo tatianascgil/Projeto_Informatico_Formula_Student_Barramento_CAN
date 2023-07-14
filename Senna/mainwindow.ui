@@ -10,18 +10,6 @@
     <height>686</height>
    </rect>
   </property>
-  <property name="minimumSize">
-   <size>
-    <width>850</width>
-    <height>686</height>
-   </size>
-  </property>
-  <property name="maximumSize">
-   <size>
-    <width>850</width>
-    <height>686</height>
-   </size>
-  </property>
   <property name="cursor">
    <cursorShape>ArrowCursor</cursorShape>
   </property>
