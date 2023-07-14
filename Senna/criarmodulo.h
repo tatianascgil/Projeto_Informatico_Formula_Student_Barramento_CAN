@@ -2,6 +2,8 @@
 #define CRIARMODULO_H
 
 #include <QWidget>
+#include <gerircarro.h>
+#include <ui_gerircarro.h>
 
 namespace Ui {
 class CriarModulo;
@@ -12,7 +14,7 @@ class CriarModulo : public QWidget
     Q_OBJECT
 
 public:
-    explicit CriarModulo(QWidget *parent = nullptr);
+    explicit CriarModulo(GerirCarro* gerirCarro,QWidget *parent = nullptr);
     ~CriarModulo();
 
 public slots:
@@ -29,6 +31,7 @@ private slots:
 
 private:
     Ui::CriarModulo *ui;
+    GerirCarro* gerirCarro;
 };
 
 #endif // CRIARMODULO_H

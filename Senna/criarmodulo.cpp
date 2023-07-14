@@ -7,11 +7,12 @@
 #include <QDebug>
 #include <QMessageBox>
 
-CriarModulo::CriarModulo(QWidget *parent) :
+CriarModulo::CriarModulo(GerirCarro* gerirCarro, QWidget *parent) :
     QWidget(parent),
     ui(new Ui::CriarModulo)
 {
     ui->setupUi(this);
+    this->gerirCarro = gerirCarro;
 }
 
 CriarModulo::~CriarModulo()
@@ -162,16 +163,14 @@ void CriarModulo::on_commandButtonVoltar_clicked()
         return;
     }
 
+    // Close the confirmation dialog
+    confirmation.close();
+
     previousWindow();
 }
 
 void CriarModulo::previousWindow(){
 
-    const int gerirCarroWidth = 800;
-    const int gerirCarroHeight = 500;
-
-    // Cria a janela GerirCarro
-    GerirCarro *gerirCarro = new GerirCarro();
 
     QString nomeCarro = ui->labelNomeCarro->text().trimmed();
 
@@ -180,9 +179,6 @@ void CriarModulo::previousWindow(){
     gerirCarro->lerDadosCarro(nomeCarro);
     gerirCarro->lerDadosModulo(nomeCarro);
 
-    // Define o tamanho mínimo e máximo da janela
-    gerirCarro->setMinimumSize(gerirCarroWidth, gerirCarroHeight);
-    gerirCarro->setMaximumSize(gerirCarroWidth, gerirCarroHeight);
-    gerirCarro->show();
+
     this->close();
 }

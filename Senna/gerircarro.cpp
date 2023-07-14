@@ -94,13 +94,11 @@ void GerirCarro::lerDadosCarro(const QString& nome) {
 
         QList<QStringList> data;
 
-        // Read the data
-        while (!stream.atEnd()) {
-            QString line = stream.readLine();
-            QStringList values = line.split(";");
-            if (values.size() >= 3) {
-                data.append(values.mid(0, 3));
-            }
+        // Read the first line of the file
+        QString line = stream.readLine();
+        QStringList values = line.split(";");
+        if (values.size() >= 3) {
+            data.append(values.mid(0, 3));
         }
 
         file.close();
@@ -220,21 +218,20 @@ void GerirCarro::on_commandButtonVoltar_clicked()
 
 void GerirCarro::on_btnCriarModulo_clicked()
 {
-    CriarModulo *criarModulo = new CriarModulo();
+    // Define o tamanho mínimo e máximo da janela
+    const int criarModuloWidth = 600;
+    const int criarModuloHeight = 250;
+
+    CriarModulo *criarModulo = new CriarModulo(this);
 
     QString nomeCarro = ui->labelNomeCarro->text();
 
     criarModulo->setNome(nomeCarro);
 
-    // Define o tamanho mínimo e máximo da janela
-    const int criarModuloWidth = 600;
-    const int criarModuloHeight = 250;
-
     criarModulo->setMinimumSize(criarModuloWidth, criarModuloHeight);
     criarModulo->setMaximumSize(criarModuloWidth, criarModuloHeight);
-
     criarModulo->show();
-    this->close();
+//    this->close();
 }
 
 

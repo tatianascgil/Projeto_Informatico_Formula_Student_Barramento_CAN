@@ -521,7 +521,7 @@ void GerirModulo::on_btnCriarTipoMensagem_clicked()
     criarTipoMensagem->setMinimumSize(criarTipoMensagemWidth, criarTipoMensagemHeight);
     criarTipoMensagem->setMaximumSize(criarTipoMensagemWidth, criarTipoMensagemHeight);
     criarTipoMensagem->show();
-    this->close();
+
 }
 
 

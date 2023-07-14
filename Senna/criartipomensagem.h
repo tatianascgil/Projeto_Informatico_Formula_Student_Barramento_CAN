@@ -2,6 +2,8 @@
 #define CRIARTIPOMENSAGEM_H
 
 #include <QDialog>
+#include <gerirmodulo.h>
+#include <ui_gerirmodulo.h>
 
 namespace Ui {
 class CriarTipoMensagem;
@@ -12,7 +14,7 @@ class CriarTipoMensagem : public QDialog
     Q_OBJECT
 
 public:
-    explicit CriarTipoMensagem(QWidget *parent = nullptr);
+    explicit CriarTipoMensagem(GerirModulo* gerirModulo, QWidget *parent = nullptr);
     ~CriarTipoMensagem();
 
 public slots:
@@ -29,6 +31,7 @@ private slots:
 
 private:
     Ui::CriarTipoMensagem *ui;
+    GerirModulo* gerirModulo;
 };
 
 #endif // CRIARTIPOMENSAGEM_H
